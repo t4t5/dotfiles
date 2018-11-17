@@ -12,24 +12,26 @@ Plugin 'scrooloose/nerdtree'           " NERDTree
 Plugin 'ctrlpvim/ctrlp.vim'            " FuzzyFinder
 Plugin 'tpope/vim-surround'            " Allows commands like ds) to delete surrounding parens
 Plugin 'tpope/vim-repeat'              " Let plugins use . to repeat commands
+Plugin 'w0rp/ale'                      " Async linter
 Plugin 'itchyny/lightline.vim'         " Powerline replacement
+Plugin 'maximbaz/lightline-ale'        " Ale indicator for Lightline
 Plugin 'wesQ3/vim-windowswap'          " Swap windows with ,ww
 Plugin 'airblade/vim-gitgutter'        " Show modified lines
-Plugin 'crusoexia/vim-monokai'         " Monokai color scheme
 Plugin 'valloric/youcompleteme'        " Autocompletion
 Plugin 'christoomey/vim-tmux-navigator' " Use normal VIM navigation in Tmux too
+Plugin 'sheerun/vim-polyglot'          " Multiple languages
+Plugin 'rakr/vim-one'                  " OneDark color scheme
 
 " Syntax highlighters
-Plugin 'cespare/vim-toml'              " TOML Syntax highlighting
-Plugin 'leafgarland/typescript-vim'    " TypeScript syntax
-Plugin 'wavded/vim-stylus'             " Stylus syntax highlighting
-Plugin 'posva/vim-vue'                 " Vue syntax
-Plugin 'joukevandermaas/vim-ember-hbs' " Handlebars syntax highlighting
-Plugin 'isRuslan/vim-es6'              " ES6 syntax
-Plugin 'digitaltoad/vim-jade'          " Jade/Pug syntax
+"Plugin 'cespare/vim-toml'              " TOML Syntax highlighting
+"Plugin 'leafgarland/typescript-vim'    " TypeScript syntax
+"Plugin 'wavded/vim-stylus'             " Stylus syntax highlighting
+"Plugin 'posva/vim-vue'                 " Vue syntax
+"Plugin 'joukevandermaas/vim-ember-hbs' " Handlebars syntax highlighting
+"Plugin 'digitaltoad/vim-jade'          " Jade/Pug syntax
 Plugin 'alampros/vim-styled-jsx'       " Styled JSX
-Plugin 'stephenway/postcss.vim'        " PostCSS syntax
-Plugin 'tomlion/vim-solidity'          " Ethereum Solidity syntax
+"Plugin 'stephenway/postcss.vim'        " PostCSS syntax
+"Plugin 'tomlion/vim-solidity'          " Ethereum Solidity syntax
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -57,24 +59,49 @@ set ai si                              " Set auto indent and smart indent
 set number                             " Always show line numbers
 set clipboard=unnamed                  " Always copy/paste to clipboard
 
+" Shorter delay for ESC key:
+set ttimeout          
+set ttimeoutlen=10    
+
 " Open new horizontal pane below, which feels more natural
 set splitbelow
 
-" --- Color theme ---
-syntax enable
-set background=dark
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>
 
-try
-  colorscheme monokai                  " Use Monokai theme
-catch
-endtry
+" --- Color theme ---
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+
+"set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
+set termguicolors     " enable true colors support
+syntax enable
+colorscheme one
+au ColorScheme one hi Normal ctermbg=None
+set background=dark
 
 
 " --- Plugin configurations ---
 
 let g:airline_powerline_fonts = 1
 set laststatus=2                       " Always display the status line (For Powerline/Lightline)
+
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 
 " Toggle NERDTree with ,d:
 map <Leader>d :NERDTreeToggle<CR>

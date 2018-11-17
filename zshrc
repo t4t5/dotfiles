@@ -13,7 +13,7 @@ export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
 # Make sure Vim colors work in tmux:
-#alias tmux="TERM=screen-256color-bce tmux"
+export TERM="xterm-256color"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then

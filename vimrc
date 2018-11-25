@@ -1,6 +1,6 @@
 let mapleader = ","                    " Set <leader> to ',' instead of '\'
 
-" ---  Vundle setup --- 
+" ---  Vundle setup ---
 set nocompatible
 filetype off
 
@@ -21,17 +21,12 @@ Plugin 'valloric/youcompleteme'        " Autocompletion
 Plugin 'christoomey/vim-tmux-navigator' " Use normal VIM navigation in Tmux too
 Plugin 'sheerun/vim-polyglot'          " Multiple languages
 Plugin 'rakr/vim-one'                  " OneDark color scheme
+Plugin 'brooth/far.vim'                " Find & replace across files
+Plugin 'mattn/emmet-vim'               " Expand ul>li or lorem ipsum text
 
-" Syntax highlighters
-"Plugin 'cespare/vim-toml'              " TOML Syntax highlighting
-"Plugin 'leafgarland/typescript-vim'    " TypeScript syntax
-"Plugin 'wavded/vim-stylus'             " Stylus syntax highlighting
-"Plugin 'posva/vim-vue'                 " Vue syntax
-"Plugin 'joukevandermaas/vim-ember-hbs' " Handlebars syntax highlighting
-"Plugin 'digitaltoad/vim-jade'          " Jade/Pug syntax
+" Extra syntax highlighters
 Plugin 'alampros/vim-styled-jsx'       " Styled JSX
-"Plugin 'stephenway/postcss.vim'        " PostCSS syntax
-"Plugin 'tomlion/vim-solidity'          " Ethereum Solidity syntax
+Plugin 'stephenway/postcss.vim'        " PostCSS syntax
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -52,16 +47,16 @@ set hlsearch                           " Highlight search results
 set backspace=2                        " make backspace work like most other apps
 
 set tabstop=2                          " Tabs to spaces
-set shiftwidth=2 
-set expandtab 
+set shiftwidth=2
+set expandtab
 set smarttab
 set ai si                              " Set auto indent and smart indent
 set number                             " Always show line numbers
 set clipboard=unnamed                  " Always copy/paste to clipboard
 
 " Shorter delay for ESC key:
-set ttimeout          
-set ttimeoutlen=10    
+set ttimeout
+set ttimeoutlen=10
 
 " Open new horizontal pane below, which feels more natural
 set splitbelow
@@ -87,7 +82,7 @@ let g:airline_powerline_fonts = 1
 set laststatus=2                       " Always display the status line (For Powerline/Lightline)
 
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \  'colorscheme': 'one',
       \ }
 let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
@@ -96,12 +91,26 @@ let g:lightline.component_expand = {
       \  'linter_ok': 'lightline#ale#ok',
       \ }
 let g:lightline.component_type = {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
+      \  'linter_checking': 'left',
+      \  'linter_warnings': 'warning',
+      \  'linter_errors': 'error',
+      \  'linter_ok': 'left',
       \ }
 let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+
+" ALE
+let g:ale_fixers = {
+      \'*': ['remove_trailing_lines', 'trim_whitespace'],
+      \'javascript': ['prettier']
+      \}
+let g:ale_fix_on_save = 1
+
+" Make Far undo work
+let g:far#auto_write_undo_buffers = 1
+
+" Move to next/previous error with ,aj and ,ak
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
 
 " Toggle NERDTree with ,d:
 map <Leader>d :NERDTreeToggle<CR>
@@ -111,4 +120,3 @@ let g:ctrlp_show_hidden=1              " Show hidden files in CTRLP
 let g:ctrlp_by_filename=0
 set wildignore+=.DS_Store,.git,node_modules,.next,.tmp,dist
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
-

@@ -1,9 +1,16 @@
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [user]
-	name = Tristan Edwards
-	email = tristan.henriksson@gmail.com
+  name = Tristan Edwards
+  email = tristan.edwards@me.com
 
+[core]
+  editor = vim
+
+[alias]
+  pf = push --force-with-lease
+  pr = pull --rebase
+
+[push]
+  default = current
+
+[commit]
+  template = ~/.gitmessage

@@ -180,7 +180,7 @@ nnoremap <leader>gc :cclose<cr>
 
 " For fzf
 set rtp+=/usr/local/opt/fzf
-nmap <silent> <c-p> :GFiles<CR>
+nmap <silent> <c-p> :Ag<CR>
 
 set wildignore+=.DS_Store,.git,node_modules,.next,.tmp,dist,tmp,bower_components
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png

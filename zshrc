@@ -10,6 +10,10 @@ HYPHEN_INSENSITIVE="true"
 plugins=(git git-extras npm)
 source $ZSH/oh-my-zsh.sh
 
+# Use silver searcher for fzf
+export FZF_DEFAULT_COMMAND='ag --ignore *.pyc -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 # Ruby
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 

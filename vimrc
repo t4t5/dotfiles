@@ -152,6 +152,7 @@ let test#strategy = "vtr"
 " VTR
 nnoremap <leader>v- :VtrOpenRunner { "orientation": "v" }<cr>
 nnoremap <leader>vr :VtrSendCommandToRunner<space>
+nnoremap <leader>va :VtrAttachToPane<cr>
 " Run last command:
 nnoremap <leader>vl :VtrSendCommandToRunner<cr>
 nnoremap <leader>vf :VtrFocusRunner<cr>

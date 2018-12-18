@@ -132,9 +132,11 @@ let g:lightline.active = {
 
 " ALE
 let g:ale_fixers = {
-      \'*': ['remove_trailing_lines', 'trim_whitespace'],
-      \'javascript': ['prettier']
-      \}
+  \'*': ['remove_trailing_lines', 'trim_whitespace'],
+  \'javascript': ['prettier'],
+  \'css': ['stylelint'],
+  \'scss': ['stylelint']
+\}
 let g:ale_fix_on_save = 1
 
 " Make Far undo work
@@ -175,7 +177,7 @@ inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 
 " Use Ack (grep) with gr
-nmap <LEADER>gr :Ack!<space>
+nmap <leader>gr :Ack!<space>
 nnoremap <leader>gc :cclose<cr>
 
 " For fzf

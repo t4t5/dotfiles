@@ -8,6 +8,10 @@
 [alias]
   pf = push --force-with-lease
   pr = pull --rebase
+  uncommit = reset --soft HEAD^
+  unstage = reset
+  sla = log --oneline --decorate --graph --all -20
+  glog = log -E -i --grep
 
 [push]
   default = current

@@ -3,6 +3,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 alias ..="cd .."
 
+killport() {
+  sudo kill -9 $(sudo fuser -n tcp $1 2> /dev/null);
+}
+
 # ZSH
 export ZSH=/Users/tristan/.oh-my-zsh
 ZSH_THEME="robbyrussell"

@@ -29,6 +29,7 @@ Plugin 'janko-m/vim-test'              " Run tests easily
 Plugin 'christoomey/vim-tmux-runner'   " Run rmux panes from Vim
 Plugin 'tpope/vim-commentary'          " Comment things out with gc
 Plugin 'mileszs/ack.vim'               " Ack - grep replacement
+Plugin 'Tabmerge'                      " Easily join tabs into panes
 
 " Syntax highlighters
 Plugin 'sheerun/vim-polyglot'          " Multiple languages
@@ -87,6 +88,15 @@ noremap <Up> :CmdResizeUp<cr>
 noremap <Down> :CmdResizeDown<cr>
 noremap <Left> :CmdResizeLeft<cr>
 noremap <Right> :CmdResizeRight<cr>
+
+" Simple tabbing
+nmap <silent> tn :tabe<cr>
+nmap <silent> tx :tabclose<cr>
+nmap <silent> th :tabp<cr>
+nmap <silent> tl :tabn<cr>
+nmap <silent> tb <C-W>T
+nmap <silent> tm :Tabmerge right<cr>
+nmap <silent> tj :Tabmerge right<cr>
 
 " --- Color theme ---
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"

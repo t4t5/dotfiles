@@ -13,6 +13,9 @@
   sla = log --oneline --decorate --graph --all -20
   glog = log -E -i --grep
 
+[status]
+  showUntrackedFiles = all
+
 [push]
   default = current
 

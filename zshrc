@@ -1,22 +1,13 @@
-# If you come from bash you might have to change your $PATH.
+# Uncomment this and the bottom line to see what's taking time to load:
+# zmodload zsh/zprof
+
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-alias ..="cd .."
-
-killport() {
-  sudo kill -9 $(sudo fuser -n tcp $1 2> /dev/null);
-}
 
 # ZSH
 export ZSH=/Users/tristan/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
-plugins=(git git-extras npm)
 source $ZSH/oh-my-zsh.sh
-
-# Use silver searcher for fzf
-export FZF_DEFAULT_COMMAND='ag --ignore *.pyc -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Ruby
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
@@ -24,10 +15,26 @@ export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 # Postgres
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
-# NVM
-unset npm_config_prefix
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm() {
+  unset -f nvm
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+  nvm "$@"
+}
+
+node() {
+  unset -f node
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+  node "$@"
+}
+
+npm() {
+  unset -f npm
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+  npm "$@"
+}
 
 # Use tmux by default when using terminal
 if [ -z "$TMUX" ]; then
@@ -47,19 +54,18 @@ fi
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Java version:
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home"
-
 # For Go:
 export GOPATH="${HOME}/.go"
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT="/usr/local/opt/go/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
-# added by travis gem
-[ -f /Users/tristan/.travis/travis.sh ] && source /Users/tristan/.travis/travis.sh
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
 # Rbenv
-eval "$(rbenv init -)"
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
+
+# Uncomment this and the first line in this file to see what's slow:
+# zprof

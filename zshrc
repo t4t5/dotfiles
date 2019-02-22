@@ -9,12 +9,21 @@ ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
 source $ZSH/oh-my-zsh.sh
 
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
+
 # Ruby
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 
 # Postgres
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
+# Git commands:
+source ~/.zshrc_git
+
+alias r='source ~/.zshrc'
+alias v='vim .'
+
+# Load node commands dynamically
 nvm() {
   unset -f nvm
   export NVM_DIR=~/.nvm
@@ -66,6 +75,8 @@ rbenv() {
   eval "$(command rbenv init -)"
   rbenv "$@"
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Uncomment this and the first line in this file to see what's slow:
 # zprof

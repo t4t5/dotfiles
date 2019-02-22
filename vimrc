@@ -3,6 +3,7 @@ let mapleader = ","                    " Set <leader> to ',' instead of '\'
 " ---  Vundle setup ---
 set nocompatible
 filetype off
+set hidden
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -30,11 +31,14 @@ Plugin 'christoomey/vim-tmux-runner'   " Run rmux panes from Vim
 Plugin 'tpope/vim-commentary'          " Comment things out with gc
 Plugin 'mileszs/ack.vim'               " Ack - grep replacement
 Plugin 'Tabmerge'                      " Easily join tabs into panes
+Plugin 'SirVer/ultisnips'
 
 " Syntax highlighters
 Plugin 'sheerun/vim-polyglot'          " Multiple languages
 Plugin 'alampros/vim-styled-jsx'       " Styled JSX
 Plugin 'stephenway/postcss.vim'        " PostCSS syntax
+Plugin 'ryanoasis/vim-devicons'        " Cool icons
+Plugin 'qpkorr/vim-bufkill'            " Kill buffers without closing window
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -76,27 +80,37 @@ set splitbelow
 " Format json with :FormatJSON
 com! FormatJSON %!python -m json.tool
 
-"This unsets the "last search pattern" register by hitting return
+" This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
-nnoremap <leader>sub :%s//g<left><left>
-vnoremap <leader>sub :s//g<left><left>
+" Easy string replacement
+nnoremap <leader>r :%s//g<left><left>
+vnoremap <leader>r :s//g<left><left>
 
 " Remap arrow keys to resize panes
 let g:vim_resize_disable_auto_mappings = 1
-noremap <Up> :CmdResizeUp<cr>
-noremap <Down> :CmdResizeDown<cr>
-noremap <Left> :CmdResizeLeft<cr>
+noremap <Up>    :CmdResizeUp<cr>
+noremap <Down>  :CmdResizeDown<cr>
+noremap <Left>  :CmdResizeLeft<cr>
 noremap <Right> :CmdResizeRight<cr>
 
-" Simple tabbing
+" Ctrl + arrow keys to switch between tabs
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
 nmap <silent> tn :tabe<cr>
 nmap <silent> tx :tabclose<cr>
-nmap <silent> th :tabp<cr>
-nmap <silent> tl :tabn<cr>
 nmap <silent> tb <C-W>T
 nmap <silent> tm :Tabmerge right<cr>
 nmap <silent> tj :Tabmerge right<cr>
+
+" vv to generate new vertical split
+nnoremap <silent> vv :vnew<cr>
+
+" Recordings
+" Use qq to start, q to stop and <Space> to play
+:nnoremap <Space> @q
+vnoremap <silent> <Space> :norm! @q<cr>
 
 " --- Color theme ---
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -144,6 +158,7 @@ let g:lightline.active = {
 let g:ale_fixers = {
   \'*': ['remove_trailing_lines', 'trim_whitespace'],
   \'javascript': ['prettier'],
+  \'typescript': ['prettier'],
   \'css': ['stylelint'],
   \'scss': ['stylelint']
 \}
@@ -170,8 +185,14 @@ nnoremap <leader>vl :VtrSendCommandToRunner<cr>
 nnoremap <leader>vf :VtrFocusRunner<cr>
 nnoremap <leader>vk :VtrKillRunner<cr>
 
+" UltiSnips configuration.
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsExpandTrigger = '<C-l>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
 " Fugitive
-nmap <leader>gs :Gstatus<CR>
+nmap <leader>gs :Gstatus<cr><c-w>k<c-w>K<c-w>p
 nmap <leader>gd :Gdiff<CR>
 
 " Toggle NERDTree with ,d:
@@ -182,17 +203,20 @@ let NERDTreeShowHidden=1 " Show hidden files
 let g:NERDTreeMapJumpNextSibling = '<Nop>'
 let g:NERDTreeMapJumpPrevSibling = '<Nop>'
 
+" Find file in directory with ,f
+nmap <leader>f :NERDTreeFind<cr>
+
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 
-" Use Ack (grep) with gr
-nmap <leader>gr :Ack!<space>
-nnoremap <leader>gc :cclose<cr>
-
 " For fzf
 set rtp+=/usr/local/opt/fzf
-nmap <silent> <c-p> :Ag<CR>
+nmap <silent> <c-p> :Rg<cr>
+nmap <silent> <c-f> :Files<cr>
+nmap <silent> <c-b> :Buffers<cr>
+" Bufkil:
+nmap <silent> <c-x> :BD<cr>
 
 set wildignore+=.DS_Store,.git,node_modules,.next,.tmp,dist,tmp,bower_components
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png

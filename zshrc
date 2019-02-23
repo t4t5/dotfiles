@@ -10,6 +10,7 @@ HYPHEN_INSENSITIVE="true"
 source $ZSH/oh-my-zsh.sh
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
+export FZF_CTRL_T_COMMAND='ag --nocolor -g ""'
 
 # Ruby
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
@@ -22,6 +23,44 @@ source ~/.zshrc_git
 
 alias r='source ~/.zshrc'
 alias v='vim .'
+
+g() {
+  if [ "$1" = "ch" ]; then
+    g_fuzzy_checkout
+  elif [ "$1" = "br" ]; then
+    g_fuzzy_branch
+  elif [ "$1" = "lg" ]; then
+    g_fuzzy_log
+  elif [ $# -gt 0 ]; then
+    git "$@"
+  else
+    git status
+  fi
+}
+
+g_fuzzy_checkout() {
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+g_fuzzy_branch() {
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf-down --ansi --multi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
+g_fuzzy_log() {
+  is_in_git_repo || return
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
+  grep -o "[a-f0-9]\{7,\}"
+}
 
 # Load node commands dynamically
 nvm() {

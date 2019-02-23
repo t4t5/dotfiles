@@ -32,6 +32,7 @@ Plugin 'tpope/vim-commentary'          " Comment things out with gc
 Plugin 'mileszs/ack.vim'               " Ack - grep replacement
 Plugin 'Tabmerge'                      " Easily join tabs into panes
 Plugin 'SirVer/ultisnips'
+Plugin 'tpope/vim-eunuch'              " :Rename, :Delete...etc
 
 " Syntax highlighters
 Plugin 'sheerun/vim-polyglot'          " Multiple languages

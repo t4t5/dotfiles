@@ -19,11 +19,10 @@ Plugin 'itchyny/lightline.vim'         " Powerline replacement
 Plugin 'maximbaz/lightline-ale'        " Ale indicator for Lightline
 Plugin 'wesQ3/vim-windowswap'          " Swap windows with ,ww
 Plugin 'airblade/vim-gitgutter'        " Show modified lines
-Plugin 'valloric/youcompleteme'        " Autocompletion
+" Plugin 'valloric/youcompleteme'        " Autocompletion
 Plugin 'christoomey/vim-tmux-navigator' " Use normal VIM navigation in Tmux too
 Plugin 'rakr/vim-one'                  " OneDark color scheme
 Plugin 'brooth/far.vim'                " Find & replace across files
-Plugin 'breuckelen/vim-resize'         " Resize window with arrow keys
 Plugin 'tpope/vim-fugitive'            " Git stuff
 Plugin 'tpope/vim-rhubarb'             " Enables :GBrowse in Fugitive
 Plugin 'janko-m/vim-test'              " Run tests easily
@@ -33,13 +32,15 @@ Plugin 'mileszs/ack.vim'               " Ack - grep replacement
 Plugin 'Tabmerge'                      " Easily join tabs into panes
 Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-eunuch'              " :Rename, :Delete...etc
+Plugin 'qpkorr/vim-bufkill'            " Kill buffers without closing window
+Plugin 'wellle/targets.vim'            " Allows things like ci_, da, ...etc
+Plugin 'osyo-manga/vim-over'           " Preview replacement when using %s
 
-" Syntax highlighters
+" Syntax highlighters & UI goodies
 Plugin 'sheerun/vim-polyglot'          " Multiple languages
 Plugin 'alampros/vim-styled-jsx'       " Styled JSX
 Plugin 'stephenway/postcss.vim'        " PostCSS syntax
 Plugin 'ryanoasis/vim-devicons'        " Cool icons
-Plugin 'qpkorr/vim-bufkill'            " Kill buffers without closing window
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -84,16 +85,25 @@ com! FormatJSON %!python -m json.tool
 " This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
-" Easy string replacement
-nnoremap <leader>r :%s//g<left><left>
-vnoremap <leader>r :s//g<left><left>
+" find-and-replace
+nnoremap <leader>fr :call VisualFindAndReplace()<cr>
+vnoremap <leader>fr :call VisualFindAndReplaceWithSelection()<cr>
+
+function! VisualFindAndReplace()
+  :OverCommandLine%s/
+  :w
+endfunction
+
+function! VisualFindAndReplaceWithSelection() range
+  :'<,'>OverCommandLine s/
+  :w
+endfunction
 
 " Remap arrow keys to resize panes
-let g:vim_resize_disable_auto_mappings = 1
-noremap <Up>    :CmdResizeUp<cr>
-noremap <Down>  :CmdResizeDown<cr>
-noremap <Left>  :CmdResizeLeft<cr>
-noremap <Right> :CmdResizeRight<cr>
+nnoremap <silent> <left> :vertical resize -10<cr>
+nnoremap <silent> <right> :vertical resize +10<cr>
+nnoremap <silent> <up> :resize +5<cr>
+nnoremap <silent> <down> :resize -5<cr>
 
 " Ctrl + arrow keys to switch between tabs
 nnoremap <C-Left> :tabprevious<CR>
@@ -164,6 +174,7 @@ let g:ale_fixers = {
   \'scss': ['stylelint']
 \}
 let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_use_local_config = 1
 
 " Make Far undo work
 let g:far#auto_write_undo_buffers = 1

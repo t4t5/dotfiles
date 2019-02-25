@@ -19,7 +19,7 @@ export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
 # Git commands:
-source ~/.zshrc_git
+source ~/.zshrc_git_aliases
 
 alias r='source ~/.zshrc'
 alias v='vim .'

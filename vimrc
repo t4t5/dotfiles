@@ -205,7 +205,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " Fugitive
 nmap <leader>gs :Gstatus<cr><c-w>k<c-w>K<c-w>p
-nmap <leader>gd :Gdiff<CR>
+nmap <leader>gd :Gvdiff<CR>
 
 " Toggle NERDTree with ,d:
 map <leader>d :NERDTreeToggle<CR>

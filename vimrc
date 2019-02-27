@@ -35,6 +35,7 @@ Plugin 'tpope/vim-eunuch'              " :Rename, :Delete...etc
 Plugin 'qpkorr/vim-bufkill'            " Kill buffers without closing window
 Plugin 'wellle/targets.vim'            " Allows things like ci_, da, ...etc
 Plugin 'osyo-manga/vim-over'           " Preview replacement when using %s
+Plugin 'christoomey/vim-conflicted'    " Handle git conflicts in vim
 
 " Syntax highlighters & UI goodies
 Plugin 'sheerun/vim-polyglot'          " Multiple languages
@@ -78,6 +79,10 @@ set ttimeoutlen=10
 
 " Open new horizontal pane below, which feels more natural
 set splitbelow
+
+" Show version name in splits during vim-conflicted
+set stl+=%{ConflictedVersion()}
+nnoremap <leader>gnc :GitNextConflict<cr>
 
 " Format json with :FormatJSON
 com! FormatJSON %!python -m json.tool

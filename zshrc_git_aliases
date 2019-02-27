@@ -11,10 +11,12 @@ g() {
     g_fuzzy_checkout
   elif [ "$1" = "br" ]; then
     g_fuzzy_branch
-  elif [ "$1" = "lg" ]; then
+  elif [ "$1" = "glog" ] || [ "$1" = "glg" ]; then
     g_fuzzy_log
   elif [ "$1" = "st" ]; then
     g_fuzzy_stash
+  elif [ "$1" = "am" ]; then
+    git commit --amend --reset-author
   elif [ $# -gt 0 ]; then
     git "$@"
   else

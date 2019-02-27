@@ -7,17 +7,26 @@
 
 [alias]
   pf = push --force-with-lease
-  pr = pull --rebase
+  pl = pull
   uncommit = reset --soft HEAD^
   unstage = reset
-  sla = log --oneline --decorate --graph --all -20
-  glog = log -E -i --grep
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  browse = !hub browse
+  issues = !hub browse -- issues
+  mup = !git checkout master && git fetch origin && echo && git lg master..origin/master && echo && git pull --quiet && git checkout -
+	conflicted = !vim +Conflicted
 
 [status]
   showUntrackedFiles = all
 
+[merge]
+  ff = only
+
+[pull]
+  rebase = true
+
 [push]
-  default = current
+  default = upstream
 
 [commit]
   template = ~/.gitmessage

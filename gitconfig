@@ -13,8 +13,11 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   browse = !hub browse
   issues = !hub browse -- issues
+  pr = !git push && hub compare
+  ds = !git diff --staged
   mup = !git checkout master && git fetch origin && echo && git lg master..origin/master && echo && git pull --quiet && git checkout -
 	conflicted = !vim +Conflicted
+  fix = "!git commit --fixup \"$1\" && git rebase -i --autosquash \"$1\"~1 #"
 
 [status]
   showUntrackedFiles = all
@@ -26,7 +29,7 @@
   rebase = true
 
 [push]
-  default = upstream
+  default = current
 
 [commit]
   template = ~/.gitmessage

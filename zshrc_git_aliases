@@ -8,7 +8,11 @@ fzf-down() {
 
 g() {
   if [ "$1" = "ch" ]; then
-    g_fuzzy_checkout
+    if [ -z "$2" ]; then
+      g_fuzzy_checkout
+    else
+      git checkout "${@:2}"
+    fi
   elif [ "$1" = "br" ]; then
     g_fuzzy_branch
   elif [ "$1" = "glog" ] || [ "$1" = "glg" ]; then

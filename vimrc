@@ -4,6 +4,7 @@ let mapleader = ","                    " Set <leader> to ',' instead of '\'
 set nocompatible
 filetype off
 set hidden
+set shellcmdflag=-lc
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -19,7 +20,7 @@ Plugin 'itchyny/lightline.vim'         " Powerline replacement
 Plugin 'maximbaz/lightline-ale'        " Ale indicator for Lightline
 Plugin 'wesQ3/vim-windowswap'          " Swap windows with ,ww
 Plugin 'airblade/vim-gitgutter'        " Show modified lines
-" Plugin 'valloric/youcompleteme'        " Autocompletion
+Plugin 'valloric/youcompleteme'        " Autocompletion
 Plugin 'christoomey/vim-tmux-navigator' " Use normal VIM navigation in Tmux too
 Plugin 'rakr/vim-one'                  " OneDark color scheme
 Plugin 'brooth/far.vim'                " Find & replace across files
@@ -36,6 +37,8 @@ Plugin 'qpkorr/vim-bufkill'            " Kill buffers without closing window
 Plugin 'wellle/targets.vim'            " Allows things like ci_, da, ...etc
 Plugin 'osyo-manga/vim-over'           " Preview replacement when using %s
 Plugin 'christoomey/vim-conflicted'    " Handle git conflicts in vim
+Plugin 'sukima/vim-ember-imports'      " Import Ember's modules with <leader>e
+Plugin 'jamessan/vim-gnupg'            " GPG encryption of files
 
 " Syntax highlighters & UI goodies
 Plugin 'sheerun/vim-polyglot'          " Multiple languages
@@ -82,6 +85,7 @@ set splitbelow
 
 " Show version name in splits during vim-conflicted
 set stl+=%{ConflictedVersion()}
+set diffopt+=vertical
 nnoremap <leader>gnc :GitNextConflict<cr>
 
 " Format json with :FormatJSON
@@ -226,6 +230,9 @@ nmap <leader>f :NERDTreeFind<cr>
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+
+" Don't bring up preview window for YCM
+set completeopt-=preview
 
 " For fzf
 set rtp+=/usr/local/opt/fzf

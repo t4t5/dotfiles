@@ -21,36 +21,14 @@ export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 # Git commands:
 source ~/.zshrc_git_aliases
 
-alias r='source ~/.zshrc'
-alias v='vim .'
+alias r="source ~/.zshrc"
 
-lazynvm() {
-  unset -f nvm node npm npx
-  export NVM_DIR=~/.nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-  if [ -f "$NVM_DIR/bash_completion" ]; then
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+v() {
+  if [ $# -gt 0 ]; then
+    vim "$@"
+  else
+    vim .
   fi
-}
-
-nvm() {
-  lazynvm
-  nvm $@
-}
-
-node() {
-  lazynvm
-  node $@
-}
-
-npm() {
-  lazynvm
-  npm $@
-}
-
-npx() {
-  lazynvm
-  npx $@
 }
 
 # Use tmux by default when using terminal
@@ -85,6 +63,11 @@ rbenv() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NOTION_HOME="$HOME/.notion"
+[ -s "$NOTION_HOME/load.sh" ] && \. "$NOTION_HOME/load.sh"
+
+export PATH="${NOTION_HOME}/bin:$PATH"
 
 # Uncomment this and the first line in this file to see what's slow:
 # zprof

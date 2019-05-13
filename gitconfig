@@ -11,6 +11,7 @@
   uncommit = reset --soft HEAD^
   unstage = reset
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lo = log --oneline
   browse = !hub browse
   issues = !hub browse -- issues
   pr = !git push && hub compare

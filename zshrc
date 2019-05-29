@@ -23,6 +23,8 @@ source ~/.zshrc_git_aliases
 
 alias r="source ~/.zshrc"
 
+alias pythonserver="python -m SimpleHTTPServer 8000"
+
 v() {
   if [ $# -gt 0 ]; then
     vim "$@"
@@ -64,10 +66,10 @@ rbenv() {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NOTION_HOME="$HOME/.notion"
-[ -s "$NOTION_HOME/load.sh" ] && \. "$NOTION_HOME/load.sh"
+export VOLTA_HOME="$HOME/.volta"
+[ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"
 
-export PATH="${NOTION_HOME}/bin:$PATH"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Uncomment this and the first line in this file to see what's slow:
 # zprof

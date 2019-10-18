@@ -4,6 +4,7 @@
 
 [core]
   editor = vim
+	attributesfile = ~/.gitattributes
 
 [alias]
   pf = push --force-with-lease
@@ -34,3 +35,6 @@
 
 [commit]
   template = ~/.gitmessage
+[merge "merge-structure-sql"]
+	name = Rails structure.sql merge driver
+	driver = git-merge-structure-sql %A %O %B

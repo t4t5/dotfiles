@@ -8,12 +8,17 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
+brew install volta
 brew install tmux
 brew install rbenv
 brew install ack
 brew install the_silver_searcher
 brew install macvim --with-override-system-vim
 brew install imagemagick --with-webp
+
+# Start Redis on start
+brew install redis
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 
 brew install fzf
 $(brew --prefix)/opt/fzf/install

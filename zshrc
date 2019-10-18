@@ -25,6 +25,9 @@ alias r="source ~/.zshrc"
 
 alias pythonserver="python -m SimpleHTTPServer 8000"
 
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;
+killall Finder /System/Library/CoreServices/Finder.app'
+
 v() {
   if [ $# -gt 0 ]; then
     vim "$@"

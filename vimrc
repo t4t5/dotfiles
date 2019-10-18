@@ -37,6 +37,7 @@ Plugin 'qpkorr/vim-bufkill'            " Kill buffers without closing window
 Plugin 'wellle/targets.vim'            " Allows things like ci_, da, ...etc
 Plugin 'osyo-manga/vim-over'           " Preview replacement when using %s
 Plugin 'christoomey/vim-conflicted'    " Handle git conflicts in vim
+Plugin 'sukima/vim-javascript-imports' " Needed for vim-ember-imports
 Plugin 'sukima/vim-ember-imports'      " Import Ember's modules with <leader>e
 Plugin 'jamessan/vim-gnupg'            " GPG encryption of files
 

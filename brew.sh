@@ -16,6 +16,10 @@ brew install the_silver_searcher
 brew install macvim --with-override-system-vim
 brew install imagemagick --with-webp
 
+brew install puma/puma/puma-dev
+sudo puma-dev -setup
+puma-dev -install
+
 # Start Redis on start
 brew install redis
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents

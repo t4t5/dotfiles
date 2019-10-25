@@ -13,6 +13,8 @@ g() {
     else
       git checkout "${@:2}"
     fi
+  elif [ "$1" = "de" ]; then
+    g_fuzzy_delete_branch
   elif [ "$1" = "br" ]; then
     g_fuzzy_branch
   elif [ "$1" = "glog" ] || [ "$1" = "glg" ]; then
@@ -33,6 +35,13 @@ g_fuzzy_checkout() {
   branches=$(git branch -vv) &&
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+g_fuzzy_delete_branch() {
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git branch -d $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
 g_fuzzy_branch() {

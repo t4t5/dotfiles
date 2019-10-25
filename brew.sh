@@ -11,10 +11,13 @@ brew upgrade
 brew install volta
 brew install tmux
 brew install rbenv
+brew install ripgrep
 brew install ack
 brew install the_silver_searcher
+brew install hub
 brew install macvim --with-override-system-vim
 brew install imagemagick --with-webp
+brew install watchman
 
 brew install puma/puma/puma-dev
 sudo puma-dev -setup

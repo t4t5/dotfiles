@@ -18,6 +18,7 @@ brew install hub
 brew install macvim --with-override-system-vim
 brew install imagemagick --with-webp
 brew install watchman
+brew install ngircd
 
 brew install puma/puma/puma-dev
 sudo puma-dev -setup

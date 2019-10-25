@@ -16,7 +16,7 @@ export FZF_CTRL_T_COMMAND='ag --nocolor -g ""'
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 
 # Postgres
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 
 # Git commands:
 source ~/.zshrc_git_aliases

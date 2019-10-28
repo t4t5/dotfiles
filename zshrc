@@ -18,6 +18,9 @@ export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 # Postgres
 export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 
+# ngircd
+export PATH="/usr/local/sbin:$PATH"
+
 # Git commands:
 source ~/.zshrc_git_aliases
 

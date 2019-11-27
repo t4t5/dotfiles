@@ -8,7 +8,12 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
+brew tap thoughtbot/formulae
+brew install rcm
+brew install python
+brew install vim
 brew install volta
+brew install ruby
 brew install tmux
 brew install rbenv
 brew install ripgrep
@@ -19,6 +24,7 @@ brew install macvim --with-override-system-vim
 brew install imagemagick --with-webp
 brew install watchman
 brew install ngircd
+brew install postgres
 
 brew install puma/puma/puma-dev
 sudo puma-dev -setup

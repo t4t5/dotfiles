@@ -209,9 +209,16 @@ nnoremap <leader>vk :VtrKillRunner<cr>
 
 " UltiSnips configuration.
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
-let g:UltiSnipsExpandTrigger = '<C-l>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+" Workaround to trigger UltiSnips with Enter
+let g:ulti_expand_or_jump_res = 0 "default value, just set once
+function! Ulti_ExpandOrJump_and_getRes()
+  call UltiSnips#ExpandSnippetOrJump()
+  return g:ulti_expand_or_jump_res
+endfunction
+inoremap <CR> <C-R>=(Ulti_ExpandOrJump_and_getRes() > 0)?"":"\n"<CR>
 
 " Fugitive
 nmap <leader>gs :Gstatus<cr><c-w>k<c-w>K<c-w>p

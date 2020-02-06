@@ -179,9 +179,7 @@ let g:lightline.active = {
 let g:ale_fixers = {
   \'*': ['remove_trailing_lines', 'trim_whitespace'],
   \'javascript': ['prettier'],
-  \'typescript': ['prettier'],
-  \'css': ['stylelint'],
-  \'scss': ['stylelint']
+  \'typescript': ['prettier']
 \}
 let g:ale_linters = {'javascript': ['eslint', 'flow']}
 let g:ale_fix_on_save = 1

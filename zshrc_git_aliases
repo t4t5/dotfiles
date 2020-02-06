@@ -10,8 +10,8 @@ g() {
   if [ "$1" = "ch" ]; then
     if [ -z "$2" ]; then
       g_fuzzy_checkout
-    elif [ "$2" = "-b"]; then
-      git checkout -b "${@:3}" origin/"${@:3}"
+    elif [ "$2" = "-b" ]; then
+      git checkout -b "${@:3}" && git branch -u "origin/${@:3}"
     else
       git checkout "${@:2}"
     fi

@@ -215,6 +215,7 @@ nnoremap <leader>vf :VtrFocusRunner<cr>
 nnoremap <leader>vk :VtrKillRunner<cr>
 
 " UltiSnips configuration.
+set rtp+=~/Library/Application\ Support/Electron/integrations " For Codespace
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'

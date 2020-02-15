@@ -51,7 +51,7 @@ if [ -z "$TMUX" ]; then
 fi
 
 # Make sure Vim colors work in tmux:
-export TERM="xterm-256color"
+export TERM="xterm-256color-italic"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then

@@ -151,6 +151,12 @@ colorscheme one
 au ColorScheme one hi Normal ctermbg=None
 set background=dark
 
+" Make HTML attributes italic (for Operator Mono font)
+hi Comment gui=italic cterm=italic
+hi htmlArg gui=italic cterm=italic
+hi Type    gui=italic cterm=italic
+let &t_ZH = "\e[3m"
+let &t_ZR = "\e[23m"
 
 " --- Plugin configurations ---
 

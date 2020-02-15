@@ -109,6 +109,14 @@ function! VisualFindAndReplaceWithSelection() range
   :w
 endfunction
 
+function! StringToSlug()
+  let str = getline('.')
+  let slug = join(split(tolower(str), '\W\+'), '-')
+  call setline(line('.'), slug)
+endfunction
+
+nnoremap <leader>s :call StringToSlug()<cr>
+
 " Remap arrow keys to resize panes
 nnoremap <silent> <left> :vertical resize -10<cr>
 nnoremap <silent> <right> :vertical resize +10<cr>

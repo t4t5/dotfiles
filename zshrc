@@ -21,6 +21,9 @@ export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 # ngircd
 export PATH="/usr/local/sbin:$PATH"
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # OpenSSL
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl/lib"

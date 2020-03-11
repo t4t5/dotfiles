@@ -46,6 +46,7 @@ Plugin 'sheerun/vim-polyglot'          " Multiple languages
 Plugin 'alampros/vim-styled-jsx'       " Styled JSX
 Plugin 'stephenway/postcss.vim'        " PostCSS syntax
 Plugin 'ryanoasis/vim-devicons'        " Cool icons
+Plugin 'rust-lang/rust.vim'            " Rust
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -194,15 +195,20 @@ let g:ale_fixers = {
   \'*': ['remove_trailing_lines', 'trim_whitespace'],
   \'javascript': ['prettier'],
   \'typescript': ['prettier'],
-  \'svelte': ['prettier']
+  \'svelte': ['prettier'],
+  \'rust': ['rustfmt'],
 \}
 let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_linters = {
   \'javascript': ['eslint', 'flow'],
-  \'svelte': ['stylelint', 'eslint']
+  \'svelte': ['stylelint', 'eslint'],
+  \'rust': ['rls']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
+
+" Format Rust files:
+let g:rustfmt_autosave = 1
 
 " Make Far undo work
 let g:far#auto_write_undo_buffers = 1

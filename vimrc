@@ -47,6 +47,7 @@ Plugin 'alampros/vim-styled-jsx'       " Styled JSX
 Plugin 'stephenway/postcss.vim'        " PostCSS syntax
 Plugin 'ryanoasis/vim-devicons'        " Cool icons
 Plugin 'rust-lang/rust.vim'            " Rust
+Plugin 'neoclide/coc.nvim'             " Better error messages
 
 call vundle#end()            " required
 filetype plugin indent on    " required

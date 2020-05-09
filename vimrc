@@ -1,4 +1,5 @@
 let mapleader = ","                    " Set <leader> to ',' instead of '\'
+let g:user_emmet_leader_key = ','
 
 " ---  Vundle setup ---
 set nocompatible
@@ -40,6 +41,7 @@ Plugin 'christoomey/vim-conflicted'    " Handle git conflicts in vim
 Plugin 'sukima/vim-javascript-imports' " Needed for vim-ember-imports
 Plugin 'sukima/vim-ember-imports'      " Import Ember's modules with <leader>e
 Plugin 'jamessan/vim-gnupg'            " GPG encryption of files
+Plugin 'mattn/emmet-vim'               " Emmet (easy HTML tag generation)
 
 " Syntax highlighters & UI goodies
 Plugin 'sheerun/vim-polyglot'          " Multiple languages

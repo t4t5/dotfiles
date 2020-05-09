@@ -42,6 +42,8 @@ Plugin 'sukima/vim-javascript-imports' " Needed for vim-ember-imports
 Plugin 'sukima/vim-ember-imports'      " Import Ember's modules with <leader>e
 Plugin 'jamessan/vim-gnupg'            " GPG encryption of files
 Plugin 'mattn/emmet-vim'               " Emmet (easy HTML tag generation)
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'kristijanhusak/vim-js-file-import'
 
 " Syntax highlighters & UI goodies
 Plugin 'sheerun/vim-polyglot'          " Multiple languages

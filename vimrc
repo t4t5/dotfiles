@@ -21,7 +21,6 @@ Plugin 'itchyny/lightline.vim'         " Powerline replacement
 Plugin 'maximbaz/lightline-ale'        " Ale indicator for Lightline
 Plugin 'wesQ3/vim-windowswap'          " Swap windows with ,ww
 Plugin 'airblade/vim-gitgutter'        " Show modified lines
-Plugin 'valloric/youcompleteme'        " Autocompletion
 Plugin 'christoomey/vim-tmux-navigator' " Use normal VIM navigation in Tmux too
 Plugin 'rakr/vim-one'                  " OneDark color scheme
 Plugin 'brooth/far.vim'                " Find & replace across files
@@ -44,6 +43,8 @@ Plugin 'jamessan/vim-gnupg'            " GPG encryption of files
 Plugin 'mattn/emmet-vim'               " Emmet (easy HTML tag generation)
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'kristijanhusak/vim-js-file-import'
+Plugin 'neoclide/coc.nvim'             " Better error messages
+Plugin 'neoclide/coc-snippets'         " Use Ultisnips with coc.vim
 
 " Syntax highlighters & UI goodies
 Plugin 'sheerun/vim-polyglot'          " Multiple languages
@@ -52,7 +53,6 @@ Plugin 'stephenway/postcss.vim'        " PostCSS syntax
 Plugin 'ryanoasis/vim-devicons'        " Cool icons
 Plugin 'rust-lang/rust.vim'            " Rust
 Plugin 'styled-components/vim-styled-components'
-" Plugin 'neoclide/coc.nvim'             " Better error messages
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -268,9 +268,6 @@ nmap <leader>f :NERDTreeFind<cr>
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
-
-" Don't bring up preview window for YCM
-set completeopt-=preview
 
 " For fzf
 set rtp+=/usr/local/opt/fzf

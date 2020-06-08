@@ -88,6 +88,9 @@ set relativenumber
 set ttimeout
 set ttimeoutlen=10
 
+" No newline at end of file:
+autocmd FileType html.handlebars setlocal noeol binary
+
 " Open new horizontal pane below, which feels more natural
 set splitbelow
 
@@ -201,6 +204,7 @@ let g:ale_fixers = {
   \'*': ['remove_trailing_lines', 'trim_whitespace'],
   \'javascript': ['prettier'],
   \'typescript': ['prettier'],
+  \'handlebars': ['prettier'],
   \'svelte': ['prettier'],
   \'rust': ['rustfmt'],
 \}

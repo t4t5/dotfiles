@@ -41,10 +41,10 @@ Plugin 'sukima/vim-javascript-imports' " Needed for vim-ember-imports
 Plugin 'sukima/vim-ember-imports'      " Import Ember's modules with <leader>e
 Plugin 'jamessan/vim-gnupg'            " GPG encryption of files
 Plugin 'mattn/emmet-vim'               " Emmet (easy HTML tag generation)
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'kristijanhusak/vim-js-file-import'
+" Plugin 'ludovicchabant/vim-gutentags'
+" Plugin 'skywind3000/gutentags_plus'
+" Plugin 'kristijanhusak/vim-js-file-import'
 Plugin 'neoclide/coc.nvim'             " Better error messages
-Plugin 'neoclide/coc-snippets'         " Use Ultisnips with coc.vim
 
 " Syntax highlighters & UI goodies
 Plugin 'sheerun/vim-polyglot'          " Multiple languages
@@ -280,6 +280,9 @@ nmap <silent> <c-f> :Files<cr>
 nmap <silent> <c-b> :Buffers<cr>
 " Bufkil:
 nmap <silent> <c-x> :BD<cr>
+
+" generate datebases in my cache directory, prevent gtags files polluting my project
+" let g:gutentags_cache_dir = expand('~/.cache/tags')
 
 set wildignore+=.DS_Store,.git,node_modules,.next,.tmp,dist,tmp,bower_components
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png

@@ -19,6 +19,7 @@ brew install rbenv
 brew install ripgrep
 brew install ack
 brew install the_silver_searcher
+brew install zsh-autosuggestions
 brew install hub
 brew install macvim --with-override-system-vim
 brew install imagemagick --with-webp

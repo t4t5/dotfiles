@@ -83,11 +83,12 @@ rbenv() {
 
 export VOLTA_HOME="$HOME/.volta"
 [ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"
-
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # ElasticSearch
 export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
+
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Uncomment this and the first line in this file to see what's slow:
 # zprof

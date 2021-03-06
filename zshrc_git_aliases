@@ -19,6 +19,10 @@ g() {
     g_fuzzy_delete_branch
   elif [ "$1" = "br" ]; then
     g_fuzzy_branch
+  elif [ "$1" = "fu" ] || [ "$1" = "fx" ]; then
+    g_fuzzy_fixup
+  elif [ "$1" = "rb" ]; then
+    g_fuzzy_rebase
   elif [ "$1" = "glog" ] || [ "$1" = "glg" ]; then
     g_fuzzy_log
   elif [ "$1" = "st" ]; then
@@ -54,15 +58,28 @@ g_fuzzy_branch() {
   sed 's#^remotes/##'
 }
 
+g_fuzzy_fixup() {
+  hash=$(fuzzy_log)
+  git commit --fixup=$(echo "$hash")
+}
+
+g_fuzzy_rebase() {
+  hash=$(fuzzy_log)
+  git rebase -i --autosquash $(echo "$hash")
+}
+
 g_fuzzy_log() {
+  fuzzy_log | pbcopy # Copy to clipboard
+}
+
+fuzzy_log() {
   is_in_git_repo || return
   git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
     --header 'Press CTRL-S to toggle sort' \
     --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
   grep -o "[a-f0-9]\{7,\}" |
-  tr -d '\012\015' | # Strip newlines
-  pbcopy # Copy to clipboard
+  tr -d '\012\015' # Strip newlines
 }
 
 g_fuzzy_stash() {

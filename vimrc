@@ -206,6 +206,7 @@ let g:ale_fixers = {
   \'typescript': ['prettier'],
   \'handlebars': ['prettier'],
   \'svelte': ['prettier'],
+  \'css': ['prettier'],
   \'rust': ['rustfmt'],
 \}
 let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}

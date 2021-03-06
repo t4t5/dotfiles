@@ -34,6 +34,7 @@
   default = current
 
 [commit]
+  status = false
   template = ~/.gitmessage
 [merge "merge-structure-sql"]
 	name = Rails structure.sql merge driver

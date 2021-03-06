@@ -169,8 +169,6 @@ let &t_ZH = "\e[3m"
 let &t_ZR = "\e[23m"
 
 " --- Plugin configurations ---
-
-let g:airline_powerline_fonts = 1
 set laststatus=2                       " Always display the status line (For Powerline/Lightline)
 
 let g:lightline = {
@@ -188,15 +186,14 @@ let g:lightline.component_type = {
   \  'linter_errors': 'error',
   \  'linter_ok': 'left',
 \ }
-let g:lightline.component_function = {
-  \   'gitbranch': 'fugitive#head'
-\ }
 let g:lightline.active = {
   \  'left':  [[ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ]],
   \  'right': [
-  \    [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-  \    [ 'gitbranch' ]
+  \    [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
   \  ]
+\ }
+let g:lightline.inactive = {
+  \ 'right': []
 \ }
 
 " ALE

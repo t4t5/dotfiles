@@ -22,7 +22,6 @@ Plugin 'maximbaz/lightline-ale'        " Ale indicator for Lightline
 Plugin 'wesQ3/vim-windowswap'          " Swap windows with ,ww
 Plugin 'airblade/vim-gitgutter'        " Show modified lines
 Plugin 'christoomey/vim-tmux-navigator' " Use normal VIM navigation in Tmux too
-Plugin 'rakr/vim-one'                  " OneDark color scheme
 Plugin 'brooth/far.vim'                " Find & replace across files
 Plugin 'tpope/vim-fugitive'            " Git stuff
 Plugin 'tpope/vim-rhubarb'             " Enables :GBrowse in Fugitive
@@ -47,10 +46,12 @@ Plugin 'mattn/emmet-vim'               " Emmet (easy HTML tag generation)
 Plugin 'neoclide/coc.nvim'             " Better error messages
 
 " Syntax highlighters & UI goodies
+Plugin 'rakr/vim-one'                  " OneDark color scheme
 Plugin 'sheerun/vim-polyglot'          " Multiple languages
 Plugin 'alampros/vim-styled-jsx'       " Styled JSX
 Plugin 'stephenway/postcss.vim'        " PostCSS syntax
 Plugin 'ryanoasis/vim-devicons'        " Cool icons
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " Colors for the icons
 Plugin 'rust-lang/rust.vim'            " Rust
 Plugin 'styled-components/vim-styled-components'
 

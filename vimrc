@@ -162,6 +162,12 @@ colorscheme one
 au ColorScheme one hi Normal ctermbg=None
 set background=dark
 
+" Handle Next.js special env files as .env
+au BufNewFile,BufRead *.env.local set filetype=sh
+au BufNewFile,BufRead *.env.test set filetype=sh
+au BufNewFile,BufRead *.env.production set filetype=sh
+au BufNewFile,BufRead *.env.development set filetype=sh
+
 " Make HTML attributes italic (for Operator Mono font)
 hi Comment gui=italic cterm=italic
 hi htmlArg gui=italic cterm=italic

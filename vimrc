@@ -208,6 +208,7 @@ let g:ale_fixers = {
   \'*': ['remove_trailing_lines', 'trim_whitespace'],
   \'javascript': ['prettier'],
   \'typescript': ['prettier'],
+  \'typescriptreact': ['prettier'],
   \'handlebars': ['prettier'],
   \'svelte': ['prettier'],
   \'css': ['prettier'],

@@ -69,6 +69,8 @@ Plug 'ryanoasis/vim-devicons'                  " File icons in NERDTree
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Colors for the icons
 Plug 'osyo-manga/vim-over'                     " visual find-and-replace
 Plug 'sheerun/vim-polyglot'                    " better language support
+Plug 'tpope/vim-fugitive'                      " git shortcuts in vim
+Plug 'tpope/vim-rhubarb'                       " enables :GBrowse in Fugitive
 call plug#end()
 
 "
@@ -125,6 +127,10 @@ function! VisualFindAndReplaceWithSelection() range
   :'<,'>OverCommandLine s/
   :w
 endfunction
+
+" - fugitive
+nmap <leader>gs :Gstatus<cr><c-w>k<c-w>K<c-w>p
+nmap <leader>gd :Gvdiff<CR>
 
 " - Lightline
 let g:lightline = {

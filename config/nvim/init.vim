@@ -71,6 +71,8 @@ Plug 'osyo-manga/vim-over'                     " visual find-and-replace
 Plug 'sheerun/vim-polyglot'                    " better language support
 Plug 'tpope/vim-fugitive'                      " git shortcuts in vim
 Plug 'tpope/vim-rhubarb'                       " enables :GBrowse in Fugitive
+Plug 'vim-test/vim-test'                       " Run tests easily
+Plug 'christoomey/vim-tmux-runner'             " Run vim tests in tmux pane
 call plug#end()
 
 "
@@ -131,6 +133,21 @@ endfunction
 " - fugitive
 nmap <leader>gs :Gstatus<cr><c-w>k<c-w>K<c-w>p
 nmap <leader>gd :Gvdiff<CR>
+
+" - vim-tmux-navigator
+" Make NERDTree work well with vim-tmux-navigator
+let g:NERDTreeMapJumpNextSibling = '<Nop>'
+let g:NERDTreeMapJumpPrevSibling = '<Nop>'
+
+" - vim-test
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+let test#strategy = "vtr"
+
+" - vim-tmux-runner
+let g:VtrOrientation = "h"
+let g:VtrPercentage = 40
+nmap <leader>va :VtrAttachToPane<CR>
 
 " - Lightline
 let g:lightline = {

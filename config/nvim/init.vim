@@ -47,6 +47,9 @@ nmap <silent> tb <C-W>T
 nmap <silent> tm :Tabmerge right<cr>
 nmap <silent> tj :Tabmerge right<cr>
 
+" stop highlighting last search by pressing return key
+nnoremap <CR> :noh<CR><CR>
+
 " Format json with :JSON
 com! Json %!python -m json.tool
 
@@ -54,14 +57,18 @@ com! Json %!python -m json.tool
 " --- vim-plug plugins ---
 
 call plug#begin()
-Plug 'scrooloose/nerdtree'            " NERDTree
-Plug 'itchyny/lightline.vim'          " Powerline replacement
-Plug 'rakr/vim-one'                   " OneDark color scheme
-Plug 'junegunn/fzf'                   " Fuzzyfinder
-Plug 'junegunn/fzf.vim'               " Better Vim support for fzf
-Plug 'w0rp/ale'                       " Linting warnings
-Plug 'christoomey/vim-tmux-navigator' " ctrl + hjkl navigation between vim and tmux panes
-Plug 'neoclide/coc.nvim'              " autocompletion
+Plug 'scrooloose/nerdtree'                     " NERDTree
+Plug 'itchyny/lightline.vim'                   " Powerline replacement
+Plug 'rakr/vim-one'                            " OneDark color scheme
+Plug 'junegunn/fzf'                            " Fuzzyfinder
+Plug 'junegunn/fzf.vim'                        " Better Vim support for fzf
+Plug 'w0rp/ale'                                " Linting warnings
+Plug 'christoomey/vim-tmux-navigator'          " ctrl + hjkl navigation between vim and tmux panes
+Plug 'neoclide/coc.nvim'                       " autocompletion
+Plug 'ryanoasis/vim-devicons'                  " File icons in NERDTree
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Colors for the icons
+Plug 'osyo-manga/vim-over'                     " visual find-and-replace
+Plug 'sheerun/vim-polyglot'                    " better language support
 call plug#end()
 
 "
@@ -104,6 +111,20 @@ nmap <silent> <leader>ak :ALEPrevious<cr>
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+
+" - vim-over
+nnoremap <leader>fr :call VisualFindAndReplace()<cr>
+vnoremap <leader>fr :call VisualFindAndReplaceWithSelection()<cr>
+
+function! VisualFindAndReplace()
+  :OverCommandLine%s/
+  :w
+endfunction
+
+function! VisualFindAndReplaceWithSelection() range
+  :'<,'>OverCommandLine s/
+  :w
+endfunction
 
 " - Lightline
 let g:lightline = {

@@ -1,3 +1,6 @@
+"
+" --- better defaults
+
 let mapleader = ","              " Set <leader> to ',' instead of '\'
 
 filetype plugin indent on        " Load plugin, indent for filetype
@@ -46,9 +49,13 @@ nmap <silent> tj :Tabmerge right<cr>
 " --- vim-plug plugins ---
 
 call plug#begin()
-Plug 'scrooloose/nerdtree'       " NERDTree
-Plug 'itchyny/lightline.vim'     " Powerline replacement
-Plug 'rakr/vim-one'              " OneDark color scheme
+Plug 'scrooloose/nerdtree'            " NERDTree
+Plug 'itchyny/lightline.vim'          " Powerline replacement
+Plug 'rakr/vim-one'                   " OneDark color scheme
+Plug 'junegunn/fzf'                   " Fuzzyfinder
+Plug 'junegunn/fzf.vim'               " Better Vim support for fzf
+Plug 'w0rp/ale'                       " Linting warnings
+Plug 'christoomey/vim-tmux-navigator' " ctrl + hjkl navigation between vim and tmux panes
 call plug#end()
 
 "
@@ -62,6 +69,30 @@ let NERDTreeShowHidden=1         " Show hidden files in NERDTree
 " - vim-one
 set termguicolors                " enable true colors support
 colorscheme one                  " Use OneDark color scheme
+
+" - fzf
+nmap <silent> <c-p> :Rg<cr>
+nmap <silent> <c-f> :Files<cr>
+nmap <silent> <c-b> :Buffers<cr>
+
+" - ale
+let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
+let g:ale_fixers = {
+  \'*': ['remove_trailing_lines', 'trim_whitespace'],
+  \'javascript': ['prettier'],
+  \'typescript': ['prettier'],
+  \'typescriptreact': ['prettier'],
+  \'handlebars': ['prettier'],
+  \'svelte': ['prettier'],
+  \'css': ['prettier'],
+  \'rust': ['rustfmt'],
+\}
+
+" move to next/previous error with <leader>aj and <leader>ak
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
 
 " - Lightline
 let g:lightline = {

@@ -42,9 +42,9 @@ killall Finder /System/Library/CoreServices/Finder.app'
 
 v() {
   if [ $# -gt 0 ]; then
-    vim "$@"
+    nvim "$@"
   else
-    vim .
+    nvim .
   fi
 }
 

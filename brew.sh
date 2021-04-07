@@ -11,7 +11,7 @@ brew upgrade
 brew tap thoughtbot/formulae
 brew install rcm
 brew install python
-brew install vim
+brew install neovim
 brew install volta
 brew install ruby
 brew install tmux
@@ -21,7 +21,6 @@ brew install ack
 brew install the_silver_searcher
 brew install zsh-autosuggestions
 brew install hub
-brew install macvim --with-override-system-vim
 brew install imagemagick --with-webp
 brew install watchman
 brew install ngircd

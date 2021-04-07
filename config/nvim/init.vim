@@ -16,6 +16,8 @@ set number                       " Show line numbers
 set numberwidth=5                " Gutter width
 set relativenumber               " Relative line numbers
 
+set splitbelow                   " Open new horizontal pane below, which feels more natural
+
 "
 " --- custom shortcuts
 
@@ -45,6 +47,9 @@ nmap <silent> tb <C-W>T
 nmap <silent> tm :Tabmerge right<cr>
 nmap <silent> tj :Tabmerge right<cr>
 
+" Format json with :JSON
+com! Json %!python -m json.tool
+
 "
 " --- vim-plug plugins ---
 
@@ -56,6 +61,7 @@ Plug 'junegunn/fzf'                   " Fuzzyfinder
 Plug 'junegunn/fzf.vim'               " Better Vim support for fzf
 Plug 'w0rp/ale'                       " Linting warnings
 Plug 'christoomey/vim-tmux-navigator' " ctrl + hjkl navigation between vim and tmux panes
+Plug 'neoclide/coc.nvim'              " autocompletion
 call plug#end()
 
 "
@@ -93,6 +99,11 @@ let g:ale_fixers = {
 " move to next/previous error with <leader>aj and <leader>ak
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
+
+" - coc.nvim
+" Move up and down in autocomplete with <c-j> and <c-k>
+inoremap <expr> <c-j> ("\<C-n>")
+inoremap <expr> <c-k> ("\<C-p>")
 
 " - Lightline
 let g:lightline = {

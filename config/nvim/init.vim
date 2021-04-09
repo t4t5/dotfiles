@@ -18,6 +18,9 @@ set relativenumber               " Relative line numbers
 
 set splitbelow                   " Open new horizontal pane below, which feels more natural
 
+" No newline at end of file:
+autocmd FileType html.handlebars setlocal noeol binary
+
 "
 " --- custom shortcuts
 

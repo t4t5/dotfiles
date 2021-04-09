@@ -75,6 +75,7 @@ Plug 'vim-test/vim-test'                       " Run tests easily
 Plug 'christoomey/vim-tmux-runner'             " Run vim tests in tmux pane
 Plug 'sukima/vim-javascript-imports'           " Needed for vim-ember-imports
 Plug 'sukima/vim-ember-imports'                " Import Ember's modules with <leader>e
+Plug 'wesQ3/vim-windowswap'                    " Swap windows with ,ww
 call plug#end()
 
 "

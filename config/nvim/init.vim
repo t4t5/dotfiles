@@ -10,6 +10,9 @@ set tabstop=2                    " show existing tab with 2 spaces width
 set softtabstop=2
 set shiftwidth=2	               " when indenting with '>', use 2 spaces width
 
+set ignorecase                   " Ignore case when searching
+set smartcase                    " When searching, try to be smart about cases
+
 set clipboard=unnamed	           " Always copy/paste to clipboard
 
 set number                       " Show line numbers

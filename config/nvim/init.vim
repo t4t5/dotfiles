@@ -65,6 +65,7 @@ com! Json %!python -m json.tool
 call plug#begin()
 Plug 'scrooloose/nerdtree'                     " NERDTree
 Plug 'itchyny/lightline.vim'                   " Powerline replacement
+Plug 'maximbaz/lightline-ale'                  " Ale indicator for Lightline
 Plug 'rakr/vim-one'                            " OneDark color scheme
 Plug 'junegunn/fzf'                            " Fuzzyfinder
 Plug 'junegunn/fzf.vim'                        " Better Vim support for fzf

@@ -84,6 +84,7 @@ Plug 'sukima/vim-javascript-imports'           " Needed for vim-ember-imports
 Plug 'sukima/vim-ember-imports'                " Import Ember's modules with <leader>e
 Plug 'wesQ3/vim-windowswap'                    " Swap windows with ,ww
 Plug 'APZelos/blamer.nvim'                     " Preview git blame (like VSCode)
+Plug 'airblade/vim-gitgutter'                  " Show modified lines
 call plug#end()
 
 "
@@ -93,6 +94,7 @@ call plug#end()
 map <leader>d :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<cr>
 let NERDTreeShowHidden=1         " Show hidden files in NERDTree
+let NERDTreeMinimalUI=1          " Hide help message on top
 
 " - vim-one
 set termguicolors                " enable true colors support
@@ -142,8 +144,18 @@ function! VisualFindAndReplaceWithSelection() range
 endfunction
 
 " - fugitive
-nmap <leader>gs :Gstatus<cr><c-w>k<c-w>K<c-w>p
+nmap <leader>gs :G<cr><c-w>k<c-w>K<c-w>p
 nmap <leader>gd :Gvdiff<CR>
+nmap <leader>gb :Gblame<CR>
+
+function! s:ftplugin_fugitive() abort
+  nnoremap <buffer> <silent> cc :vertical Git commit --quiet<CR>
+  nnoremap <buffer> <silent> ca :vertical Git commit --quiet --amend<CR>
+endfunction
+augroup nhooyr_fugitive
+  autocmd!
+  autocmd FileType fugitive call s:ftplugin_fugitive()
+augroup END
 
 " - vim-tmux-navigator
 " Make NERDTree work well with vim-tmux-navigator

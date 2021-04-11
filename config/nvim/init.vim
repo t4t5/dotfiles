@@ -151,11 +151,18 @@ nmap <leader>gb :Gblame<CR>
 function! s:ftplugin_fugitive() abort
   nnoremap <buffer> <silent> cc :vertical Git commit --quiet<CR>
   nnoremap <buffer> <silent> ca :vertical Git commit --quiet --amend<CR>
+  nnoremap <buffer> <leader> ge :call ExitFugitive()<cr>
 endfunction
 augroup nhooyr_fugitive
   autocmd!
   autocmd FileType fugitive call s:ftplugin_fugitive()
 augroup END
+
+function! ExitFugitive()
+  :wincmd k
+  :wincmd l
+  :only
+endfunction
 
 " - vim-tmux-navigator
 " Make NERDTree work well with vim-tmux-navigator

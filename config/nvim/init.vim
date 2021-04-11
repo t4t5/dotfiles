@@ -83,6 +83,7 @@ Plug 'christoomey/vim-tmux-runner'             " Run vim tests in tmux pane
 Plug 'sukima/vim-javascript-imports'           " Needed for vim-ember-imports
 Plug 'sukima/vim-ember-imports'                " Import Ember's modules with <leader>e
 Plug 'wesQ3/vim-windowswap'                    " Swap windows with ,ww
+Plug 'APZelos/blamer.nvim'                     " Preview git blame (like VSCode)
 call plug#end()
 
 "
@@ -158,6 +159,11 @@ let test#strategy = "vtr"
 let g:VtrOrientation = "h"
 let g:VtrPercentage = 40
 nmap <leader>va :VtrAttachToPane<CR>
+
+" - blamer-nvim
+let g:blamer_enabled = 1
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_relative_time = 1
 
 " - Lightline
 let g:lightline = {

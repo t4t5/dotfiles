@@ -85,6 +85,7 @@ Plug 'sukima/vim-ember-imports'                " Import Ember's modules with <le
 Plug 'wesQ3/vim-windowswap'                    " Swap windows with ,ww
 Plug 'APZelos/blamer.nvim'                     " Preview git blame (like VSCode)
 Plug 'airblade/vim-gitgutter'                  " Show modified lines
+Plug 'tpope/vim-commentary'                    " Comment things out with gc
 call plug#end()
 
 "

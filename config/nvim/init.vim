@@ -86,6 +86,7 @@ Plug 'wesQ3/vim-windowswap'                    " Swap windows with ,ww
 Plug 'APZelos/blamer.nvim'                     " Preview git blame (like VSCode)
 Plug 'airblade/vim-gitgutter'                  " Show modified lines
 Plug 'tpope/vim-commentary'                    " Comment things out with gc
+Plug 'christoomey/vim-conflicted'              " Handle git conflicts in vim
 call plug#end()
 
 "
@@ -184,6 +185,10 @@ nmap <leader>va :VtrAttachToPane<CR>
 let g:blamer_enabled = 1
 let g:blamer_show_in_insert_modes = 0
 let g:blamer_relative_time = 1
+
+" - vim-conflicted
+set stl+=%{ConflictedVersion()}  " Show version name in splits during vim-conflicted
+nnoremap <leader>gnc :GitNextConflict<cr>
 
 " - Lightline
 let g:lightline = {

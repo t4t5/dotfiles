@@ -26,6 +26,7 @@ brew install watchman
 brew install ngircd
 brew install postgres
 brew install hugo
+brew install httpie
 
 brew install puma/puma/puma-dev
 sudo puma-dev -setup

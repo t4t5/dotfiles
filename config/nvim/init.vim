@@ -88,6 +88,8 @@ Plug 'airblade/vim-gitgutter'                  " Show modified lines
 Plug 'tpope/vim-commentary'                    " Comment things out with gc
 Plug 'christoomey/vim-conflicted'              " Handle git conflicts in vim
 Plug 'puremourning/vimspector'                 " Debugger
+Plug 'tpope/vim-repeat'                        " Repeat advanced commands with .
+Plug 'rhysd/clever-f.vim'                      " Easily repeat one-line searches
 call plug#end()
 
 "

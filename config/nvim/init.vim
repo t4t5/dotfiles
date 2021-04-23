@@ -87,7 +87,6 @@ Plug 'APZelos/blamer.nvim'                     " Preview git blame (like VSCode)
 Plug 'airblade/vim-gitgutter'                  " Show modified lines
 Plug 'tpope/vim-commentary'                    " Comment things out with gc
 Plug 'christoomey/vim-conflicted'              " Handle git conflicts in vim
-Plug 'puremourning/vimspector'                 " Debugger
 Plug 'tpope/vim-repeat'                        " Repeat advanced commands with .
 Plug 'rhysd/clever-f.vim'                      " Easily repeat one-line searches
 call plug#end()
@@ -192,25 +191,6 @@ let g:blamer_relative_time = 1
 " - vim-conflicted
 set stl+=%{ConflictedVersion()}  " Show version name in splits during vim-conflicted
 nnoremap <leader>gnc :GitNextConflict<cr>
-
-" - vimspector
-let g:vimspector_base_dir=expand( '$HOME/.config/nvim/vimspector-config.json' )
-
-nnoremap <leader>dd :call vimspector#Launch()<cr>
-nnoremap <leader>de :call vimspector#Reset()<cr>
-nnoremap <leader>drc :call vimspector#RunToCursor()<cr>
-nnoremap <S-l> :call vimspector#StepInto()<cr>
-nnoremap <S-k> :call vimspector#StepOut()<cr>
-nnoremap <S-j> :call vimspector#StepOver()<cr>
-nnoremap <leader>dc :call vimspector#Continue()<cr>
-nnoremap <leader>db :call vimspector#ToggleBreakpoint()<cr>
-nnoremap <leader>dx :call vimspector#ClearBreakpoints()<cr>
-nnoremap <leader>dw :call AddToWatch()<cr>
-
-func! AddToWatch()
-  let word = expand("<cexpr>")
-  call vimspector#AddWatch(word)
-endfunction
 
 " - Lightline
 let g:lightline = {

@@ -5,17 +5,17 @@ let mapleader = ","              " Set <leader> to ',' instead of '\'
 
 filetype plugin indent on        " Load plugin, indent for filetype
 
-set expandtab 		               " On pressing tab, insert 2 spaces
+set expandtab                    " On pressing tab, insert 2 spaces
 set tabstop=2                    " show existing tab with 2 spaces width
 set softtabstop=2
-set shiftwidth=2	               " when indenting with '>', use 2 spaces width
+set shiftwidth=2                 " when indenting with '>', use 2 spaces width
 
 set ignorecase                   " Ignore case when searching
 set smartcase                    " When searching, try to be smart about cases
 
 set noswapfile
 
-set clipboard=unnamed	           " Always copy/paste to clipboard
+set clipboard=unnamed            " Always copy/paste to clipboard
 
 set number                       " Show line numbers
 set numberwidth=5                " Gutter width
@@ -76,7 +76,8 @@ Plug 'junegunn/fzf'                            " Fuzzyfinder
 Plug 'junegunn/fzf.vim'                        " Better Vim support for fzf
 Plug 'christoomey/vim-tmux-navigator'          " ctrl + hjkl navigation between vim and tmux panes
 Plug 'neoclide/coc.nvim'                       " autocompletion
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'josa42/vim-lightline-coc'                " show coc status on lightline
+Plug 'kyazdani42/nvim-web-devicons'            " pretty icons in nvim-tree
 Plug 'osyo-manga/vim-over'                     " visual find-and-replace
 Plug 'sheerun/vim-polyglot'                    " better language support
 Plug 'tpope/vim-fugitive'                      " git shortcuts in vim
@@ -92,7 +93,6 @@ Plug 'tpope/vim-commentary'                    " Comment things out with gc
 Plug 'christoomey/vim-conflicted'              " Handle git conflicts in vim
 Plug 'tpope/vim-repeat'                        " Repeat advanced commands with .
 Plug 'rhysd/clever-f.vim'                      " Easily repeat one-line searches
-Plug 'josa42/vim-lightline-coc'
 call plug#end()
 
 "
@@ -127,14 +127,13 @@ nmap <silent> <c-p> :Rg<cr>
 nmap <silent> <c-f> :Files<cr>
 nmap <silent> <c-b> :Buffers<cr>
 
-" move to next/previous error with <leader>aj and <leader>ak
-nnoremap <silent> <leader>aj :call CocAction('diagnosticNext')<cr>
-nnoremap <silent> <leader>ak :call CocAction('diagnosticPrevious')<cr>
-
 " - coc.nvim
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+nnoremap <silent> <leader>aj :call CocAction('diagnosticNext')<cr>
+nnoremap <silent> <leader>ak :call CocAction('diagnosticPrevious')<cr>
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)

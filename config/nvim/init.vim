@@ -69,15 +69,14 @@ com! Json %!python -m json.tool
 " --- vim-plug plugins ---
 
 call plug#begin()
-Plug 'scrooloose/nerdtree'                     " NERDTree
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'itchyny/lightline.vim'                   " Powerline replacement
 Plug 'rakr/vim-one'                            " OneDark color scheme
 Plug 'junegunn/fzf'                            " Fuzzyfinder
 Plug 'junegunn/fzf.vim'                        " Better Vim support for fzf
 Plug 'christoomey/vim-tmux-navigator'          " ctrl + hjkl navigation between vim and tmux panes
 Plug 'neoclide/coc.nvim'                       " autocompletion
-Plug 'ryanoasis/vim-devicons'                  " File icons in NERDTree
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Colors for the icons
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'osyo-manga/vim-over'                     " visual find-and-replace
 Plug 'sheerun/vim-polyglot'                    " better language support
 Plug 'tpope/vim-fugitive'                      " git shortcuts in vim
@@ -99,11 +98,25 @@ call plug#end()
 "
 " --- plugin configs ---
 
-" - NERDTree
-map <leader>d :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<cr>
-let NERDTreeShowHidden=1         " Show hidden files in NERDTree
-let NERDTreeMinimalUI=1          " Hide help message on top
+" - nvim-tree
+nmap <leader>d :NvimTreeToggle<cr>
+nmap <leader>f :NvimTreeFindFile<cr>
+
+let g:nvim_tree_show_icons = {
+  \ 'git': 0,
+  \ 'folders': 1,
+  \ 'files': 1,
+  \ }
+
+let g:nvim_tree_auto_open = 1
+let g:nvim_tree_quit_on_open = 1
+let g:nvim_tree_auto_close = 1
+lua <<EOF
+  local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+  vim.g.nvim_tree_bindings = {
+    ["s"] = tree_cb("vsplit"),
+  }
+EOF
 
 " - vim-one
 set termguicolors                " enable true colors support
@@ -157,11 +170,6 @@ function! ExitFugitive()
   :wincmd l
   :only
 endfunction
-
-" - vim-tmux-navigator
-" Make NERDTree work well with vim-tmux-navigator
-let g:NERDTreeMapJumpNextSibling = '<Nop>'
-let g:NERDTreeMapJumpPrevSibling = '<Nop>'
 
 " - vim-test
 nmap <silent> <leader>t :TestNearest<CR>

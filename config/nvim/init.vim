@@ -115,6 +115,7 @@ lua <<EOF
   local tree_cb = require'nvim-tree.config'.nvim_tree_callback
   vim.g.nvim_tree_bindings = {
     ["s"] = tree_cb("vsplit"),
+    ["p"] = tree_cb("close_node"),
   }
 EOF
 

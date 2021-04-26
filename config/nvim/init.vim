@@ -26,6 +26,10 @@ set splitbelow                   " Open new horizontal pane below, which feels m
 " No newline at end of file:
 autocmd FileType html.handlebars setlocal noeol binary
 
+" Fix out-of-sync syntax highlighting for large files
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
 "
 " --- custom shortcuts
 

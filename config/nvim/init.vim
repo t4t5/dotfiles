@@ -67,11 +67,9 @@ com! Json %!python -m json.tool
 call plug#begin()
 Plug 'scrooloose/nerdtree'                     " NERDTree
 Plug 'itchyny/lightline.vim'                   " Powerline replacement
-Plug 'maximbaz/lightline-ale'                  " Ale indicator for Lightline
 Plug 'rakr/vim-one'                            " OneDark color scheme
 Plug 'junegunn/fzf'                            " Fuzzyfinder
 Plug 'junegunn/fzf.vim'                        " Better Vim support for fzf
-Plug 'w0rp/ale'                                " Linting warnings
 Plug 'christoomey/vim-tmux-navigator'          " ctrl + hjkl navigation between vim and tmux panes
 Plug 'neoclide/coc.nvim'                       " autocompletion
 Plug 'ryanoasis/vim-devicons'                  " File icons in NERDTree
@@ -91,6 +89,7 @@ Plug 'tpope/vim-commentary'                    " Comment things out with gc
 Plug 'christoomey/vim-conflicted'              " Handle git conflicts in vim
 Plug 'tpope/vim-repeat'                        " Repeat advanced commands with .
 Plug 'rhysd/clever-f.vim'                      " Easily repeat one-line searches
+Plug 'josa42/vim-lightline-coc'
 call plug#end()
 
 "
@@ -111,24 +110,9 @@ nmap <silent> <c-p> :Rg<cr>
 nmap <silent> <c-f> :Files<cr>
 nmap <silent> <c-b> :Buffers<cr>
 
-" - ale
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
-let g:ale_fixers = {
-  \'*': ['remove_trailing_lines', 'trim_whitespace'],
-  \'javascript': ['prettier'],
-  \'typescript': ['prettier'],
-  \'typescriptreact': ['prettier'],
-  \'handlebars': ['prettier'],
-  \'svelte': ['prettier'],
-  \'css': ['prettier'],
-  \'rust': ['rustfmt'],
-\}
-
 " move to next/previous error with <leader>aj and <leader>ak
-nmap <silent> <leader>aj :ALENext<cr>
-nmap <silent> <leader>ak :ALEPrevious<cr>
+nnoremap <silent> <leader>aj :call CocAction('diagnosticNext')<cr>
+nnoremap <silent> <leader>ak :call CocAction('diagnosticPrevious')<cr>
 
 " - coc.nvim
 " Move up and down in autocomplete with <c-j> and <c-k>
@@ -196,26 +180,11 @@ nnoremap <leader>gnc :GitNextConflict<cr>
 
 " - Lightline
 let g:lightline = {
-  \  'colorscheme': 'one',
-\ }
-let g:lightline.component_expand = {
-  \  'linter_checking': 'lightline#ale#checking',
-  \  'linter_warnings': 'lightline#ale#warnings',
-  \  'linter_errors': 'lightline#ale#errors',
-  \  'linter_ok': 'lightline#ale#ok',
-\ }
-let g:lightline.component_type = {
-  \  'linter_checking': 'left',
-  \  'linter_warnings': 'warning',
-  \  'linter_errors': 'error',
-  \  'linter_ok': 'left',
-\ }
-let g:lightline.active = {
-  \  'left':  [[ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ]],
-  \  'right': [
-  \    [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
-  \  ]
-\ }
-let g:lightline.inactive = {
-  \ 'right': []
-\ }
+  \   'colorscheme': 'one',
+  \   'active': {
+  \     'right': [[  'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
+  \   }
+  \ }
+
+" register compoments:
+call lightline#coc#register()

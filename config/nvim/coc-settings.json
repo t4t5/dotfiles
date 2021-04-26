@@ -2,7 +2,18 @@
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "⚠",
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "handlebars", "svelte", "css", "rust", "markdown"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "handlebars",
+    "svelte",
+    "css",
+    "rust",
+    "markdown"
+  ],
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",

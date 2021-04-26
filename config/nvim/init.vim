@@ -135,6 +135,9 @@ nnoremap <silent> <leader>ak :call CocAction('diagnosticPrevious')<cr>
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
 
 " - vim-over
 nnoremap <leader>fr :call VisualFindAndReplace()<cr>

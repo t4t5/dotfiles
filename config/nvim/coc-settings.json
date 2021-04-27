@@ -1,7 +1,7 @@
 {
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "⚠",
-  "diagnostic.infoSign": "⚠",
+  "diagnostic.infoSign": "ⓘ",
   "solargraph.diagnostics": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   "coc.preferences.formatOnSaveFiletypes": [

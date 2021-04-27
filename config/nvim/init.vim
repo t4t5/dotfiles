@@ -93,6 +93,7 @@ Plug 'tpope/vim-commentary'                    " Comment things out with gc
 Plug 'christoomey/vim-conflicted'              " Handle git conflicts in vim
 Plug 'tpope/vim-repeat'                        " Repeat advanced commands with .
 Plug 'rhysd/clever-f.vim'                      " Easily repeat one-line searches
+Plug 'SirVer/ultisnips'                        " snippets
 call plug#end()
 
 "
@@ -200,6 +201,9 @@ let g:lightline = {
   \     'right': [[  'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
   \   }
   \ }
-
 " register compoments:
 call lightline#coc#register()
+
+" - coc-snippets
+" expand snippet when pressing enter:
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"

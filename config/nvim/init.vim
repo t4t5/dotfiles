@@ -207,3 +207,5 @@ call lightline#coc#register()
 " - coc-snippets
 " expand snippet when pressing enter:
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" go to language's snippet file by running :Snip
+command! Snip :CocCommand snippets.editSnippets

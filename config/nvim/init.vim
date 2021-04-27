@@ -65,6 +65,11 @@ nnoremap <CR> :noh<CR><CR>
 " Format json with :JSON
 com! Json %!python -m json.tool
 
+" Macros
+" Use qq to start, q to stop and <Space> to play
+nnoremap <Space> @q
+vnoremap <silent> <Space> :norm! @q<cr>
+
 "
 " --- vim-plug plugins ---
 

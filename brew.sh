@@ -25,6 +25,7 @@ brew install imagemagick --with-webp
 brew install watchman
 brew install ngircd
 brew install postgres
+brew install go
 brew install hugo
 brew install httpie
 

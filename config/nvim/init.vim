@@ -118,7 +118,6 @@ let g:nvim_tree_show_icons = {
 
 let g:nvim_tree_auto_open = 1
 let g:nvim_tree_quit_on_open = 1
-let g:nvim_tree_auto_close = 1
 lua <<EOF
   local tree_cb = require'nvim-tree.config'.nvim_tree_callback
   vim.g.nvim_tree_bindings = {

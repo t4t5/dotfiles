@@ -13,7 +13,8 @@ set shiftwidth=2                 " when indenting with '>', use 2 spaces width
 set ignorecase                   " Ignore case when searching
 set smartcase                    " When searching, try to be smart about cases
 
-set noswapfile
+set hidden                       " switch between buffers without a 'no write since last save' warning
+set noswapfile                   " don't create swap files
 
 set clipboard=unnamed            " Always copy/paste to clipboard
 

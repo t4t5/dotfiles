@@ -101,6 +101,7 @@ Plug 'christoomey/vim-conflicted'              " Handle git conflicts in vim
 Plug 'tpope/vim-repeat'                        " Repeat advanced commands with .
 Plug 'rhysd/clever-f.vim'                      " Easily repeat one-line searches
 Plug 'SirVer/ultisnips'                        " snippets
+Plug 'inkarkat/vim-unconditionalpaste'         " Paste blocks as inline items
 call plug#end()
 
 "
@@ -219,3 +220,6 @@ call lightline#coc#register()
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " go to language's snippet file by running :Snip
 command! Snip :CocCommand snippets.editSnippets
+
+" - unconditionalpaste
+nmap <Leader>pi <Plug>UnconditionalPasteInlinedAfter

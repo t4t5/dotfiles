@@ -146,6 +146,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
+let g:coc_snippet_next = '<c-l>'
+let g:coc_snippet_prev = '<c-h>'
+
 " - vim-over
 nnoremap <leader>fr :call VisualFindAndReplace()<cr>
 vnoremap <leader>fr :call VisualFindAndReplaceWithSelection()<cr>

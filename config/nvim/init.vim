@@ -217,8 +217,8 @@ let g:lightline = {
   \   },
   \   'active': {
   \     'left': [[ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ]],
-  \     'right': [[  'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
-  \   }
+  \     'right': [[ 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status' ]]
+  \   },
   \ }
 " register compoments:
 call lightline#coc#register()

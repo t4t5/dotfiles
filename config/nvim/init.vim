@@ -21,6 +21,7 @@ set clipboard=unnamed            " Always copy/paste to clipboard
 set number                       " Show line numbers
 set numberwidth=5                " Gutter width
 set relativenumber               " Relative line numbers
+set fillchars=vert:\│,eob:\      " Hide ~ symbols in gutter
 
 set splitbelow                   " Open new horizontal pane below, which feels more natural
 set diffopt+=vertical
@@ -131,6 +132,8 @@ EOF
 set termguicolors                " enable true colors support
 colorscheme one                  " Use OneDark color scheme
 
+highlight VertSplit gui=reverse guibg=#3e4452 guifg=bg
+
 " - fzf
 nmap <silent> <c-p> :Rg<cr>
 nmap <silent> <c-f> :Files<cr>
@@ -207,6 +210,9 @@ nnoremap <leader>gnc :GitNextConflict<cr>
 " - Lightline
 let g:lightline = {
   \   'colorscheme': 'one',
+  \   'inactive': {
+  \     'right': [],
+  \   },
   \   'active': {
   \     'left': [[ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ]],
   \     'right': [[  'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
@@ -214,6 +220,16 @@ let g:lightline = {
   \ }
 " register compoments:
 call lightline#coc#register()
+
+" Remove background color on lightline:
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+let s:palette.inactive.middle = s:palette.normal.middle
+let s:palette.tabline.middle = s:palette.normal.middle
+
+" Hide split borders on lightline:
+hi StatusLine ctermbg=10 ctermfg=10 cterm=bold guibg=NONE guifg=NONE gui=NONE
+hi StatusLineNC ctermbg=10 ctermfg=10 cterm=NONE guibg=NONE guifg=NONE gui=NONE
 
 " - coc-snippets
 " expand snippet when pressing enter:

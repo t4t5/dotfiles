@@ -38,6 +38,8 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " vv to generate new vertical split
 nnoremap <silent> vv :vnew<cr>
+" -- to generate new horizontal split
+nnoremap <silent> -- :new<cr>
 
 " navigate splits with ctrl + hjkl
 nnoremap <C-J> <C-W><C-J>

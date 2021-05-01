@@ -48,6 +48,11 @@ v() {
   fi
 }
 
+mcd() {
+  mkdir -p -- "$1" &&
+  cd -P -- "$1"
+}
+
 # Use tmux by default when using terminal
 if [ -z "$TMUX" ]; then
   tmux attach -t default || tmux new -s default

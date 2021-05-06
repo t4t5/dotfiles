@@ -13,8 +13,7 @@
     "handlebars",
     "svelte",
     "css",
-    "rust",
-    "markdown"
+    "rust"
   ],
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",

@@ -13,3 +13,11 @@ export default function ${1:ComponentName}(${2:props}) {
 	)
 }
 endsnippet
+
+snippet getinitialprops
+export async function getServerSideProps(${1:props}) {
+  return {
+    props: {}
+  }
+}
+endsnippet

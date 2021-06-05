@@ -4,6 +4,7 @@
   "diagnostic.infoSign": "ⓘ",
   "solargraph.diagnostics": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "sql.database": "postgresql",
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",

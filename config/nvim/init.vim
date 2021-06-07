@@ -107,6 +107,7 @@ Plug 'SirVer/ultisnips'                        " snippets
 Plug 'inkarkat/vim-unconditionalpaste'         " Paste blocks as inline items
 Plug 'mfussenegger/nvim-dap'                   " Debugging
 Plug 'tpope/vim-surround'                      " change surrounding chars
+Plug 'pantharshit00/vim-prisma'                " Prisma syntax highlighting
 call plug#end()
 
 "

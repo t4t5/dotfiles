@@ -108,6 +108,7 @@ Plug 'inkarkat/vim-unconditionalpaste'         " Paste blocks as inline items
 Plug 'mfussenegger/nvim-dap'                   " Debugging
 Plug 'tpope/vim-surround'                      " change surrounding chars
 Plug 'pantharshit00/vim-prisma'                " Prisma syntax highlighting
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 "
@@ -166,6 +167,10 @@ endfunction
 
 let g:coc_snippet_next = '<c-l>'
 let g:coc_snippet_prev = '<c-h>'
+
+let g:coc_filetype_map = {
+  \ 'html.handlebars': 'handlebars',
+\ }
 
 " - vim-over
 nnoremap <leader>fr :call VisualFindAndReplace()<cr>

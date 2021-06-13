@@ -118,6 +118,20 @@ call plug#end()
 "
 " --- plugin configs ---
 
+"  - nvim-web-devicons
+lua << EOF
+require'nvim-web-devicons'.setup {
+  default = true,
+  override = {
+    ["default_icon"] = {
+      icon = "",
+      color = "#6d8086",
+      name = "Default",
+    }
+  }
+}
+EOF
+
 " - nvim-tree
 nmap <leader>s :NvimTreeToggle<cr>
 nmap <leader>f :NvimTreeFindFile<cr>

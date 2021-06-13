@@ -109,6 +109,10 @@ Plug 'mfussenegger/nvim-dap'                   " Debugging
 Plug 'tpope/vim-surround'                      " change surrounding chars
 Plug 'pantharshit00/vim-prisma'                " Prisma syntax highlighting
 Plug 'leafgarland/typescript-vim'
+Plug 'nvim-lua/popup.nvim'                     " Requisite for Telescope
+Plug 'nvim-lua/plenary.nvim'                   " Requisite for Telescope
+Plug 'nvim-telescope/telescope.nvim'           " Better fuzzyfinding
+Plug 'nvim-telescope/telescope-dap.nvim'       " Move through callstack in Telescope
 call plug#end()
 
 "
@@ -142,8 +146,8 @@ highlight VertSplit gui=reverse guibg=#3e4452 guifg=bg
 
 " - fzf
 nmap <silent> <c-p> :Rg<cr>
-nmap <silent> <c-f> :Files<cr>
-nmap <silent> <c-b> :Buffers<cr>
+" nmap <silent> <c-f> :Files<cr>
+" nmap <silent> <c-b> :Buffers<cr>
 
 " - coc.nvim
 " Move up and down in autocomplete with <c-j> and <c-k>
@@ -267,7 +271,7 @@ lua << EOF
     command = 'node',
     args = {os.getenv('HOME') .. '/dev/utils/vscode-node-debug2/out/src/nodeDebug.js'},
   }
-  dap.configurations.javascript = {
+  local jsConfig = {
     {
       type = 'node2',
       request = 'attach',
@@ -276,6 +280,8 @@ lua << EOF
       protocol = 'inspector',
     },
   }
+  dap.configurations.javascript = jsConfig
+  dap.configurations.typescript = jsConfig
   vim.fn.sign_define('DapBreakpoint', {text='🔴', texthl='', linehl='', numhl=''})
   vim.fn.sign_define('DapStopped', {text='🟡', texthl='', linehl='', numhl=''})
 EOF
@@ -283,9 +289,37 @@ EOF
 nnoremap <leader>da :lua require'dap'.continue()<CR>
 nnoremap <leader>dc :lua require'dap'.continue()<CR>
 nnoremap <leader>dd :lua require'dap'.toggle_breakpoint()<CR>
-nnoremap <S-k> :lua require'dap'.step_out()<CR>
-nnoremap <S-l> :lua require'dap'.step_into()<CR>
-nnoremap <S-j> :lua require'dap'.step_over()<CR>
+nnoremap <S-k> :lua require'dap'.up()<CR>
+nnoremap <S-j> :lua require'dap'.down()<CR>
 nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>pi
-nnoremap <leader>di :lua require'dap.ui.variables'.hover()<CR>
-vnoremap <leader>di :lua require'dap.ui.variables'.visual_hover()<CR>
+nnoremap <leader>di :lua require'dap.ui.widgets'.hover()<CR>
+vnoremap <leader>di :lua require'dap.ui.widgets'.visual_hover()<CR>
+
+" - telescope
+lua << EOF
+  local actions = require('telescope.actions')
+  require('telescope').setup{
+    defaults = {
+      mappings = {
+        i = {
+          ['<c-j>'] = actions.move_selection_next,
+          ['<c-k>'] = actions.move_selection_previous,
+          ['<esc>'] = actions.close,
+        },
+      }
+    }
+  }
+
+  require('telescope').load_extension('dap')
+EOF
+
+" - telescope mappings
+nnoremap <silent> <c-f> <cmd>Telescope find_files<cr>
+nnoremap <silent> <c-b> :lua require("telescope.builtin").buffers({
+\   sort_lastused = true,
+\   ignore_current_buffer = true,
+\   sorter = require'telescope.sorters'.get_substr_matcher()
+\ })<cr>
+" " live_grep is not used because it's too slow!
+" nnoremap <silent> <c-p> <cmd>Telescope live_grep<cr>
+nnoremap <leader>df :Telescope dap frames<CR>

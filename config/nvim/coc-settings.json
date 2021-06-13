@@ -16,6 +16,7 @@
     "svelte",
     "css",
     "rust",
+    "sql",
     "prisma"
   ],
   "suggest.completionItemKindLabels": {

@@ -22,6 +22,7 @@ set number                       " Show line numbers
 set numberwidth=5                " Gutter width
 set relativenumber               " Relative line numbers
 set fillchars=vert:\│,eob:\      " Hide ~ symbols in gutter
+set nofoldenable                 " show file contents in spectre
 
 set splitbelow                   " Open new horizontal pane below, which feels more natural
 set diffopt+=vertical
@@ -113,6 +114,9 @@ Plug 'nvim-lua/popup.nvim'                     " Requisite for Telescope
 Plug 'nvim-lua/plenary.nvim'                   " Requisite for Telescope
 Plug 'nvim-telescope/telescope.nvim'           " Better fuzzyfinding
 Plug 'nvim-telescope/telescope-dap.nvim'       " Move through callstack in Telescope
+Plug 'nvim-lua/plenary.nvim'                   " Requisite for Spectre
+Plug 'nvim-lua/popup.nvim'                     " Requisite for Spectre
+Plug 'windwp/nvim-spectre'                     " Find + replace across files
 call plug#end()
 
 "
@@ -203,6 +207,9 @@ function! VisualFindAndReplaceWithSelection() range
   :'<,'>OverCommandLine s/
   :w
 endfunction
+
+" -nvim-spectre
+nnoremap <leader>F :lua require('spectre').open()<CR>
 
 " - fugitive
 nmap <leader>gs :G<cr><c-w>k<c-w>K<c-w>p

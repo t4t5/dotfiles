@@ -28,6 +28,7 @@ brew install postgres
 brew install go
 brew install hugo
 brew install httpie
+brew install gnu-sed
 
 brew install puma/puma/puma-dev
 sudo puma-dev -setup

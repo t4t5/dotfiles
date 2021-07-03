@@ -118,6 +118,8 @@ Plug 'nvim-telescope/telescope-dap.nvim'       " Move through callstack in Teles
 Plug 'nvim-lua/plenary.nvim'                   " Requisite for Spectre
 Plug 'nvim-lua/popup.nvim'                     " Requisite for Spectre
 Plug 'windwp/nvim-spectre'                     " Find + replace across files
+Plug 'rbgrouleff/bclose.vim'                   " Dependency for ranger.vim
+Plug 'francoiscabrol/ranger.vim'               " Ranger in Vim
 call plug#end()
 
 "
@@ -156,6 +158,10 @@ lua <<EOF
     ["p"] = tree_cb("close_node"),
   }
 EOF
+
+" - ranger.vim
+let g:ranger_map_keys = 0 " Don't hijack <leader>f
+map <leader>r :Ranger<cr>
 
 " - vim-one
 set termguicolors                " enable true colors support

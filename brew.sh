@@ -18,7 +18,6 @@ brew install tmux
 brew install rbenv
 brew install ripgrep
 brew install ack
-brew install the_silver_searcher
 brew install zsh-autosuggestions
 brew install hub
 brew install imagemagick --with-webp
@@ -29,6 +28,8 @@ brew install go
 brew install hugo
 brew install httpie
 brew install gnu-sed
+brew install ranger
+brew install highlight
 
 brew install puma/puma/puma-dev
 sudo puma-dev -setup

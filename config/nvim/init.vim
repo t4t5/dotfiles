@@ -110,6 +110,7 @@ Plug 'mfussenegger/nvim-dap'                   " Debugging
 Plug 'tpope/vim-surround'                      " change surrounding chars
 Plug 'pantharshit00/vim-prisma'                " Prisma syntax highlighting
 Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 Plug 'nvim-lua/popup.nvim'                     " Requisite for Telescope
 Plug 'nvim-lua/plenary.nvim'                   " Requisite for Telescope
 Plug 'nvim-telescope/telescope.nvim'           " Better fuzzyfinding

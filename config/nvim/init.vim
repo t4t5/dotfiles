@@ -80,7 +80,6 @@ vnoremap <silent> <Space> :norm! @q<cr>
 " --- vim-plug plugins ---
 
 call plug#begin()
-Plug 'kyazdani42/nvim-tree.lua'
 Plug 'itchyny/lightline.vim'                   " Powerline replacement
 Plug 'rakr/vim-one'                            " OneDark color scheme
 Plug 'junegunn/fzf'                            " Fuzzyfinder
@@ -139,28 +138,9 @@ require'nvim-web-devicons'.setup {
 }
 EOF
 
-" - nvim-tree
-nmap <leader>s :NvimTreeToggle<cr>
-nmap <leader>f :NvimTreeFindFile<cr>
-
-let g:nvim_tree_show_icons = {
-  \ 'git': 0,
-  \ 'folders': 1,
-  \ 'files': 1,
-  \ }
-
-let g:nvim_tree_auto_open = 1
-let g:nvim_tree_quit_on_open = 1
-lua <<EOF
-  local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-  vim.g.nvim_tree_bindings = {
-    ["s"] = tree_cb("vsplit"),
-    ["p"] = tree_cb("close_node"),
-  }
-EOF
-
 " - ranger.vim
 let g:ranger_map_keys = 0 " Don't hijack <leader>f
+let g:ranger_replace_netrw = 1
 map <leader>r :Ranger<cr>
 
 " - vim-one

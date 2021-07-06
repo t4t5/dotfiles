@@ -33,14 +33,22 @@ export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 # Git commands:
 source ~/.zshrc_git_aliases
 
-alias r="source ~/.zshrc"
+alias s="source ~/.zshrc"
 
 alias pythonserver="python -m SimpleHTTPServer 8000"
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;
 killall Finder /System/Library/CoreServices/Finder.app'
 
-alias v="nvim"
+v() {
+  if [ $# -gt 0 ]; then
+    nvim "$@"
+  else
+    nvim .
+  fi
+}
+
+alias r=". ranger"
 
 mcd() {
   mkdir -p -- "$1" &&

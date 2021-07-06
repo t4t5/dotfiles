@@ -9,6 +9,7 @@
     "coc-lua": ">=1.0.1",
     "coc-prettier": ">=1.1.23",
     "coc-prisma": ">=0.9.0",
+    "coc-python": ">=1.2.13",
     "coc-rust-analyzer": ">=0.46.3",
     "coc-snippets": ">=2.4.2",
     "coc-solargraph": ">=1.2.1",

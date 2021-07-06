@@ -342,7 +342,7 @@ lua << EOF
 EOF
 
 " - telescope mappings
-nnoremap <silent> <c-f> <cmd>Telescope find_files<cr>
+nnoremap <silent> <c-f> <cmd>Telescope find_files hidden=true<cr>
 nnoremap <silent> <c-b> :lua require("telescope.builtin").buffers({
 \   sort_lastused = true,
 \   ignore_current_buffer = true,

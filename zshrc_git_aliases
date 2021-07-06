@@ -29,6 +29,9 @@ g() {
     g_fuzzy_stash
   elif [ "$1" = "am" ]; then
     git commit --amend --reset-author
+  elif [ "$1" = "up" ]; then
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    git branch --set-upstream-to=origin/$(echo "$branch") $(echo "$branch")
   elif [ $# -gt 0 ]; then
     git "$@"
   else

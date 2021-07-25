@@ -20,7 +20,12 @@ class fzf_select(Command):
     def execute(self):
         import subprocess
 
-        command="find . -type d \( -name node_modules -o -name Pods -o -name .git -o -name .next -o -path name \) -prune \
+        command="find . -type d \( \
+        -name node_modules -o \
+        -name Pods -o \
+        -name .git -o \
+        -name target -o \
+        -name .next -o -path name \) -prune \
         -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m"
 
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)

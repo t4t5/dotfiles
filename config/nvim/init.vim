@@ -156,8 +156,8 @@ nmap <silent> <c-p> :Rg<cr>
 
 " - coc.nvim
 " Move up and down in autocomplete with <c-j> and <c-k>
-inoremap <expr> <c-j> ("\<C-n>")
-inoremap <expr> <c-k> ("\<C-p>")
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nnoremap <silent> <leader>a  :CocAction<cr>
 nnoremap <silent> <leader>aj :call CocAction('diagnosticNext')<cr>
 nnoremap <silent> <leader>ak :call CocAction('diagnosticPrevious')<cr>
@@ -323,7 +323,9 @@ lua << EOF
 EOF
 
 " - telescope mappings
-nnoremap <silent> <c-f> <cmd>Telescope find_files hidden=true<cr>
+nnoremap <silent> <c-f> :lua require'telescope.builtin'.find_files({
+\   find_command = {'rg', '--files', '--hidden', '-g', '!.git' }
+\ })<cr>
 nnoremap <silent> <c-b> :lua require("telescope.builtin").buffers({
 \   sort_lastused = true,
 \   ignore_current_buffer = true,

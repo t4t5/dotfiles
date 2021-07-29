@@ -1,0 +1,34 @@
+snippet hardhat_config
+import { task } from "hardhat/config"
+import "@nomiclabs/hardhat-waffle"
+
+// "npx hardhat accounts"
+task("accounts", "Prints the list of accounts", async (_args, hre) => {
+	const accounts = await hre.ethers.getSigners()
+
+	for (const account of accounts) {
+		console.log(account.address)
+	}
+})
+
+export default {
+	solidity: "0.8.4",
+	paths: {
+		artifacts: "./src/artifacts",
+	},
+}
+endsnippet
+
+snippet hardhat_test
+import { ethers } from "hardhat"
+import { expect } from "chai"
+
+describe("MyContract", function () {
+	it("should return the username", async function () {
+		const MyContract = await ethers.getContractFactory("MyContract")
+		const myContract = await MyContract.deploy("tristan")
+
+		expect(await myContract.getName()).to.equal("tristan")
+	})
+})
+endsnippet

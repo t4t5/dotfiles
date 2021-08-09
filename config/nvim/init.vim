@@ -152,7 +152,7 @@ highlight VertSplit gui=reverse guibg=#3e4452 guifg=bg
 " - fzf
 nmap <silent> <c-p> :Rg<cr>
 " nmap <silent> <c-f> :Files<cr>
-" nmap <silent> <c-b> :Buffers<cr>
+nmap <silent> <c-b> :Buffers<cr>
 
 " - coc.nvim
 " Move up and down in autocomplete with <c-j> and <c-k>
@@ -326,11 +326,11 @@ EOF
 nnoremap <silent> <c-f> :lua require'telescope.builtin'.find_files({
 \   find_command = {'rg', '--files', '--hidden', '-g', '!.git' }
 \ })<cr>
-nnoremap <silent> <c-b> :lua require("telescope.builtin").buffers({
-\   sort_lastused = true,
-\   ignore_current_buffer = true,
-\   sorter = require'telescope.sorters'.get_substr_matcher()
-\ })<cr>
+" nnoremap <silent> <c-b> :lua require("telescope.builtin").buffers({
+" \   sort_lastused = true,
+" \   ignore_current_buffer = true,
+" \   sorter = require'telescope.sorters'.get_substr_matcher()
+" \ })<cr>
 " " live_grep is not used because it's too slow!
 " nnoremap <silent> <c-p> <cmd>Telescope live_grep<cr>
 nnoremap <leader>df :Telescope dap frames<CR>

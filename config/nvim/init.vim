@@ -119,6 +119,7 @@ Plug 'nvim-lua/popup.nvim'                     " Requisite for Spectre
 Plug 'windwp/nvim-spectre'                     " Find + replace across files
 Plug 'rbgrouleff/bclose.vim'                   " Dependency for ranger.vim
 Plug 'francoiscabrol/ranger.vim'               " Ranger in Vim
+Plug 'bkad/camelcasemotion'                    " Delete single words in camel_case_words
 call plug#end()
 
 "
@@ -137,6 +138,12 @@ require'nvim-web-devicons'.setup {
   }
 }
 EOF
+
+" Delete _words_ with di_
+omap <silent> i_ <Plug>CamelCaseMotion_iw
+xmap <silent> i_ <Plug>CamelCaseMotion_iw
+omap <silent> a_ <Plug>CamelCaseMotion_iw
+xmap <silent> a_ <Plug>CamelCaseMotion_iw
 
 " - ranger.vim
 let g:ranger_map_keys = 0 " Don't hijack <leader>f

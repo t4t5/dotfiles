@@ -98,3 +98,6 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zprof
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Solana
+export PATH="/Users/tristan/.local/share/solana/install/active_release/bin:$PATH"

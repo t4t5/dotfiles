@@ -30,6 +30,7 @@ brew install httpie
 brew install gnu-sed
 brew install ranger
 brew install highlight
+brew install bat
 
 brew install puma/puma/puma-dev
 sudo puma-dev -setup

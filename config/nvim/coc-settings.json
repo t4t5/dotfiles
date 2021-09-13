@@ -5,6 +5,8 @@
   "diagnostic.infoSign": "ⓘ",
   "solargraph.diagnostics": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
   "sql.database": "postgresql",
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",

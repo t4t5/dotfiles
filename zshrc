@@ -40,6 +40,8 @@ alias pythonserver="python -m SimpleHTTPServer 8000"
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;
 killall Finder /System/Library/CoreServices/Finder.app'
 
+alias f='cd && cd "$(fd --type d | fzf)"'
+
 v() {
   if [ $# -gt 0 ]; then
     nvim "$@"

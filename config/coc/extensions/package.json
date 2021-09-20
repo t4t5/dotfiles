@@ -13,9 +13,9 @@
     "coc-rust-analyzer": ">=0.52.0",
     "coc-snippets": ">=2.4.6",
     "coc-solargraph": ">=1.2.2",
-    "coc-sql": ">=0.7.0",
+    "coc-sql": ">=0.8.0",
     "coc-stylelint": ">=1.2.0",
-    "coc-tsserver": ">=1.8.5",
+    "coc-tsserver": ">=1.8.6",
     "coc-yaml": ">=1.4.2"
   }
 }

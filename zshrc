@@ -51,6 +51,7 @@ v() {
 }
 
 alias r=". ranger"
+alias gg="gitui"
 
 mcd() {
   mkdir -p -- "$1" &&

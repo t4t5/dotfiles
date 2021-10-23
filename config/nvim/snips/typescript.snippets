@@ -76,3 +76,51 @@ await expect(
 	}),
 ).to.be.revertedWith("wrong amount of Dai sent!")
 endsnippet
+
+snippet apollo_server_nextjs
+import { ApolloServer } from "apollo-server-micro"
+import Cors from "micro-cors"
+import {
+  ApolloServerPluginLandingPageGraphQLPlayground,
+  ApolloServerPluginLandingPageDisabled,
+} from "apollo-server-core"
+import type { NextApiHandler } from "next"
+import type { IncomingMessage, ServerResponse } from "http"
+
+import typeDefs from "../../gql/schemas"
+import resolvers from "../../gql/resolvers"
+
+const cors = Cors()
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [
+    process.env.NODE_ENV === "production"
+      ? ApolloServerPluginLandingPageDisabled()
+      : ApolloServerPluginLandingPageGraphQLPlayground(),
+  ],
+})
+
+const startServer = server.start()
+
+const handler: NextApiHandler = async (
+  req: IncomingMessage,
+  res: ServerResponse,
+) => {
+  if (req.method === "OPTIONS") return res.end()
+
+  await startServer
+  await server.createHandler({
+    path: "/api/graphql",
+  })(req, res)
+}
+
+export default cors(handler)
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
+endsnippet

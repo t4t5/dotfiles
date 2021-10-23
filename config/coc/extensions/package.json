@@ -10,10 +10,10 @@
     "coc-prettier": ">=1.1.24",
     "coc-prisma": ">=0.10.0",
     "coc-python": ">=1.2.13",
-    "coc-rust-analyzer": ">=0.52.0",
+    "coc-rust-analyzer": ">=0.54.0",
     "coc-snippets": ">=2.4.6",
     "coc-solargraph": ">=1.2.2",
-    "coc-sql": ">=0.8.0",
+    "coc-sql": ">=0.8.1",
     "coc-stylelint": ">=1.2.0",
     "coc-tsserver": ">=1.8.6",
     "coc-yaml": ">=1.4.2"

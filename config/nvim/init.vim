@@ -206,6 +206,7 @@ endfunction
 
 " -nvim-spectre
 nnoremap <leader>F :lua require('spectre').open()<CR>
+" Note: Run replace with <leader>R
 
 " - fugitive
 nmap <leader>gs :G<cr><c-w>k<c-w>K<c-w>p

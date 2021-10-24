@@ -165,6 +165,8 @@ nmap <silent> <c-b> :Buffers<cr>
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+nnoremap <nowait><expr> <S-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<S-j>"
+nnoremap <nowait><expr> <S-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<S-k>"
 nnoremap <silent> <leader>a  :CocAction<cr>
 nnoremap <silent> <leader>aj :call CocAction('diagnosticNext')<cr>
 nnoremap <silent> <leader>ak :call CocAction('diagnosticPrevious')<cr>
@@ -307,8 +309,8 @@ EOF
 nnoremap <leader>da :lua require'dap'.continue()<CR>
 nnoremap <leader>dc :lua require'dap'.continue()<CR>
 nnoremap <leader>dd :lua require'dap'.toggle_breakpoint()<CR>
-nnoremap <S-k> :lua require'dap'.up()<CR>
-nnoremap <S-j> :lua require'dap'.down()<CR>
+" nnoremap <S-k> :lua require'dap'.up()<CR>
+" nnoremap <S-j> :lua require'dap'.down()<CR>
 nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>pi
 nnoremap <leader>di :lua require'dap.ui.widgets'.hover()<CR>
 vnoremap <leader>di :lua require'dap.ui.widgets'.visual_hover()<CR>

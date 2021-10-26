@@ -279,6 +279,7 @@ hi StatusLineNC ctermbg=10 ctermfg=10 cterm=NONE guibg=NONE guifg=NONE gui=NONE
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " go to language's snippet file by running :Snip
 command! Snip :CocCommand snippets.editSnippets
+nnoremap <silent>tt :CocRestart<cr><cr>
 
 " - unconditionalpaste
 nmap <Leader>pi <Plug>UnconditionalPasteInlinedAfter

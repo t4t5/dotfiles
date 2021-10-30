@@ -21,6 +21,7 @@
     "sql",
     "prisma"
   ],
+  "prisma.prismaFmtBinPath": "",
   "suggest.completionItemKindLabels": {
     "keyword": "★",
     "variable": "",

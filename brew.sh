@@ -28,7 +28,6 @@ brew install go
 brew install hugo
 brew install httpie
 brew install gnu-sed
-brew install ranger
 brew install highlight
 brew install bat
 brew install fd
@@ -37,6 +36,8 @@ brew install gitui
 brew install puma/puma/puma-dev
 sudo puma-dev -setup
 puma-dev -install
+
+pip3 install ranger-fm pynvim
 
 # Start Redis on start
 brew install redis

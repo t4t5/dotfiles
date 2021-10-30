@@ -118,7 +118,7 @@ Plug 'nvim-lua/plenary.nvim'                   " Requisite for Spectre
 Plug 'nvim-lua/popup.nvim'                     " Requisite for Spectre
 Plug 'windwp/nvim-spectre'                     " Find + replace across files
 Plug 'rbgrouleff/bclose.vim'                   " Dependency for ranger.vim
-Plug 'francoiscabrol/ranger.vim'               " Ranger in Vim
+Plug 'kevinhwang91/rnvimr'
 Plug 'bkad/camelcasemotion'                    " Delete single words in camel_case_words
 call plug#end()
 
@@ -145,10 +145,15 @@ xmap <silent> i_ <Plug>CamelCaseMotion_iw
 omap <silent> a_ <Plug>CamelCaseMotion_iw
 xmap <silent> a_ <Plug>CamelCaseMotion_iw
 
-" - ranger.vim
-let g:ranger_map_keys = 0 " Don't hijack <leader>f
-let g:ranger_replace_netrw = 1
-map <leader>r :Ranger<cr>
+" - rnvimr (ranger)
+map <leader>r :RnvimrToggle<cr>
+let g:rnvimr_enable_ex = 1      " Replace Netrw to be the default file explorer
+let g:rnvimr_enable_picker = 1  " Hide Ranger after picking a file:
+
+" Open Ranger files in vsplit:
+let g:rnvimr_action = { 
+  \ '<C-v>': 'NvimEdit vsplit',
+  \ }
 
 " - vim-one
 set termguicolors                " enable true colors support

@@ -10,6 +10,7 @@
     "coc-prettier": ">=1.1.24",
     "coc-prisma": ">=0.10.0",
     "coc-python": ">=1.2.13",
+    "coc-restclient": ">=0.0.5",
     "coc-rust-analyzer": ">=0.54.0",
     "coc-snippets": ">=2.4.6",
     "coc-solargraph": ">=1.2.2",

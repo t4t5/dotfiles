@@ -71,6 +71,8 @@ nnoremap <CR> :noh<CR><CR>
 " Format json with :JSON
 com! Json %!python -m json.tool
 
+com! Send :CocCommand rest-client.request <cr>
+
 " Macros
 " Use qq to start, q to stop and <Space> to play
 nnoremap <Space> @q

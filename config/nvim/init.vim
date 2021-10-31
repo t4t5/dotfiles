@@ -220,7 +220,7 @@ nnoremap <leader>F :lua require('spectre').open()<CR>
 " - fugitive
 nmap <leader>gs :G<cr><c-w>k<c-w>K<c-w>p
 nmap <leader>gd :Gvdiff<CR>
-nmap <leader>gb :Gblame<CR>
+nmap <leader>gb :Git blame<CR>
 
 function! s:ftplugin_fugitive() abort
   nnoremap <buffer> <silent> cc :vertical Git commit --quiet<CR>

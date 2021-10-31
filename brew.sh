@@ -13,7 +13,6 @@ brew install rcm
 brew install python
 brew install neovim
 brew install volta
-brew install ruby
 brew install tmux
 brew install rbenv
 brew install ripgrep

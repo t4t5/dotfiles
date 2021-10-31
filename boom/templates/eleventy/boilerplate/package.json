@@ -1,0 +1,13 @@
+{
+  "name": "__name__",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx @11ty/eleventy --serve",
+    "build": "env NODE_ENV=production npx eleventy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

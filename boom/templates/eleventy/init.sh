@@ -1,1 +1,1 @@
-npm install @11ty/eleventy;
+npm install @11ty/eleventy

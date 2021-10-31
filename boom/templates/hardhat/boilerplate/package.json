@@ -1,0 +1,11 @@
+{
+  "name": "__name__",
+  "scripts": {
+    "node": "npx hardhat node",
+    "build": "npx hardhat compile",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.ts",
+    "deploy:ropsten": "npx hardhat run scripts/deploy.ts --network ropsten",
+    "verify:ropsten": "npx hardhat verify --network ropsten"
+  }
+}

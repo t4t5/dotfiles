@@ -35,6 +35,8 @@ source ~/.zshrc_git_aliases
 
 alias s="source ~/.zshrc"
 
+alias boom="~/dev/projects/boom-cli/target/debug/boom"
+
 alias pythonserver="python -m SimpleHTTPServer 8000"
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;

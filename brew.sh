@@ -37,6 +37,7 @@ sudo puma-dev -setup
 puma-dev -install
 
 pip3 install ranger-fm pynvim
+pip install github-clone
 
 # Start Redis on start
 brew install redis

@@ -112,16 +112,15 @@ Plug 'tpope/vim-surround'                      " change surrounding chars
 Plug 'pantharshit00/vim-prisma'                " Prisma syntax highlighting
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
-Plug 'nvim-lua/popup.nvim'                     " Requisite for Telescope
-Plug 'nvim-lua/plenary.nvim'                   " Requisite for Telescope
+Plug 'nvim-lua/popup.nvim'                     " Requisite for Telescope + Spectre
+Plug 'nvim-lua/plenary.nvim'                   " Requisite for Telescope + Spectre
 Plug 'nvim-telescope/telescope.nvim'           " Better fuzzyfinding
 Plug 'nvim-telescope/telescope-dap.nvim'       " Move through callstack in Telescope
-Plug 'nvim-lua/plenary.nvim'                   " Requisite for Spectre
-Plug 'nvim-lua/popup.nvim'                     " Requisite for Spectre
 Plug 'windwp/nvim-spectre'                     " Find + replace across files
 Plug 'rbgrouleff/bclose.vim'                   " Dependency for ranger.vim
 Plug 'kevinhwang91/rnvimr'
 Plug 'bkad/camelcasemotion'                    " Delete single words in camel_case_words
+Plug 'ruanyl/vim-gh-line'                      " View lines and commits in GitHub
 call plug#end()
 
 "
@@ -216,6 +215,12 @@ endfunction
 " -nvim-spectre
 nnoremap <leader>F :lua require('spectre').open()<CR>
 " Note: Run replace with <leader>R
+
+" - vim-gh-line
+let g:gh_line_map_default = 0
+let g:gh_line_blame_map_default = 0
+let g:gh_line_blame_map = '<leader>gh'
+let g:gh_line_map = '<leader>gl'
 
 " - fugitive
 nmap <leader>gs :G<cr><c-w>k<c-w>K<c-w>p

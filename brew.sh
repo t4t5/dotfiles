@@ -32,6 +32,9 @@ brew install bat
 brew install fd
 brew install gitui
 
+brew tap mongodb/brew
+brew install mongodb-community
+
 brew install puma/puma/puma-dev
 sudo puma-dev -setup
 puma-dev -install

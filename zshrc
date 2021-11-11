@@ -52,6 +52,10 @@ v() {
   fi
 }
 
+hound() {
+  sass-lint -c .sass-lint.yml "$@" -v -q
+}
+
 alias r=". ranger"
 alias gg="gitui"
 

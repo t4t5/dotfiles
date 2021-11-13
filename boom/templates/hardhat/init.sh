@@ -7,4 +7,5 @@ npm install -D @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan
 npm install -D dotenv
 npm install -D solidity-coverage
 npm install -D hardhat-gas-reporter
+npm install -D prettier prettier-plugin-solidity
 npm install @openzeppelin/contracts

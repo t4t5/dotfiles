@@ -6,6 +6,7 @@
     "test": "npx hardhat test",
     "test:gas": "REPORT_GAS=1 npx hardhat test",
     "coverage": "npx hardhat coverage",
+    "format": "npx prettier --write 'contracts/**/*.sol'",
     "deploy": "npx hardhat run scripts/deploy.ts",
     "deploy:ropsten": "npx hardhat run scripts/deploy.ts --network ropsten",
     "verify:ropsten": "npx hardhat verify --network ropsten"

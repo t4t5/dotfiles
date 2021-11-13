@@ -19,7 +19,8 @@
     "css",
     "rust",
     "sql",
-    "prisma"
+    "prisma",
+    "solidity"
   ],
   "prisma.prismaFmtBinPath": "",
   "suggest.completionItemKindLabels": {

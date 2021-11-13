@@ -121,6 +121,7 @@ Plug 'rbgrouleff/bclose.vim'                   " Dependency for ranger.vim
 Plug 'kevinhwang91/rnvimr'
 Plug 'bkad/camelcasemotion'                    " Delete single words in camel_case_words
 Plug 'ruanyl/vim-gh-line'                      " View lines and commits in GitHub
+Plug 'dense-analysis/ale'                      " Needed for certain languages that CoC doesn't support
 call plug#end()
 
 "
@@ -197,6 +198,12 @@ let g:coc_snippet_prev = '<c-h>'
 let g:coc_filetype_map = {
   \ 'html.handlebars': 'handlebars',
 \ }
+
+" - ale
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+\   'solidity': ['solhint'],
+\}
 
 " - vim-over
 nnoremap <leader>fr :call VisualFindAndReplace()<cr>

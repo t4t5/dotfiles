@@ -4,6 +4,7 @@
     "node": "npx hardhat node",
     "build": "npx hardhat compile",
     "test": "npx hardhat test",
+    "test:gas": "REPORT_GAS=1 npx hardhat test",
     "coverage": "npx hardhat coverage",
     "deploy": "npx hardhat run scripts/deploy.ts",
     "deploy:ropsten": "npx hardhat run scripts/deploy.ts --network ropsten",

@@ -2,6 +2,7 @@ import { task } from "hardhat/config"
 import "@nomiclabs/hardhat-ethers"
 import "@nomiclabs/hardhat-etherscan"
 import "solidity-coverage"
+import "hardhat-gas-reporter"
 
 import dotenv from "dotenv"
 dotenv.config()
@@ -15,7 +16,13 @@ task("accounts", "Prints the list of accounts", async (_args, hre) => {
   }
 })
 
-const { /* INFURA_PROJECT_ID, PRIVATE_KEY,*/ ETHERSCAN_API_KEY } = process.env
+const {
+  // INFURA_PROJECT_ID,
+  // PRIVATE_KEY,
+  ETHERSCAN_API_KEY,
+  REPORT_GAS,
+  COINMARKETCAP_API_KEY,
+} = process.env
 
 export default {
   solidity: "0.8.0",
@@ -28,6 +35,11 @@ export default {
   },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
+  },
+  gasReporter: {
+    enabled: REPORT_GAS ? true : false,
+    currency: "USD",
+    coinmarketcap: COINMARKETCAP_API_KEY,
   },
   // networks: {
   //   ropsten: {

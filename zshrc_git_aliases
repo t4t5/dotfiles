@@ -34,6 +34,9 @@ g() {
   elif [ "$1" = "up" ]; then
     branch=$(git rev-parse --abbrev-ref HEAD)
     git branch --set-upstream-to=origin/$(echo "$branch") $(echo "$branch")
+  elif [ "$1" = "rename" ]; then
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    git branch -m $(echo "$branch") $(echo "$2")
   elif [ $# -gt 0 ]; then
     git "$@"
   else

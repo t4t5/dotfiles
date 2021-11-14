@@ -6,6 +6,9 @@
   editor = nvim
 	attributesfile = ~/.gitattributes
 
+[init]
+  defaultBranch = main
+
 [alias]
   pf = push --force-with-lease
   pl = pull

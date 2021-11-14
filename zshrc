@@ -56,6 +56,13 @@ hound() {
   sass-lint -c .sass-lint.yml "$@" -v -q
 }
 
+addhusky() {
+  npm install -D husky
+  npm set-script prepare "husky install"
+  npm run prepare
+  npx husky add .husky/pre-commit "npm run format"
+}
+
 alias r=". ranger"
 alias gg="gitui"
 

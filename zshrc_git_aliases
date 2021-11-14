@@ -25,6 +25,8 @@ g() {
     g_fuzzy_rebase
   elif [ "$1" = "glog" ] || [ "$1" = "glg" ]; then
     g_fuzzy_log
+  elif [ "$1" = "gref" ] || [ "$1" = "rf" ]; then
+    g_fuzzy_reflog
   elif [ "$1" = "st" ]; then
     g_fuzzy_stash
   elif [ "$1" = "am" ]; then
@@ -83,6 +85,14 @@ fuzzy_log() {
     --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
   grep -o "[a-f0-9]\{7,\}" |
   tr -d '\012\015' # Strip newlines
+}
+
+g_fuzzy_reflog() {
+  is_in_git_repo || return
+  git ref |
+  fzf-down --no-sort --reverse --multi |
+  grep -o "[a-f0-9]\{7,\}" |
+  tr -d '\012\015' | pbcopy
 }
 
 g_fuzzy_stash() {

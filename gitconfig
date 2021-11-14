@@ -20,6 +20,7 @@
   issues = !hub browse -- issues
   pr = !git push && hub compare
   ds = !git diff --staged
+  ref = reflog --format='%C(auto)%h %<|(5)%gd %C(blue)%cr%C(reset) %C(red)%gs%C(reset) (%s)'
   mup = !git checkout master && git fetch origin && echo && git lg master..origin/master && echo && git pull --quiet && git checkout -
 	conflicted = !nvim +Conflicted
   fix = "!git commit --fixup \"$1\" && git rebase -i --autosquash \"$1\"~1 #"

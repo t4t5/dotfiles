@@ -37,6 +37,8 @@ g() {
   elif [ "$1" = "rename" ]; then
     branch=$(git rev-parse --abbrev-ref HEAD)
     git branch -m $(echo "$branch") $(echo "$2")
+  elif [ "$1" = "dnew" ]; then
+    for next in $( git ls-files --others --exclude-standard ); do git --no-pager diff --no-index /dev/null $next; done;
   elif [ $# -gt 0 ]; then
     git "$@"
   else

@@ -9,4 +9,6 @@ npm install -D solidity-coverage
 npm install -D hardhat-gas-reporter
 npm install -D prettier prettier-plugin-solidity
 npm install -D solhint solhint-plugin-prettier
+npm install -D solidity-docgen
+npm install -D solc-0.8@npm:solc@0.8.0
 npm install @openzeppelin/contracts

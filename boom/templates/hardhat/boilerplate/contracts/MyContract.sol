@@ -2,9 +2,9 @@
 pragma solidity ^0.8.0;
 
 contract MyContract {
-  bytes32 public name = "tristan";
+  bytes32 public constant NAME = "tristan";
 
-  function getName() view external returns (bytes32) {
-    return name;
+  function getName() external pure returns (bytes32) {
+    return NAME;
   }
 }

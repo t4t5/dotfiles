@@ -199,6 +199,9 @@ let g:coc_filetype_map = {
   \ 'html.handlebars': 'handlebars',
 \ }
 
+" Set syntax highlighting for .env.local, .env.development, .env.production...
+au! BufNewFile,BufRead .env.* set filetype=sh
+
 " - ale
 let g:ale_linters_explicit = 1
 let g:ale_linters = {

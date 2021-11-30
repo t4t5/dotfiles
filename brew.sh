@@ -49,5 +49,8 @@ ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 brew install fzf
 $(brew --prefix)/opt/fzf/install
 
+# Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # Remove outdated versions from the cellar.
 brew cleanup

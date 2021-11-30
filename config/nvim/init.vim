@@ -87,7 +87,7 @@ Plug 'rakr/vim-one'                            " OneDark color scheme
 Plug 'junegunn/fzf'                            " Fuzzyfinder
 Plug 'junegunn/fzf.vim'                        " Better Vim support for fzf
 Plug 'christoomey/vim-tmux-navigator'          " ctrl + hjkl navigation between vim and tmux panes
-Plug 'neoclide/coc.nvim'                       " autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release' } " autocompletion
 Plug 'josa42/vim-lightline-coc'                " show coc status on lightline
 Plug 'kyazdani42/nvim-web-devicons'            " pretty icons in nvim-tree
 Plug 'osyo-manga/vim-over'                     " visual find-and-replace

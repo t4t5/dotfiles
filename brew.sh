@@ -15,6 +15,7 @@ brew install neovim
 brew install volta
 brew install tmux
 brew install rbenv
+eval "$(rbenv init -)"
 brew install ripgrep
 brew install ack
 brew install zsh-autosuggestions

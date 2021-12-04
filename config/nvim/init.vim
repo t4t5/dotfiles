@@ -122,6 +122,7 @@ Plug 'kevinhwang91/rnvimr'
 Plug 'bkad/camelcasemotion'                    " Delete single words in camel_case_words
 Plug 'ruanyl/vim-gh-line'                      " View lines and commits in GitHub
 Plug 'dense-analysis/ale'                      " Needed for certain languages that CoC doesn't support
+Plug 'github/copilot.vim'                      " GitHub Copilot
 call plug#end()
 
 "
@@ -364,6 +365,6 @@ nnoremap <silent> <c-f> :lua require'telescope.builtin'.find_files({
 " \   ignore_current_buffer = true,
 " \   sorter = require'telescope.sorters'.get_substr_matcher()
 " \ })<cr>
-" " live_grep is not used because it's too slow!
+" " live_grep is not used because it's slow + results aren't as good as fzf
 " nnoremap <silent> <c-p> <cmd>Telescope live_grep<cr>
 nnoremap <leader>df :Telescope dap frames<CR>

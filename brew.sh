@@ -32,6 +32,9 @@ brew install bat
 brew install fd
 brew install gitui
 
+# For M1 macs, cocoapods need to be installed from Brew:
+brew install cocoapods
+
 brew tap mongodb/brew
 brew install mongodb-community
 

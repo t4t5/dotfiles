@@ -18,7 +18,6 @@ brew install rbenv
 eval "$(rbenv init -)"
 brew install ripgrep
 brew install ack
-brew install zsh-autosuggestions
 brew install hub
 brew install imagemagick --with-webp
 brew install watchman

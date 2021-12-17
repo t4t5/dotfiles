@@ -109,7 +109,7 @@ rbenv() {
 # ElasticSearch
 export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+antigen bundle zsh-users/zsh-autosuggestions
 
 # Uncomment this and the first line in this file to see what's slow:
 # zprof

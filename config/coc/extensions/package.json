@@ -12,7 +12,7 @@
     "coc-prisma": ">=0.11.0",
     "coc-python": ">=1.2.13",
     "coc-restclient": ">=0.0.5",
-    "coc-rust-analyzer": ">=0.56.0",
+    "coc-rust-analyzer": ">=0.57.0",
     "coc-sh": ">=0.6.0",
     "coc-snippets": ">=2.4.6",
     "coc-solargraph": ">=1.2.2",

@@ -16,6 +16,9 @@ antigen apply
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND='ag --nocolor -g ""'
 
+# Make autosuggestions visible
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#757575"
+
 # Ruby
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 

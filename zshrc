@@ -8,6 +8,7 @@ export ZSH=/Users/tristan/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
 source $ZSH/oh-my-zsh.sh
+source $(brew --prefix)/share/antigen/antigen.zsh
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND='ag --nocolor -g ""'

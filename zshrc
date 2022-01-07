@@ -42,7 +42,7 @@ source ~/.zshrc_git_aliases
 
 alias s="source ~/.zshrc"
 
-alias boom="~/dev/projects/boom-cli/target/debug/boom"
+alias boom="~/dev/projects/boom/target/debug/boom"
 
 alias pythonserver="python -m SimpleHTTPServer 8000"
 

@@ -8,6 +8,7 @@ export ZSH=/Users/tristan/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
 source $ZSH/oh-my-zsh.sh
+ZSH_DISABLE_COMPFIX="true"
 
 source $(brew --prefix)/share/antigen/antigen.zsh
 antigen bundle zsh-users/zsh-autosuggestions

@@ -4,6 +4,9 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "ⓘ",
   "solargraph.diagnostics": true,
+  "solargraph.autoformat": true,
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
@@ -23,7 +26,6 @@
     "prisma",
     "solidity"
   ],
-  "prisma.prismaFmtBinPath": "",
   "suggest.completionItemKindLabels": {
     "keyword": "★",
     "variable": "",

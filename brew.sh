@@ -14,6 +14,8 @@ brew install python
 brew install neovim
 brew install volta
 brew install tmux
+brew install shared-mime-info
+brew install libpq
 brew install rbenv
 eval "$(rbenv init -)"
 brew install ripgrep
@@ -22,7 +24,7 @@ brew install hub
 brew install imagemagick --with-webp
 brew install watchman
 brew install ngircd
-brew install postgres
+brew install postgresql
 brew install go
 brew install hugo
 brew install httpie

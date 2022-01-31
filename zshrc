@@ -19,8 +19,21 @@ export FZF_CTRL_T_COMMAND='ag --nocolor -g ""'
 # Make autosuggestions visible
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#757575"
 
+# Homebrew
+export PATH=/opt/homebrew/bin:$PATH
+export PATH="/opt/homebrew/sbin:$PATH"
+alias brew='arch -arm64 brew'
+
 # Ruby
-export PATH="$HOME/.rbenv/shims:/usr/local/bin:$PATH"
+export RBENV_ROOT=/opt/homebrew/opt/rbenv
+export PATH=$RBENV_ROOT/bin:$PATH
+# export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# Rbenv
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
 
 # Postgres
 export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
@@ -32,10 +45,11 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # OpenSSL
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
 
 # Git commands:
 source ~/.zshrc_git_aliases
@@ -102,12 +116,6 @@ export GOROOT="/usr/local/opt/go/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
-
-# Rbenv
-rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
-}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

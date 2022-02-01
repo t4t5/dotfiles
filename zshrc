@@ -28,7 +28,8 @@ alias brew='arch -arm64 brew'
 # Ruby
 export RBENV_ROOT=/opt/homebrew/opt/rbenv
 export PATH=$RBENV_ROOT/bin:$PATH
-# export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+alias gem='arch -arm64 gem'
+alias bundle='arch -arm64 bundle'
 
 # Rbenv
 rbenv() {

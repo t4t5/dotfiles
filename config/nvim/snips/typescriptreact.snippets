@@ -1,0 +1,29 @@
+snippet react-component
+export default function ${1:ComponentName}() {
+	return <div></div>
+}
+endsnippet
+
+snippet l3-component
+import { Box } from "components/ui"
+
+export default function ${1:ComponentName}() {
+	return <Box></Box>
+}
+endsnippet
+
+snippet import-stitches-theme
+import { theme } from "stitches.config"
+endsnippet
+
+snippet import-stitches-styled
+import { styled } from "stitches.config"
+endsnippet
+
+snippet codespace-component
+import { Box } from "renderer/ui"
+
+export default function ${1:ComponentName}() {
+	return <Box></Box>
+}
+endsnippet

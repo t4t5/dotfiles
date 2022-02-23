@@ -32,9 +32,10 @@ alias gem='arch -arm64 gem'
 alias bundle='arch -arm64 bundle'
 
 # Rbenv
+eval "$(arch -arm64 rbenv init - zsh)"
+
 rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
+  arch -arm64 rbenv "$@"
 }
 
 # Postgres

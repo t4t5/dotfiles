@@ -110,7 +110,6 @@ Plug 'inkarkat/vim-unconditionalpaste'         " Paste blocks as inline items
 Plug 'mfussenegger/nvim-dap'                   " Debugging
 Plug 'tpope/vim-surround'                      " change surrounding chars
 Plug 'pantharshit00/vim-prisma'                " Prisma syntax highlighting
-Plug 'ianks/vim-tsx'
 Plug 'nvim-lua/popup.nvim'                     " Requisite for Telescope + Spectre
 Plug 'nvim-lua/plenary.nvim'                   " Requisite for Telescope + Spectre
 Plug 'nvim-telescope/telescope.nvim'           " Better fuzzyfinding
@@ -200,6 +199,10 @@ let g:coc_filetype_map = {
 
 " Set syntax highlighting for .env.local, .env.development, .env.production...
 au! BufNewFile,BufRead .env.* set filetype=sh
+
+" Set filetype for Cairo (Starknet)
+au BufReadPost *.cairo set filetype=cairo
+au Filetype cairo set syntax=cairo
 
 " - ale
 let g:ale_linters_explicit = 1

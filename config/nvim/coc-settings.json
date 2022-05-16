@@ -11,6 +11,14 @@
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
   "sql.database": "postgresql",
+  "languageserver": {
+    "cairo": {
+      "module": "~/dev/tools/cairo/node_modules/cairo-ls/out/server.js",
+      "args": ["--node-ipc"],
+      "filetypes": ["cairo"],
+      "rootPatterns": [".git/"]
+   }
+  },
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",

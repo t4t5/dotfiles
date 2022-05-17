@@ -115,7 +115,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # For Go:
 export GOPATH="${HOME}/.go"
-export GOROOT="/usr/local/opt/go/libexec"
+export GOROOT="/opt/homebrew/opt/go/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"

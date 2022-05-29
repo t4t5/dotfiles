@@ -121,6 +121,7 @@ Plug 'bkad/camelcasemotion'                    " Delete single words in camel_ca
 Plug 'ruanyl/vim-gh-line'                      " View lines and commits in GitHub
 Plug 'dense-analysis/ale'                      " Needed for certain languages that CoC doesn't support
 Plug 'github/copilot.vim'                      " GitHub Copilot
+Plug 'vim-scripts/Tabmerge'
 call plug#end()
 
 "

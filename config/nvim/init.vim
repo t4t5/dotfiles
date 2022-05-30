@@ -122,6 +122,8 @@ Plug 'ruanyl/vim-gh-line'                      " View lines and commits in GitHu
 Plug 'dense-analysis/ale'                      " Needed for certain languages that CoC doesn't support
 Plug 'github/copilot.vim'                      " GitHub Copilot
 Plug 'vim-scripts/Tabmerge'
+Plug 'sindrets/diffview.nvim'                  " View git diffs
+Plug 'TimUntersberger/neogit'                  " Git commit
 call plug#end()
 
 "
@@ -235,10 +237,10 @@ let g:gh_line_blame_map_default = 0
 let g:gh_line_blame_map = '<leader>gh'
 let g:gh_line_map = '<leader>gl'
 
-" - fugitive
-nmap <leader>gs :G<cr><c-w>k<c-w>K<c-w>p
-nmap <leader>gd :Gvdiff<CR>
+" - fugitive / diffview
+nmap <leader>gs :DiffviewOpen<CR>
 nmap <leader>gb :Git blame<CR>
+nmap <leader>gc :Neogit kind="floating" commit<CR>
 
 function! s:ftplugin_fugitive() abort
   nnoremap <buffer> <silent> cc :vertical Git commit --quiet<CR>

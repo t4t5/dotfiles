@@ -179,6 +179,7 @@ nnoremap <nowait><expr> <S-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<
 nnoremap <silent> <leader>a  :CocAction<cr>
 nnoremap <silent> <leader>aj :call CocAction('diagnosticNext')<cr>
 nnoremap <silent> <leader>ak :call CocAction('diagnosticPrevious')<cr>
+inoremap <silent><expr> <c-c> coc#refresh()
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)

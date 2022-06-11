@@ -1,6 +1,7 @@
 {
   "name": "__name__",
   "scripts": {
+    "dev": "npm run dev",
     "node": "npx hardhat node",
     "build": "npx hardhat compile",
     "test": "npx hardhat test",

@@ -47,6 +47,9 @@ export PATH="/usr/local/sbin:$PATH"
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Anchor (Solana)
+export PATH="$HOME/.avm/bin:$PATH"
+
 # OpenSSL
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"

@@ -1,7 +1,7 @@
 {
   "name": "__name__",
   "scripts": {
-    "dev": "npm run dev",
+    "dev": "npm run node & npm run deploy",
     "node": "npx hardhat node",
     "build": "npx hardhat compile",
     "test": "npx hardhat test",
@@ -11,7 +11,7 @@
     "lint": "npx solhint contracts/**.sol",
     "slither": "slither .",
     "docs": "npx solidity-docgen --solc-module solc-0.8 -o build/docs",
-    "deploy": "npx hardhat run scripts/deploy.ts",
+    "deploy": "npx hardhat run --network localhost scripts/deploy.ts",
     "deploy:ropsten": "npx hardhat run scripts/deploy.ts --network ropsten",
     "verify:ropsten": "npx hardhat verify --network ropsten"
   }

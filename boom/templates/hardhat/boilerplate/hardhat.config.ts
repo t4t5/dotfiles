@@ -22,6 +22,7 @@ const {
   // INFURA_PROJECT_ID,
   // PRIVATE_KEY,
   ETHERSCAN_API_KEY,
+  TYPECHAIN_PATH,
   REPORT_GAS,
   COINMARKETCAP_API_KEY,
 } = process.env
@@ -37,6 +38,10 @@ export default {
   },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
+  },
+  typechain: {
+    outDir: TYPECHAIN_PATH || "typechain",
+    target: "ethers-v5",
   },
   gasReporter: {
     enabled: REPORT_GAS ? true : false,

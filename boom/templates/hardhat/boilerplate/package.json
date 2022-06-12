@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "npm run node & npm run deploy",
     "node": "npx hardhat node",
-    "build": "npx hardhat compile",
+    "build": "npx hardhat compile && npx hardhat typechain",
     "test": "npx hardhat test",
     "test:gas": "REPORT_GAS=1 npx hardhat test",
     "coverage": "npx hardhat coverage",

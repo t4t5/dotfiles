@@ -6,10 +6,12 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "turbo run build",
-    "deploy": "turbo run deploy",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint"
+    "build": "npm run buildcontracts && npm run deploycontracts",
+    "buildcontracts": "TYPECHAIN_PATH='../web/src/contracts' turbo run build --filter=contracts",
+    "deploycontracts": "turbo run deploy --filter=contracts",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
   },
   "engines": {
     "npm": ">=7.0.0",

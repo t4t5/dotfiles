@@ -35,6 +35,7 @@ brew install fd
 brew install gitui
 brew install antigen
 brew install rustup
+brew install ngrok/ngrok/ngrok
 
 # For M1 macs, cocoapods need to be installed from Brew:
 brew install cocoapods

@@ -71,6 +71,9 @@ killall Finder /System/Library/CoreServices/Finder.app'
 
 alias f='cd && cd "$(fd --type d | fzf)"'
 
+# Go to the "experiments" folder
+alias exp='cd ~/dev/projects/experiments'
+
 v() {
   if [ $# -gt 0 ]; then
     nvim "$@"

@@ -74,6 +74,10 @@ alias f='cd && cd "$(fd --type d | fzf)"'
 # Go to the "experiments" folder
 alias exp='cd ~/dev/projects/experiments'
 
+killport() {
+  lsof -i tcp:$1 | awk 'NR!=1 {print $2}' | xargs kill;
+}
+
 v() {
   if [ $# -gt 0 ]; then
     nvim "$@"

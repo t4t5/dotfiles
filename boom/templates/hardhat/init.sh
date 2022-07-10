@@ -6,6 +6,7 @@ npm install -D ethers
 npm install -D @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan
 npm install -D @nomiclabs/hardhat-waffle
 npm install -D @typechain/hardhat
+npm install -D hardhat-deploy
 npm install -D dotenv
 npm install -D solidity-coverage
 npm install -D hardhat-gas-reporter

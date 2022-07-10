@@ -1,7 +1,7 @@
 import { ethers } from "hardhat"
 import { expect } from "chai"
 
-import { MyContract } from "../typechain/contracts/MyContract"
+import { MyContract } from "typechain/contracts/MyContract"
 
 describe("MyContract", function () {
   let myContract: MyContract

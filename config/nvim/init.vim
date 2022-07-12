@@ -124,6 +124,7 @@ Plug 'github/copilot.vim'                      " GitHub Copilot
 Plug 'vim-scripts/Tabmerge'
 Plug 'sindrets/diffview.nvim'                  " View git diffs
 Plug 'TimUntersberger/neogit'                  " Git commit
+Plug 'arzg/vim-colors-xcode'                   " light mode (xcode inspired)
 call plug#end()
 
 "
@@ -161,7 +162,12 @@ let g:rnvimr_action = {
 
 " - vim-one
 set termguicolors                " enable true colors support
-colorscheme one                  " Use OneDark color scheme
+
+# dark
+" colorscheme one                  " Use OneDark color scheme
+
+# light
+colorscheme xcodelight
 
 highlight VertSplit gui=reverse guibg=#3e4452 guifg=bg
 

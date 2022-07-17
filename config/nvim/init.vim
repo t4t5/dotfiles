@@ -58,13 +58,6 @@ nnoremap <silent> <down> :resize -5<cr>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
-" easy commands for creating, closing, breaking, merging tabs
-nmap <silent> tn :tabe<cr>
-nmap <silent> tx :tabclose<cr>
-nmap <silent> tb <C-W>T
-nmap <silent> tm :Tabmerge right<cr>
-nmap <silent> tj :Tabmerge right<cr>
-
 " stop highlighting last search by pressing return key
 nnoremap <CR> :noh<CR><CR>
 
@@ -124,6 +117,7 @@ Plug 'vim-scripts/Tabmerge'
 Plug 'sindrets/diffview.nvim'                  " View git diffs
 Plug 'TimUntersberger/neogit'                  " Git commit
 Plug 'arzg/vim-colors-xcode'                   " light mode (xcode inspired)
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' } " Prettier tabs
 call plug#end()
 
 "
@@ -184,6 +178,28 @@ require('lualine').setup {
     lualine_y = {'filetype'},
     lualine_z = {}
   },
+}
+EOF
+
+" easy commands for creating, closing, breaking, merging tabs
+nmap <silent> tn :tabe<cr>
+nmap <silent> tx :tabclose<cr>
+nmap <silent> tb <C-W>T
+nmap <silent> tm :Tabmerge right<cr>
+nmap <silent> tj :Tabmerge right<cr>
+
+lua << EOF
+require("bufferline").setup{
+  options = {
+    mode = "tabs",
+    close_icon = '',
+    buffer_close_icon = '',
+    modified_icon = '~',
+    diagnostics = "coc",
+    left_trunc_marker = '',
+    right_trunc_marker = '',
+    separator_style = "thin"
+  }
 }
 EOF
 

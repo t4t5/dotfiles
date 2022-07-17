@@ -27,6 +27,12 @@ set nofoldenable                 " show file contents in spectre
 set splitbelow                   " Open new horizontal pane below, which feels more natural
 set diffopt+=vertical
 
+" set cmdheight=0 " will be available soon
+
+lua << EOF
+vim.opt.laststatus = 3
+EOF
+
 " No newline at end of file:
 autocmd FileType html.handlebars setlocal noeol binary
 
@@ -284,6 +290,7 @@ let g:coc_filetype_map = {
 
 " Set syntax highlighting for .env.local, .env.development, .env.production...
 au! BufNewFile,BufRead .env.* set filetype=sh
+au! BufNewFile,BufRead zshrc set filetype=sh
 
 " Set filetype for Cairo (Starknet)
 au BufReadPost *.cairo set filetype=cairo

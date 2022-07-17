@@ -158,6 +158,7 @@ require('lualine').setup {
       {
         'filename',
         path = 1,
+        shorting_target = 0,
         symbols = {
           modified = '',
           readonly = '',
@@ -259,10 +260,6 @@ highlight VertSplit gui=reverse guibg=#3e4452 guifg=bg
 
 " darker bg for command bar:
 highlight MsgArea guibg=#1F2126
-
-" Background colors for active vs inactive windows
-" hi ActiveWindow guibg=#303741
-hi InactiveWindow guibg=#1F2126
 
 " Call method on window enter
 augroup WindowManagement

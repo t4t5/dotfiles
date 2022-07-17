@@ -141,11 +141,26 @@ EOF
 lua << EOF
 require('lualine').setup {
   options = {
+    component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'filename'},
+    lualine_b = {
+      {
+        'filetype',
+        icon_only = true
+      },
+      {
+        'filename',
+        path = 1,
+        symbols = {
+          modified = '',
+          readonly = '',
+          unnamed = 'unnamed',
+        }
+      }
+    },
     lualine_c = {},
     lualine_x = {
       {

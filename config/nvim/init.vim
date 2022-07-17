@@ -125,6 +125,7 @@ Plug 'sindrets/diffview.nvim'                  " View git diffs
 Plug 'TimUntersberger/neogit'                  " Git commit
 Plug 'arzg/vim-colors-xcode'                   " light mode (xcode inspired)
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' } " Prettier tabs
+Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' }
 call plug#end()
 
 "
@@ -147,10 +148,6 @@ EOF
 " lualine
 lua << EOF
 require('lualine').setup {
-  options = {
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-  },
   sections = {
     lualine_a = {'mode'},
     lualine_b = {
@@ -223,14 +220,16 @@ require("bufferline").setup{
     buffer_close_icon = '',
     modified_icon = '~',
     diagnostics = "coc",
-    left_trunc_marker = '',
-    right_trunc_marker = '',
     separator_style = "thin"
   }
 }
 EOF
 
+" comment out with gcc
 lua require('Comment').setup()
+
+" show outdated crates in Cargo.toml
+lua require('crates').setup()
 
 " Delete _words_ with di_
 omap <silent> i_ <Plug>CamelCaseMotion_iw
@@ -300,6 +299,8 @@ nnoremap <leader>k :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (expand('%:t') == 'Cargo.toml')
+    lua require('crates').show_popup()
   else
     call CocAction('doHover')
   endif

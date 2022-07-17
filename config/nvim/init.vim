@@ -163,11 +163,10 @@ let g:rnvimr_action = {
 " - vim-one
 set termguicolors                " enable true colors support
 
-# dark
-" colorscheme one                  " Use OneDark color scheme
-
-# light
-colorscheme xcodelight
+" dark
+colorscheme one                  " Use OneDark color scheme
+" light
+" colorscheme xcodelight
 
 highlight VertSplit gui=reverse guibg=#3e4452 guifg=bg
 
@@ -295,14 +294,9 @@ let g:lightline = {
   \     'right': [[ 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status' ]]
   \   },
   \ }
+
 " register compoments:
 call lightline#coc#register()
-
-" Remove background color on lightline:
-let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-let s:palette.inactive.middle = s:palette.normal.middle
-let s:palette.tabline.middle = s:palette.normal.middle
 
 " Hide split borders on lightline:
 hi StatusLine ctermbg=10 ctermfg=10 cterm=bold guibg=NONE guifg=NONE gui=NONE

@@ -93,7 +93,7 @@ Plug 'sukima/vim-ember-imports'                " Import Ember's modules with <le
 Plug 'wesQ3/vim-windowswap'                    " Swap windows with ,ww
 Plug 'APZelos/blamer.nvim'                     " Preview git blame (like VSCode)
 Plug 'airblade/vim-gitgutter'                  " Show modified lines
-Plug 'tpope/vim-commentary'                    " Comment things out with gc
+Plug 'numToStr/Comment.nvim'                   " Comment things out with gcc
 Plug 'christoomey/vim-conflicted'              " Handle git conflicts in vim
 Plug 'tpope/vim-repeat'                        " Repeat advanced commands with .
 Plug 'rhysd/clever-f.vim'                      " Easily repeat one-line searches
@@ -202,6 +202,8 @@ require("bufferline").setup{
   }
 }
 EOF
+
+lua require('Comment').setup()
 
 " Delete _words_ with di_
 omap <silent> i_ <Plug>CamelCaseMotion_iw

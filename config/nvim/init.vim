@@ -221,7 +221,8 @@ require("bufferline").setup{
     buffer_close_icon = '',
     modified_icon = '~',
     diagnostics = "coc",
-    separator_style = "thin"
+    separator_style = "thin",
+    always_show_bufferline = false
   }
 }
 EOF

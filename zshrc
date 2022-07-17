@@ -143,3 +143,5 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Solana
 export PATH="/Users/tristan/.local/share/solana/install/active_release/bin:$PATH"
+
+export PATH="$PATH:/Users/tristan/.starklings/dist/starklings"

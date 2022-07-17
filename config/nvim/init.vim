@@ -82,13 +82,12 @@ vnoremap <silent> <Space> :norm! @q<cr>
 " --- vim-plug plugins ---
 
 call plug#begin()
-Plug 'itchyny/lightline.vim'                   " Powerline replacement
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'rakr/vim-one'                            " OneDark color scheme
 Plug 'junegunn/fzf'                            " Fuzzyfinder
 Plug 'junegunn/fzf.vim'                        " Better Vim support for fzf
 Plug 'christoomey/vim-tmux-navigator'          " ctrl + hjkl navigation between vim and tmux panes
 Plug 'neoclide/coc.nvim', {'branch': 'release' } " autocompletion
-Plug 'josa42/vim-lightline-coc'                " show coc status on lightline
 Plug 'kyazdani42/nvim-web-devicons'            " pretty icons in nvim-tree
 Plug 'osyo-manga/vim-over'                     " visual find-and-replace
 Plug 'sheerun/vim-polyglot'                    " better language support
@@ -141,6 +140,45 @@ require'nvim-web-devicons'.setup {
       name = "Default",
     }
   }
+}
+EOF
+
+" lualine
+lua << EOF
+require('lualine').setup {
+  options = {
+    section_separators = { left = '', right = ''},
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'filename'},
+    lualine_c = {},
+    lualine_x = {
+      {
+        'diagnostics',
+        sources = { 'coc' },
+        sections = { 'error', 'warn', 'info', 'hint' },
+        symbols = {
+          error = '✘ ', 
+          warn = '⚠ ', 
+          info = 'ⓘ  ', 
+          hint = 'ⓘ  '
+        },
+        colored = true,
+        always_visible = false,
+      }
+    },
+    lualine_y = {'filetype'},
+    lualine_z = {}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {'filename'},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {'filetype'},
+    lualine_z = {}
+  },
 }
 EOF
 
@@ -282,25 +320,6 @@ let g:blamer_relative_time = 1
 " - vim-conflicted
 set stl+=%{ConflictedVersion()}  " Show version name in splits during vim-conflicted
 nnoremap <leader>gnc :GitNextConflict<cr>
-
-" - Lightline
-let g:lightline = {
-  \   'colorscheme': 'one',
-  \   'inactive': {
-  \     'right': [],
-  \   },
-  \   'active': {
-  \     'left': [[ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ]],
-  \     'right': [[ 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status' ]]
-  \   },
-  \ }
-
-" register compoments:
-call lightline#coc#register()
-
-" Hide split borders on lightline:
-hi StatusLine ctermbg=10 ctermfg=10 cterm=bold guibg=NONE guifg=NONE gui=NONE
-hi StatusLineNC ctermbg=10 ctermfg=10 cterm=NONE guibg=NONE guifg=NONE gui=NONE
 
 " - coc-snippets
 " expand snippet when pressing enter:

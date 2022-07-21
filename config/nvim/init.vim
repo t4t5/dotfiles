@@ -291,6 +291,8 @@ inoremap <silent><expr> <c-c> coc#refresh()
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
+" go back after gt:
+nmap <silent> gb <C-o>
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <leader>k :call <SID>show_documentation()<CR>
 

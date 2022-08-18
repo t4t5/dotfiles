@@ -29,11 +29,6 @@ set diffopt+=vertical
 
 " set cmdheight=0 " will be available soon
 
-lua << EOF
--- unified status bar across panes:
-vim.opt.laststatus = 3
-EOF
-
 " No newline at end of file:
 autocmd FileType html.handlebars setlocal noeol binary
 

@@ -178,12 +178,7 @@ require('lualine').setup {
       }
     },
     lualine_y = {'filetype'},
-    lualine_z = {
-      {
-        'branch',
-        icon = ''
-      }
-    }
+    lualine_z = {}
   },
   inactive_sections = {
     lualine_a = {},

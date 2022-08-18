@@ -184,7 +184,21 @@ require('lualine').setup {
     lualine_a = {},
     lualine_b = {'filename'},
     lualine_c = {},
-    lualine_x = {},
+    lualine_x = {
+      {
+        'diagnostics',
+        sources = { 'coc' },
+        sections = { 'error', 'warn', 'info', 'hint' },
+        symbols = {
+          error = '✘ ', 
+          warn = '⚠ ', 
+          info = 'ⓘ  ', 
+          hint = 'ⓘ  '
+        },
+        colored = true,
+        always_visible = false,
+      }
+    },
     lualine_y = {'filetype'},
     lualine_z = {}
   },

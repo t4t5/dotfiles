@@ -97,6 +97,10 @@ addhusky() {
   npx husky add .husky/pre-commit "npm run format"
 }
 
+art() {
+  bash ~/dotfiles/art.sh
+}
+
 alias r=". ranger"
 alias gg="gitui"
 
@@ -145,3 +149,19 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="/Users/tristan/.local/share/solana/install/active_release/bin:$PATH"
 
 export PATH="$PATH:/Users/tristan/.starklings/dist/starklings"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/Users/tristan/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/Users/tristan/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/Users/tristan/opt/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/Users/tristan/opt/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+

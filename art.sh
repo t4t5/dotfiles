@@ -17,15 +17,19 @@ fi
 
 declare -A art_styles
 
+art_styles["Digital Painting"]=", vibrantcolors, awardwinning, intricate, insanelydetailed, digitalpainting, conceptart"
+
+art_styles["Fantasy Art"]=", trending on artstation, style Greg Rutkowski"
+
 art_styles["Landscape Painting"]=", by Caspar David Friedrich, matte painting trending on artstation HQ"
 
 art_styles["Photorealistic"]=", dlsr photography, sharp focus, perfect light"
 
-art_styles["Fantasy Art"]=", trending on artstation, style Greg Rutkowski"
-
-art_styles["Cinematic"]=", cinematic photo, highly detailed, cinematic lighting, ultra-detailed, ultrarealistic, photorealism, 8k, octane render"
+art_styles["Digital Art"]=", intricate, cinematic lighting, highly detailed, digital painting, artstation, concept art, sharp focus, illustration, illustrated by Sophie Anderson, Mark Arian"
 
 art_styles["CG Art"]=", colorful, artstation, cgsociety"
+
+art_styles["Cinematic"]=", cinematic photo, highly detailed, cinematic lighting, ultra-detailed, ultrarealistic, photorealism, 8k, octane render"
 
 art_styles["none"]=""
 

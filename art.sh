@@ -38,10 +38,19 @@ echo "What kind of style do you want?"
 select art_style in "${!art_styles[@]}"; do
   art_style_value="${art_styles[$art_style]}"
 
+  echo -n "How many versions? (default 1): "
+  read number
+
+  if [[ -z "$number" ]]; then
+    number=1
+  fi
+
+  number=$((number + 0))
+
   # Generate image:
   python scripts/txt2img.py \
     --prompt "$prompt$art_style_value" \
-    --n_samples 1 --n_iter 1 --plms --ddim_steps "$steps"
+    --n_samples $number --n_iter 1 --plms --ddim_steps "$steps"
 
   # Go to output dir:
   cd "$SD_DIR/outputs/txt2img-samples"

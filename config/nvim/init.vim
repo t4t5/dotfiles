@@ -120,7 +120,8 @@ Plug 'sindrets/diffview.nvim'                  " View git diffs
 Plug 'TimUntersberger/neogit'                  " Git commit
 Plug 'arzg/vim-colors-xcode'                   " light mode (xcode inspired)
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' } " Prettier tabs
-Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' }
+Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' } " See latest Rust crate versions in cargo.toml
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax
 call plug#end()
 
 "
@@ -242,6 +243,16 @@ omap <silent> i_ <Plug>CamelCaseMotion_iw
 xmap <silent> i_ <Plug>CamelCaseMotion_iw
 omap <silent> a_ <Plug>CamelCaseMotion_iw
 xmap <silent> a_ <Plug>CamelCaseMotion_iw
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "typescript", "rust", "prisma", "solidity", "sql", "ruby" },
+  auto_install = true,
+  highlight = {
+    enable = true,
+  }
+}
+EOF
 
 " - rnvimr (ranger)
 map <leader>r :RnvimrToggle<cr>

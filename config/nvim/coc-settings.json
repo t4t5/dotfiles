@@ -10,6 +10,7 @@
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
   "sql.database": "postgresql",
   "languageserver": {
     "cairo": {

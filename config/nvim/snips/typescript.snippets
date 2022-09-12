@@ -77,61 +77,20 @@ await expect(
 ).to.be.revertedWith("wrong amount of Dai sent!")
 endsnippet
 
-snippet apollo_server_nextjs
-import { ApolloServer } from "apollo-server-micro"
-import Cors from "micro-cors"
-import {
-  ApolloServerPluginLandingPageGraphQLPlayground,
-  ApolloServerPluginLandingPageDisabled,
-} from "apollo-server-core"
-import type { NextApiHandler } from "next"
-import type { IncomingMessage, ServerResponse } from "http"
+snippet trpc_query
+import { z } from "zod"
 
-import typeDefs from "../../gql/schemas"
-import resolvers from "../../gql/resolvers"
+import { createRouter } from "trpc/context"
 
-const cors = Cors()
+export const ${1:somethingRuter} = createRouter()
+  .query("${2:getSomething}", {
+    input: z.object({
+      userId: z.number(),
+    }),
+    resolve({ ctx, input }) {
+      const { userId } = input
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  plugins: [
-    process.env.NODE_ENV === "production"
-      ? ApolloServerPluginLandingPageDisabled()
-      : ApolloServerPluginLandingPageGraphQLPlayground(),
-  ],
-})
-
-const startServer = server.start()
-
-const handler: NextApiHandler = async (
-  req: IncomingMessage,
-  res: ServerResponse,
-) => {
-  if (req.method === "OPTIONS") return res.end()
-
-  await startServer
-  await server.createHandler({
-    path: "/api/graphql",
-  })(req, res)
-}
-
-export default cors(handler)
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
-endsnippet
-
-snippet apollo_client
-import { ApolloClient, InMemoryCache } from "@apollo/client"
-
-const client = new ApolloClient({
-  uri: "http://localhost:3000/api/graphql",
-  cache: new InMemoryCache(),
-})
-
-export default client
+      return null
+    },
+  })
 endsnippet

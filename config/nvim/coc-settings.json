@@ -14,6 +14,8 @@
   "html.autoClosingTags": false,
   "typescript.autoClosingTags": false,
   "sql.database": "postgresql",
+  "list.height": 20,
+  "list.maxPreviewHeight": 40,
   "languageserver": {
     "cairo": {
       "module": "~/dev/tools/cairo/node_modules/cairo-ls/out/server.js",

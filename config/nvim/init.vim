@@ -23,6 +23,7 @@ set numberwidth=5                " Gutter width
 set relativenumber               " Relative line numbers
 set fillchars=vert:\│,eob:\      " Hide ~ symbols in gutter
 set nofoldenable                 " show file contents in spectre
+set mouse=
 
 set splitbelow                   " Open new horizontal pane below, which feels more natural
 set diffopt+=vertical

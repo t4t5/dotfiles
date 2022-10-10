@@ -123,10 +123,16 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' } " Prettier tabs
 Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' } " See latest Rust crate versions in cargo.toml
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax
 Plug 'nvim-treesitter/nvim-treesitter-context' " show which function you're inside
+Plug 'ggandor/leap.nvim'                       " Jump to words with s
 call plug#end()
 
 "
 " --- plugin configs ---
+
+" - leap.nvim
+lua << EOF
+require('leap').set_default_keymaps()
+EOF
 
 "  - nvim-web-devicons
 lua << EOF

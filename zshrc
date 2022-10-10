@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Uncomment this and the bottom line to see what's taking time to load:
 # zmodload zsh/zprof
 
@@ -166,6 +164,3 @@ export PATH="$PATH:/Users/tristan/.starklings/dist/starklings"
 # fi
 # unset __conda_setup
 # <<< conda initialize <<<
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

@@ -101,6 +101,8 @@ art() {
   bash ~/dotfiles/art.sh
 }
 
+alias stable="cd ~/dev/tools/stable-webui/stable-diffusion-webui"
+
 alias r=". ranger"
 alias gg="gitui"
 

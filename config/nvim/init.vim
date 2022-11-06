@@ -301,6 +301,9 @@ nmap <silent> <c-b> :Buffers<cr>
 "
 " --- COC STUFF START
 " ------------------------------------------------------------
+" Show autosuggestions with Ctrl-C
+inoremap <silent><expr> <c-c> coc#refresh()
+
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"

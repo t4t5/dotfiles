@@ -424,6 +424,14 @@ nnoremap <silent>tt :CocRestart<cr><cr>
 " - unconditionalpaste
 nmap <Leader>pi <Plug>UnconditionalPasteInlinedAfter
 
+" Run Rust app with "r":
+function! RunRustApp()
+  :VtrOpenRunner
+  :VtrSendCommandToRunner cargo run
+endfunction
+
+nnoremap r :call RunRustApp()<cr>
+
 " - nvim-dap
 lua << EOF
   local dap = require('dap')

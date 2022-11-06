@@ -409,8 +409,15 @@ nnoremap <leader>gnc :GitNextConflict<cr>
 
 " - vim-test
 nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
+" nmap <silent> <leader>T :TestFile<CR>
 let test#strategy = "vtr"
+
+function! RunTest()
+  :VtrOpenRunner
+  call VtrSendCommand('npx dotenv -e .env.test -- npx vitest ' . @%)
+endfunction
+
+nnoremap <silent> <leader>T :call RunTest()<cr>
 
 " - vim-tmux-runner
 let g:VtrOrientation = "h"
@@ -418,7 +425,7 @@ let g:VtrPercentage = 40
 nmap <leader>va :VtrAttachToPane<CR>
 
 " - unconditionalpaste
-nmap <Leader>pi <Plug>UnconditionalPasteInlinedAfter
+nmap <leader>pi <Plug>UnconditionalPasteInlinedAfter
 
 " Run Rust app with "r":
 function! RunRustApp()

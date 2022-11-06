@@ -307,25 +307,26 @@ inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nnoremap <nowait><expr> <S-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<S-j>"
 nnoremap <nowait><expr> <S-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<S-k>"
-nnoremap <silent> <leader>a  :CocAction<cr>
+" Take actions:
+nmap <leader>a  <Plug>(coc-codeaction)
+" Jump to errors:
 nnoremap <silent> <leader>aj :call CocAction('diagnosticNext')<cr>
 nnoremap <silent> <leader>ak :call CocAction('diagnosticPrevious')<cr>
-inoremap <silent><expr> <c-c> coc#refresh()
-
+" Refresh coc:
+nnoremap <silent>tt :CocRestart<cr><cr>
+" See definitions:
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 " go back after gt:
 nmap <silent> gb <C-o>
 nmap <silent> gr <Plug>(coc-references)
-nnoremap <leader>k :call <SID>show_documentation()<CR>
+nnoremap <leader>k :call ShowDocumentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (expand('%:t') == 'Cargo.toml')
-    lua require('crates').show_popup()
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
@@ -419,7 +420,6 @@ nnoremap <leader>gnc :GitNextConflict<cr>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " go to language's snippet file by running :Snip
 command! Snip :CocCommand snippets.editSnippets
-nnoremap <silent>tt :CocRestart<cr><cr>
 
 " - unconditionalpaste
 nmap <Leader>pi <Plug>UnconditionalPasteInlinedAfter

@@ -381,22 +381,6 @@ nmap <leader>gs :DiffviewOpen<CR>
 nmap <leader>gb :Git blame<CR>
 nmap <leader>gc :Neogit kind="floating" commit<CR>
 
-function! s:ftplugin_fugitive() abort
-  nnoremap <buffer> <silent> cc :vertical Git commit --quiet<CR>
-  nnoremap <buffer> <silent> ca :vertical Git commit --quiet --amend<CR>
-  nnoremap <buffer> <leader> ge :call ExitFugitive()<cr>
-endfunction
-augroup nhooyr_fugitive
-  autocmd!
-  autocmd FileType fugitive call s:ftplugin_fugitive()
-augroup END
-
-function! ExitFugitive()
-  :wincmd k
-  :wincmd l
-  :only
-endfunction
-
 " - vim-test
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>

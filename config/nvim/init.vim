@@ -317,9 +317,10 @@ nnoremap <silent>tt :CocRestart<cr><cr>
 " See definitions:
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
 " go back after gt:
 nmap <silent> gb <C-o>
-nmap <silent> gr <Plug>(coc-references)
+
 nnoremap <leader>k :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()

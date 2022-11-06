@@ -67,8 +67,6 @@ nnoremap <CR> :noh<CR><CR>
 " Format json with :JSON
 com! Json %!python -m json.tool
 
-com! Send :CocCommand rest-client.request <cr>
-
 " Macros
 " Use qq to start, q to stop and <Space> to play
 nnoremap <Space> @q
@@ -300,24 +298,30 @@ endfunction
 nmap <silent> <c-p> :Rg<cr>
 " nmap <silent> <c-f> :Files<cr>
 nmap <silent> <c-b> :Buffers<cr>
-
-" - coc.nvim
+"
+" --- COC STUFF START
+" ------------------------------------------------------------
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nnoremap <nowait><expr> <S-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<S-j>"
 nnoremap <nowait><expr> <S-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<S-k>"
+
 " Take actions:
 nmap <leader>a  <Plug>(coc-codeaction)
+
 " Jump to errors:
 nnoremap <silent> <leader>aj :call CocAction('diagnosticNext')<cr>
 nnoremap <silent> <leader>ak :call CocAction('diagnosticPrevious')<cr>
+
 " Refresh coc:
 nnoremap <silent>tt :CocRestart<cr><cr>
+
 " See definitions:
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
+
 " go back after gt:
 nmap <silent> gb <C-o>
 
@@ -334,6 +338,20 @@ endfunction
 let g:coc_filetype_map = {
   \ 'html.handlebars': 'handlebars',
 \ }
+
+" - coc-snippets
+let g:coc_snippet_next = '<c-l>'
+let g:coc_snippet_prev = '<c-h>'
+
+" expand snippet when pressing enter:
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" go to language's snippet file by running :Snip
+command! Snip :CocCommand snippets.editSnippets
+
+com! Send :CocCommand rest-client.request <cr>
+" ------------------------------------------------------------
+" --- COC STUFF END
 
 " Set syntax highlighting for .env.local, .env.development, .env.production...
 au! BufNewFile,BufRead .env.* set filetype=sh
@@ -367,7 +385,8 @@ endfunction
 nnoremap <leader>F :lua require('spectre').open()<CR>
 " Note: Run replace with <leader>R
 
-" --- GIT STUFF
+" --- GIT STUFF START
+" ------------------------------------------------------------
 " - vim-gh-line
 let g:gh_line_map_default = 0
 let g:gh_line_blame_map_default = 0
@@ -385,7 +404,8 @@ let g:blamer_relative_time = 1
 " - vim-conflicted
 set stl+=%{ConflictedVersion()}  " Show version name in splits during vim-conflicted
 nnoremap <leader>gnc :GitNextConflict<cr>
-" --- END GIT STUFF
+" ------------------------------------------------------------
+" --- GIT STUFF END
 
 " - vim-test
 nmap <silent> <leader>t :TestNearest<CR>
@@ -396,14 +416,6 @@ let test#strategy = "vtr"
 let g:VtrOrientation = "h"
 let g:VtrPercentage = 40
 nmap <leader>va :VtrAttachToPane<CR>
-
-" - coc-snippets
-let g:coc_snippet_next = '<c-l>'
-let g:coc_snippet_prev = '<c-h>'
-" expand snippet when pressing enter:
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" go to language's snippet file by running :Snip
-command! Snip :CocCommand snippets.editSnippets
 
 " - unconditionalpaste
 nmap <Leader>pi <Plug>UnconditionalPasteInlinedAfter

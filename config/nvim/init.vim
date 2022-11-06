@@ -331,9 +331,6 @@ function! ShowDocumentation()
   endif
 endfunction
 
-let g:coc_snippet_next = '<c-l>'
-let g:coc_snippet_prev = '<c-h>'
-
 let g:coc_filetype_map = {
   \ 'html.handlebars': 'handlebars',
 \ }
@@ -370,16 +367,25 @@ endfunction
 nnoremap <leader>F :lua require('spectre').open()<CR>
 " Note: Run replace with <leader>R
 
+" --- GIT STUFF
 " - vim-gh-line
 let g:gh_line_map_default = 0
 let g:gh_line_blame_map_default = 0
-let g:gh_line_blame_map = '<leader>gh'
+let g:gh_line_blame_map = '<leader>gb'
 let g:gh_line_map = '<leader>gl'
 
-" - fugitive / diffview
+" - git status (diffview)
 nmap <leader>gs :DiffviewOpen<CR>
-nmap <leader>gb :Git blame<CR>
-nmap <leader>gc :Neogit kind="floating" commit<CR>
+
+" - blamer-nvim (like VSCode's GitLens)
+let g:blamer_enabled = 1
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_relative_time = 1
+
+" - vim-conflicted
+set stl+=%{ConflictedVersion()}  " Show version name in splits during vim-conflicted
+nnoremap <leader>gnc :GitNextConflict<cr>
+" --- END GIT STUFF
 
 " - vim-test
 nmap <silent> <leader>t :TestNearest<CR>
@@ -391,16 +397,9 @@ let g:VtrOrientation = "h"
 let g:VtrPercentage = 40
 nmap <leader>va :VtrAttachToPane<CR>
 
-" - blamer-nvim
-let g:blamer_enabled = 1
-let g:blamer_show_in_insert_modes = 0
-let g:blamer_relative_time = 1
-
-" - vim-conflicted
-set stl+=%{ConflictedVersion()}  " Show version name in splits during vim-conflicted
-nnoremap <leader>gnc :GitNextConflict<cr>
-
 " - coc-snippets
+let g:coc_snippet_next = '<c-l>'
+let g:coc_snippet_prev = '<c-h>'
 " expand snippet when pressing enter:
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " go to language's snippet file by running :Snip

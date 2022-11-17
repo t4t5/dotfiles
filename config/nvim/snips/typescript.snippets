@@ -94,3 +94,24 @@ export const ${1:somethingRuter} = createRouter()
     },
   })
 endsnippet
+
+snippet trpc_test
+import { InferMutationInput } from "trpc/types"
+
+import { createTestContext } from "test/db"
+import { UserFactory } from "test/factories"
+
+const ctx = createTestContext()
+
+it("${1:description}", async () => {
+  const { user } = await UserFactory.create(ctx)
+
+  const caller = ctx.getTrpc({
+    userId: user.id,
+  })
+
+  const input: InferMutationInput<"${2:trpc_endpoint}"> = {}
+
+  await caller.mutation("${2:trpc_endpoint}", input)
+})
+endsnippet

@@ -111,6 +111,17 @@ mcd() {
   cd -P -- "$1"
 }
 
+dropdbs() {
+  # Clean up Layer 3 test DBs (layer3_test_xxx)
+  echo "Deleting all local layer3_test_xxx databases..."
+
+  psql -d template1 -c "copy (select datname from pg_database where datname like '%layer3_test_%') to stdout" | while read line; do
+    dropdb "$line"
+  done
+
+  echo "Done!"
+}
+
 # Use tmux by default when using terminal
 if [ -z "$TMUX" ]; then
   tmux attach -t default || tmux new -s default

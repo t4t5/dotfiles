@@ -412,16 +412,18 @@ nnoremap <leader>gnc :GitNextConflict<cr>
 " --- GIT STUFF END
 
 " - vim-test
-nmap <silent> <leader>t :TestNearest<CR>
-" nmap <silent> <leader>T :TestFile<CR>
-let test#strategy = "vtr"
-
 function! RunTest()
-  :VtrOpenRunner
-  call VtrSendCommand('npx dotenv -e .env.test -- npx vitest ' . @%)
+  if &filetype == 'typescript'
+    :VtrOpenRunner
+    call VtrSendCommand('npx dotenv -e .env.test -- npx vitest ' . @%)
+  else
+    :TestFile
+  endif
 endfunction
 
 nnoremap <silent> <leader>T :call RunTest()<cr>
+nmap <silent> <leader>t :TestNearest<CR>
+let test#strategy = "vtr"
 
 " - vim-tmux-runner
 let g:VtrOrientation = "h"

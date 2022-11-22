@@ -123,6 +123,7 @@ Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' } " See latest Rust crate versions 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax
 Plug 'nvim-treesitter/nvim-treesitter-context' " show which function you're inside
 Plug 'ggandor/leap.nvim'                       " Jump to words with s
+Plug 'RRethy/vim-illuminate'                   " Highlight all instances of word under cursor
 call plug#end()
 
 "

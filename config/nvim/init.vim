@@ -109,7 +109,7 @@ Plug 'nvim-telescope/telescope.nvim'           " Better fuzzyfinding
 Plug 'nvim-telescope/telescope-dap.nvim'       " Move through callstack in Telescope
 Plug 'windwp/nvim-spectre'                     " Find + replace across files
 Plug 'rbgrouleff/bclose.vim'                   " Dependency for ranger.vim
-Plug 'kevinhwang91/rnvimr'
+Plug 'kevinhwang91/rnvimr'                     " Ranger integration
 Plug 'bkad/camelcasemotion'                    " Delete single words in camel_case_words
 Plug 'ruanyl/vim-gh-line'                      " View lines and commits in GitHub
 Plug 'dense-analysis/ale'                      " Needed for certain languages that CoC doesn't support
@@ -120,7 +120,7 @@ Plug 'TimUntersberger/neogit'                  " Git commit
 Plug 'arzg/vim-colors-xcode'                   " light mode (xcode inspired)
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' } " Prettier tabs
 Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' } " See latest Rust crate versions in cargo.toml
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter-context' " show which function you're inside
 Plug 'ggandor/leap.nvim'                       " Jump to words with s
 Plug 'RRethy/vim-illuminate'                   " Highlight all instances of word under cursor

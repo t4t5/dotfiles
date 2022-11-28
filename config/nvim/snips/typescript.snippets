@@ -115,3 +115,24 @@ it("${1:description}", async () => {
   await caller.mutation("${2:trpc_endpoint}", input)
 })
 endsnippet
+
+snippet l3_action_text
+import GmActions from "gql/actions/Gm"
+
+import { createTestContext } from "test/db"
+import { UserFactory } from "test/factories"
+
+const ctx = createTestContext()
+
+describe("${1:description}", () => {
+  it("${2:test_case}", async () => {
+    const { prisma } = ctx
+
+    const { user } = await UserFactory.create(ctx)
+
+    await expect(GmActions.canGmToday(prisma, user.id, 0)).rejects.toThrowError(
+      "You can only GM once per day",
+    )
+  })
+})
+endsnippet

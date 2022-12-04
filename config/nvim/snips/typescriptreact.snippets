@@ -12,6 +12,21 @@ export default function ${1:ComponentName}() {
 }
 endsnippet
 
+snippet l3-page
+import { Seo } from "components/Seo"
+import App from "components/layout/App"
+import Container from "components/layout/Container"
+
+export default function ${1:PageName}Page() {
+  return (
+    <App>
+      <Seo title="${1:PageName} - Layer3" />
+      <Container width="medium" />
+    </App>
+  )
+}
+endsnippet
+
 snippet import-stitches-theme
 import { theme } from "stitches.config"
 endsnippet

@@ -101,6 +101,10 @@ art() {
   bash ~/dotfiles/art.sh
 }
 
+chat() {
+  bash ~/dotfiles/chatgpt.sh
+}
+
 alias stable="cd ~/dev/tools/stable-webui/stable-diffusion-webui"
 
 alias r=". ranger"

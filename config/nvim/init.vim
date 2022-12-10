@@ -124,10 +124,18 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax high
 Plug 'nvim-treesitter/nvim-treesitter-context' " show which function you're inside
 Plug 'ggandor/leap.nvim'                       " Jump to words with s
 Plug 'RRethy/vim-illuminate'                   " Highlight all instances of word under cursor
+Plug 'tpope/vim-markdown'
+
+Plug '~/dev/projects/experiments/nvim/chatGPT.nvim' " custom plugin
 call plug#end()
+
+nnoremap <leader>ai :lua require('chatGPT').setup()<CR>
 
 "
 " --- plugin configs ---
+
+" Use syntax highlighting for codeblocks in markdown files:
+let g:markdown_fenced_languages = ['javascript', 'typescript', 'rust']
 
 " - leap.nvim
 lua << EOF

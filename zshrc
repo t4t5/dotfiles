@@ -31,6 +31,9 @@ export PATH=$RBENV_ROOT/bin:$PATH
 alias gem='arch -arm64 gem'
 alias bundle='arch -arm64 bundle'
 
+# Lunarvim
+export PATH="$HOME/.local/bin:$PATH"
+
 # Rbenv
 eval "$(arch -arm64 rbenv init - zsh)"
 

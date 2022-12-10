@@ -324,7 +324,7 @@ nnoremap <silent>tt :CocRestart<cr><cr>
 " See definitions:
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr <Plug>(coc-references) <bar> :wincmd h<cr>
 
 " go back after gt:
 nmap <silent> gb <C-o>

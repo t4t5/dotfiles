@@ -1,24 +1,24 @@
---[[
-lvim is the global options object
-
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
-]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+vim.api.nvim_command("set relativenumber")
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
-lvim.colorscheme = "lunar"
+lvim.colorscheme = "onedark"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "space"
+lvim.leader = ","
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
+lvim.keys.normal_mode = {
+  -- Better window movement
+  ["<C-h>"] = "<C-w>h",
+  ["<C-j>"] = "<C-w>j",
+  ["<C-k>"] = "<C-w>k",
+  ["<C-l>"] = "<C-w>l",
+}
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -26,23 +26,37 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- override a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
+-- Telescope
+-- lvim.keys.normal_mode["<C-f>"] = false
+-- lvim.keys.normal_mode["<C-f>"] = lvim.builtin.telescope.find_files({
+--   find_command = { 'rg', '--files', '--hidden', '-g', '!.git' }
+-- })
+--
+lvim.keys.normal_mode["<C-f>"] = ":Telescope git_files<cr>"
+
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
--- local _, actions = pcall(require, "telescope.actions")
--- lvim.builtin.telescope.defaults.mappings = {
---   -- for input mode
---   i = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---     ["<C-n>"] = actions.cycle_history_next,
---     ["<C-p>"] = actions.cycle_history_prev,
---   },
---   -- for normal mode
---   n = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---   },
--- }
+local _, actions = pcall(require, "telescope.actions")
+lvim.builtin.telescope.defaults.mappings = {
+ -- for input mode
+ i = {
+   ["<C-j>"] = actions.move_selection_next,
+   ["<C-k>"] = actions.move_selection_previous,
+   ["<C-n>"] = actions.cycle_history_next,
+   ["<C-p>"] = actions.cycle_history_prev,
+   ["<esc>"] = actions.close,
+ },
+ -- for normal mode
+ n = {
+   ["<C-j>"] = actions.move_selection_next,
+   ["<C-k>"] = actions.move_selection_previous,
+ },
+}
+
+lvim.builtin.telescope.pickers = { find_files = { find_command = {
+  "rg", "--files", "--hidden", "-g", "!.git",
+}}}
+
 
 -- Change theme settings
 -- lvim.builtin.theme.options.dim_inactive = true
@@ -71,7 +85,6 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  "c",
   "javascript",
   "json",
   "lua",
@@ -80,7 +93,6 @@ lvim.builtin.treesitter.ensure_installed = {
   "tsx",
   "css",
   "rust",
-  "java",
   "yaml",
 }
 
@@ -163,12 +175,9 @@ lvim.builtin.treesitter.highlight.enable = true
 -- }
 
 -- Additional Plugins
--- lvim.plugins = {
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
--- }
+lvim.plugins = {
+  { "lunarvim/colorschemes" }
+}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {

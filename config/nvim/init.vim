@@ -93,7 +93,7 @@ Plug 'sukima/vim-javascript-imports'           " Needed for vim-ember-imports
 Plug 'sukima/vim-ember-imports'                " Import Ember's modules with <leader>e
 Plug 'wesQ3/vim-windowswap'                    " Swap windows with ,ww
 Plug 'APZelos/blamer.nvim'                     " Preview git blame (like VSCode)
-Plug 'airblade/vim-gitgutter'                  " Show modified lines
+Plug 'lewis6991/gitsigns.nvim'                 " Show modified lines
 Plug 'numToStr/Comment.nvim'                   " Comment things out with gcc
 Plug 'christoomey/vim-conflicted'              " Handle git conflicts in vim
 Plug 'tpope/vim-repeat'                        " Repeat advanced commands with .
@@ -408,6 +408,37 @@ let g:blamer_relative_time = 1
 " - vim-conflicted
 set stl+=%{ConflictedVersion()}  " Show version name in splits during vim-conflicted
 nnoremap <leader>gnc :GitNextConflict<cr>
+
+lua << EOF
+require('gitsigns').setup{
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then return ']c' end
+      vim.schedule(function() gs.next_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    map('n', '[c', function()
+      if vim.wo.diff then return '[c' end
+      vim.schedule(function() gs.prev_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    -- Actions
+    map({'n', 'v'}, 'dp', ':Gitsigns stage_hunk<CR>')
+    map({'n', 'v'}, 'dg', ':Gitsigns reset_hunk<CR>')
+  end
+}
+EOF
 " ------------------------------------------------------------
 " --- GIT STUFF END
 

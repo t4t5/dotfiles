@@ -4,7 +4,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # ZSH
-export ZSH=/Users/tristan/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
 source $ZSH/oh-my-zsh.sh
@@ -163,9 +163,9 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Solana
-export PATH="/Users/tristan/.local/share/solana/install/active_release/bin:$PATH"
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
 
-export PATH="$PATH:/Users/tristan/.starklings/dist/starklings"
+export PATH="$PATH:$HOME/.starklings/dist/starklings"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

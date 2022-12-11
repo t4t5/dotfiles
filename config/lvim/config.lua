@@ -182,4 +182,5 @@ lvim.plugins = {
   { "sindrets/diffview.nvim" },
   { "ruanyl/vim-gh-line" },
   { "ruifm/gitlinker.nvim" },
+  { "f-person/git-blame.nvim" },
 }

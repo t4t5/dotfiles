@@ -29,6 +29,8 @@ lvim.keys.normal_mode = {
 ----------- telescope ---------------------
 -- find files = <C-f>
 lvim.keys.normal_mode["<C-f>"] = ":Telescope git_files<cr>"
+-- fuzzy grep = <C-p>
+lvim.keys.normal_mode["<C-p>"] = ":Telescope live_grep<cr>"
 -- move through suggestions = <C-j>/<C-k>
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {

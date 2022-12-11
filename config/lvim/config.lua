@@ -76,7 +76,7 @@ lvim.builtin.bufferline.options = {
   modified_icon = '~',
   diagnostics = "coc",
   separator_style = "thin",
-  always_show_bufferline = false
+  always_show_bufferline = false,
 }
 -- open/close tabs
 vim.api.nvim_set_keymap("n", "tn", ":tabe<cr>", { silent = true })
@@ -150,6 +150,13 @@ formatters.setup {
 }
 
 lvim.keys.insert_mode["<C-c>"] = "<cmd>lua vim.lsp.omnifunc()<cr>"
+
+---------- lualine --------
+lvim.builtin.lualine.sections.lualine_b = {
+  { 'filename', path = 1 }
+}
+lvim.builtin.lualine.sections.lualine_y = {}
+lvim.builtin.lualine.sections.lualine_z = {}
 
 ----------- github copilot ---------------------
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"

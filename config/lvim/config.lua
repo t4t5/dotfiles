@@ -1,7 +1,7 @@
 -- general
 lvim.leader = ","
 lvim.log.level = "warn"
-lvim.format_on_save.enabled = false
+lvim.format_on_save.enabled = true
 lvim.colorscheme = "onedark"
 
 -- relative line numbers:
@@ -141,6 +141,14 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 
 lvim.builtin.treesitter.highlight.enable = true
+
+----------- formatters --------
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "prettierd", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } },
+}
+
+lvim.keys.insert_mode["<C-c>"] = "<cmd>lua vim.lsp.omnifunc()<cr>"
 
 ----------- github copilot ---------------------
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"

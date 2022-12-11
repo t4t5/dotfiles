@@ -80,8 +80,11 @@ lvim.builtin.gitsigns.opts.signs = {
   delete = { text = "_" },
 }
 
------------ ranger (rnvimr) ---------------------
+----------- leader commands ---------------------
+-- ranger (rnvimr)
 lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger" }
+-- Spectre (find and replace across files)
+lvim.builtin.which_key.mappings["F"] = { "<cmd>lua require('spectre').open()<cr>", "Spectre (find and replace)" }
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
@@ -147,4 +150,5 @@ lvim.plugins = {
   },
   { "github/copilot.vim" },
   { "hrsh7th/cmp-copilot" },
+  { "windwp/nvim-spectre" },
 }

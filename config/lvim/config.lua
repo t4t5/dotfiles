@@ -94,7 +94,8 @@ lvim.builtin.gitsigns.opts.signs = {
 -- git status (diffview)
 lvim.builtin.which_key.mappings["g"] = {
   name = "git",
-  s = { "<cmd>DiffviewOpen<cr>", "git status (diffview)" }
+  s = { "<cmd>DiffviewOpen<cr>", "git status (diffview)" },
+  l = { "<cmd>lua require('gitlinker').get_buf_range_url('n', {action_callback = require('gitlinker.actions').open_in_browser})<cr>", "show on github"}
 }
 
 ----------- leader commands ---------------------
@@ -175,4 +176,18 @@ lvim.plugins = {
   { "hrsh7th/cmp-copilot" },
   { "windwp/nvim-spectre" },
   { "sindrets/diffview.nvim" },
+  {
+    "ruifm/gitlinker.nvim",
+    event = "BufRead",
+    config = function()
+      require("gitlinker").setup({
+        opts = {
+          add_current_line_on_normal_mode = true,
+          action_callback = require("gitlinker.actions").open_in_browser,
+          print_url = false,
+        },
+      })
+    end,
+    requires = "nvim-lua/plenary.nvim",
+  },
 }

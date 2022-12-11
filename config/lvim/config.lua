@@ -97,6 +97,10 @@ lvim.builtin.which_key.mappings["g"] = {
   s = { "<cmd>DiffviewOpen<cr>", "git status (diffview)" },
   l = { "<cmd>lua require('gitlinker').get_buf_range_url('n', {action_callback = require('gitlinker.actions').open_in_browser})<cr>", "show on github"}
 }
+-- git blame (with vim-gh-line)
+vim.g.gh_line_map_default = 0
+vim.g.gh_line_blame_map_default = 0
+vim.g.gh_line_blame_map = '<leader>gb'
 
 ----------- leader commands ---------------------
 -- ranger (rnvimr)
@@ -176,18 +180,6 @@ lvim.plugins = {
   { "hrsh7th/cmp-copilot" },
   { "windwp/nvim-spectre" },
   { "sindrets/diffview.nvim" },
-  {
-    "ruifm/gitlinker.nvim",
-    event = "BufRead",
-    config = function()
-      require("gitlinker").setup({
-        opts = {
-          add_current_line_on_normal_mode = true,
-          action_callback = require("gitlinker.actions").open_in_browser,
-          print_url = false,
-        },
-      })
-    end,
-    requires = "nvim-lua/plenary.nvim",
-  },
+  { "ruanyl/vim-gh-line" },
+  { "ruifm/gitlinker.nvim" },
 }

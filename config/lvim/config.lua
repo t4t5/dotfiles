@@ -116,6 +116,10 @@ lvim.builtin.which_key.mappings["f"] = {
   f = { "<cmd>lua require('spectre').open()<cr>", "find and replace across files" },
   r = { ":%s/<C-r>h", "find and replace in single file" },
 }
+
+----------- lsp --------
+lvim.builtin.treesitter.highlight.enable = true
+
 -- go to errors:
 lvim.builtin.which_key.mappings["a"] = {
   name = "Diagnostics",
@@ -141,14 +145,12 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
 }
 
-lvim.builtin.treesitter.highlight.enable = true
-
------------ formatters --------
+-- formatting
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "prettierd", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } },
 }
-
+-- show suggestions:
 lvim.keys.insert_mode["<C-c>"] = "<cmd>lua vim.lsp.omnifunc()<cr>"
 
 ---------- lualine --------
@@ -161,6 +163,23 @@ lvim.builtin.lualine.sections.lualine_z = {}
 ----------- github copilot ---------------------
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+
+----------- testing (nvim-test) -----------------
+-- vitest:
+require('nvim-test.runners.jest'):setup {
+  command = "./node_modules/.bin/vitest",
+}
+-- rspec:
+require('nvim-test.runners.rspec'):setup({
+  command = "bundle",
+  args = { "exec", "rspec" },
+})
+-- <leader> mapping:
+lvim.builtin.which_key.mappings["t"] = {
+  name = "test",
+  f = { "<cmd>TestFile<cr>", "test current file" },
+  n = { "<cmd>TestNearest<cr>", "test nearest" },
+}
 
 -- Additional Plugins
 lvim.plugins = {

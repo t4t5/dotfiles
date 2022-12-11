@@ -3,6 +3,8 @@ lvim.leader = ","
 
 -- relative line numbers:
 vim.api.nvim_command("set relativenumber")
+-- always use system clipboard to paste from:
+vim.opt.clipboard = "unnamed"
 
 -- open splits with vv:
 vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
@@ -12,9 +14,9 @@ lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.colorscheme = "onedark"
 
--- Basic navigation
+-- basic navigation
 lvim.keys.normal_mode = {
-  -- Better window movement
+  -- better window movement
   ["<C-h>"] = "<C-w>h",
   ["<C-j>"] = "<C-w>j",
   ["<C-k>"] = "<C-w>k",
@@ -25,9 +27,9 @@ lvim.keys.normal_mode = {
 }
 
 ----------- telescope ---------------------
--- <C-f> = find files:
+-- find files = <C-f>
 lvim.keys.normal_mode["<C-f>"] = ":Telescope git_files<cr>"
--- use <C-j/k> for picking selection:
+-- move through suggestions = <C-j>/<C-k>
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
  -- for input mode
@@ -125,6 +127,9 @@ lvim.builtin.treesitter.highlight.enable = true
 -- }
 -- da
 
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+
 -- Additional Plugins
 lvim.plugins = {
   { "lunarvim/colorschemes" },
@@ -140,4 +145,6 @@ lvim.plugins = {
         vim.g.rnvimr_bw_enable = 1
         end,
   },
+  { "github/copilot.vim" },
+  { "hrsh7th/cmp-copilot" },
 }

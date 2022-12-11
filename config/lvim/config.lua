@@ -18,6 +18,9 @@ lvim.keys.normal_mode = {
   ["<C-j>"] = "<C-w>j",
   ["<C-k>"] = "<C-w>k",
   ["<C-l>"] = "<C-w>l",
+  -- resize windows with arrow keys
+  ["<left>"] = ":vertical resize -10<cr>",
+  ["<right>"] = ":vertical resize +10<cr>",
 }
 
 lvim.keys.normal_mode["<C-f>"] = ":Telescope git_files<cr>"

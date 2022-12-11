@@ -2,7 +2,7 @@
 lvim.leader = ","
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
-lvim.colorscheme = "tokyonight"
+lvim.colorscheme = "tokyonight-moon"
 
 -- relative line numbers:
 vim.api.nvim_command("set relativenumber")

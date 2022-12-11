@@ -83,9 +83,9 @@ killport() {
 
 v() {
   if [ $# -gt 0 ]; then
-    nvim "$@"
+    lvim "$@"
   else
-    nvim .
+    lvim
   fi
 }
 

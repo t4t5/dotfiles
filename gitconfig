@@ -3,7 +3,7 @@
   email = tristan.edwards@me.com
 
 [core]
-  editor = nvim
+  editor = lvim
 	attributesfile = ~/.gitattributes
 
 [init]

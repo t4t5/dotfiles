@@ -19,6 +19,9 @@ end)
 vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
 
+-- stop highlighting last search:
+vim.api.nvim_set_keymap("n", "<esc>", ":noh<cr>", { noremap = true, silent = true })
+
 -- basic navigation
 lvim.keys.normal_mode = {
   -- better window movement
@@ -105,8 +108,13 @@ vim.g.gh_line_blame_map = '<leader>gb'
 ----------- leader commands ---------------------
 -- ranger (rnvimr)
 lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger" }
--- Spectre (find and replace across files)
-lvim.builtin.which_key.mappings["F"] = { "<cmd>lua require('spectre').open()<cr>", "Spectre (find and replace)" }
+-- find and replace:
+lvim.builtin.which_key.mappings.f = nil
+lvim.builtin.which_key.mappings["f"] = {
+  name = "find and replace",
+  f = { "<cmd>lua require('spectre').open()<cr>", "find and replace across files" },
+  r = { ":%s/<C-r>h", "find and replace in single file" },
+}
 -- go to errors:
 lvim.builtin.which_key.mappings["a"] = {
   name = "Diagnostics",

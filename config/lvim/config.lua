@@ -6,6 +6,12 @@ vim.api.nvim_command("set relativenumber")
 -- always use system clipboard to paste from:
 vim.opt.clipboard = "unnamed"
 
+-- show vim error messages on startup:
+-- https://github.com/LunarVim/LunarVim/issues/3502
+vim.schedule(function()
+  vim.cmd "messages"
+end)
+
 -- open splits with vv:
 vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
@@ -31,6 +37,8 @@ lvim.keys.normal_mode = {
 lvim.keys.normal_mode["<C-f>"] = ":Telescope git_files<cr>"
 -- fuzzy grep = <C-p>
 lvim.keys.normal_mode["<C-p>"] = ":Telescope live_grep<cr>"
+-- buffers = <C-b>
+lvim.keys.normal_mode["<C-b>"] = ":Telescope buffers<cr>"
 -- move through suggestions = <C-j>/<C-k>
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
@@ -48,10 +56,14 @@ lvim.builtin.telescope.defaults.mappings = {
    ["<C-k>"] = actions.move_selection_previous,
  },
 }
--- don't show all files
-lvim.builtin.telescope.pickers = { find_files = { find_command = {
-  "rg", "--files", "--hidden", "-g", "!.git",
-}}}
+-- filter results:
+lvim.builtin.telescope.pickers = {
+  -- don't show all files
+  find_files = { find_command = {
+    "rg", "--files", "--hidden", "-g", "!.git",
+  }},
+  buffers = { sort_lastused = true, ignore_current_buffer = true },
+}
 
 ----------- tabs ---------------------
 -- Bufferline: Use real vim tabs instead of all buffers:

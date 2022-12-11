@@ -12,6 +12,7 @@ lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.colorscheme = "onedark"
 
+-- Basic navigation
 lvim.keys.normal_mode = {
   -- Better window movement
   ["<C-h>"] = "<C-w>h",
@@ -23,10 +24,10 @@ lvim.keys.normal_mode = {
   ["<right>"] = ":vertical resize +10<cr>",
 }
 
+----------- telescope ---------------------
+-- <C-f> = find files:
 lvim.keys.normal_mode["<C-f>"] = ":Telescope git_files<cr>"
-
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
+-- use <C-j/k> for picking selection:
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
  -- for input mode
@@ -43,13 +44,13 @@ lvim.builtin.telescope.defaults.mappings = {
    ["<C-k>"] = actions.move_selection_previous,
  },
 }
-
+-- don't show all files
 lvim.builtin.telescope.pickers = { find_files = { find_command = {
   "rg", "--files", "--hidden", "-g", "!.git",
 }}}
 
--- bufferline
--- Use real vim tabs instead of all buffers:
+----------- tabs ---------------------
+-- Bufferline: Use real vim tabs instead of all buffers:
 lvim.builtin.bufferline.options = {
   mode = "tabs",
   close_icon = '',
@@ -67,6 +68,7 @@ vim.api.nvim_set_keymap("n", "tb", "<C-w>T", { silent = true })
 lvim.keys.normal_mode["<C-Left>"] = ":tabprevious<cr>"
 lvim.keys.normal_mode["<C-Right>"] = ":tabnext<cr>"
 
+----------- git ---------------------
 -- Gitsigns
 lvim.builtin.gitsigns.opts.signs = {
   add = { text = "+" },
@@ -75,6 +77,9 @@ lvim.builtin.gitsigns.opts.signs = {
   topdelete = { text = "_" },
   delete = { text = "_" },
 }
+
+----------- ranger (rnvimr) ---------------------
+lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger" }
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
@@ -110,7 +115,6 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
 }
 
-lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
 
 -- generic LSP settings
@@ -126,5 +130,14 @@ lvim.plugins = {
   { "lunarvim/colorschemes" },
   { "aserowy/tmux.nvim",
     config = function() require("tmux").setup() end
+  },
+  {
+    "kevinhwang91/rnvimr",
+      cmd = "RnvimrToggle",
+      config = function()
+        vim.g.rnvimr_draw_border = 1
+        vim.g.rnvimr_pick_enable = 1
+        vim.g.rnvimr_bw_enable = 1
+        end,
   },
 }

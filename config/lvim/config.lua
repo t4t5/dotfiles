@@ -44,26 +44,26 @@ lvim.keys.normal_mode["<C-b>"] = ":Telescope buffers<cr>"
 -- move through suggestions = <C-j>/<C-k>
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
- -- for input mode
- i = {
-   ["<C-j>"] = actions.move_selection_next,
-   ["<C-k>"] = actions.move_selection_previous,
-   ["<C-n>"] = actions.cycle_history_next,
-   ["<C-p>"] = actions.cycle_history_prev,
-   ["<esc>"] = actions.close,
- },
- -- for normal mode
- n = {
-   ["<C-j>"] = actions.move_selection_next,
-   ["<C-k>"] = actions.move_selection_previous,
- },
+  -- for input mode
+  i = {
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
+    ["<C-n>"] = actions.cycle_history_next,
+    ["<C-p>"] = actions.cycle_history_prev,
+    ["<esc>"] = actions.close,
+  },
+  -- for normal mode
+  n = {
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
+  },
 }
 -- filter results:
 lvim.builtin.telescope.pickers = {
   -- don't show all files
   find_files = { find_command = {
     "rg", "--files", "--hidden", "-g", "!.git",
-  }},
+  } },
   buffers = { sort_lastused = true, ignore_current_buffer = true },
 }
 
@@ -98,7 +98,8 @@ lvim.builtin.gitsigns.opts.signs = {
 lvim.builtin.which_key.mappings["g"] = {
   name = "git",
   s = { "<cmd>DiffviewOpen<cr>", "git status (diffview)" },
-  l = { "<cmd>lua require('gitlinker').get_buf_range_url('n', {action_callback = require('gitlinker.actions').open_in_browser})<cr>", "show on github"}
+  l = { "<cmd>lua require('gitlinker').get_buf_range_url('n', {action_callback = require('gitlinker.actions').open_in_browser})<cr>",
+    "show on github" }
 }
 -- git blame (with vim-gh-line)
 vim.g.gh_line_map_default = 0
@@ -176,4 +177,9 @@ lvim.plugins = {
   { "ruifm/gitlinker.nvim" }, -- open file in github
   { "f-person/git-blame.nvim" }, -- show last commit per line in editor
   { "chaoren/vim-wordmotion" }, -- respect camelcase/underscores
+  { "klen/nvim-test",
+    config = function()
+      require('nvim-test').setup()
+    end
+  }
 }

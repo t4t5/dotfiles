@@ -172,23 +172,23 @@ table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 -- Additional Plugins
 lvim.plugins = {
   { "lunarvim/colorschemes" },
-  { "aserowy/tmux.nvim",
+  { "aserowy/tmux.nvim", -- jump to tmux windows
     config = function() require("tmux").setup() end
   },
-  {
-    "kevinhwang91/rnvimr",
-      cmd = "RnvimrToggle",
-      config = function()
-        vim.g.rnvimr_draw_border = 1
-        vim.g.rnvimr_pick_enable = 1
-        vim.g.rnvimr_bw_enable = 1
-        end,
+  { "kevinhwang91/rnvimr", -- ranger
+    cmd = "RnvimrToggle",
+    config = function()
+      vim.g.rnvimr_draw_border = 1
+      vim.g.rnvimr_pick_enable = 1
+      vim.g.rnvimr_bw_enable = 1
+    end,
   },
   { "github/copilot.vim" },
   { "hrsh7th/cmp-copilot" },
-  { "windwp/nvim-spectre" },
-  { "sindrets/diffview.nvim" },
-  { "ruanyl/vim-gh-line" },
-  { "ruifm/gitlinker.nvim" },
-  { "f-person/git-blame.nvim" },
+  { "windwp/nvim-spectre" }, -- find and replace across files
+  { "sindrets/diffview.nvim" }, -- git status
+  { "ruanyl/vim-gh-line" }, -- open blame in github
+  { "ruifm/gitlinker.nvim" }, -- open file in github
+  { "f-person/git-blame.nvim" }, -- show last commit per line in editor
+  { "chaoren/vim-wordmotion" }, -- respect camelcase/underscores
 }

@@ -121,6 +121,8 @@ lvim.builtin.which_key.mappings["a"] = {
   j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next" },
   k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev" },
 }
+-- show documentation:
+lvim.builtin.which_key.mappings["k"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show documentation" }
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {

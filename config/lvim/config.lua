@@ -1,5 +1,8 @@
 -- general
 lvim.leader = ","
+lvim.log.level = "warn"
+lvim.format_on_save.enabled = false
+lvim.colorscheme = "onedark"
 
 -- relative line numbers:
 vim.api.nvim_command("set relativenumber")
@@ -15,10 +18,6 @@ end)
 -- open splits with vv:
 vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
-
-lvim.log.level = "warn"
-lvim.format_on_save.enabled = false
-lvim.colorscheme = "onedark"
 
 -- basic navigation
 lvim.keys.normal_mode = {
@@ -99,6 +98,12 @@ lvim.builtin.gitsigns.opts.signs = {
 lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger" }
 -- Spectre (find and replace across files)
 lvim.builtin.which_key.mappings["F"] = { "<cmd>lua require('spectre').open()<cr>", "Spectre (find and replace)" }
+-- go to errors:
+lvim.builtin.which_key.mappings["a"] = {
+  name = "Diagnostics",
+  j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next" },
+  k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev" },
+}
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")

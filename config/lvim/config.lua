@@ -6,6 +6,7 @@ vim.api.nvim_command("set relativenumber")
 
 -- open splits with vv:
 vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
 
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
@@ -43,6 +44,25 @@ lvim.builtin.telescope.defaults.mappings = {
 lvim.builtin.telescope.pickers = { find_files = { find_command = {
   "rg", "--files", "--hidden", "-g", "!.git",
 }}}
+
+-- bufferline
+-- Use real vim tabs instead of all buffers:
+lvim.builtin.bufferline.options = {
+  mode = "tabs",
+  close_icon = '',
+  buffer_close_icon = '',
+  modified_icon = '~',
+  diagnostics = "coc",
+  separator_style = "thin",
+  always_show_bufferline = false
+}
+-- open/close tabs
+vim.api.nvim_set_keymap("n", "tn", ":tabe<cr>", { silent = true })
+vim.api.nvim_set_keymap("n", "tx", ":tabclose<cr>", { silent = true })
+vim.api.nvim_set_keymap("n", "tb", "<C-w>T", { silent = true })
+-- switch between tabs with ctrl + arrow keys
+lvim.keys.normal_mode["<C-Left>"] = ":tabprevious<cr>"
+lvim.keys.normal_mode["<C-Right>"] = ":tabnext<cr>"
 
 -- Gitsigns
 lvim.builtin.gitsigns.opts.signs = {

@@ -84,13 +84,17 @@ lvim.keys.normal_mode["<C-Left>"] = ":tabprevious<cr>"
 lvim.keys.normal_mode["<C-Right>"] = ":tabnext<cr>"
 
 ----------- git ---------------------
--- Gitsigns
 lvim.builtin.gitsigns.opts.signs = {
   add = { text = "+" },
   change = { text = "~" },
   changedelete = { text = "~" },
   topdelete = { text = "_" },
   delete = { text = "_" },
+}
+-- git status (diffview)
+lvim.builtin.which_key.mappings["g"] = {
+  name = "git",
+  s = { "<cmd>DiffviewOpen<cr>", "git status (diffview)" }
 }
 
 ----------- leader commands ---------------------
@@ -170,4 +174,5 @@ lvim.plugins = {
   { "github/copilot.vim" },
   { "hrsh7th/cmp-copilot" },
   { "windwp/nvim-spectre" },
+  { "sindrets/diffview.nvim" },
 }

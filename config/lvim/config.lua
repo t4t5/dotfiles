@@ -1,16 +1,15 @@
+-- general
+lvim.leader = ","
+
+-- relative line numbers:
 vim.api.nvim_command("set relativenumber")
 
--- general
+-- open splits with vv:
+vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
+
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.colorscheme = "onedark"
--- to disable icons and use a minimalist setup, uncomment the following
--- lvim.use_icons = false
-
--- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = ","
--- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 lvim.keys.normal_mode = {
   -- Better window movement
@@ -19,19 +18,7 @@ lvim.keys.normal_mode = {
   ["<C-k>"] = "<C-w>k",
   ["<C-l>"] = "<C-w>l",
 }
--- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
--- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
--- unmap a default keymapping
--- vim.keymap.del("n", "<C-Up>")
--- override a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
--- Telescope
--- lvim.keys.normal_mode["<C-f>"] = false
--- lvim.keys.normal_mode["<C-f>"] = lvim.builtin.telescope.find_files({
---   find_command = { 'rg', '--files', '--hidden', '-g', '!.git' }
--- })
---
 lvim.keys.normal_mode["<C-f>"] = ":Telescope git_files<cr>"
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
@@ -57,6 +44,19 @@ lvim.builtin.telescope.pickers = { find_files = { find_command = {
   "rg", "--files", "--hidden", "-g", "!.git",
 }}}
 
+-- Gitsigns
+lvim.builtin.gitsigns.opts.signs = {
+  add = { text = "+" },
+  change = { text = "~" },
+  changedelete = { text = "~" },
+  topdelete = { text = "_" },
+  delete = { text = "_" },
+}
+
+-- unmap a default keymapping
+-- vim.keymap.del("n", "<C-Up>")
+-- override a default keymapping
+-- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
 -- Change theme settings
 -- lvim.builtin.theme.options.dim_inactive = true

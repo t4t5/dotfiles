@@ -74,6 +74,10 @@ lvim.builtin.telescope.pickers = {
   buffers = { sort_lastused = true, ignore_current_buffer = true },
 }
 
+lvim.builtin.telescope.on_config_done = function(telescope)
+  pcall(telescope.load_extension, "ui-select")
+end
+
 ----------- tabs ---------------------
 -- Bufferline: Use real vim tabs instead of all buffers:
 lvim.builtin.bufferline.options = {
@@ -227,4 +231,5 @@ lvim.plugins = {
       require('nvim-test').setup()
     end
   },
+  { "nvim-telescope/telescope-ui-select.nvim" }
 }

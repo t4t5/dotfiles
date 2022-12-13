@@ -1,3 +1,9 @@
+-- show vim error messages on startup:
+-- https://github.com/LunarVim/LunarVim/issues/3502
+vim.schedule(function()
+  vim.cmd "messages"
+end)
+
 ----------- general settings -----------
 lvim.leader = ","
 lvim.log.level = "warn"
@@ -12,11 +18,8 @@ vim.opt.clipboard = "unnamedplus"
 -- disable mouse:
 vim.opt.mouse = ""
 
--- show vim error messages on startup:
--- https://github.com/LunarVim/LunarVim/issues/3502
-vim.schedule(function()
-  vim.cmd "messages"
-end)
+-- split to left
+vim.opt.splitright = false
 
 ----------- mappings ----------
 -- open splits with vv:

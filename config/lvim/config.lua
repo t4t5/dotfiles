@@ -131,6 +131,8 @@ lvim.builtin.which_key.mappings["f"] = {
   f = { "<cmd>lua require('spectre').open()<cr>", "find and replace across files" },
   r = { ":%s/<C-r>h", "find and replace in single file" },
 }
+-- vim-conflicted:
+lvim.builtin.which_key.mappings.g.n = { "<cmd>GitNextConflict<cr>", "go to next conflict" }
 
 ----------- lsp --------
 lvim.builtin.treesitter.highlight.enable = false
@@ -239,4 +241,24 @@ lvim.plugins = {
   },
   { "nvim-telescope/telescope-ui-select.nvim" }, -- telescope for code action
   { "wesQ3/vim-windowswap" }, -- swap windows with <leader>ww
+  { "christoomey/vim-conflicted" }, -- fix merge conflicts
+  {
+    "tpope/vim-fugitive", -- needed for vim-conflicted
+    cmd = {
+      "G",
+      "Git",
+      "Gdiffsplit",
+      "Gread",
+      "Gwrite",
+      "Ggrep",
+      "GMove",
+      "GDelete",
+      "GBrowse",
+      "GRemove",
+      "GRename",
+      "Glgrep",
+      "Gedit"
+    },
+    ft = { "fugitive" }
+  },
 }

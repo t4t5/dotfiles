@@ -7,7 +7,10 @@ lvim.colorscheme = "tokyonight-moon"
 -- relative line numbers:
 vim.api.nvim_command("set relativenumber")
 -- always use system clipboard to paste from:
-vim.opt.clipboard = "unnamed"
+vim.opt.clipboard = "unnamedplus"
+
+-- disable mouse:
+vim.opt.mouse = ""
 
 -- show vim error messages on startup:
 -- https://github.com/LunarVim/LunarVim/issues/3502

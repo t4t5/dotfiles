@@ -42,6 +42,9 @@ lvim.keys.normal_mode = {
   -- resize windows with arrow keys
   ["<left>"] = ":vertical resize -10<cr>",
   ["<right>"] = ":vertical resize +10<cr>",
+  -- center cursor when jumping up/down
+  ["<C-d>"] = "<C-d>zz",
+  ["<C-u>"] = "<C-u>zz",
 }
 
 ----------- telescope ---------------------

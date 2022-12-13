@@ -208,9 +208,14 @@ lvim.plugins = {
   { "ruifm/gitlinker.nvim" }, -- open file in github
   { "f-person/git-blame.nvim" }, -- show last commit per line in editor
   { "chaoren/vim-wordmotion" }, -- respect camelcase/underscores
-  { "klen/nvim-test",
+  { "ggandor/leap.nvim", -- jump to words with "s"
+    config = function()
+      require('leap').set_default_keymaps()
+    end
+  },
+  { "klen/nvim-test", -- run tests
     config = function()
       require('nvim-test').setup()
     end
-  }
+  },
 }

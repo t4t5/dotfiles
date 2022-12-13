@@ -1,0 +1,13 @@
+snippet erc20_import
+	import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+	contract MyToken is ERC20 {
+		constructor() ERC20("Token Name", "TOKEN_TICKER") {}
+	}
+
+snippet console_log_import
+	import "hardhat/console.sol";
+
+snippet pragma
+	// SPDX-License-Identifier: UNLICENSED
+	pragma solidity ^0.8.0;

@@ -1,0 +1,20 @@
+snippet styled-jsx
+	<style jsx>{\`
+		${1:CSS}
+	\`}</style>
+
+snippet react-component
+	import React from "react"
+
+	export default function ${1:ComponentName}(${2:props}) {
+		return (
+			${3:content}
+		)
+	}
+
+snippet getinitialprops
+	export async function getServerSideProps(${1:props}) {
+		return {
+			props: {}
+		}
+	}

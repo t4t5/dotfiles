@@ -1,4 +1,4 @@
--- general
+----------- general settings -----------
 lvim.leader = ","
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
@@ -122,6 +122,7 @@ vim.g.gh_line_blame_map = '<leader>gb'
 lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger" }
 -- find and replace:
 lvim.builtin.which_key.mappings.f = nil
+lvim.builtin.which_key.mappings.w = nil
 lvim.builtin.which_key.mappings["f"] = {
   name = "find and replace",
   f = { "<cmd>lua require('spectre').open()<cr>", "find and replace across files" },
@@ -199,6 +200,8 @@ lvim.builtin.which_key.mappings["t"] = {
   n = { "<cmd>TestNearest<cr>", "test nearest" },
 }
 
+require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/lvim/luasnippets" })
+
 -- Additional Plugins
 lvim.plugins = {
   { "lunarvim/colorschemes" },
@@ -231,5 +234,6 @@ lvim.plugins = {
       require('nvim-test').setup()
     end
   },
-  { "nvim-telescope/telescope-ui-select.nvim" }
+  { "nvim-telescope/telescope-ui-select.nvim" }, -- telescope for code action
+  { "wesQ3/vim-windowswap" }, -- swap windows with <leader>ww
 }

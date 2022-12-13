@@ -15,14 +15,18 @@ vim.schedule(function()
   vim.cmd "messages"
 end)
 
+----------- mappings ----------
 -- open splits with vv:
 vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "tt", ":LspRestart<cr>", { noremap = true, silent = true })
 
 -- stop highlighting last search:
 vim.api.nvim_set_keymap("n", "<esc>", ":noh<cr>", { noremap = true, silent = true })
 
--- basic navigation
+-- play macros with <space>:
+vim.api.nvim_set_keymap("n", "<space>", "@q", { noremap = true, silent = true })
+
 lvim.keys.normal_mode = {
   -- better window movement
   ["<C-h>"] = "<C-w>h",
@@ -118,7 +122,7 @@ lvim.builtin.which_key.mappings["f"] = {
 }
 
 ----------- lsp --------
-lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.highlight.enable = false
 
 -- go to errors:
 lvim.builtin.which_key.mappings["a"] = {
@@ -150,6 +154,7 @@ local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "prettierd", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } },
 }
+
 -- show suggestions:
 lvim.keys.insert_mode["<C-c>"] = "<cmd>lua vim.lsp.omnifunc()<cr>"
 
@@ -174,7 +179,7 @@ require('nvim-test.runners.rspec'):setup({
   command = "bundle",
   args = { "exec", "rspec" },
 })
--- <leader> mapping:
+-- <leader>t mapping:
 lvim.builtin.which_key.mappings["t"] = {
   name = "test",
   f = { "<cmd>TestFile<cr>", "test current file" },

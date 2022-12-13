@@ -123,6 +123,10 @@ vim.g.gh_line_map_default = 0
 vim.g.gh_line_blame_map_default = 0
 vim.g.gh_line_blame_map = '<leader>gb'
 
+-- make sure cW doesn't include special chars
+vim.g.wordmotion_spaces = "['_']"
+vim.g.wordmotion_uppercase_spaces = "['-', '.', ',', '<', '>', '(', ')', '[', ']', '{', '}', '&', '*', '=', '!', '+', ';', ':', '\"']"
+
 ----------- leader commands ---------------------
 -- ranger (rnvimr)
 lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger" }

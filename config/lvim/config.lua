@@ -137,8 +137,10 @@ lvim.builtin.which_key.mappings["f"] = {
 -- vim-conflicted:
 lvim.builtin.which_key.mappings.g.n = { "<cmd>GitNextConflict<cr>", "go to next conflict" }
 
+lvim.builtin.which_key.mappings.T.l = { "<cmd>TSInstallInfo<cr>", "view list of Treesitter packages" }
+
 ----------- lsp --------
-lvim.builtin.treesitter.highlight.enable = false
+lvim.builtin.treesitter.highlight.enable = true
 
 -- go to errors:
 lvim.builtin.which_key.mappings["a"] = {
@@ -153,6 +155,7 @@ lvim.builtin.which_key.mappings["k"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Sh
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "javascript",
+  "glimmer",
   "json",
   "lua",
   "python",
@@ -168,7 +171,8 @@ lvim.builtin.treesitter.ensure_installed = {
 -- formatting
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "prettierd", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } },
+  { command = "prettierd",
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html.handlebars" } },
 }
 
 -- linters
@@ -176,6 +180,14 @@ local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { command = "eslint_d", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } }
 }
+
+-- set hbs file type to html.handlebars
+vim.api.nvim_create_autocmd(
+  { "BufRead", "BufNewFile" },
+  { pattern = { "*.hbs", "*.handlebars" }, command = "set ft=html.handlebars" }
+)
+-- no newline at end of hbs files:
+vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary")
 
 -- show suggestions:
 lvim.keys.insert_mode["<C-c>"] = "<cmd>lua vim.lsp.omnifunc()<cr>"

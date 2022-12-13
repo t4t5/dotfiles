@@ -158,6 +158,12 @@ formatters.setup {
   { command = "prettierd", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } },
 }
 
+-- linters
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { command = "eslint_d", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } }
+}
+
 -- show suggestions:
 lvim.keys.insert_mode["<C-c>"] = "<cmd>lua vim.lsp.omnifunc()<cr>"
 

@@ -1,3 +1,76 @@
+snippet trpc_query_file
+	import { z } from "zod"
+
+	import { createRouter, procedure } from "trpc/server"
+
+	export const ${1:something}Router = createRouter({
+		get${1:something}: procedure
+			.input(
+				z.object({
+					userId: z.number(),
+				}),
+			)
+			.query(async ({ ctx, input }) => {
+				const { prisma } = ctx
+				const { userId } = input
+
+				return null
+			})
+
+snippet trpc_query
+  ${1: getStuff}: procedure
+    .input(
+      z.object({
+        ${2: param}: z.string(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      const { prisma } = ctx
+      const { ${2: param} } = input
+
+			return null
+    }),
+
+snippet trpc_test
+	import { InferMutationInput } from "trpc/types"
+
+	import { createTestContext } from "test/db"
+	import { UserFactory } from "test/factories"
+
+	const ctx = createTestContext()
+
+	it("${1:description}", async () => {
+		const { user } = await UserFactory.create(ctx)
+
+		const caller = ctx.getTrpc({
+			userId: user.id,
+		})
+
+		const input: InferMutationInput<"${2:trpc_endpoint}"> = {}
+
+		await caller.mutation("${2:trpc_endpoint}", input)
+	})
+
+snippet l3_action_test
+	import GmActions from "gql/actions/Gm"
+
+	import { createTestContext } from "test/db"
+	import { UserFactory } from "test/factories"
+
+	const ctx = createTestContext()
+
+	describe("${1:description}", () => {
+		it("${2:test_case}", async () => {
+			const { prisma } = ctx
+
+			const { user } = await UserFactory.create(ctx)
+
+			await expect(GmActions.canGmToday(prisma, user.id, 0)).rejects.toThrowError(
+				"You can only GM once per day",
+			)
+		})
+	})
+
 snippet hardhat_config
 	import { task } from "hardhat/config"
 	import "@nomiclabs/hardhat-waffle"
@@ -72,73 +145,3 @@ snippet hardhat_test_revert_vmexception
 		}),
 	).to.be.revertedWith("wrong amount of Dai sent!")
 
-snippet trpc_query
-	import { z } from "zod"
-
-	import { createRouter, procedure } from "trpc/server"
-
-	export const ${1:somethingRuter} = createRouter()
-		.query("${2:getSomething}", {
-			input: z.object({
-				userId: z.number(),
-			}),
-			resolve({ ctx, input }) {
-				const { userId } = input
-
-				return null
-			},
-		})
-
-	export const ${1:something}Router = createRouter({
-		get${1:something}: procedure
-			.input(
-				z.object({
-					userId: z.number(),
-				}),
-			)
-			.query(async ({ ctx, input }) => {
-				const { prisma } = ctx
-				const { userId } = input
-
-				return null
-			})
-
-snippet trpc_test
-	import { InferMutationInput } from "trpc/types"
-
-	import { createTestContext } from "test/db"
-	import { UserFactory } from "test/factories"
-
-	const ctx = createTestContext()
-
-	it("${1:description}", async () => {
-		const { user } = await UserFactory.create(ctx)
-
-		const caller = ctx.getTrpc({
-			userId: user.id,
-		})
-
-		const input: InferMutationInput<"${2:trpc_endpoint}"> = {}
-
-		await caller.mutation("${2:trpc_endpoint}", input)
-	})
-
-snippet l3_action_text
-	import GmActions from "gql/actions/Gm"
-
-	import { createTestContext } from "test/db"
-	import { UserFactory } from "test/factories"
-
-	const ctx = createTestContext()
-
-	describe("${1:description}", () => {
-		it("${2:test_case}", async () => {
-			const { prisma } = ctx
-
-			const { user } = await UserFactory.create(ctx)
-
-			await expect(GmActions.canGmToday(prisma, user.id, 0)).rejects.toThrowError(
-				"You can only GM once per day",
-			)
-		})
-	})

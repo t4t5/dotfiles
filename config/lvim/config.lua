@@ -27,6 +27,11 @@ vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "tt", ":LspRestart<cr>", { noremap = true, silent = true })
 
+-- find and replace:
+-- these don't show a preview in the command bar if we use <leader>:
+vim.api.nvim_set_keymap("n", "fr", ":%s//g<left><left>", { noremap = true })
+vim.api.nvim_set_keymap("v", "fr", ":s//g<left><left>", { noremap = true })
+
 -- stop highlighting last search:
 vim.api.nvim_set_keymap("n", "<esc>", ":noh<cr>", { noremap = true, silent = true })
 
@@ -133,15 +138,23 @@ lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger" }
 -- find and replace:
 lvim.builtin.which_key.mappings.f = nil
 lvim.builtin.which_key.mappings.w = nil
-lvim.builtin.which_key.mappings["f"] = {
-  name = "find and replace",
-  f = { "<cmd>lua require('spectre').open()<cr>", "find and replace across files" },
-  r = { ":%s/<C-r>h", "find and replace in single file" },
-}
+
 -- vim-conflicted:
 lvim.builtin.which_key.mappings.g.n = { "<cmd>GitNextConflict<cr>", "go to next conflict" }
 
-lvim.builtin.which_key.mappings.T.l = { "<cmd>TSInstallInfo<cr>", "view list of Treesitter packages" }
+-- view all installable treesitter libraries
+lvim.builtin.which_key.mappings.T.l = { "<cmd>TSInstallInfo<cr>", "view all installable Treesitter packages" }
+
+-- open Google/StackOverflow/ChatGPT
+lvim.builtin.which_key.mappings.s.s = { "<cmd>OpenURL https://google.com<cr>", "Open Google" }
+lvim.builtin.which_key.mappings.s.a = { "<cmd>OpenURL https://chat.openai.com/chat<cr>", "Open ChatGPT" }
+
+-- disable some lunarvim search defaults:
+lvim.builtin.which_key.mappings.s.r = nil -- disable recent file
+lvim.builtin.which_key.mappings.s.M = nil -- disable MAN pages
+lvim.builtin.which_key.mappings.s.f = nil -- disable telescope (using <C-f> instead)
+lvim.builtin.which_key.mappings.s.t = nil -- disable live grep (using <C-p> instead)
+lvim.builtin.which_key.mappings.s.H = nil -- disable highlight group
 
 ----------- lsp --------
 lvim.builtin.treesitter.highlight.enable = true
@@ -260,6 +273,7 @@ lvim.plugins = {
   },
   { "nvim-telescope/telescope-ui-select.nvim" }, -- telescope for code action
   { "wesQ3/vim-windowswap" }, -- swap windows with <leader>ww
+  { "dhruvasagar/vim-open-url" },
   { "christoomey/vim-conflicted" }, -- fix merge conflicts
   {
     "tpope/vim-fugitive", -- needed for vim-conflicted

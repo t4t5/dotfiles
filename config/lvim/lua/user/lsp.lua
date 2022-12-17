@@ -49,6 +49,10 @@ vim.api.nvim_create_autocmd(
 -- no newline at end of hbs files:
 vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary")
 
+-- Set syntax highlighting for .env.local, .env.development, .env.production...
+vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")
+vim.api.nvim_command("au! BufNewFile,BufRead zshrc set filetype=sh")
+
 -- show suggestions:
 lvim.keys.insert_mode["<C-c>"] = "<cmd>lua vim.lsp.omnifunc()<cr>"
 

@@ -124,7 +124,8 @@ lvim.builtin.which_key.mappings["g"] = {
   name = "git",
   s = { "<cmd>DiffviewOpen<cr>", "git status (diffview)" },
   l = { "<cmd>lua require('gitlinker').get_buf_range_url('n', {action_callback = require('gitlinker.actions').open_in_browser})<cr>",
-    "show on github" },
+    "show line (on github)" },
+  b = { "<cmd>GB<cr>", "git blame (on github)" },
   c = {
     name = "git conflicts",
     l = { "<cmd>GitConflictListQf<cr>", "list git conflicts" },
@@ -138,7 +139,6 @@ lvim.builtin.which_key.mappings["g"] = {
 -- git blame (with vim-gh-line)
 vim.g.gh_line_map_default = 0
 vim.g.gh_line_blame_map_default = 0
-vim.g.gh_line_blame_map = '<leader>gb'
 
 -- make sure cW doesn't include special chars
 vim.g.wordmotion_spaces = "['_']"
@@ -158,6 +158,12 @@ lvim.builtin.which_key.mappings.T.l = { "<cmd>TSInstallInfo<cr>", "view all inst
 lvim.builtin.which_key.mappings.s.s = { "<cmd>OpenURL https://google.com<cr>", "Open Google" }
 lvim.builtin.which_key.mappings.s.a = { "<cmd>OpenURL https://chat.openai.com/chat<cr>", "Open ChatGPT" }
 
+-- disable lunarvim buffer defaults
+lvim.builtin.which_key.mappings.b = nil
+lvim.builtin.which_key.mappings.c = nil
+lvim.builtin.which_key.mappings["/"] = nil
+lvim.builtin.which_key.mappings.h = nil -- disable "no highlight" action
+lvim.builtin.which_key.mappings.q = nil -- disable "quit" action
 -- disable some lunarvim search defaults:
 lvim.builtin.which_key.mappings.s.r = nil -- disable recent file
 lvim.builtin.which_key.mappings.s.M = nil -- disable MAN pages
@@ -176,8 +182,8 @@ lvim.builtin.treesitter.highlight.enable = true
 -- go to errors:
 lvim.builtin.which_key.mappings["a"] = {
   name = "Diagnostics",
-  j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next" },
-  k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev" },
+  j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
+  k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev diagnostic" },
 }
 -- show documentation:
 lvim.builtin.which_key.mappings["k"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show documentation" }
@@ -282,7 +288,7 @@ lvim.plugins = {
   { "windwp/nvim-spectre" }, -- find and replace across files
   { "sindrets/diffview.nvim" }, -- git status
   { "ruanyl/vim-gh-line" }, -- open blame in github
-  { "ruifm/gitlinker.nvim" }, -- open file in github
+  { "ruifm/gitlinker.nvim" }, -- open file in github (works better than vim-gh-line)
   { "f-person/git-blame.nvim" }, -- show last commit per line in editor
   { "chaoren/vim-wordmotion" }, -- respect camelcase/underscores
   { "ggandor/leap.nvim", -- jump to words with "s"

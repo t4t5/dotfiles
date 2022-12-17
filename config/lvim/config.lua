@@ -167,6 +167,9 @@ lvim.builtin.which_key.mappings.s.H = nil -- disable highlight group
 -- find references (gr)
 lvim.builtin.which_key.mappings.s.r = { "<cmd>Telescope lsp_references<cr>", "find references" }
 
+-- undotree
+lvim.builtin.which_key.mappings.u = { "<cmd>UndotreeToggle<cr>", "UndoTree" }
+
 ----------- lsp --------
 lvim.builtin.treesitter.highlight.enable = true
 
@@ -295,6 +298,7 @@ lvim.plugins = {
   { "nvim-telescope/telescope-ui-select.nvim" }, -- telescope for code action
   { "wesQ3/vim-windowswap" }, -- swap windows with <leader>ww
   { "dhruvasagar/vim-open-url" },
+  { "mbbill/undotree" },
   { "akinsho/git-conflict.nvim",
     config = function()
       require('git-conflict').setup()

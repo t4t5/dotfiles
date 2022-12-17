@@ -15,6 +15,9 @@ vim.api.nvim_command("set relativenumber")
 -- always use system clipboard to paste from:
 vim.opt.clipboard = "unnamedplus"
 
+-- wrap long lines
+vim.opt.wrap = true
+
 -- disable mouse:
 vim.opt.mouse = ""
 
@@ -121,7 +124,16 @@ lvim.builtin.which_key.mappings["g"] = {
   name = "git",
   s = { "<cmd>DiffviewOpen<cr>", "git status (diffview)" },
   l = { "<cmd>lua require('gitlinker').get_buf_range_url('n', {action_callback = require('gitlinker.actions').open_in_browser})<cr>",
-    "show on github" }
+    "show on github" },
+  c = {
+    name = "git conflicts",
+    l = { "<cmd>GitConflictListQf<cr>", "list git conflicts" },
+    n = { "<cmd>GitConflictNextConflict<cr>", "go to next conflict" },
+    p = { "<cmd>GitConflictPrevConflict<cr>", "go to previous conflict" },
+    m = { "<cmd>GitConflictChooseOurs<cr>", "choose my change" },
+    t = { "<cmd>GitConflictChooseTheirs<cr>", "choose their change" },
+    b = { "<cmd>GitConflictChooseBoth<cr>", "choose both changes" },
+  }
 }
 -- git blame (with vim-gh-line)
 vim.g.gh_line_map_default = 0
@@ -130,7 +142,7 @@ vim.g.gh_line_blame_map = '<leader>gb'
 
 -- make sure cW doesn't include special chars
 vim.g.wordmotion_spaces = "['_']"
-vim.g.wordmotion_uppercase_spaces = "['-', '.', ',', '<', '>', '(', ')', '[', ']', '{', '}', '&', '*', '=', '!', '+', ';', ':', '\"']"
+vim.g.wordmotion_uppercase_spaces = "['-', '.', ',', '<', '>', '(', ')', '[', ']', '{', '}', '&', '*', '=', '!', '+', ';', ':', '/', '\"']"
 
 ----------- leader commands ---------------------
 -- ranger (rnvimr)
@@ -138,9 +150,6 @@ lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger" }
 -- find and replace:
 lvim.builtin.which_key.mappings.f = nil
 lvim.builtin.which_key.mappings.w = nil
-
--- vim-conflicted:
-lvim.builtin.which_key.mappings.g.n = { "<cmd>GitNextConflict<cr>", "go to next conflict" }
 
 -- view all installable treesitter libraries
 lvim.builtin.which_key.mappings.T.l = { "<cmd>TSInstallInfo<cr>", "view all installable Treesitter packages" }
@@ -155,6 +164,8 @@ lvim.builtin.which_key.mappings.s.M = nil -- disable MAN pages
 lvim.builtin.which_key.mappings.s.f = nil -- disable telescope (using <C-f> instead)
 lvim.builtin.which_key.mappings.s.t = nil -- disable live grep (using <C-p> instead)
 lvim.builtin.which_key.mappings.s.H = nil -- disable highlight group
+-- find references (gr)
+lvim.builtin.which_key.mappings.s.r = { "<cmd>Telescope lsp_references<cr>", "find references" }
 
 ----------- lsp --------
 lvim.builtin.treesitter.highlight.enable = true
@@ -183,6 +194,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "ruby",
   "yaml",
+  "prisma",
 }
 
 -- formatting
@@ -195,7 +207,7 @@ formatters.setup {
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { command = "eslint_d", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } }
+  { command = "eslint", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } }
 }
 
 -- set hbs file type to html.handlebars
@@ -283,7 +295,11 @@ lvim.plugins = {
   { "nvim-telescope/telescope-ui-select.nvim" }, -- telescope for code action
   { "wesQ3/vim-windowswap" }, -- swap windows with <leader>ww
   { "dhruvasagar/vim-open-url" },
-  { "christoomey/vim-conflicted" }, -- fix merge conflicts
+  { "akinsho/git-conflict.nvim",
+    config = function()
+      require('git-conflict').setup()
+    end
+  },
   {
     "tpope/vim-fugitive", -- needed for vim-conflicted
     cmd = {

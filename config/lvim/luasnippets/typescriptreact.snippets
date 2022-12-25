@@ -32,6 +32,15 @@ snippet import-stitches-styled
 
 snippet import-stitches-css-type
 	import type { CSS } from "@stitches/react"
+	
+snippet stitches-component
+	import { styled } from "theme";
+
+	const Wrapper = styled("div", {});
+
+	export default function ${1:ComponentName}() {
+		return <Wrapper></Wrapper>;
+	}
 
 snippet codespace-component
 	import { Box } from "renderer/ui"

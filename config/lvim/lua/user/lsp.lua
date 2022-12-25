@@ -54,7 +54,7 @@ vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")
 vim.api.nvim_command("au! BufNewFile,BufRead zshrc set filetype=sh")
 
 -- show suggestions:
-lvim.keys.insert_mode["<C-c>"] = "<cmd>lua vim.lsp.omnifunc()<cr>"
+lvim.keys.insert_mode["<C-c>"] = "<cmd>lua require('cmp').complete()<cr>"
 
 -- github copilot
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"

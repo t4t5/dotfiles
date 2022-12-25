@@ -31,6 +31,10 @@ export PATH=$RBENV_ROOT/bin:$PATH
 alias gem='arch -arm64 gem'
 alias bundle='arch -arm64 bundle'
 
+# Python
+alias python='python3'
+alias pip='pip3'
+
 # Lunarvim
 export PATH="$HOME/.local/bin:$PATH"
 

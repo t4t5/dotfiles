@@ -145,7 +145,7 @@ export TERM="xterm-256color-italic"
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='nvim'
+  export EDITOR='lvim'
 fi
 
 # ssh

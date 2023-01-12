@@ -36,6 +36,11 @@ lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger" }
 lvim.builtin.which_key.mappings.f = nil
 lvim.builtin.which_key.mappings.w = nil
 
+lvim.builtin.which_key.mappings["f"] = {
+  name = "find and replace",
+  f = { "<cmd>lua require('spectre').open()<cr>", "find and replace across files" },
+}
+
 -- view all installable treesitter libraries
 lvim.builtin.which_key.mappings.T.l = { "<cmd>TSInstallInfo<cr>", "view all installable Treesitter packages" }
 
@@ -64,3 +69,10 @@ lvim.builtin.which_key.mappings.s.r = { "<cmd>Telescope lsp_references<cr>", "fi
 
 -- undotree
 lvim.builtin.which_key.mappings.u = { "<cmd>UndotreeToggle<cr>", "UndoTree" }
+
+-- <leader>t mapping:
+lvim.builtin.which_key.mappings["t"] = {
+  name = "test",
+  f = { "<cmd>TestFile<cr>", "test current file" },
+  n = { "<cmd>TestNearest<cr>", "test nearest" },
+}

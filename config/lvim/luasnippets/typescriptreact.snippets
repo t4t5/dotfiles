@@ -48,3 +48,14 @@ snippet codespace-component
 	export default function ${1:ComponentName}() {
 		return <Box></Box>
 	}
+
+snippet get-serverside-props
+	export const getServerSideProps: GetServerSideProps = async (ctx) => {
+		const { pubkey } = ctx.query;
+
+		return {
+			props: {
+				pubkey,
+			},
+		};
+	};

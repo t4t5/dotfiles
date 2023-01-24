@@ -59,3 +59,12 @@ snippet get-serverside-props
 			},
 		};
 	};
+
+snippet trpc-query
+  const { data } = trpc.referral.getReferrals.useQuery()
+
+snippet trpc-mutation
+  const { mutate: saveEmail } =
+    trpc.user.addEmail.useMutation({
+      onSuccess: () => {},
+    })

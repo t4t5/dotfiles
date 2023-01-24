@@ -13,6 +13,7 @@ vim.api.nvim_set_keymap("n", "<esc>", ":noh<cr>", { noremap = true, silent = tru
 
 -- play macros with <space>:
 vim.api.nvim_set_keymap("n", "<space>", "@q", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<space>", "'<,'>normal @q", { noremap = true, silent = true })
 
 lvim.keys.normal_mode = {
   -- better window movement

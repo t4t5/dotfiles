@@ -31,7 +31,7 @@ lvim.builtin.treesitter.ensure_installed = {
 -- formatting
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "prettierd",
+  { command = "prettier",
     filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html.handlebars" } },
 }
 

@@ -26,19 +26,20 @@ lvim.builtin.treesitter.ensure_installed = {
   "ruby",
   "yaml",
   "prisma",
+  "svelte"
 }
 
 -- formatting
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "prettier",
-    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html.handlebars" } },
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html.handlebars", "svelte" } },
 }
 
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { command = "eslint", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" } }
+  { command = "eslint", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte" } }
 }
 
 -- set hbs file type to html.handlebars

@@ -42,6 +42,21 @@ linters.setup {
   { command = "eslint", filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte" } }
 }
 
+-- tailwind
+require("lvim.lsp.manager").setup("tailwindcss", {
+  filetypes = { "html", "html.handlebars", "typescriptreact", "javascriptreact" },
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          { "cva\\(([^)]*)\\)",
+            "[\"'`]([^\"'`]*).*?[\"'`]" },
+        },
+      },
+    },
+  },
+})
+
 -- set hbs file type to html.handlebars
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
@@ -49,6 +64,20 @@ vim.api.nvim_create_autocmd(
 )
 -- no newline at end of hbs files:
 vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary")
+
+-- For ruby files:
+-- See: https://github.com/testdouble/standard/wiki/IDE:-neovim
+vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "ruby",
+  group = vim.api.nvim_create_augroup("RubyLSP", { clear = true }), -- also this is not /needed/ but it's good practice
+  callback = function()
+    vim.lsp.start {
+      name = "standard",
+      cmd = { "/opt/homebrew/opt/rbenv/shims/standardrb", "--lsp" },
+    }
+  end,
+})
 
 -- Set syntax highlighting for .env.local, .env.development, .env.production...
 vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")

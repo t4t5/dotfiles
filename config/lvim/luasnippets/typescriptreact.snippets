@@ -1,6 +1,12 @@
-snippet react-component
-	export default function ${1:ComponentName}() {
-		return <div></div>
+snippet rct-component
+	import { type ReactNode } from "react";
+
+	export default function ${1:ComponentName}({ children }: { children: ReactNode }) {
+		return (
+			<div>
+				{children}
+			</div>
+		);
 	}
 
 snippet l3-component

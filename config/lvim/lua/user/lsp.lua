@@ -65,6 +65,9 @@ vim.api.nvim_create_autocmd(
 -- no newline at end of hbs files:
 vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary")
 
+-- disable cmp for git commits (weird bug)
+vim.api.nvim_command("autocmd FileType gitcommit lua require'cmp'.setup.buffer { completion = { autocomplete = false }}")
+
 -- For ruby files:
 -- See: https://github.com/testdouble/standard/wiki/IDE:-neovim
 vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though

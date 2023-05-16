@@ -25,7 +25,21 @@ snippet trpc_query
         ${2: param}: z.string(),
       }),
     )
-    .query(({ ctx, input }) => {
+    .query(async ({ ctx, input }) => {
+      const { prisma } = ctx
+      const { ${2: param} } = input
+
+			return null
+    }),
+
+snippet trpc_mutation
+  ${1: getStuff}: procedure
+    .input(
+      z.object({
+        ${2: param}: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
       const { prisma } = ctx
       const { ${2: param} } = input
 
@@ -50,26 +64,6 @@ snippet trpc_test
 		const input: InferMutationInput<"${2:trpc_endpoint}"> = {}
 
 		await caller.mutation("${2:trpc_endpoint}", input)
-	})
-
-snippet l3_action_test
-	import GmActions from "gql/actions/Gm"
-
-	import { createTestContext } from "test/db"
-	import { UserFactory } from "test/factories"
-
-	const ctx = createTestContext()
-
-	describe("${1:description}", () => {
-		it("${2:test_case}", async () => {
-			const { prisma } = ctx
-
-			const { user } = await UserFactory.create(ctx)
-
-			await expect(GmActions.canGmToday(prisma, user.id, 0)).rejects.toThrowError(
-				"You can only GM once per day",
-			)
-		})
 	})
 
 snippet hardhat_config

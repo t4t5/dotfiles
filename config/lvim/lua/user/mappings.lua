@@ -42,6 +42,9 @@ lvim.builtin.which_key.mappings["f"] = {
   f = { "<cmd>lua require('spectre').open()<cr>", "find and replace across files" },
 }
 
+lvim.builtin.which_key.mappings["F"] = { "<cmd>lua require('spectre').open()<cr>", "Spectre" }
+-- Use <leader>R to replace
+
 -- view all installable treesitter libraries
 lvim.builtin.which_key.mappings.T.l = { "<cmd>TSInstallInfo<cr>", "view all installable Treesitter packages" }
 

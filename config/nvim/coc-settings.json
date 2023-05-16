@@ -4,7 +4,6 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "ⓘ",
   "solargraph.diagnostics": true,
-  "solargraph.autoformat": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
@@ -19,10 +18,16 @@
   "languageserver": {
     "cairo": {
       "module": "~/dev/tools/cairo/node_modules/cairo-ls/out/server.js",
-      "args": ["--node-ipc"],
-      "filetypes": ["cairo"],
-      "rootPatterns": [".git/"]
-   }
+      "args": [
+        "--node-ipc"
+      ],
+      "filetypes": [
+        "cairo"
+      ],
+      "rootPatterns": [
+        ".git/"
+      ]
+    }
   },
   "coc.preferences.jumpCommand": "vsplit",
   "coc.preferences.formatOnSaveFiletypes": [

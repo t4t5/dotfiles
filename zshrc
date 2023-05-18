@@ -87,9 +87,9 @@ killport() {
 
 v() {
   if [ $# -gt 0 ]; then
-    lvim "$@"
+    nvim "$@"
   else
-    lvim
+    nvim
   fi
 }
 
@@ -145,7 +145,7 @@ export TERM="xterm-256color-italic"
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='lvim'
+  export EDITOR='nvim'
 fi
 
 # ssh

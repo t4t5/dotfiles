@@ -26,9 +26,6 @@ require('lazy').setup({
     'akinsho/bufferline.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-      config = {
-
-      }
     }
   },
 
@@ -40,6 +37,14 @@ require('lazy').setup({
     'folke/tokyonight.nvim',
     config = function()
       vim.cmd.colorscheme 'tokyonight-moon'
+    end
+  },
+
+  {
+    'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("user.plugins.startify").setup()
     end
   },
 

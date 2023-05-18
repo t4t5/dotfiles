@@ -28,10 +28,6 @@ vim.keymap.set('n', '<right>', ':vertical resize +10<cr>')
 -- center cursor when jumping up/down
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
-
------------ leader commands ---------------------
--- find and replace:
--- lvim.builtin.which_key.mappings["F"] = { "<cmd>lua require('spectre').open()<cr>", "Spectre" }
 -- Use <leader>R to replace
 
 -- find references (gr)

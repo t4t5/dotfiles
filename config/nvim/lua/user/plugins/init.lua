@@ -71,6 +71,11 @@ require('lazy').setup({
   },
 
   {
+    "nvim-pack/nvim-spectre",
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+
+  {
     "aserowy/tmux.nvim", -- jump to tmux windows
     config = function() require("tmux").setup() end
   },
@@ -103,3 +108,9 @@ require('lazy').setup({
     end,
   },
 }, {})
+
+
+-- Spectre (find and replace across files)
+vim.keymap.set('n', '<leader>F', require("spectre").open, {
+  desc = "Open Spectre"
+})

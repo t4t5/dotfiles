@@ -4,15 +4,25 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = 'onedark',
+      theme = 'tokyonight-moon',
       component_separators = '|',
       section_separators = '',
     },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {
+        { 'filename', path = 1 },
+      },
+      lualine_c = {},
+      lualine_x = {}
+    },
     sections = {
-      lualine_a = { 'mode' },
+      -- lualine_a = { 'mode' },
+      lualine_a = {},
       lualine_b = {
         {
           'filename',
+          path = 1,
           symbols = {
             modified = '',
             readonly = '',
@@ -38,7 +48,6 @@ return {
       },
       lualine_y = { 'filetype' },
       lualine_z = {}
-
     }
   },
 }

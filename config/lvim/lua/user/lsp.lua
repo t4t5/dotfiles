@@ -32,8 +32,10 @@ lvim.builtin.treesitter.ensure_installed = {
 -- formatting
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "prettier",
-    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html.handlebars", "svelte" } },
+  {
+    command = "prettier",
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html.handlebars", "svelte" }
+  },
 }
 
 -- linters
@@ -87,7 +89,8 @@ vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")
 vim.api.nvim_command("au! BufNewFile,BufRead zshrc set filetype=sh")
 
 -- show suggestions:
-lvim.keys.insert_mode["<C-c>"] = "<cmd>lua require('cmp').complete()<cr>"
+-- lvim.keys.insert_mode["<C-c>"] = "<cmd>lua require('cmp').complete()<cr>"
+vim.keymap.set('i', '<C-c>', require("cmp").complete, { expr = true, noremap = true })
 
 -- github copilot
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"

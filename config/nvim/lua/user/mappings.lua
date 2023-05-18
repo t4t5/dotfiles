@@ -15,6 +15,7 @@ vim.api.nvim_set_keymap("n", "<esc>", ":noh<cr>", { noremap = true, silent = tru
 vim.api.nvim_set_keymap("n", "<space>", "@q", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<space>", "'<,'>normal @q", { noremap = true, silent = true })
 
+-- better window movement
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')

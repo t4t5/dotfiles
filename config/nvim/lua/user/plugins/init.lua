@@ -70,6 +70,28 @@ require('lazy').setup({
     end,
   },
 
+  {
+    "aserowy/tmux.nvim", -- jump to tmux windows
+    config = function() require("tmux").setup() end
+  },
+
+  -- GitHub Copilot:
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end
+  },
+
+
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
 

@@ -21,6 +21,38 @@ require('lazy').setup({
   { import = 'user.plugins.lualine' },
   { import = 'user.plugins.gitsigns' },
 
+  -- telescope for code action
+  { "nvim-telescope/telescope-ui-select.nvim" },
+
+  -- respect camelcase/underscores
+  { "chaoren/vim-wordmotion" },
+
+  -- swap windows with <leader>ww
+  { "wesQ3/vim-windowswap" },
+
+  { "sindrets/diffview.nvim" },  -- git status
+  { "ruanyl/vim-gh-line" },      -- open blame in github
+  { "f-person/git-blame.nvim" }, -- show last commit per line in editor
+  {
+    "tpope/vim-fugitive",        -- needed for vim-conflicted
+    cmd = {
+      "G",
+      "Git",
+      "Gdiffsplit",
+      "Gread",
+      "Gwrite",
+      "Ggrep",
+      "GMove",
+      "GDelete",
+      "GBrowse",
+      "GRemove",
+      "GRename",
+      "Glgrep",
+      "Gedit"
+    },
+    ft = { "fugitive" }
+  },
+
   -- Bufferline:
   {
     'akinsho/bufferline.nvim',

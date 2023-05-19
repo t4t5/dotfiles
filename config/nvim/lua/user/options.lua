@@ -3,14 +3,20 @@ vim.g.maplocalleader = ','
 
 vim.wo.relativenumber = true
 
--- Set highlight on search
-vim.o.hlsearch = false
-
 -- Make line numbers default
 vim.wo.number = true
 
--- Enable mouse mode
--- vim.o.mouse = 'a'
+-- disable mouse:
+vim.opt.mouse = ""
+
+-- wrap long lines
+vim.opt.wrap = true
+
+-- wordmotion
+-- make sure cW doesn't include special chars
+vim.g.wordmotion_spaces = "['_']"
+vim.g.wordmotion_uppercase_spaces =
+"['-', '.', ',', '<', '>', '(', ')', '[', ']', '{', '}', '&', '*', '=', '!', '+', ';', ':', '/', '\"']"
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.

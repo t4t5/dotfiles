@@ -46,7 +46,7 @@ rbenv() {
 }
 
 # Postgres
-export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # ngircd
 export PATH="/usr/local/sbin:$PATH"

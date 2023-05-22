@@ -6,6 +6,7 @@ require "user.telescope"
 require "user.goodies"
 require "user.tabs"
 require "user.git"
+require "user.snippets"
 
 vim.keymap.set('n', '<leader>r', "<cmd>RnvimrToggle<cr>")
 

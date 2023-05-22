@@ -89,31 +89,10 @@ vim.keymap.set('i', '<C-c>', require("cmp").complete, { expr = true, noremap = t
 -- set colour of Copilot icon:
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
-local lspkind_comparator = function(conf)
-  local lsp_types = require('cmp.types').lsp
-  return function(entry1, entry2)
-    if entry1.source.name ~= 'nvim_lsp' then
-      if entry2.source.name == 'nvim_lsp' then
-        return false
-      else
-        return nil
-      end
-    end
-    local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
-    local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
+-- https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.languageserver.protocol.completionitemkind?view=visualstudiosdk-2022
+local kind_mapper = { 2, 3, 4, 5, 6, 7, 1, 8, 9, 10, 11, 12, 13, 14 }
 
-    local priority1 = conf.kind_priority[kind1] or 0
-    local priority2 = conf.kind_priority[kind2] or 0
-    if priority1 == priority2 then
-      return nil
-    end
-    return priority2 < priority1
-  end
-end
-
-local label_comparator = function(entry1, entry2)
-  return entry1.completion_item.label < entry2.completion_item.label
-end
+local compare = require("cmp.config.compare")
 
 cmp.setup {
   snippet = {
@@ -139,11 +118,11 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = "copilot" },
-    -- { name = 'luasnip' },
+    { name = 'luasnip' },
   },
   formatting = {
     format = lspkind.cmp_format({
-      mode = 'symbol',       -- show only symbol annotations
+      -- mode = 'symbol',       -- show only symbol annotations
       maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
       symbol_map = { Copilot = "" },
@@ -151,37 +130,15 @@ cmp.setup {
   },
   sorting = {
     comparators = {
-      lspkind_comparator({
-        kind_priority = {
-          Copilot = 20,
-          Field = 11,
-          Property = 11,
-          Constant = 10,
-          Enum = 10,
-          EnumMember = 10,
-          Event = 10,
-          Function = 10,
-          Method = 10,
-          Operator = 10,
-          Reference = 10,
-          Struct = 10,
-          Variable = 9,
-          File = 8,
-          Folder = 8,
-          Class = 5,
-          Color = 5,
-          Module = 5,
-          Keyword = 2,
-          Constructor = 1,
-          Interface = 1,
-          Snippet = 0,
-          Text = 1,
-          TypeParameter = 1,
-          Unit = 1,
-          Value = 1,
-        },
-      }),
-      label_comparator,
+      compare.exact,
+      function(entry1, entry2)
+        local kind1 = kind_mapper[entry1:get_kind()] or 0
+        local kind2 = kind_mapper[entry2:get_kind()] or 0
+
+        if kind1 < kind2 then
+          return true
+        end
+      end
     },
   },
 }

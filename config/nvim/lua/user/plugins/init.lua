@@ -144,6 +144,18 @@ require('lazy').setup({
       return vim.fn.executable 'make' == 1
     end,
   },
+
+  -- ChatGPT
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    -- Don't add "config" here, or neovim will take a long time to load
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  }
 }, {})
 
 
@@ -151,3 +163,15 @@ require('lazy').setup({
 vim.keymap.set('n', '<leader>F', require("spectre").open, {
   desc = "Open Spectre"
 })
+
+-- vim.api.nvim_create_user_command('AI', require('chatgpt').edit_with_instructions, {})
+vim.api.nvim_create_user_command('AI', function()
+  local chatgpt = require("chatgpt")
+  chatgpt.setup({
+    api_key_cmd = "op read op://personal/knxrmu7gwcbmv4ht4sr3pai7ta/credential --no-newline",
+    popup_input = {
+      submit = "<CR>"
+    }
+  })
+  chatgpt.edit_with_instructions()
+end, {})

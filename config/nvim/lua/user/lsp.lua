@@ -89,8 +89,12 @@ vim.keymap.set('i', '<C-c>', require("cmp").complete, { expr = true, noremap = t
 -- set colour of Copilot icon:
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
+-- Check out what number each kind maps to:
 -- https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.languageserver.protocol.completionitemkind?view=visualstudiosdk-2022
-local kind_mapper = { 2, 3, 4, 5, 6, 7, 1, 8, 9, 10, 11, 12, 13, 14 }
+-- The higher priority you want, the futrther -> it should be in the list:
+-- Property: 10
+-- Variable: 6
+local kind_mapper = { 2, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14, 6, 10 }
 
 local compare = require("cmp.config.compare")
 

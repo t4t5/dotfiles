@@ -99,6 +99,7 @@ local kind_mapper = { 2, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14, 6, 10 }
 local compare = require("cmp.config.compare")
 
 cmp.setup {
+  preselect = cmp.PreselectMode.None, -- Don't preselect suggestions, it hijacks the enter key
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)

@@ -3,6 +3,14 @@ vim.g.maplocalleader = ','
 
 vim.wo.relativenumber = true
 
+-- Use 2 spaces by default for tabs:
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+
+-- Highlight current line:
+vim.opt.cursorline = true
+
 -- Make line numbers default
 vim.wo.number = true
 

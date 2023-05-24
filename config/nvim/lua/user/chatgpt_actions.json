@@ -1,0 +1,15 @@
+{
+	"tailwind_migrate": {
+		"type": "chat",
+		"opts": {
+			"template": "Migrate to tailwindcss.\nWe use a custom tailwind config: \n- spaces, instead of w-4, gap-8, etc. We use these spaces: none, xxs, xs, sm, md, lg, xl, xxl, 3xl, 4xl, 5xl,. Example: gap-md.\n- font weights available: light, book, medium, bold\n- for colors we have background-primary, background-secondary etc. and content-primary, content-secondary etc. We also have slate-0 slate-50 slate-100 etc...\n-<Title> should be converted to 'h2' with a 'text-md' class (unless otherwise specified).\n-Components like 'Flex' and 'Box' and their attributes should be converted to divs with tailwind classes\nPlease keep <Button>s\nAssume the file is TSX and uses standard JSX syntax\nDO NOT import libraries like jsx-dom for JSX.\nReturn the updated component, nothing else.\n\nReplace the following code written in {{lang}} by pasting the existing code and replacing the parts that need to be fixed:\n\n\nExisting code:\n```{{filetype}}\n{{input}}\n```\n\n```{{filetype}}\n",
+			"strategy": "replace",
+			"params": {
+				"model": "gpt-3.5-turbo",
+				"stop": [
+					"```"
+				]
+			}
+		}
+	}
+}

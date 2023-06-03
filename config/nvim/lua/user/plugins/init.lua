@@ -155,7 +155,18 @@ require('lazy').setup({
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim"
     }
-  }
+  },
+
+  {
+    "klen/nvim-test",
+    config = function()
+      require("nvim-test").setup({})
+      require('nvim-test.runners.jest'):setup {
+        command = "./node_modules/.bin/vitest",
+      }
+    end
+  },
+
 }, {})
 
 
@@ -163,6 +174,13 @@ require('lazy').setup({
 vim.keymap.set('n', '<leader>F', require("spectre").open, {
   desc = "Open Spectre"
 })
+
+-- Test
+vim.keymap.set('n', '<leader>T', "<cmd>TestFile<cr>", {
+  desc = "Test file"
+})
+
+vim.keymap.set('n', '<leader>r', "<cmd>RnvimrToggle<cr>")
 
 local function init_chatgpt()
   local chatgpt = require("chatgpt")

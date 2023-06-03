@@ -8,7 +8,5 @@ require "user.tabs"
 require "user.git"
 require "user.snippets"
 
-vim.keymap.set('n', '<leader>r', "<cmd>RnvimrToggle<cr>")
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

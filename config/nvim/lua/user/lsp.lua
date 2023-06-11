@@ -91,10 +91,12 @@ vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 -- Check out what number each kind maps to:
 -- https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.languageserver.protocol.completionitemkind?view=visualstudiosdk-2022
--- The higher priority you want, the futrther -> it should be in the list:
+-- The higher priority you want, the earlier it should be in the list:
+-- Method: 2
 -- Property: 10
 -- Variable: 6
-local kind_mapper = { 2, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14, 6, 10 }
+-- Snippet: 15
+local kind_mapper = { 2, 10, 6, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14, 15 }
 
 local compare = require("cmp.config.compare")
 

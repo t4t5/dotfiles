@@ -18,6 +18,15 @@ snippet trpc_query_file
 			})
 	})
 
+snippet trpc_query_file_ordiscan
+	import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+
+	export const ${1:something}Router = createTRPCRouter({
+	  get${1:something}: publicProcedure.query(async () => {
+
+	  }),
+	});
+
 snippet trpc_query
   ${1: getStuff}: procedure
     .input(

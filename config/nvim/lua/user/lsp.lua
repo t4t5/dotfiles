@@ -80,7 +80,7 @@ local cmp = require 'cmp'
 local cmp_window = require "cmp.config.window"
 local luasnip = require 'luasnip'
 local lspkind = require('lspkind')
-require('luasnip.loaders.from_vscode').lazy_load()
+-- require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
 -- trigger autocomplete with C-c
@@ -96,7 +96,8 @@ vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 -- Property: 10
 -- Variable: 6
 -- Snippet: 15
-local kind_mapper = { 2, 10, 6, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14, 15 }
+-- Constant: 21
+local kind_mapper = { 2, 10, 6, 21, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14, 15 }
 
 local compare = require("cmp.config.compare")
 
@@ -118,7 +119,7 @@ cmp.setup {
     -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
     -- ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
+      -- behavior = cmp.ConfirmBehavior.,
       select = true,
     },
   },

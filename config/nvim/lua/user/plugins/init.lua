@@ -166,7 +166,18 @@ require('lazy').setup({
       }
     end
   },
-
+  {
+    "ggandor/leap.nvim", -- jump to words with "s"
+    config = function()
+      require('leap').set_default_keymaps()
+    end
+  },
+  {
+    'norcalli/nvim-colorizer.lua', -- Show color preview for hex strings
+    config = function()
+      require 'colorizer'.setup()
+    end
+  }
 }, {})
 
 

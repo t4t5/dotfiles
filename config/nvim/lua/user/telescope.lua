@@ -20,8 +20,12 @@ require("telescope").load_extension("ui-select")
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
+function ShowBuffers()
+  require('telescope.builtin').buffers({ sort_lastused = true, ignore_current_buffer = true })
+end
+
 -- Show buffers:
-vim.keymap.set('n', '<C-b>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<C-b>', ShowBuffers, { desc = '[ ] Find existing buffers' })
 
 -- Show files:
 vim.keymap.set('n', '<C-f>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })

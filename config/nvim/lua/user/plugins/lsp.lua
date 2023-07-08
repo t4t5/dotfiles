@@ -8,9 +8,14 @@ return {
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
 
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       opts = {} },
+      -- Show spinner when LSP is loading
+      {
+        'linrongbin16/lsp-progress.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+          require('lsp-progress').setup()
+        end
+      },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',

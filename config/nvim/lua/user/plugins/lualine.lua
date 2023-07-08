@@ -1,6 +1,10 @@
 return {
   -- Set lualine as statusline
   'nvim-lualine/lualine.nvim',
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+    'linrongbin16/lsp-progress.nvim',
+  },
   opts = {
     options = {
       icons_enabled = true,
@@ -8,6 +12,7 @@ return {
       component_separators = '|',
       section_separators = '',
     },
+    -- for windows not in focus:
     inactive_sections = {
       lualine_a = {},
       lualine_b = {
@@ -16,6 +21,7 @@ return {
       lualine_c = {},
       lualine_x = {}
     },
+    -- window in focus:
     sections = {
       -- lualine_a = { 'mode' },
       lualine_a = {},
@@ -31,7 +37,8 @@ return {
         }
       },
       lualine_c = {},
-      lualine_x = {
+      lualine_x = { "require('lsp-progress').progress()" },
+      lualine_y = {
         {
           'diagnostics',
           sources = { 'nvim_lsp' },
@@ -46,8 +53,7 @@ return {
           always_visible = false,
         }
       },
-      lualine_y = { 'filetype' },
-      lualine_z = {}
+      lualine_z = { 'filetype' },
     }
   },
 }

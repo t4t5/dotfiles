@@ -19,59 +19,17 @@ require('lazy').setup({
   { import = 'user.plugins.lsp' },
   { import = 'user.plugins.autoformat' },
   { import = 'user.plugins.lualine' },
-  { import = 'user.plugins.gitsigns' },
-
-  -- telescope for code action
-  { "nvim-telescope/telescope-ui-select.nvim" },
+  { import = 'user.plugins.git' },
+  { import = 'user.plugins.ui' },
+  { import = 'user.plugins.navigation' },
 
   -- respect camelcase/underscores
-  { "chaoren/vim-wordmotion" },
-
-  -- swap windows with <leader>ww
-  { "wesQ3/vim-windowswap" },
-
-  { "sindrets/diffview.nvim" },  -- git status
-  { "ruanyl/vim-gh-line" },      -- open blame in github
-  { "f-person/git-blame.nvim" }, -- show last commit per line in editor
-  {
-    "tpope/vim-fugitive",        -- needed for vim-conflicted
-    cmd = {
-      "G",
-      "Git",
-      "Gdiffsplit",
-      "Gread",
-      "Gwrite",
-      "Ggrep",
-      "GMove",
-      "GDelete",
-      "GBrowse",
-      "GRemove",
-      "GRename",
-      "Glgrep",
-      "Gedit"
-    },
-    ft = { "fugitive" }
-  },
-
-  -- Bufferline:
-  {
-    'akinsho/bufferline.nvim',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    }
-  },
+  { 'chaoren/vim-wordmotion' },
 
   -- Detect tabstop and shiftwidth automatically:
-  'tpope/vim-sleuth',
+  { 'tpope/vim-sleuth' },
 
-  -- Theme:
-  {
-    'folke/tokyonight.nvim',
-    config = function()
-      vim.cmd.colorscheme 'tokyonight-moon'
-    end
-  },
-
+  -- startup screen
   {
     'goolord/alpha-nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -80,42 +38,8 @@ require('lazy').setup({
     end
   },
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
-
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
-  },
-
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
-  {
-    "kevinhwang91/rnvimr", -- ranger
-    cmd = "RnvimrToggle",
-    config = function()
-      vim.g.rnvimr_draw_border = 1
-      vim.g.rnvimr_pick_enable = 1
-      vim.g.rnvimr_bw_enable = 1
-    end,
-  },
-
-  {
-    "nvim-pack/nvim-spectre",
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-
-  {
-    "aserowy/tmux.nvim", -- jump to tmux windows
-    config = function() require("tmux").setup() end
-  },
 
   -- GitHub Copilot:
   {
@@ -133,18 +57,6 @@ require('lazy').setup({
     end
   },
 
-
-  -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
-
-  {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-    cond = function()
-      return vim.fn.executable 'make' == 1
-    end,
-  },
-
   -- ChatGPT
   {
     "jackMort/ChatGPT.nvim",
@@ -157,6 +69,7 @@ require('lazy').setup({
     }
   },
 
+  -- run tests
   {
     "klen/nvim-test",
     config = function()
@@ -166,18 +79,6 @@ require('lazy').setup({
       }
     end
   },
-  {
-    "ggandor/leap.nvim", -- jump to words with "s"
-    config = function()
-      require('leap').set_default_keymaps()
-    end
-  },
-  {
-    'norcalli/nvim-colorizer.lua', -- Show color preview for hex strings
-    config = function()
-      require 'colorizer'.setup()
-    end
-  }
 }, {})
 
 

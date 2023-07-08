@@ -28,14 +28,17 @@ vim.keymap.set('n', '<right>', ':vertical resize +10<cr>')
 -- center cursor when jumping up/down
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
--- Use <leader>R to replace
 
--- find references (gr)
--- lvim.builtin.which_key.mappings.s.r = { "<cmd>Telescope lsp_references<cr>", "find references" }
+-- test file
+vim.keymap.set('n', '<leader>T', "<cmd>TestFile<cr>", {
+  desc = "Test file"
+})
 
--- <leader>t mapping:
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "test",
---   f = { "<cmd>TestFile<cr>", "test current file" },
---   n = { "<cmd>TestNearest<cr>", "test nearest" },
--- }
+-- Spectre (find and replace across files)
+vim.keymap.set('n', '<leader>F', require("spectre").open, {
+  desc = "Open Spectre"
+  -- Use <leader>R to replace
+})
+
+-- Ranger
+vim.keymap.set('n', '<leader>r', "<cmd>RnvimrToggle<cr>")

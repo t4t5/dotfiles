@@ -15,11 +15,11 @@ vim.api.nvim_set_keymap("n", "<esc>", ":noh<cr>", { noremap = true, silent = tru
 vim.api.nvim_set_keymap("n", "<space>", "@q", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<space>", "'<,'>normal @q", { noremap = true, silent = true })
 
--- better window movement
-vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-j>', '<C-w>j')
-vim.keymap.set('n', '<C-k>', '<C-w>k')
-vim.keymap.set('n', '<C-l>', '<C-w>l')
+-- better window movement (supporting tmux)
+vim.keymap.set("n", "<C-h>", "<cmd>lua require'tmux'.move_left()<cr>", { desc = "Go to left window" })
+vim.keymap.set("n", "<C-j>", "<cmd>lua require'tmux'.move_bottom()<cr>", { desc = "Go to lower window" })
+vim.keymap.set("n", "<C-k>", "<cmd>lua require'tmux'.move_top()<cr>", { desc = "Go to upper window" })
+vim.keymap.set("n", "<C-l>", "<cmd>lua require'tmux'.move_right()<cr>", { desc = "Go to right window" })
 
 -- resize windows with arrow keys
 vim.keymap.set('n', '<left>', ':vertical resize -10<cr>')

@@ -37,4 +37,25 @@ return {
       show_trailing_blankline_indent = false,
     },
   },
+
+  {
+    'petertriho/nvim-scrollbar',
+    config = function()
+      local colors = require("tokyonight.colors").setup()
+
+      require("scrollbar").setup({
+        handle = {
+          color = colors.bg_highlight,
+        },
+        handlers = {
+          cursor = false,
+          diagnostic = false,
+          gitsigns = false,
+          handle = true,
+          search = false,
+          ale = false,
+        },
+      })
+    end
+  }
 }

@@ -15,6 +15,12 @@ g() {
     else
       git checkout "${@:2}"
     fi
+  elif [ "$1" = "add" ]; then
+    if [ -z "$2" ]; then
+      g_fuzzy_add
+    else
+      git add "${@:2}"
+    fi
   elif [ "$1" = "de" ]; then
     g_fuzzy_delete_branch
   elif [ "$1" = "br" ]; then
@@ -44,6 +50,11 @@ g() {
   else
     git status
   fi
+}
+
+g_fuzzy_add() {
+  file=$(git status --porcelain | cut -c 4- | fzf-down)
+  git add $(echo "$file")
 }
 
 g_fuzzy_checkout() {

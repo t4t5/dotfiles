@@ -46,6 +46,9 @@ end
 local servers = {
   rust_analyzer = {},
   tsserver = {},
+  yamlls = {
+    keyOrdering = false,
+  },
 
   lua_ls = {
     Lua = {

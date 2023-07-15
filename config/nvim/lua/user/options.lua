@@ -12,7 +12,7 @@ vim.o.softtabstop = 2
 vim.opt.swapfile = false
 
 -- Highlight current line:
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
 
 -- Make line numbers default
 vim.wo.number = true

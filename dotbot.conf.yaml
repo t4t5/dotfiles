@@ -13,3 +13,4 @@
     ~/.zshrc_git_aliases: zshrc_git_aliases
     ~/.terminfo: terminfo
     ~/antigen.zsh: antigen.zsh
+    ~/oh-my-zsh.sh: oh-my-zsh.sh

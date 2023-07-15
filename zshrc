@@ -10,7 +10,7 @@ HYPHEN_INSENSITIVE="true"
 source $ZSH/oh-my-zsh.sh
 ZSH_DISABLE_COMPFIX="true"
 
-source $(brew --prefix)/share/antigen/antigen.zsh
+source ./antigen.zsh
 antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 

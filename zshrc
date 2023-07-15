@@ -85,14 +85,6 @@ killport() {
   lsof -i tcp:$1 | awk 'NR!=1 {print $2}' | xargs kill;
 }
 
-v() {
-  if [ $# -gt 0 ]; then
-    nvim "$@"
-  else
-    nvim
-  fi
-}
-
 hound() {
   sass-lint -c .sass-lint.yml "$@" -v -q
 }

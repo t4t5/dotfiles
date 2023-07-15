@@ -10,6 +10,7 @@
     ~/.gitmessage: gitmessage
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
+    ~/.zshenv: zshenv
     ~/.zshrc_git_aliases: zshrc_git_aliases
     ~/.terminfo: terminfo
     ~/antigen.zsh: antigen.zsh

@@ -4,10 +4,10 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # ZSH
-# export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 HYPHEN_INSENSITIVE="true"
-source $HOME/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 ZSH_DISABLE_COMPFIX="true"
 
 source $HOME/antigen.zsh

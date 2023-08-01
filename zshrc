@@ -35,6 +35,9 @@ alias bundle='arch -arm64 bundle'
 alias python='python3'
 alias pip='pip3'
 
+# MRSK
+alias mrsk='docker run --rm -it -v $HOME/.ssh:/root/.ssh -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}/:/workdir  ghcr.io/mrsked/mrsk'
+
 # Lunarvim
 export PATH="$HOME/.local/bin:$PATH"
 

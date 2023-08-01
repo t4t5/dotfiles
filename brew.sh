@@ -43,10 +43,6 @@ brew install cocoapods
 brew tap mongodb/brew
 brew install mongodb-community
 
-brew install puma/puma/puma-dev
-sudo puma-dev -setup
-puma-dev -install
-
 pip3 install ranger-fm pynvim
 pip install github-clone
 

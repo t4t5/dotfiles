@@ -41,6 +41,28 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
+  {
+    "AckslD/nvim-neoclip.lua",
+    dependencies = {
+      { 'nvim-telescope/telescope.nvim' },
+    },
+    config = function()
+      require('neoclip').setup({
+        -- sync with unnamedplus
+        default_register = { '+', '*', '"' },
+        keys = {
+          telescope = {
+            i = {
+              -- to prevent overriding of <c-k>
+              paste_behind = '<c-P>',
+            }
+          },
+        }
+      })
+      require('telescope').load_extension('neoclip')
+    end,
+  },
+
   -- GitHub Copilot:
   {
     "zbirenbaum/copilot.lua",

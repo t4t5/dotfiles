@@ -37,4 +37,8 @@ vim.keymap.set('n', '<C-p>', require('telescope.builtin').live_grep, { desc = '[
 
 vim.keymap.set('n', '<leader>sr', '<cmd>Telescope lsp_references<cr>', { desc = "find references" })
 
+-- Show clipboard history
 vim.keymap.set('n', '<leader>c', '<cmd>Telescope neoclip<cr>', { desc = 'Clipboard history' })
+
+-- Show macros history
+vim.keymap.set('n', '<leader>m', require('telescope').extensions.macroscope.default, { desc = 'Macros history' })

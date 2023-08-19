@@ -37,6 +37,10 @@ brew install antigen
 brew install rustup
 brew install ngrok/ngrok/ngrok
 
+# solc for Solidity
+brew tap ethereum/ethereum
+brew install solidity
+
 # For M1 macs, cocoapods need to be installed from Brew:
 brew install cocoapods
 

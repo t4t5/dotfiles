@@ -52,6 +52,7 @@ end
 -- Add language servers here and they will automatically be installed:
 local servers = {
   rust_analyzer = {},
+  solidity = {},
   tsserver = {},
   yamlls = {
     keyOrdering = false,

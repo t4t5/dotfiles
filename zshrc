@@ -129,7 +129,11 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # Solana
 export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
 
+# Starklings
 export PATH="$PATH:$HOME/.starklings/dist/starklings"
+
+# Foundry
+export PATH="$PATH:$HOME/.foundry/bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

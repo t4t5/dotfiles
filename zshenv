@@ -32,4 +32,3 @@ dropdbs() {
 
   echo "Done!"
 }
-

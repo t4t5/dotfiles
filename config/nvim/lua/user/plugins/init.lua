@@ -64,37 +64,6 @@ require('lazy').setup({
     end,
   },
 
-  {
-    "dnlhc/glance.nvim",
-    config = function()
-      local glance = require('glance')
-      local actions = glance.actions
-
-      glance.setup({
-        mappings = {
-          list = {
-            ['q'] = actions.close,
-            ['j'] = actions.next,
-            ['k'] = actions.previous,
-            ['<C-k>'] = actions.close,
-            ['<C-j>'] = actions.close,
-            ['<C-h>'] = actions.close,
-            ['<C-l>'] = actions.close,
-          },
-          preview = {
-            ['q'] = actions.close,
-            ['j'] = actions.next_location,
-            ['k'] = actions.previous_location,
-            ['<C-k>'] = actions.close,
-            ['<C-j>'] = actions.close,
-            ['<C-h>'] = actions.close,
-            ['<C-l>'] = actions.close,
-          },
-        }
-      })
-    end,
-  },
-
   -- GitHub Copilot:
   {
     "zbirenbaum/copilot.lua",

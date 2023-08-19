@@ -35,9 +35,8 @@ return {
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
-  {
-    'onsails/lspkind.nvim' -- icons for LSP
-  },
+  -- icons for LSP
+  'onsails/lspkind.nvim',
 
   {
     -- Highlight, edit, and navigate code
@@ -47,4 +46,39 @@ return {
     },
     build = ':TSUpdate',
   },
+
+  -- List references + definitions:
+  {
+    "dnlhc/glance.nvim",
+    config = function()
+      local glance = require('glance')
+      local actions = glance.actions
+
+      glance.setup({
+        mappings = {
+          list = {
+            ['q'] = actions.close,
+            ['j'] = actions.next,
+            ['k'] = actions.previous,
+            -- navigating breaks the preview, so close the modal:
+            ['<C-k>'] = actions.close,
+            ['<C-j>'] = actions.close,
+            ['<C-h>'] = actions.close,
+            ['<C-l>'] = actions.close,
+          },
+          preview = {
+            ['q'] = actions.close,
+            ['j'] = actions.next_location,
+            ['k'] = actions.previous_location,
+            -- navigating breaks the preview, so close the modal:
+            ['<C-k>'] = actions.close,
+            ['<C-j>'] = actions.close,
+            ['<C-h>'] = actions.close,
+            ['<C-l>'] = actions.close,
+          },
+        }
+      })
+    end,
+  },
+
 }

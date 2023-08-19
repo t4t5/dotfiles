@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 -- Treesitter
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
@@ -50,18 +52,27 @@ local on_attach = function(_, bufnr)
 end
 
 -- Add language servers here and they will automatically be installed:
+-- You can see which ones are installed with :Mason
+-- You can also install more with :LspInstall <server>
 local servers = {
   rust_analyzer = {},
   solidity = {},
   tsserver = {},
+  tailwindcss = {},
+  prismals = {},
+  dockerls = {},
+  eslint = {},
+  jsonls = {},
   yamlls = {
     keyOrdering = false,
   },
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
+      diagnostics = {
+        globals = { 'vim' },
+      },
     },
   },
 }

@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 -- Bufferline: Use real vim tabs instead of all buffers:
 require("bufferline").setup {
   options = {

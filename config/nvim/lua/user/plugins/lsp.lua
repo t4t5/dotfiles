@@ -58,8 +58,8 @@ return {
         mappings = {
           list = {
             ['q'] = actions.close,
-            ['j'] = actions.next,
-            ['k'] = actions.previous,
+            ['j'] = actions.next_location,
+            ['k'] = actions.previous_location,
             -- navigating breaks the preview, so close the modal:
             ['<C-k>'] = actions.close,
             ['<C-j>'] = actions.close,

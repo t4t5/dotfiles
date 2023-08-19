@@ -26,10 +26,11 @@ vim.keymap.set('n', '<leader>aj', vim.diagnostic.goto_next, { desc = 'Go to next
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
-vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
+vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'Code Actions' })
 
 -- go to definition:
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+
 -- vim.keymap.set('n', '<leader>sd', vim.lsp.buf.definition, { desc = "go to definition" })
 vim.keymap.set('n', '<leader>sd', '<CMD>Glance definitions<CR>', { desc = "go to definition" })
 

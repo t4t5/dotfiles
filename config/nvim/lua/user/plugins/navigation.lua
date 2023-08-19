@@ -1,7 +1,4 @@
 return {
-  -- swap windows with <leader>ww
-  { "wesQ3/vim-windowswap" },
-
   -- ranger
   {
     "kevinhwang91/rnvimr",

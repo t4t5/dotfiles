@@ -36,9 +36,25 @@ vim.keymap.set('n', '<leader>T', "<cmd>TestFile<cr>", {
 
 -- Spectre (find and replace across files)
 vim.keymap.set('n', '<leader>F', require("spectre").open, {
-  desc = "Open Spectre"
+  desc = "Spectre (find and replace)"
   -- Use <leader>R to replace
 })
 
 -- Ranger
-vim.keymap.set('n', '<leader>r', "<cmd>RnvimrToggle<cr>")
+vim.keymap.set('n', '<leader>r', "<cmd>RnvimrToggle<cr>", { desc = "Toggle Ranger" })
+
+-- Set group names for which-key:
+require("which-key").register({
+  ["<leader>s"] = {
+    name = "go to (search)"
+  },
+  ["<leader>g"] = {
+    name = "git"
+  },
+  ["<leader>a"] = {
+    name = "diagnostics"
+  },
+  ["<leader>l"] = {
+    name = "list"
+  },
+})

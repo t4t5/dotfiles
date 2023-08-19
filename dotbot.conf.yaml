@@ -4,7 +4,6 @@
     ~/.config/coc: config/coc
     ~/.config/gitui: config/gitui
     ~/.config/nvim: config/nvim
-    ~/.config/lvim: config/lvim
     ~/.config/ranger: config/ranger
     ~/.gitconfig: gitconfig
     ~/.gitmessage: gitmessage

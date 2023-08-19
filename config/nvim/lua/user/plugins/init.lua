@@ -41,6 +41,7 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
+  -- clipboard + macro history in telescope
   {
     "AckslD/nvim-neoclip.lua",
     dependencies = {
@@ -60,6 +61,37 @@ require('lazy').setup({
         }
       })
       require('telescope').load_extension('neoclip')
+    end,
+  },
+
+  {
+    "dnlhc/glance.nvim",
+    config = function()
+      local glance = require('glance')
+      local actions = glance.actions
+
+      glance.setup({
+        mappings = {
+          list = {
+            ['q'] = actions.close,
+            ['j'] = actions.next,
+            ['k'] = actions.previous,
+            ['<C-k>'] = actions.close,
+            ['<C-j>'] = actions.close,
+            ['<C-h>'] = actions.close,
+            ['<C-l>'] = actions.close,
+          },
+          preview = {
+            ['q'] = actions.close,
+            ['j'] = actions.next_location,
+            ['k'] = actions.previous_location,
+            ['<C-k>'] = actions.close,
+            ['<C-j>'] = actions.close,
+            ['<C-h>'] = actions.close,
+            ['<C-l>'] = actions.close,
+          },
+        }
+      })
     end,
   },
 

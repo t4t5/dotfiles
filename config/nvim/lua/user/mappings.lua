@@ -40,8 +40,8 @@ vim.keymap.set('n', '<leader>F', require("spectre").open, {
   -- Use <leader>R to replace
 })
 
--- Ranger
-vim.keymap.set('n', '<leader>r', "<cmd>RnvimrToggle<cr>", { desc = "Toggle Ranger" })
+-- Joshuto
+vim.keymap.set('n', '<leader>r', "<cmd>Joshuto<cr>", { desc = "Toggle explorer (Joshuto)" })
 
 -- Set group names for which-key:
 require("which-key").register({

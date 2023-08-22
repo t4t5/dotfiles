@@ -36,6 +36,7 @@ brew install gitui
 brew install antigen
 brew install rustup
 brew install ngrok/ngrok/ngrok
+brew install joshuto
 
 # solc for Solidity
 brew tap ethereum/ethereum

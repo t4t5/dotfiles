@@ -5,6 +5,7 @@
     ~/.config/gitui: config/gitui
     ~/.config/nvim: config/nvim
     ~/.config/ranger: config/ranger
+    ~/.config/joshuto: config/joshuto
     ~/.gitconfig: gitconfig
     ~/.gitmessage: gitmessage
     ~/.tmux.conf: tmux.conf

@@ -10,6 +10,8 @@ return {
     end,
   },
 
+  -- joshuto
+  { "theniceboy/joshuto.nvim" },
 
   -- find and replace across files
   {

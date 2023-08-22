@@ -45,8 +45,8 @@ vim.keymap.set('n', '<leader>r', "<cmd>RnvimrToggle<cr>", { desc = "Toggle Range
 
 -- Set group names for which-key:
 require("which-key").register({
-  ["<leader>s"] = {
-    name = "go to (search)"
+  ["<leader>f"] = {
+    name = "find (/go to)"
   },
   ["<leader>g"] = {
     name = "git"

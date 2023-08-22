@@ -34,11 +34,11 @@ vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'Code Action
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
 
 -- vim.keymap.set('n', '<leader>sd', vim.lsp.buf.definition, { desc = "go to definition" })
-vim.keymap.set('n', '<leader>sd', '<CMD>Glance definitions<CR>', { desc = "go to definition" })
+vim.keymap.set('n', '<leader>fd', '<CMD>Glance definitions<CR>', { desc = "find definition" })
 
 -- show references
 -- vim.keymap.set('n', '<leader>sr', '<cmd>Telescope lsp_references<cr>', { desc = "find references" })
-vim.keymap.set('n', '<leader>sr', '<CMD>Glance references<CR>', { desc = "find references" })
+vim.keymap.set('n', '<leader>fr', '<CMD>Glance references<CR>', { desc = "find references" })
 
 
 

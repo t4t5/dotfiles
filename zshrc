@@ -86,7 +86,7 @@ alias exp='cd ~/dev/projects/experiments'
 
 alias stable="cd ~/dev/tools/stable-webui/stable-diffusion-webui"
 
-alias r="joshuto"
+alias r='joshuto --output-file /tmp/joshutodir; LASTDIR=`cat /tmp/joshutodir`; cd "$LASTDIR"'
 alias gg="gitui"
 
 # Use tmux by default when using terminal

@@ -40,6 +40,10 @@ vim.keymap.set('n', '<leader>F', require("spectre").open, {
   -- Use <leader>R to replace
 })
 
+vim.keymap.set('n', '<leader>t', "<cmd>NvimTreeToggle<cr>", {
+  desc = "Toggle explorer (nvimtree)",
+})
+
 -- Joshuto
 vim.keymap.set('n', '<leader>r', "<cmd>Joshuto<cr>", { desc = "Toggle explorer (Joshuto)" })
 

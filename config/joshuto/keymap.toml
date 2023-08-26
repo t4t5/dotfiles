@@ -1,7 +1,6 @@
 [default_view]
 
 keymap = [
-  { keys = ["escape"], command = "escape" },
   { keys = ["ctrl+t"], command = "new_tab" },
   { keys = ["alt+t"], command = "new_tab --cursor" },
   { keys = ["T"], command = "new_tab --current" },
@@ -10,6 +9,7 @@ keymap = [
   { keys = ["Q"], command = "close_tab" },
   { keys = ["q"], command = "quit --output-current-directory" },
   { keys = ["ctrl+c"], command = "quit --output-current-directory" },
+  { keys = ["escape"], command = "close_tab" },
 
   { keys = ["R"], command = "reload_dirlist" },
   { keys = ["z", "h"], command = "toggle_hidden" },
@@ -73,9 +73,6 @@ keymap = [
   { keys = ["y", "a"], command = "copy_filepath --all-selected=true" },
   { keys = ["y", "d"], command = "copy_dirpath" },
 
-  { keys = ["p", "l"], command = "symlink_files --relative=false" },
-  { keys = ["p", "L"], command = "symlink_files --relative=true" },
-
   { keys = ["delete"], command = "delete_files" },
   { keys = ["d", "D"], command = "delete_files" },
 
@@ -119,13 +116,6 @@ keymap = [
   { keys = ["s", "s"], command = "sort size" },
   { keys = ["s", "e"], command = "sort ext" },
 
-  { keys = ["m", "s"], command = "linemode size" },
-  { keys = ["m", "m"], command = "linemode mtime" },
-  { keys = ["m", "M"], command = "linemode size | mtime" },
-  { keys = ["m", "u"], command = "linemode user" },
-  { keys = ["m", "U"], command = "linemode user | group" },
-  { keys = ["m", "p"], command = "linemode perm" },
-
   { keys = ["g", "r"], command = "cd /" },
   { keys = ["g", "c"], command = "cd ~/.config" },
   { keys = ["g", "d"], command = "cd ~/Downloads" },
@@ -150,7 +140,6 @@ keymap = [
   { keys = ["G"], command = "cursor_move_end" },
 
   { keys = ["w"], command = "show_tasks" },
-  { keys = ["escape"], command = "show_tasks" },
 ]
 
 [help_view]
@@ -169,5 +158,4 @@ keymap = [
   { keys = ["G"], command = "cursor_move_end" },
 
   { keys = ["w"], command = "show_tasks" },
-  { keys = ["escape"], command = "show_tasks" },
 ]

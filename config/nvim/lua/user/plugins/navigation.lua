@@ -18,7 +18,12 @@ return {
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
 
-      require("nvim-tree").setup()
+      require("nvim-tree").setup({
+        git = {
+          -- Include files in gitignore (like .env):
+          ignore = false,
+        }
+      })
     end
   },
 

@@ -27,9 +27,10 @@ function M.setup()
   }
 
   dashboard.section.buttons.val = {
+    dashboard.button("t", "☰  Open tree", ":NvimTreeToggle <CR>"),
     dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
     dashboard.button("r", "  Browse files", ":Joshuto <CR>"),
-    dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
+    dashboard.button("p", "  Grep text", ":Telescope live_grep <CR>"),
     dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
   }
 

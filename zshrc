@@ -11,6 +11,7 @@ source $ZSH/oh-my-zsh.sh
 ZSH_DISABLE_COMPFIX="true"
 
 source $HOME/antigen.zsh
+antigen bundle Aloxaf/fzf-tab
 antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 

@@ -5,9 +5,31 @@ snippet erc20_import
 		constructor() ERC20("Token Name", "TOKEN_TICKER") {}
 	}
 
-snippet console_log_import
+snippet hardhat_console_log_import
 	import "hardhat/console.sol";
 
 snippet pragma
 	// SPDX-License-Identifier: UNLICENSED
-	pragma solidity ^0.8.0;
+	pragma solidity ^0.8.18;
+
+snippet order_layout
+	// Layout of Contract:
+	// version
+	// imports
+	// errors
+	// interfaces, libraries, contracts
+	// Type declarations
+	// State variables
+	// Events
+	// Modifiers
+	// Functions
+
+	// Layout of Functions:
+	// constructor
+	// receive function (if exists)
+	// fallback function (if exists)
+	// external
+	// public
+	// internal
+	// private
+	// view & pure functions

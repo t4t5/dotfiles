@@ -51,12 +51,13 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+local lspconfig = require 'lspconfig'
+
 -- Add language servers here and they will automatically be installed:
 -- You can see which ones are installed with :Mason
 -- You can also install more with :LspInstall <server>
 local servers = {
   rust_analyzer = {},
-  solidity = {},
   tsserver = {},
   tailwindcss = {},
   prismals = {},
@@ -66,6 +67,7 @@ local servers = {
   yamlls = {
     keyOrdering = false,
   },
+  solidity_ls_nomicfoundation = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -93,7 +95,7 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
-    require('lspconfig')[server_name].setup {
+    lspconfig[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],

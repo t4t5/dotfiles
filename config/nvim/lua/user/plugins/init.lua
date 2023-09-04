@@ -26,9 +26,6 @@ require('lazy').setup({
   -- respect camelcase/underscores
   { 'chaoren/vim-wordmotion' },
 
-  -- Detect tabstop and shiftwidth automatically:
-  { 'tpope/vim-sleuth' },
-
   -- startup screen
   {
     'goolord/alpha-nvim',

@@ -75,7 +75,7 @@ alias s="source ~/.zshrc;tmux source-file ~/.tmux.conf;source ~/.zprofile"
 
 alias boom="~/dev/projects/boom/target/debug/boom"
 
-alias pythonserver="python -m SimpleHTTPServer 8000"
+alias pythonserver="python -m http.server 8000"
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;
 killall Finder /System/Library/CoreServices/Finder.app'

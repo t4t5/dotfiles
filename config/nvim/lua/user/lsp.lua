@@ -41,7 +41,6 @@ vim.keymap.set('n', '<leader>fd', '<CMD>Glance definitions<CR>', { desc = "find 
 vim.keymap.set('n', '<leader>fr', '<CMD>Glance references<CR>', { desc = "find references" })
 
 
-
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
@@ -102,6 +101,28 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+-- Start: CUSTOM LSP SERVERS
+
+local configs = require 'lspconfig.configs'
+
+if not configs.noir_lsp then
+  configs.noir_lsp = {
+    default_config = {
+      cmd = { 'nargo', 'lsp' },
+      root_dir = lspconfig.util.root_pattern('.git'),
+      filetypes = { 'noir' },
+    },
+  }
+end
+lspconfig.noir_lsp.setup {}
+
+local ft = require('Comment.ft')
+ft.set('noir', '//%s')
+
+
+-- End: custom LSP servers
+
 
 -- nvim-cmp setup
 local cmp = require 'cmp'

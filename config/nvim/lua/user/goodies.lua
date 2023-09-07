@@ -24,6 +24,12 @@ vim.api.nvim_create_autocmd(
 -- no newline at end of hbs files:
 vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary")
 
+-- noir
+vim.api.nvim_create_autocmd(
+  { "BufRead", "BufNewFile" },
+  { pattern = { "*.nr" }, command = "set ft=noir syntax=rust" }
+)
+
 -- For ruby files:
 -- See: https://github.com/testdouble/standard/wiki/IDE:-neovim
 vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though

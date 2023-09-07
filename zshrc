@@ -138,6 +138,9 @@ export PATH="$PATH:$HOME/.starklings/dist/starklings"
 # Foundry
 export PATH="$PATH:$HOME/.foundry/bin"
 
+# Noir
+export PATH="$PATH:$HOME/.nargo/bin"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 # __conda_setup="$('/Users/tristan/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"

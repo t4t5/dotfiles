@@ -27,7 +27,6 @@ brew install ngircd
 brew install postgresql
 brew install go
 brew install hugo
-brew install httpie
 brew install gnu-sed
 brew install highlight
 brew install bat
@@ -37,6 +36,10 @@ brew install antigen
 brew install rustup
 brew install ngrok/ngrok/ngrok
 brew install joshuto
+
+# pgcli
+brew tap dbcli/tap
+brew install pgcli
 
 # solc for Solidity
 brew tap ethereum/ethereum

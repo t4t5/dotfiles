@@ -32,6 +32,8 @@ export PATH=$RBENV_ROOT/bin:$PATH
 alias gem='arch -arm64 gem'
 alias bundle='arch -arm64 bundle'
 
+alias pg=pgcli
+
 # Python
 alias python='python3'
 alias pip='pip3'

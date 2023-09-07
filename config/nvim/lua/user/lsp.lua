@@ -106,6 +106,8 @@ mason_lspconfig.setup_handlers {
 
 local configs = require 'lspconfig.configs'
 
+-- Noir:
+
 if not configs.noir_lsp then
   configs.noir_lsp = {
     default_config = {
@@ -119,6 +121,19 @@ lspconfig.noir_lsp.setup {}
 
 local ft = require('Comment.ft')
 ft.set('noir', '//%s')
+
+-- Cairo:
+
+if not configs.cairo_lsp then
+  configs.cairo_lsp = {
+    default_config = {
+      cmd = { 'scarb', 'cairo-language-server' },
+      root_dir = lspconfig.util.root_pattern('.git'),
+      filetypes = { 'cairo' },
+    },
+  }
+end
+lspconfig.cairo_lsp.setup {}
 
 
 -- End: custom LSP servers

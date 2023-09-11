@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   -- LSP Configuration & Plugins:
   {
@@ -23,10 +24,36 @@ return {
   },
 
   {
-    'jose-elias-alvarez/null-ls.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
+    'mhartington/formatter.nvim',
+    config = function()
+      local formatter = require("formatter")
+      local default_formatters = require("formatter.defaults")
+      local prettierd = default_formatters.prettierd
+      local stylua = default_formatters.stylua
+      formatter.setup({
+        filetype = {
+          javascript = { prettierd },
+          javascriptreact = { prettierd },
+          typescript = { prettierd },
+          typescriptreact = { prettierd },
+          prisma = default_formatters.prisma_fmt,
+          lua = { stylua }
+        }
+      })
+    end
+  },
+  {
+    "mfussenegger/nvim-lint",
+    config = function()
+      local lint = require("lint")
+      lint.linters_by_ft = {
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        prisma = { "prisma_fmt" },
+      }
+    end
   },
 
   {

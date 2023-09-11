@@ -41,14 +41,7 @@ vim.keymap.set('n', '<leader>fd', '<CMD>Glance definitions<CR>', { desc = "find 
 vim.keymap.set('n', '<leader>fr', '<CMD>Glance references<CR>', { desc = "find references" })
 
 
--- LSP settings.
---  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-end
+-- LSP settings
 
 local lspconfig = require 'lspconfig'
 
@@ -222,14 +215,13 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
 
-local null_ls = require("null-ls")
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.prettierd,
-    null_ls.builtins.diagnostics.eslint,
-    null_ls.builtins.formatting.prismaFmt
-  },
-})
+-- autoformat on save (from mhartington/formatter.nvim)
+vim.cmd [[
+  augroup FormatAutogroup
+    autocmd!
+    autocmd BufWritePost * FormatWrite
+  augroup END
+]]
 
 -- Use better icons for diagnosics:
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }

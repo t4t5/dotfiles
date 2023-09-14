@@ -118,8 +118,8 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
+# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 # ElasticSearch
 export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
@@ -141,17 +141,9 @@ export PATH="$PATH:$HOME/.foundry/bin"
 # Noir
 export PATH="$PATH:$HOME/.nargo/bin"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/Users/tristan/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/Users/tristan/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/Users/tristan/opt/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/Users/tristan/opt/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

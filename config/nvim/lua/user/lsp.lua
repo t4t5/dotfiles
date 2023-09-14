@@ -21,10 +21,6 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- Treat .mdx files as markdown:
-local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
-ft_to_parser.mdx = "markdown"
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>ak', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', '<leader>aj', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })

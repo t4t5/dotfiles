@@ -36,6 +36,7 @@ return {
           javascriptreact = { prettierd },
           typescript = { prettierd },
           typescriptreact = { prettierd },
+          astro = { prettierd },
           prisma = default_formatters.prisma_fmt,
           lua = { stylua }
         }

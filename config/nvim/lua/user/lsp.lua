@@ -3,7 +3,7 @@
 -- Treesitter
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'astro' },
 
   -- Autoinstall languages that are not installed:
   auto_install = true,
@@ -20,6 +20,10 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+
+-- Treat .mdx files as markdown:
+local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+ft_to_parser.mdx = "markdown"
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>ak', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
@@ -51,7 +55,9 @@ local lspconfig = require 'lspconfig'
 local servers = {
   rust_analyzer = {},
   tsserver = {},
-  tailwindcss = {},
+  tailwindcss = {
+    filetypes = { 'tsx', 'astro' }
+  },
   prismals = {},
   dockerls = {},
   eslint = {},
@@ -89,8 +95,9 @@ mason_lspconfig.setup_handlers {
   function(server_name)
     lspconfig[server_name].setup {
       capabilities = capabilities,
-      on_attach = on_attach,
+      -- on_attach = on_attach,
       settings = servers[server_name],
+      filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
 }

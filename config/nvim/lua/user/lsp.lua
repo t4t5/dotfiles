@@ -157,7 +157,7 @@ vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 -- Variable: 6
 -- Snippet: 15
 -- Constant: 21
-local kind_mapper = { 2, 10, 6, 21, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14, 15 }
+-- local kind_mapper = { 15, 2, 10, 6, 21, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14 }
 
 local compare = require("cmp.config.compare")
 
@@ -181,9 +181,9 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
   },
   sources = {
+    { name = 'luasnip' },
     { name = 'nvim_lsp' },
     { name = "copilot" },
-    { name = 'luasnip' },
   },
   formatting = {
     format = lspkind.cmp_format({
@@ -193,19 +193,19 @@ cmp.setup {
       symbol_map = { Copilot = "" },
     })
   },
-  sorting = {
-    comparators = {
-      compare.exact,
-      function(entry1, entry2)
-        local kind1 = kind_mapper[entry1:get_kind()] or 0
-        local kind2 = kind_mapper[entry2:get_kind()] or 0
-
-        if kind1 < kind2 then
-          return true
-        end
-      end
-    },
-  },
+  -- sorting = {
+  --   comparators = {
+  --     compare.exact,
+  --     function(entry1, entry2)
+  --       local kind1 = kind_mapper[entry1:get_kind()] or 0
+  --       local kind2 = kind_mapper[entry2:get_kind()] or 0
+  --
+  --       if kind1 < kind2 then
+  --         return true
+  --       end
+  --     end
+  --   },
+  -- },
 }
 
 -- Show bordered window for errors:

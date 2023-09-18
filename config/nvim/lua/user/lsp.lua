@@ -54,6 +54,8 @@ local servers = {
   tailwindcss = {
     filetypes = { 'tsx', 'astro' }
   },
+  terraformls = {},
+  tflint = {},
   prismals = {},
   dockerls = {},
   eslint = {},

@@ -21,6 +21,17 @@ add() {
   fi
 }
 
+download() {
+  if [ $# -lt 1 ]; then
+    echo "Missing argument: SSH host alias (configure in ~/.ssh/config)"
+  elif [ $# -lt 2 ]; then
+    echo "Missing argument: path to file on remote server"
+  else
+    filename="$2" | sed 's:.*/::'
+    scp root@"$1":"$2" ~/Downloads/"$filename"
+  fi
+}
+
 addhusky() {
   npm install -D husky
   npm set-script prepare "husky install"

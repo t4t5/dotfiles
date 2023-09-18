@@ -10,6 +10,17 @@ killport() {
   lsof -i tcp:$1 | awk 'NR!=1 {print $2}' | xargs kill;
 }
 
+# add packages to monorepo, i.e "add web @trpc/client", "add server @trpc/server"
+add() {
+  if [ $# -lt 1 ]; then
+    echo "Missing argument: app name"
+  elif [ $# -lt 2 ]; then
+    echo "Missing argument: package name"
+  else 
+    pnpm --filter="$1" add "${@:2}"
+  fi
+}
+
 addhusky() {
   npm install -D husky
   npm set-script prepare "husky install"

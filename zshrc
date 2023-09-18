@@ -73,7 +73,7 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
 # Git commands:
 source ~/.zshrc_git_aliases
 
-alias s="source ~/.zshrc;tmux source-file ~/.tmux.conf;source ~/.zprofile"
+alias s="source ~/.zshrc; tmux source-file ~/.tmux.conf; source ~/.zprofile; source ~/.zshenv"
 
 alias boom="~/dev/projects/boom/target/debug/boom"
 

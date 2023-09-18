@@ -8,7 +8,7 @@ require('nvim-treesitter.configs').setup {
   -- Autoinstall languages that are not installed:
   auto_install = true,
 
-  highlight = { enable = true },
+  highlight = { enable = true, disable = { "bash" } },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
     enable = true,
@@ -181,8 +181,8 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
   },
   sources = {
-    { name = 'luasnip' },
     { name = 'nvim_lsp' },
+    { name = 'luasnip' },
     { name = "copilot" },
   },
   formatting = {

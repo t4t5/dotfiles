@@ -11,5 +11,6 @@
     ~/.zshrc: zshrc
     ~/.zshenv: zshenv
     ~/.zshrc_git_aliases: zshrc_git_aliases
+    ~/.zshrc_pulumi_aliases: zshrc_pulumi_aliases
     ~/.terminfo: terminfo
     ~/antigen.zsh: antigen.zsh

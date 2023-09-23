@@ -29,7 +29,8 @@ download() {
     echo "Missing argument: path to file on remote server"
   else
     filename="$2" | sed 's:.*/::'
-    scp root@"$1":"$2" ~/Downloads/"$filename"
+    # -r so that it supports directories
+    scp -r root@"$1":"$2" ~/Downloads/"$filename"
   fi
 }
 

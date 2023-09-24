@@ -9,10 +9,11 @@ pu() {
       project_name=$(node -p "require('./package.json').name")
       echo "name: $project_name" >> Pulumi.yaml
       echo "runtime: nodejs" >> Pulumi.yaml
-      echo "main: infra.ts" >> Pulumi.yaml
+      echo "main: infra/index.ts" >> Pulumi.yaml
 
-      touch infra.ts
-      echo "import * as pulumi from \"@pulumi/pulumi\"" >> infra.ts
+      mkdir infra
+      touch infra/index.ts
+      echo "import * as pulumi from \"@pulumi/pulumi\"" >> infra/index.ts
 
       echo "Created pulumi project '$project_name'!"
       echo "You can add a new environment with 'pu addstack (staging|prod)'"
@@ -44,10 +45,18 @@ pu() {
     if [ $# -lt 2 ]; then
       echo "Missing argument: env (staging, production)"
     else
-      echo "Destroy $2? (y/n)"
-      read -r input
-      if [ "$input" = "y" ]; then
-        op run --env-file=.env."$2" -- pulumi destroy
+      pulumi stack select "$2"
+
+      if [ "$3" = "--confirm" ]; then
+        echo "Destroy $2? (y/n)"
+        read -r input
+        if [ "$input" = "y" ]; then
+          op run --env-file=.env."$2" -- pulumi destroy --yes
+        fi
+      else
+        # Just get a preview
+        timeout 3s pulumi destroy; stty sane; tput cnorm
+        echo "If you're sure, run 'pu destroy $2 --confirm'"
       fi
     fi
   elif [ "$1" = "show" ]; then

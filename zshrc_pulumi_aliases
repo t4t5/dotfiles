@@ -55,7 +55,7 @@ pu() {
         fi
       else
         # Just get a preview
-        timeout 3s pulumi destroy; stty sane; tput cnorm
+        timeout 5s pulumi destroy; stty sane; tput cnorm
         echo "If you're sure, run 'pu destroy $2 --confirm'"
       fi
     fi

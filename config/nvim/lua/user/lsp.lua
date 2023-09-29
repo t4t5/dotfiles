@@ -52,7 +52,7 @@ local servers = {
   rust_analyzer = {},
   tsserver = {},
   tailwindcss = {
-    filetypes = { 'tsx', 'astro' }
+    filetypes = { 'typescriptreact', 'astro' }
   },
   terraformls = {},
   tflint = {},

@@ -10,6 +10,16 @@ killport() {
   lsof -i tcp:$1 | awk 'NR!=1 {print $2}' | xargs kill;
 }
 
+# copy file contents to clipboard (e.g. "copy file.txt")
+copy() {
+  if [ $# -lt 1 ]; then
+    echo "Missing argument: file name"
+  fi
+
+  pbcopy < "$1"
+  echo "Copied to clipboard!"
+}
+
 # add packages to monorepo, i.e "add web @trpc/client", "add server @trpc/server"
 add() {
   if [ $# -lt 1 ]; then

@@ -44,10 +44,14 @@ g() {
     branch=$(git rev-parse --abbrev-ref HEAD)
     git branch -m $(echo "$branch") $(echo "$2")
   elif [ "$1" = "create" ]; then
-    anticipated_project_name=$(node -p "try { require('./package.json').name || 'my_project' } catch (e) { 'my_project' }")
-    echo -n "Desired github repo name [$anticipated_project_name]: "
+    if [ -f "./package.json" ]; then
+      project_name=$(node -p "require('./package.json').name")
+    else
+      project_name=$(basename "$PWD")
+    fi
+    echo -n "Desired github repo name [$project_name]: "
     read -r name
-    name=${name:-$anticipated_project_name}
+    name=${name:-$project_name}
     gh repo create "$name" --private --source=. --remote=upstream
   elif [ "$1" = "dnew" ]; then
     for next in $( git ls-files --others --exclude-standard ); do git --no-pager diff --no-index /dev/null $next; done;

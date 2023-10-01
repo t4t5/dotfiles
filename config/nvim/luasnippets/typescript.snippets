@@ -1,32 +1,3 @@
-snippet trpc_query_file
-	import { z } from "zod"
-
-	import { createRouter, procedure } from "trpc/server"
-
-	export const ${1:something}Router = createRouter({
-		get${1:something}: procedure
-			.input(
-				z.object({
-					userId: z.number(),
-				}),
-			)
-			.query(async ({ ctx, input }) => {
-				const { prisma } = ctx
-				const { userId } = input
-
-				return null
-			})
-	})
-
-snippet trpc_query_file_ordiscan
-	import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-
-	export const ${1:something}Router = createTRPCRouter({
-	  get${1:something}: publicProcedure.query(async () => {
-
-	  }),
-	});
-
 snippet trpc_query
   ${1: getStuff}: procedure
     .input(
@@ -40,6 +11,19 @@ snippet trpc_query
 
 			return null
     }),
+
+snippet trpc_query_nest
+		${1:getStuff}: this.trpc.procedure
+			.input(
+				z.object({
+					${2:param}: z.string(),
+				}),
+			)
+			.query(async ({ input }) => {
+				const { ${2:param} } = input
+
+				return null
+			}),
 
 snippet trpc_mutation
   ${1: getStuff}: procedure

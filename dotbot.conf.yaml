@@ -14,3 +14,4 @@
     ~/.zshrc_pulumi_aliases: zshrc_pulumi_aliases
     ~/.terminfo: terminfo
     ~/antigen.zsh: antigen.zsh
+    ~/.justfile: justfile

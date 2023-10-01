@@ -10,6 +10,7 @@
   defaultBranch = main
 
 [alias]
+  ac = !git add . && git commit
   pf = push --force-with-lease
   pl = pull
   cp = cherry-pick

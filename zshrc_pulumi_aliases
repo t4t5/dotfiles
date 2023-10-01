@@ -6,17 +6,25 @@ pu() {
 
   if [ "$1" = "init" ] || [ "$1" = "new" ]; then
     if [ ! -f ./Pulumi.yaml ]; then
-      project_name=$(node -p "require('./package.json').name")
-      echo "name: $project_name" >> Pulumi.yaml
-      echo "runtime: nodejs" >> Pulumi.yaml
-      echo "main: infra/index.ts" >> Pulumi.yaml
+      if [ -f "./package.json" ]; then
+        project_name=$(node -p "require('./package.json').name")
+      else
+        project_name=$(basename "$PWD")
+      fi
+      echo "Create new Pulumi project '$project_name'? (y/n)"
+      read -r input
+      if [ "$input" = "y" ]; then
+        echo "name: $project_name" >> Pulumi.yaml
+        echo "runtime: nodejs" >> Pulumi.yaml
+        echo "main: infra/index.ts" >> Pulumi.yaml
 
-      mkdir infra
-      touch infra/index.ts
-      echo "import * as pulumi from \"@pulumi/pulumi\"" >> infra/index.ts
+        mkdir infra
+        touch infra/index.ts
+        echo "import * as pulumi from \"@pulumi/pulumi\"" >> infra/index.ts
 
-      echo "Created pulumi project '$project_name'!"
-      echo "You can add a new environment with 'pu addstack (staging|prod)'"
+        echo "Created pulumi project '$project_name'!"
+        echo "You can add a new environment with 'pu addstack (staging|prod)'"
+      fi
     fi
   elif [ "$1" = "addstack" ]; then
     if [ $# -lt 2 ]; then

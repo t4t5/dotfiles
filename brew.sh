@@ -8,22 +8,17 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-brew tap thoughtbot/formulae
-brew install rcm
 brew install python
 brew install neovim
 brew install volta
 brew install tmux
 brew install shared-mime-info
 brew install libpq
-brew install rbenv
-eval "$(rbenv init -)"
 brew install ripgrep
 brew install ack
 brew install hub
 brew install imagemagick --with-webp
 brew install watchman
-brew install ngircd
 brew install postgresql
 brew install go
 brew install hugo
@@ -36,6 +31,13 @@ brew install antigen
 brew install rustup
 brew install ngrok/ngrok/ngrok
 brew install joshuto
+brew install just
+
+# Ruby stuff
+brew tap thoughtbot/formulae
+brew install rcm
+brew install rbenv
+eval "$(rbenv init -)"
 
 # pgcli
 brew tap dbcli/tap

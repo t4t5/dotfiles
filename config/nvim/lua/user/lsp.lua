@@ -161,7 +161,7 @@ vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 -- Constant: 21
 -- local kind_mapper = { 15, 2, 10, 6, 21, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14 }
 
-local compare = require("cmp.config.compare")
+-- local compare = require("cmp.config.compare")
 
 cmp.setup {
   preselect = cmp.PreselectMode.None, -- Don't preselect suggestions, it hijacks the enter key

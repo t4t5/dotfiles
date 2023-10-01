@@ -43,6 +43,12 @@ vim.api.nvim_create_autocmd(
   { pattern = { "*.nr" }, command = "set ft=noir syntax=rust" }
 )
 
+-- Caddyfile
+vim.api.nvim_create_autocmd(
+  { "BufRead", "BufNewFile" },
+  { pattern = { "*Caddyfile" }, command = "set ft=caddyfile syntax=nginx" }
+)
+
 -- mdx
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },

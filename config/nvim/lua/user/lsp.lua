@@ -60,6 +60,11 @@ local servers = {
   dockerls = {},
   eslint = {},
   jsonls = {},
+  cssls = {
+    css = {
+      validate = false
+    }
+  },
   yamlls = {
     keyOrdering = false,
   },

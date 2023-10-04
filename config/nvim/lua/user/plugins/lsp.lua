@@ -36,6 +36,7 @@ return {
           javascriptreact = { prettier },
           typescript = { prettier },
           typescriptreact = { prettier },
+          css = { prettier },
           astro = { prettier },
           prisma = default_formatters.prisma_fmt,
           lua = { stylua }

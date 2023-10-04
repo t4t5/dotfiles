@@ -44,8 +44,13 @@ vim.keymap.set('n', '<leader>t', "<cmd>NvimTreeToggle<cr>", {
   desc = "Toggle explorer (nvimtree)",
 })
 
+function OpenJoshuto()
+  vim.api.nvim_command("vsplit")
+  require 'joshuto'.joshuto()
+end
+
 -- Joshuto
-vim.keymap.set('n', '<leader>r', "<cmd>Joshuto<cr>", { desc = "Toggle explorer (Joshuto)" })
+vim.keymap.set('n', '<leader>r', OpenJoshuto, { desc = "Toggle explorer (Joshuto)" })
 
 -- Set group names for which-key:
 require("which-key").register({

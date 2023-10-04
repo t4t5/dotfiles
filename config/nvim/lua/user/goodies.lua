@@ -25,6 +25,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+vim.api.nvim_set_keymap('n', '<leader>p', "<Plug>UnconditionalPasteInlinedAfter",
+  { noremap = true, silent = true, desc = "Paste inline" })
+
 -- Set syntax highlighting for .env.local, .env.development, .env.production...
 vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")
 vim.api.nvim_command("au! BufNewFile,BufRead zshrc set filetype=sh")

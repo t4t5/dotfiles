@@ -77,6 +77,9 @@ require('lazy').setup({
     end
   },
 
+  -- So that you can paste inline with <leader>p
+  "inkarkat/vim-UnconditionalPaste",
+
   -- ChatGPT
   {
     "jackMort/ChatGPT.nvim",

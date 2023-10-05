@@ -4,7 +4,10 @@ recipe_name=$1
 recipe_dir="$HOME/dotfiles/recipes/$recipe_name"
 
 if [ -d "$recipe_dir" ]; then
-  cp -r $recipe_dir/* . 
+  if [ -d "$recipe_dir/template" ]; then
+    cp -r $recipe_dir/template/* . 
+  fi
+
   echo "Added $recipe_name files!"
 else
   echo "${RED}Error: Unknown recipe type: $1"

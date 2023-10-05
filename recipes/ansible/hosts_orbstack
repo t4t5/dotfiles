@@ -1,0 +1,2 @@
+[server]
+projects@orb ansible_ssh_user=root

@@ -1,0 +1,5 @@
+ansible-local:
+  ansible-playbook -i hosts_orbstack playbook.yml
+
+ansible-production:
+  ansible-playbook -i hosts_production playbook.yml

@@ -1,0 +1,8 @@
+- hosts: server
+  tasks:
+    - name: Ensure myfile.txt exists in /root directory
+      copy:
+        dest: /root/myfile.txt
+        content: ""              # empty file
+        force: no                # don't overwrite if already exists
+      become: yes

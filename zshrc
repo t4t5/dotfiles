@@ -76,8 +76,6 @@ source ~/.zshrc_pulumi_aliases
 
 alias s="source ~/.zshrc; tmux source-file ~/.tmux.conf; source ~/.zprofile; source ~/.zshenv"
 
-alias boom="~/dev/projects/boom/target/debug/boom"
-
 alias pythonserver="python -m http.server 8000"
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;

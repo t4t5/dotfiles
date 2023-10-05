@@ -1,5 +1,4 @@
 - link:
-    ~/.boom: boom
     ~/.config/coc: config/coc
     ~/.config/gitui: config/gitui
     ~/.config/nvim: config/nvim

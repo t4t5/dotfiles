@@ -1,8 +1,0 @@
-{
-  "name": "__name__",
-  "scripts": {
-    "node": "starknet-devnet",
-    "build": "npx hardhat starknet-compile",
-    "deploy": "npx hardhat starknet-deploy --starknet-network devnet"
-  }
-}

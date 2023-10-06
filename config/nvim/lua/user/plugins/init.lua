@@ -17,7 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins:
 require('lazy').setup({
   { import = 'user.plugins.lsp' },
-  { import = 'user.plugins.autoformat' },
   { import = 'user.plugins.lualine' },
   { import = 'user.plugins.git' },
   { import = 'user.plugins.ui' },

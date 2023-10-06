@@ -24,26 +24,29 @@ return {
   },
 
   {
-    'mhartington/formatter.nvim',
+    -- autoformatter
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local formatter = require("formatter")
-      local default_formatters = require("formatter.defaults")
-      local prettier = default_formatters.prettier
-      local stylua = default_formatters.stylua
-      formatter.setup({
-        filetype = {
-          javascript = { prettier },
-          javascriptreact = { prettier },
-          typescript = { prettier },
-          typescriptreact = { prettier },
-          css = { prettier },
-          astro = { prettier },
-          prisma = default_formatters.prisma_fmt,
-          lua = { stylua }
+      local conform = require("conform")
+
+      conform.setup({
+        format_on_save = {
+          lsp_fallback = true
+        },
+        formatters_by_ft = {
+          javascript = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescript = { "prettier" },
+          typescriptreact = { "prettier" },
+          css = { "prettier" },
+          astro = { "prettier" },
+          lua = { "stylua" }
         }
       })
     end
   },
+
   {
     "mfussenegger/nvim-lint",
     config = function()

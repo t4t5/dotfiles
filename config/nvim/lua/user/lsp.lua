@@ -105,43 +105,6 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
--- Start: CUSTOM LSP SERVERS
-
-local configs = require 'lspconfig.configs'
-
--- Noir:
-
-if not configs.noir_lsp then
-  configs.noir_lsp = {
-    default_config = {
-      cmd = { 'nargo', 'lsp' },
-      root_dir = lspconfig.util.root_pattern('.git'),
-      filetypes = { 'noir' },
-    },
-  }
-end
-lspconfig.noir_lsp.setup {}
-
-local ft = require('Comment.ft')
-ft.set('noir', '//%s')
-
--- Cairo:
-
-if not configs.cairo_lsp then
-  configs.cairo_lsp = {
-    default_config = {
-      cmd = { 'scarb', 'cairo-language-server' },
-      root_dir = lspconfig.util.root_pattern('.git'),
-      filetypes = { 'cairo' },
-    },
-  }
-end
-lspconfig.cairo_lsp.setup {}
-
-
--- End: custom LSP servers
-
-
 -- nvim-cmp setup
 local cmp = require 'cmp'
 local cmp_window = require "cmp.config.window"
@@ -224,14 +187,6 @@ vim.diagnostic.config {
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
-
--- autoformat on save (from mhartington/formatter.nvim)
-vim.cmd [[
-  augroup FormatAutogroup
-    autocmd!
-    autocmd BufWritePost * FormatWrite
-  augroup END
-]]
 
 -- Use better icons for diagnosics:
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }

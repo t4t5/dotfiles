@@ -1,1 +1,1 @@
-bunx create-next-app@latest --ts
+bunx create-next-app@latest . --ts

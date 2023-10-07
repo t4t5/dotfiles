@@ -1,12 +1,14 @@
 @default:
   just --list
 
-# Initialize a new project
-@create project-type:
-  cd {{invocation_directory()}} && \
-  ~/dotfiles/bin/create-project.sh {{project-type}}
+@killport port:
+  lsof -i tcp:{{port}} | awk 'NR!=1 {print $2}' | xargs kill;
+  echo "Killed port {{port}} ✅"
 
-# Add files to a project:
-@add recipe:
+addtoworkspace app library:
   cd {{invocation_directory()}} && \
-  ~/dotfiles/bin/add-recipe.sh {{recipe}}
+  pnpm --filter="{{app}}" add {{library}}
+
+server port:
+  cd {{invocation_directory()}} && \
+  python3 -m http.server {{port}}

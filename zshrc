@@ -1,7 +1,13 @@
-# Uncomment this and the bottom line to see what's taking time to load:
+# ---- START
+# Uncomment next line + last line of file
+# to see what's taking time to load:
+#
 # zmodload zsh/zprof
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Custom bin scripts:
+export PATH=$HOME/.bin:$PATH
 
 # ZSH
 export ZSH=$HOME/.oh-my-zsh
@@ -14,9 +20,6 @@ source $HOME/antigen.zsh
 antigen bundle Aloxaf/fzf-tab
 antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
-
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
-export FZF_CTRL_T_COMMAND='ag --nocolor -g ""'
 
 # Make autosuggestions visible
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#757575"
@@ -32,20 +35,11 @@ export PATH=$RBENV_ROOT/bin:$PATH
 alias gem='arch -arm64 gem'
 alias bundle='arch -arm64 bundle'
 
-alias pg=pgcli
-
-# Python
-alias python='python3'
-alias pip='pip3'
-
-# MRSK
-alias mrsk='docker run --rm -it -v $HOME/.ssh:/root/.ssh -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}/:/workdir  ghcr.io/mrsked/mrsk'
-
 # Lunarvim
 export PATH="$HOME/.local/bin:$PATH"
 
 # Rbenv
-eval "$(arch -arm64 rbenv init - zsh)"
+# eval "$(arch -arm64 rbenv init - zsh)"
 
 rbenv() {
   arch -arm64 rbenv "$@"
@@ -69,26 +63,6 @@ export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
-
-# Git commands:
-source ~/.zshrc_git_aliases
-source ~/.zshrc_pulumi_aliases
-
-alias s="source ~/.zshrc; tmux source-file ~/.tmux.conf; source ~/.zprofile; source ~/.zshenv"
-
-alias pythonserver="python -m http.server 8000"
-
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;
-killall Finder /System/Library/CoreServices/Finder.app'
-
-alias f='cd && cd "$(fd --type d | fzf)"'
-
-# Go to the "experiments" folder
-alias exp='cd ~/dev/projects/experiments'
-
-alias r='joshuto --output-file /tmp/joshutodir; LASTDIR=`cat /tmp/joshutodir`; cd "$LASTDIR"'
-
-alias gg="gitui"
 
 # Use tmux by default when using terminal
 if [ -z "$TMUX" ]; then
@@ -117,13 +91,17 @@ test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
 # FZF
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
+export FZF_CTRL_T_COMMAND='ag --nocolor -g ""'
+
+alias f='cd && cd "$(fd --type d | fzf)"'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ElasticSearch
 export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
 
-# Uncomment this and the first line in this file to see what's slow:
-# zprof
+# Volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
@@ -145,3 +123,8 @@ export PATH="$PATH:$HOME/.nargo/bin"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# ------ END
+# Uncomment next line + first line of file to see what's slow:
+#
+# zprof

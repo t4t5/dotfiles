@@ -1,4 +1,6 @@
-RED='\033[0;31m'
+#!/usr/bin/env bash
+
+RED=$'\033[0;31m'
 
 if [[ $1 == "next" ]]; then
   bunx create-next-app@latest --ts

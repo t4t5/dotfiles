@@ -14,3 +14,4 @@
     ~/.terminfo: terminfo
     ~/antigen.zsh: antigen.zsh
     ~/.justfile: justfile
+    ~/.bin: bin

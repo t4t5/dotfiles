@@ -1,4 +1,6 @@
-RED='\033[0;31m'
+#!/usr/bin/env bash
+
+RED=$'\033[0;31m'
 
 recipe_name=$1
 recipe_dir="$HOME/dotfiles/recipes/$recipe_name"

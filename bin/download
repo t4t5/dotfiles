@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# scp but simple: "download codespace /file.txt"
+
+if [ $# -lt 1 ]; then
+  echo "Missing argument: SSH host alias (configure in ~/.ssh/config)"
+elif [ $# -lt 2 ]; then
+  echo "Missing argument: path to file on remote server"
+else
+  filename="$2" | sed 's:.*/::'
+
+  # Using -r so that it supports directories:
+  scp -r root@"$1":"$2" ~/Downloads/"$filename"
+fi

@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+source ~/.zshrc;
+source ~/.zprofile;
+source ~/.zshenv;
+
+tmux source-file ~/.tmux.conf;
+
+echo "Environment reloaded!";

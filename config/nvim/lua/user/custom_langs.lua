@@ -21,7 +21,7 @@ vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary") -
 vim.api.nvim_command("au! BufNewFile,BufRead *Caddyfile set ft=caddyfile syntax=nginx")
 
 -- justfile
-vim.api.nvim_command("au! BufNewFile,BufRead justfile set ft=justfile syntax=make")
+vim.api.nvim_command("au! BufNewFile,BufRead *justfile set ft=justfile syntax=make")
 comment.set('justfile', '#%s')
 
 -- mdx

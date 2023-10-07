@@ -12,3 +12,6 @@ addtoworkspace app library:
 server port:
   cd {{invocation_directory()}} && \
   python3 -m http.server {{port}}
+
+edit:
+  nvim ~/.justfile

@@ -1,18 +1,5 @@
-#!/usr/bin/env bash
-
-RED=$'\033[0;31m'
+#!/usr/bin/env zsh
 
 recipe_name=$1
-recipe_dir="$HOME/dotfiles/recipes/$recipe_name"
 
-if [ -d "$recipe_dir" ]; then
-  if [ -d "$recipe_dir/template" ]; then
-    cp -r $recipe_dir/template/* . 
-  fi
-
-  echo "Added $recipe_name files!"
-else
-  echo "${RED}Error: Unknown recipe type: $1"
-  echo "Available options:"
-  echo "  - ansible"
-fi
+add_or_create add $recipe_name

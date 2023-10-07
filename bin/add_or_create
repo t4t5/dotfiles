@@ -1,0 +1,73 @@
+#!/usr/bin/env zsh
+
+GREEN=$'\033[0;32m'
+RED=$'\033[0;31m'
+
+action=$1
+all_recipes_dir="$HOME/dotfiles/recipes/$action"
+recipe_name=$2
+recipe_dir="$all_recipes_dir/$recipe_name"
+
+fzf_available_recipes() {
+  dirs=$(find "$all_recipes_dir" -maxdepth 1 -mindepth 1 -type d | while IFS= read -r dir; do
+    echo "$(basename "$dir")"
+  done)
+
+  selected_recipe=$(echo "$dirs" | fzf +m)
+
+  if [ ! $selected_recipe ]; then
+    exit 1
+  fi
+
+  recipe_name=$selected_recipe
+  recipe_dir="$all_recipes_dir/$recipe_name"
+
+  # Run script againw with new recipe_name + recipe_dir
+  main
+}
+
+list_available_recipes() {
+  echo "Available '$action' recipes:"
+  for dir in $(find $all_recipes_dir -maxdepth 1 -mindepth 1 -type d); do
+    base_dir=$(basename "$dir")
+    echo "  - $base_dir"
+  done
+}
+
+run_before_script() {
+  if [ -f "$recipe_dir/before.sh" ]; then
+    source $recipe_dir/before.sh
+  fi
+}
+
+run_after_script() {
+  if [ -f "$recipe_dir/after.sh" ]; then
+    source $recipe_dir/after.sh
+  fi
+}
+
+copy_template() {
+  if [ -d "$recipe_dir/template" ]; then
+    cp -r $recipe_dir/template/* . 
+  fi
+}
+
+main() {
+  if [ ! $recipe_name ]; then
+    fzf_available_recipes
+    exit 1
+  fi
+
+  if [ ! -d "$recipe_dir" ]; then
+    echo "❌ ${RED}Error: Unknown recipe type '$recipe_name'\n"
+    list_available_recipes
+    exit 1
+  fi
+
+  run_before_script && \
+  copy_template && \
+  run_after_script && \
+  echo "✅ ${GREEN}Ran '$action $recipe_name'"
+}
+
+main

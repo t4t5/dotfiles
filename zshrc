@@ -4,10 +4,14 @@
 #
 # zmodload zsh/zprof
 
+# Default PATH:
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Custom bin scripts:
 export PATH=$HOME/.bin:$PATH
+
+# Scarb, Fig... etc.
+export PATH="$HOME/.local/bin:$PATH"
 
 # ZSH
 export ZSH=$HOME/.oh-my-zsh
@@ -16,6 +20,7 @@ HYPHEN_INSENSITIVE="true"
 source $ZSH/oh-my-zsh.sh
 ZSH_DISABLE_COMPFIX="true"
 
+# Load antigen plugins:
 source $HOME/antigen.zsh
 antigen bundle Aloxaf/fzf-tab
 antigen bundle zsh-users/zsh-autosuggestions
@@ -35,9 +40,6 @@ export PATH=$RBENV_ROOT/bin:$PATH
 alias gem='arch -arm64 gem'
 alias bundle='arch -arm64 bundle'
 
-# Lunarvim
-export PATH="$HOME/.local/bin:$PATH"
-
 # Rbenv
 # eval "$(arch -arm64 rbenv init - zsh)"
 
@@ -47,9 +49,6 @@ rbenv() {
 
 # Postgres
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
-
-# ngircd
-export PATH="/usr/local/sbin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"

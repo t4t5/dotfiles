@@ -9,7 +9,6 @@
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
     ~/.zshenv: zshenv
-    ~/.terminfo: terminfo
     ~/antigen.zsh: antigen.zsh
     ~/.justfile: justfile
     ~/.bin: bin

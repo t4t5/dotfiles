@@ -19,3 +19,24 @@ alias pip='pip3'
 
 # Postgres CLI
 alias pg=pgcli
+
+# Used in create/add scripts:
+set_github_secret_from_op() {
+  key=$1
+  op_secret_ref=$2
+
+  export $key="$op_secret_ref"
+  value="$(op run --no-masking -- printenv $key)"
+
+  gh secret set $key --body $value
+}
+
+set_github_variable_from_op() {
+  key="TMP_$1"
+  op_secret_ref=$2
+
+  export $key="$op_secret_ref"
+  value="$(op run --no-masking -- printenv $key)"
+
+  gh variable set $key --body $value
+}

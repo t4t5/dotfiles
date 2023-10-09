@@ -1,0 +1,51 @@
+name: Deploy to App runner
+
+# Only triggered when the previous workflow is done
+# (i.e. when Docker image has been built + uploaded)
+on:
+  workflow_run:
+    workflows: ["Upload image to ECR"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS credentials
+        id: aws-credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "eu-central-1"
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Retrieve image from ECR
+        id: retrieve-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ vars.AWS_ECR_REPO_NAME }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Deploy to App Runner
+        id: deploy-apprunner
+        uses: awslabs/amazon-app-runner-deploy@main
+        with:
+          service: app-runner-git-deploy-service
+          image: ${{ steps.retrieve-image.outputs.image }}
+          access-role-arn: ${{ secrets.AWS_APPRUNNER_ROLE_ARN }}
+          region: "eu-central-1"
+          cpu : 1
+          memory : 2
+          port: 3000
+          wait-for-service-stability-seconds: 1200
+
+      - name: App Runner output
+        run: echo "App runner output ${{ steps.deploy-apprunner.outputs.service-url }}"

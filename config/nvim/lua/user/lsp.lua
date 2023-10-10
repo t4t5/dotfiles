@@ -49,7 +49,11 @@ local lspconfig = require 'lspconfig'
 -- You can see which ones are installed with :Mason
 -- You can also install more with :LspInstall <server>
 local servers = {
-  rust_analyzer = {},
+  rust_analyzer = {
+    diagnostics = {
+      disabled = { "inactive-code" },
+    }
+  },
   tsserver = {},
   tailwindcss = {
     filetypes = { 'typescriptreact', 'astro' }

@@ -9,7 +9,7 @@ keymap = [
   { keys = ["Q"], command = "close_tab" },
   { keys = ["q"], command = "quit --output-current-directory" },
   { keys = ["ctrl+c"], command = "quit --output-current-directory" },
-  { keys = ["escape"], command = "close_tab" },
+  { keys = ["escape"], command = "quit --output-current-directory" },
 
   { keys = ["R"], command = "reload_dirlist" },
   { keys = ["z", "h"], command = "toggle_hidden" },

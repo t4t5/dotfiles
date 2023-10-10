@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-joshuto --output-file /tmp/joshutodir;
-LASTDIR=`cat /tmp/joshutodir`;
-cd "$LASTDIR";

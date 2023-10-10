@@ -1,6 +1,9 @@
 # Reload zsh + tmux config:
 alias s="reload"
 
+# Needs alias in order to overwrite built-in "r" command:
+alias r="$HOME/.bin/r"
+
 # use "just server" instead?
 alias pythonserver="python3 -m http.server 8000"
 

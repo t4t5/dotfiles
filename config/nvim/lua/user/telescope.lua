@@ -28,7 +28,8 @@ end
 vim.keymap.set('n', '<C-b>', ShowBuffers, { desc = '[ ] Find existing buffers' })
 
 -- Show files:
-vim.keymap.set('n', '<C-f>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<C-f>', ':lua require("telescope.builtin").find_files({ hidden = true })<cr>',
+  { desc = '[S]earch [F]iles' })
 
 -- Search by grep:
 vim.keymap.set('n', '<C-p>', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })

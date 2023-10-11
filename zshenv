@@ -23,7 +23,7 @@ alias python='python3'
 alias pip='pip3'
 
 # Postgres CLI
-alias pg=pgcli
+alias pg='pgcli postgres'
 
 # Used in create/add scripts:
 set_github_secret_from_op() {

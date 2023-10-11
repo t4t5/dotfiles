@@ -1,59 +1,5 @@
 #!/usr/bin/env bash
 
-if [ "$1" = "ch" ]; then
-  if [ -z "$2" ]; then
-    g_fuzzy_checkout
-  elif [ "$2" = "-b" ]; then
-    git checkout -b "${@:3}" && git branch -u "origin/${@:3}"
-  else
-    git checkout "${@:2}"
-  fi
-elif [ "$1" = "add" ]; then
-  if [ -z "$2" ]; then
-    g_fuzzy_add
-  else
-    git add "${@:2}"
-  fi
-elif [ "$1" = "de" ]; then
-  g_fuzzy_delete_branch
-elif [ "$1" = "br" ]; then
-  g_fuzzy_branch
-elif [ "$1" = "fu" ] || [ "$1" = "fx" ]; then
-  g_fuzzy_fixup
-elif [ "$1" = "rb" ]; then
-  g_fuzzy_rebase
-elif [ "$1" = "glog" ] || [ "$1" = "glg" ]; then
-  g_fuzzy_log
-elif [ "$1" = "gref" ] || [ "$1" = "rf" ]; then
-  g_fuzzy_reflog
-elif [ "$1" = "st" ]; then
-  g_fuzzy_stash
-elif [ "$1" = "am" ]; then
-  git commit --amend --reset-author
-elif [ "$1" = "up" ]; then
-  branch=$(git rev-parse --abbrev-ref HEAD)
-  git branch --set-upstream-to=origin/$(echo "$branch") $(echo "$branch")
-elif [ "$1" = "rename" ]; then
-  branch=$(git rev-parse --abbrev-ref HEAD)
-  git branch -m $(echo "$branch") $(echo "$2")
-elif [ "$1" = "create" ]; then
-  if [ -f "./package.json" ]; then
-    project_name=$(node -p "require('./package.json').name")
-  else
-    project_name=$(basename "$PWD")
-  fi
-  echo -n "Desired github repo name [$project_name]: "
-  read -r name
-  name=${name:-$project_name}
-  gh repo create "$name" --private --source=. --remote=upstream
-elif [ "$1" = "dnew" ]; then
-  for next in $( git ls-files --others --exclude-standard ); do git --no-pager diff --no-index /dev/null $next; done;
-elif [ $# -gt 0 ]; then
-  git "$@"
-else
-  git status
-fi
-
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
 }
@@ -146,3 +92,57 @@ g_fuzzy_stash() {
     fi
   done
 }
+
+if [ "$1" = "ch" ]; then
+  if [ -z "$2" ]; then
+    g_fuzzy_checkout
+  elif [ "$2" = "-b" ]; then
+    git checkout -b "${@:3}" && git branch -u "origin/${@:3}"
+  else
+    git checkout "${@:2}"
+  fi
+elif [ "$1" = "add" ]; then
+  if [ -z "$2" ]; then
+    g_fuzzy_add
+  else
+    git add "${@:2}"
+  fi
+elif [ "$1" = "de" ]; then
+  g_fuzzy_delete_branch
+elif [ "$1" = "br" ]; then
+  g_fuzzy_branch
+elif [ "$1" = "fu" ] || [ "$1" = "fx" ]; then
+  g_fuzzy_fixup
+elif [ "$1" = "rb" ]; then
+  g_fuzzy_rebase
+elif [ "$1" = "glog" ] || [ "$1" = "glg" ]; then
+  g_fuzzy_log
+elif [ "$1" = "gref" ] || [ "$1" = "rf" ]; then
+  g_fuzzy_reflog
+elif [ "$1" = "st" ]; then
+  g_fuzzy_stash
+elif [ "$1" = "am" ]; then
+  git commit --amend --reset-author
+elif [ "$1" = "up" ]; then
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  git branch --set-upstream-to=origin/$(echo "$branch") $(echo "$branch")
+elif [ "$1" = "rename" ]; then
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  git branch -m $(echo "$branch") $(echo "$2")
+elif [ "$1" = "create" ]; then
+  if [ -f "./package.json" ]; then
+    project_name=$(node -p "require('./package.json').name")
+  else
+    project_name=$(basename "$PWD")
+  fi
+  echo -n "Desired github repo name [$project_name]: "
+  read -r name
+  name=${name:-$project_name}
+  gh repo create "$name" --private --source=. --remote=upstream
+elif [ "$1" = "dnew" ]; then
+  for next in $( git ls-files --others --exclude-standard ); do git --no-pager diff --no-index /dev/null $next; done;
+elif [ $# -gt 0 ]; then
+  git "$@"
+else
+  git status
+fi

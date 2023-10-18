@@ -20,6 +20,9 @@ vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary") -
 -- Caddyfile
 vim.api.nvim_command("au! BufNewFile,BufRead *Caddyfile set ft=caddyfile syntax=nginx")
 
+-- tmux.conf
+vim.api.nvim_command("au! BufNewFile,BufRead tmux.conf set ft=tmux syntax=tmux")
+
 -- justfile
 vim.api.nvim_command("au! BufNewFile,BufRead *justfile set ft=justfile syntax=make")
 comment.set('justfile', '#%s')

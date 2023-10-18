@@ -1,4 +1,4 @@
-@default:
+@list:
   just --list
 
 @kill port:

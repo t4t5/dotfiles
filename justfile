@@ -15,3 +15,6 @@ server port:
 
 edit:
   nvim ~/.justfile
+
+ngrok port:
+  ngrok http --domain=$(NGROK_URL="op://Personal/ngrok/ngrok domain" op run --no-masking -- printenv NGROK_URL) {{port}}

@@ -52,6 +52,16 @@ copy_template() {
   fi
 }
 
+create_project_if_needed() {
+  if [ $action = "create" ]; then
+    echo "⭐️ Project name (lowercase + dashes):"
+    read -r project_name
+
+    mkdir $project_name
+    cd $project_name
+  fi
+}
+
 main() {
   if [ ! $recipe_name ]; then
     fzf_available_recipes
@@ -64,6 +74,8 @@ main() {
     exit 1
   fi
 
+
+  create_project_if_needed && \
   run_before_script && \
   copy_template && \
   run_after_script && \

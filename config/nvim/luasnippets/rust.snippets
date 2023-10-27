@@ -1,2 +1,11 @@
 snippet derive
 	#[derive(Debug)]
+
+snippet test
+	#[cfg(test)]
+	mod tests {
+		use super::*;
+
+		#[test]
+		fn test_this() {}
+	}

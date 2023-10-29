@@ -2,8 +2,35 @@
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+local function open_url(url)
+  local command = 'open'
+  vim.fn.jobstart(command .. ' ' .. url, { detach = true })
+end
+
 vim.api.nvim_set_keymap('n', '<leader>e', [[:lua YankDiagnosticError()<CR>]],
   { noremap = true, silent = true, desc = "Copy error" })
+
+vim.api.nvim_set_keymap('n', '<leader>E', [[:lua SendDiagnosticErrorToChatpGpt()<CR>]],
+  { noremap = true, silent = true, desc = "Send error to ChatGPT" })
+
+function SendDiagnosticErrorToChatpGpt()
+  -- Copy error:
+  YankDiagnosticError()
+  local error_text = vim.fn.getreg('"')
+
+  -- Copy code:
+  vim.api.nvim_command('%yank')
+  local full_code = vim.fn.getreg('"')
+
+  -- Create prompt:
+  local prompt = "This is my code:\n\n" .. full_code .. "\n\nHere's the error I get:\n\n" .. error_text
+
+  -- Copy the prompt to the clipboard
+  vim.fn.setreg('"', prompt)
+
+  -- Finish yanking (wait 0.5s) then open ChatGPT:
+  vim.defer_fn(function() open_url('https://chat.openai.com') end, 500)
+end
 
 function YankDiagnosticError()
   vim.diagnostic.open_float()
@@ -25,6 +52,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- Paste inline with <leader>p:
 vim.api.nvim_set_keymap('n', '<leader>p', "<Plug>UnconditionalPasteInlinedAfter",
   { noremap = true, silent = true, desc = "Paste inline" })
 

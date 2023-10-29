@@ -130,17 +130,26 @@ vim.keymap.set('i', '<C-c>', require("cmp").complete, { expr = true, noremap = t
 -- set colour of Copilot icon:
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
--- Check out what number each kind maps to:
--- https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.languageserver.protocol.completionitemkind?view=visualstudiosdk-2022
--- The higher priority you want, the earlier it should be in the list:
--- Method: 2
--- Property: 10
--- Variable: 6
--- Snippet: 15
--- Constant: 21
--- local kind_mapper = { 15, 2, 10, 6, 21, 3, 4, 5, 7, 1, 8, 9, 11, 12, 13, 14 }
-
--- local compare = require("cmp.config.compare")
+-- Preview tailwind colors:
+local function tailwind_color_preview(entry, vim_item)
+  if vim_item.kind == 'Color' and entry.completion_item.documentation then
+    local _, _, r, g, b = string.find(entry.completion_item.documentation, '^rgb%((%d+), (%d+), (%d+)')
+    if r then
+      local color = string.format('%02x', r) .. string.format('%02x', g) .. string.format('%02x', b)
+      local group = 'Tw_' .. color
+      if vim.fn.hlID(group) < 1 then
+        vim.api.nvim_set_hl(0, group, { fg = '#' .. color })
+      end
+      vim_item.kind = "■" -- or "⬤" or anything
+      vim_item.kind_hl_group = group
+      return vim_item
+    end
+  end
+  -- vim_item.kind = icons[vim_item.kind] and (icons[vim_item.kind] .. vim_item.kind) or vim_item.kind
+  -- or just show the icon
+  vim_item.kind = lspkind.symbolic(vim_item.kind) and lspkind.symbolic(vim_item.kind) or vim_item.kind
+  return vim_item
+end
 
 cmp.setup {
   preselect = cmp.PreselectMode.None, -- Don't preselect suggestions, it hijacks the enter key
@@ -156,9 +165,6 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
-    -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    -- ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
   },
   sources = {
@@ -172,21 +178,9 @@ cmp.setup {
       maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
       symbol_map = { Copilot = "" },
+      before = tailwind_color_preview,
     })
   },
-  -- sorting = {
-  --   comparators = {
-  --     compare.exact,
-  --     function(entry1, entry2)
-  --       local kind1 = kind_mapper[entry1:get_kind()] or 0
-  --       local kind2 = kind_mapper[entry2:get_kind()] or 0
-  --
-  --       if kind1 < kind2 then
-  --         return true
-  --       end
-  --     end
-  --   },
-  -- },
 }
 
 -- Show bordered window for errors:

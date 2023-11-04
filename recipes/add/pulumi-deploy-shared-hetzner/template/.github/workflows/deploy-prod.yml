@@ -1,0 +1,62 @@
+name: Production deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:  
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:      
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          
+      - name: Configure AWS credentials
+        id: aws-credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "eu-central-1"
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1        
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ vars.AWS_ECR_REPO_NAME }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image:$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "${{ secrets.HETZNER_SSH_KEY }}" > private_key
+          chmod 600 private_key
+
+      - name: SSH into Hetzner and run container
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ vars.AWS_ECR_REPO_NAME }}
+          IMAGE_TAG: ${{ github.sha }}
+          HETZNER_SERVER_IP: ${{ vars.HETZNER_SERVER_IP }}
+          PORT_LOCAL: 3000
+          PORT_REMOTE: 30XX
+        run: |
+          ssh -i private_key -o StrictHostKeyChecking=no root@$HETZNER_SERVER_IP "
+            docker login -u AWS -p $(aws ecr get-login-password --region 'eu-central-1') $ECR_REGISTRY
+            docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+            docker ps -q -f name=$ECR_REPOSITORY && docker stop $ECR_REPOSITORY && docker rm $ECR_REPOSITORY || true
+
+            docker run -d --name $ECR_REPOSITORY --restart always -p $PORT_REMOTE:$PORT_LOCAL $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          "

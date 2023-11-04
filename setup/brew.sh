@@ -33,6 +33,7 @@ brew install ngrok/ngrok/ngrok
 brew install joshuto
 brew install just
 brew install 1password-cli
+brew install solana
 
 # Ruby stuff
 brew tap thoughtbot/formulae

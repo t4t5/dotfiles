@@ -104,9 +104,6 @@ export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
-# Solana
-export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
-
 # Starklings
 export PATH="$PATH:$HOME/.starklings/dist/starklings"
 

@@ -22,3 +22,24 @@ snippet trpc-mutation
     trpc.user.addEmail.useMutation({
       onSuccess: () => {},
     })
+
+snippet rct-context-provider
+	import { ReactNode, createContext, useContext } from "react";
+
+	interface ${1:Provider}ContextType {
+		thing: string;
+	}
+
+	const ${1:Provider}Context = createContext({} as ${1:Provider}ContextType);
+
+	export function use${1:Provider}() {
+		return useContext(${1:Provider}Context);
+	}
+
+	export function ${1:Provider}Provider({ children }: { children: ReactNode }) {
+		const value = { thing: "hello!" };
+
+		return (
+			<${1:Provider}Context.Provider value={value}>{children}</${1:Provider}Context.Provider>
+		);
+	}

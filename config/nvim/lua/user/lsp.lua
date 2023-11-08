@@ -30,6 +30,24 @@ vim.keymap.set('n', '<leader>aj', vim.diagnostic.goto_next, { desc = 'Go to next
 vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
 vim.keymap.set('n', '<leader>aa', vim.lsp.buf.code_action, { desc = 'Code Actions' })
 
+local function yank_hover_content()
+  local orig_win = vim.api.nvim_get_current_win()
+  -- Find the floating window
+  for _, win in pairs(vim.api.nvim_list_wins()) do
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= '' then -- This identifies a floating window
+      vim.api.nvim_set_current_win(win)
+      vim.cmd 'normal! ggVGy'
+      vim.api.nvim_set_current_win(orig_win)
+      vim.notify('Hover content yanked to clipboard')
+      return
+    end
+  end
+  vim.notify('No hover window found')
+end
+
+vim.keymap.set('n', '<leader>y', yank_hover_content, { desc = 'Yank Hover Content' })
+
 -- go to definition:
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
 

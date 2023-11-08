@@ -38,7 +38,7 @@ jobs:
         id: deploy-apprunner
         uses: awslabs/amazon-app-runner-deploy@main
         with:
-          service: app-runner-git-deploy-service
+          service: ${{ vars.AWS_ECR_REPO_NAME }}
           image: ${{ steps.retrieve-image.outputs.image }}
           access-role-arn: ${{ secrets.AWS_APPRUNNER_ROLE_ARN }}
           region: "eu-central-1"

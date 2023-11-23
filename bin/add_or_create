@@ -22,7 +22,7 @@ fzf_available_recipes() {
   recipe_name=$selected_recipe
   recipe_dir="$all_recipes_dir/$recipe_name"
 
-  # Run script againw with new recipe_name + recipe_dir
+  # Run script again with new recipe_name + recipe_dir
   main
 }
 

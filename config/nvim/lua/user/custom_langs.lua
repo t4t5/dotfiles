@@ -27,6 +27,8 @@ vim.api.nvim_command("au! BufNewFile,BufRead tmux.conf set ft=tmux syntax=tmux")
 vim.api.nvim_command("au! BufNewFile,BufRead *justfile set ft=justfile syntax=make")
 comment.set('justfile', '#%s')
 
+vim.api.nvim_command("au! BufNewFile,BufRead *config set ft=sshconfig syntax=sshconfig")
+
 -- mdx
 vim.api.nvim_command("au! BufNewFile,BufRead *.mdx set ft=markdown")
 

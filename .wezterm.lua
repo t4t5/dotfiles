@@ -10,12 +10,12 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
--- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
+-- User settings:
 config.color_scheme = 'tokyonight_moon'
 config.enable_tab_bar = false
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
+config.font_size = 13
 config.window_padding = {
   top = 55,
   bottom = 0,

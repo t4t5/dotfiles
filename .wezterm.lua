@@ -24,6 +24,7 @@ config.window_padding = {
 }
 -- Make option-{x} work as expected:
 config.send_composed_key_when_left_alt_is_pressed = true
+config.disable_default_key_bindings = true
 
 -- and finally, return the configuration to wezterm
 return config

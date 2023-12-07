@@ -26,5 +26,14 @@ config.window_padding = {
 config.send_composed_key_when_left_alt_is_pressed = true
 config.disable_default_key_bindings = true
 
+local act = wezterm.action
+
+config.keys = {
+  { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
+  { key = "=", mods = "CTRL", action = act.IncreaseFontSize },
+  { key = "v", mods = "CMD",  action = act.PasteFrom("Clipboard") },
+  { key = "c", mods = "CMD",  action = act.CopyTo("Clipboard") },
+}
+
 -- and finally, return the configuration to wezterm
 return config

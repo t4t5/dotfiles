@@ -6,9 +6,9 @@ snippet rct-component
 snippet rct-component-with-children
 	import { type ReactNode } from "react";
 
-	export default function ${1:ComponentName}({ children }: { children: ReactNode }) {
+	export default function ${1:ComponentName}({ children, className }: { children: ReactNode, className?: string }) {
 		return (
-			<div>
+			<div className={className}>
 				{children}
 			</div>
 		);

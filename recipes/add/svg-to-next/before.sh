@@ -1,1 +1,1 @@
-bun add @svgr/webpack
+pnpm add @svgr/webpack

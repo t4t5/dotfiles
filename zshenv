@@ -15,6 +15,8 @@ alias rust="evcxr"
 # Go to the "experiments" folder
 alias exp='cd ~/dev/projects/experiments'
 
+alias ord='~/dev/projects/ordinals/ord-api/target/debug/ord'
+
 # git UI
 alias gg="gitui"
 

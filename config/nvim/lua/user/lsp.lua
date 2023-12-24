@@ -8,6 +8,11 @@ require('nvim-treesitter.configs').setup {
   -- Autoinstall languages that are not installed:
   auto_install = true,
 
+  -- nvim-ts-autotag
+  autotag = {
+    enable = true,
+  },
+
   highlight = { enable = true, disable = { "bash" } },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {

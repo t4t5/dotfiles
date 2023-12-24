@@ -79,6 +79,20 @@ return {
     build = ':TSUpdate',
   },
 
+  -- autoclosing tags
+  {
+    'windwp/nvim-ts-autotag',
+    ft = {
+      'javascript',
+      'typescript',
+      'javascriptreact',
+      'typescriptreact',
+    },
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
+  },
+
   -- List references + definitions:
   {
     "dnlhc/glance.nvim",

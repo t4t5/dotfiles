@@ -23,6 +23,11 @@ vim.opt.mouse = ""
 -- wrap long lines
 vim.opt.wrap = true
 
+-- don't use syntax highlighting for very wide files
+-- (e.g. minified JSON files)
+vim.opt.synmaxcol = 500
+vim.api.nvim_command("syntax sync minlines=256")
+
 -- wordmotion
 -- make sure cW doesn't include special chars
 vim.g.wordmotion_spaces = "['_']"

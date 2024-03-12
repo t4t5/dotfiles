@@ -1,5 +1,5 @@
-@list:
-  just --list
+default:
+  @just --choose
 
 @kill port:
   lsof -i tcp:{{port}} | awk 'NR!=1 {print $2}' | xargs kill;

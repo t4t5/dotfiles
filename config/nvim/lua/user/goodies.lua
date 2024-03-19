@@ -2,6 +2,16 @@
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Show current file in finder:
+
+vim.cmd [[
+  command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
+]]
+
+vim.keymap.set('n', '<leader>o', ':Silent open %:h<cr>', { noremap = true, silent = true })
+
+-- Copy error messages:
+
 local function open_url(url)
   local command = 'open'
   vim.fn.jobstart(command .. ' ' .. url, { detach = true })

@@ -55,6 +55,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Anchor (Solana)
 export PATH="$HOME/.avm/bin:$PATH"
+# Solana CLI:
+export PATH="~/.local/share/solana/install/active_release/bin:$PATH"
 
 # OpenSSL
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"

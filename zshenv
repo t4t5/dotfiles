@@ -17,6 +17,8 @@ alias exp='cd ~/dev/projects/experiments'
 
 alias ord='~/dev/projects/ordinals/ord-api/target/debug/ord'
 
+alias ls='eza -a'
+
 # git UI
 alias gg="gitui"
 

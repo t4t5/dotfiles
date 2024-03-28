@@ -78,6 +78,10 @@ vim.api.nvim_create_autocmd(
 -- no newline at end of hbs files:
 vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary")
 
+-- write file without triggering autocommands (like formatting):
+vim.api.nvim_set_keymap('n', '<leader>w', [[:noautocmd w<cr>]],
+  { noremap = true, silent = true, desc = "Write without formatting" })
+
 -- noir
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },

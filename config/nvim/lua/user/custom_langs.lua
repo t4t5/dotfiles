@@ -61,3 +61,31 @@ if not configs.cairo_lsp then
 end
 
 lspconfig.cairo_lsp.setup {}
+
+-- FuelVM:
+if not configs.sway_lsp then
+  configs.sway_lsp = {
+    default_config = {
+      cmd = { 'forc-lsp' },
+      filetypes = { 'sway' },
+      init_options = {
+        logging = { level = 'trace' }
+      },
+      root_dir = function(fname)
+        return lspconfig.util.find_git_ancestor(fname)
+      end,
+      settings = {},
+    },
+  }
+end
+
+lspconfig.sway_lsp.setup {}
+
+-- not working:
+-- require('conform').formatters.sway = {
+--   inherit = false,
+--   -- command = 'echo',
+--   -- args = { 'hello', 'world' },
+--   command = 'forc',
+--   args = { 'fmt', '-f', '$FILENAME' },
+-- }

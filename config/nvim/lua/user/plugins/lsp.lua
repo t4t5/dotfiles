@@ -41,7 +41,8 @@ return {
           typescriptreact = { "prettier" },
           css = { "prettier" },
           astro = { "prettier" },
-          lua = { "stylua" }
+          lua = { "stylua" },
+          sway = { "sway" },
         }
       })
     end

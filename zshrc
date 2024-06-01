@@ -126,3 +126,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Uncomment next line + first line of file to see what's slow:
 #
 # zprof
+export PATH="$HOME/.fuelup/bin:$PATH"

@@ -9,3 +9,38 @@ snippet test
 		#[test]
 		fn test_this() {}
 	}
+
+snippet impl_display_trait
+	impl fmt::Display for Hash {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.to_string())
+    }
+	}
+
+snippet clap_args
+	use clap::{Args, Parser, Subcommand};
+
+	#[derive(Debug, Parser)]
+	pub struct ProgramArgs {
+			#[command(subcommand)]
+			entity_type: EntityType,
+	}
+
+	#[derive(Subcommand, Debug)]
+	enum EntityType {
+			#[command(about = "Start or stop the Bitcoin node")]
+			Node(NodeCommand),
+	}
+
+	#[derive(Debug, Args)]
+	struct NodeCommand {
+			#[command(subcommand)]
+			node_subcommand: NodeSubcommand,
+	}
+
+	#[derive(Debug, Subcommand)]
+	enum NodeSubcommand {
+			#[command(about = "Start the Bitcoin node")]
+			Start,
+	}
+

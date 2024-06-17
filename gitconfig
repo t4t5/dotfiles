@@ -1,6 +1,7 @@
 [user]
   name = Tristan (t4t5)
   email = t4t5@hey.com
+	signingkey = 77CE1D06193A3BDE
 
 [core]
   editor = nvim
@@ -44,6 +45,7 @@
 [commit]
   template = ~/.gitmessage
 	verbose = true
+	gpgsign = true
 [merge "merge-structure-sql"]
 	name = Rails structure.sql merge driver
 	driver = git-merge-structure-sql %A %O %B

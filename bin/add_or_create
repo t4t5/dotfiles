@@ -48,7 +48,7 @@ run_after_script() {
 
 copy_template() {
   if [ -d "$recipe_dir/template" ]; then
-    rsync -av $recipe_dir/template/ .
+    rsync -av --ignore-existing $recipe_dir/template/ .
   fi
 }
 

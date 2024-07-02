@@ -20,19 +20,21 @@ require("telescope").load_extension("ui-select")
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
+local builtin = require('telescope.builtin')
+
 function ShowBuffers()
-  require('telescope.builtin').buffers({ sort_mru = true, ignore_current_buffer = true })
+  builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
 end
 
 -- Show buffers:
 vim.keymap.set('n', '<C-b>', ShowBuffers, { desc = '[ ] Find existing buffers' })
 
 -- Show files:
-vim.keymap.set('n', '<C-f>', ':lua require("telescope.builtin").find_files({ hidden = true })<cr>',
+vim.keymap.set('n', '<C-f>', function() builtin.find_files({ hidden = true }) end,
   { desc = '[S]earch [F]iles' })
 
 -- Search by grep:
-vim.keymap.set('n', '<C-p>', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<C-p>', builtin.live_grep, { desc = '[S]earch by [G]rep' })
 
 -- vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 

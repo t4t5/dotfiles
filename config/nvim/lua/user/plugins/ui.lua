@@ -8,7 +8,7 @@ return {
   },
 
   -- telescope for code action
-  { "nvim-telescope/telescope-ui-select.nvim" },
+  { "malbertzard/telescope-ui-select.nvim" },
 
   -- Bufferline:
   {
@@ -19,7 +19,7 @@ return {
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',                   opts = {} },
+  { 'folke/which-key.nvim',                opts = {} },
 
   -- Show color preview for hex strings
   {
@@ -32,10 +32,8 @@ return {
   -- Show indentation guides (┊)
   {
     'lukas-reineke/indent-blankline.nvim',
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
+    main = "ibl",
+    opts = {},
   },
 
   {

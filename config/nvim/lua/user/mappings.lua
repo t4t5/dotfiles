@@ -45,7 +45,8 @@ vim.keymap.set('n', '<leader>t', "<cmd>NvimTreeToggle<cr>", {
 })
 
 -- Joshuto
-vim.keymap.set('n', '<leader>r', "<cmd>Joshuto<cr>", { desc = "Toggle explorer (Joshuto)" })
+vim.keymap.set('n', '<leader>r', function() require("joshuto").joshuto({ edit_in_tab = true }) end,
+  { desc = "Toggle explorer (Joshuto)" })
 
 -- Set group names for which-key:
 require("which-key").register({

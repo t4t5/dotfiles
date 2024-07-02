@@ -18,3 +18,6 @@ edit:
 
 ngrok port:
   ngrok http --domain=$(NGROK_URL="op://Personal/ngrok/ngrok domain" op run --no-masking -- printenv NGROK_URL) {{port}}
+
+bitcoin-regtest:
+  bitcoind -regtest -rpcuser=user -rpcpassword=password

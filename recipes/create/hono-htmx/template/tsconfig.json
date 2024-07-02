@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-jsx",
+    "types": [
+      "typed-htmx"
+    ],
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable"
+    ],
+    "jsxImportSource": "hono/jsx",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}

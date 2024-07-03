@@ -8,7 +8,13 @@ return {
   },
 
   -- telescope for code action
-  { "malbertzard/telescope-ui-select.nvim" },
+  -- { "malbertzard/telescope-ui-select.nvim" },
+
+  -- better ui for select etc
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
 
   -- Bufferline:
   {
@@ -19,7 +25,7 @@ return {
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',                opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
 
   -- Show color preview for hex strings
   {

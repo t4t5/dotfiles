@@ -15,7 +15,7 @@ require('telescope').setup {
 }
 
 -- Use telescope UI for code actions:
-require("telescope").load_extension("ui-select")
+-- require("telescope").load_extension("ui-select")
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')

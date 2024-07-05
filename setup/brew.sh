@@ -34,6 +34,7 @@ brew install joshuto
 brew install just
 brew install 1password-cli
 brew install jq
+brew install git-delta
 
 # Ruby stuff
 brew tap thoughtbot/formulae

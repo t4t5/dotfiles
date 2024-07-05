@@ -20,6 +20,9 @@ HYPHEN_INSENSITIVE="true"
 source $ZSH/oh-my-zsh.sh
 ZSH_DISABLE_COMPFIX="true"
 
+# Theme for cat alternative (bat):
+export BAT_THEME="OneHalfDark"
+
 # Load antigen plugins:
 source $HOME/antigen.zsh
 antigen bundle Aloxaf/fzf-tab

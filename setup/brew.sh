@@ -21,7 +21,7 @@ brew install imagemagick --with-webp
 brew install watchman
 brew install postgresql
 brew install go
-brew install hugo
+# brew install hugo
 brew install gnu-sed
 brew install highlight
 brew install bat
@@ -43,8 +43,8 @@ brew install rbenv
 eval "$(rbenv init -)"
 
 # pgcli
-brew tap dbcli/tap
-brew install pgcli
+# brew tap dbcli/tap
+# brew install pgcli
 
 # solc for Solidity
 brew tap ethereum/ethereum
@@ -53,8 +53,8 @@ brew install solidity
 # For M1 macs, cocoapods need to be installed from Brew:
 brew install cocoapods
 
-brew tap mongodb/brew
-brew install mongodb-community
+# brew tap mongodb/brew
+# brew install mongodb-community
 
 pip3 install ranger-fm pynvim
 pip install github-clone

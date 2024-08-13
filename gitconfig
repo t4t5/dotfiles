@@ -57,7 +57,7 @@
 [commit]
   template = ~/.gitmessage
 	verbose = true
-	gpgsign = true
+	# gpgsign = true
 [merge "merge-structure-sql"]
 	name = Rails structure.sql merge driver
 	driver = git-merge-structure-sql %A %O %B

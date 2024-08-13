@@ -8,7 +8,6 @@ local comment = require('Comment.ft')
 -- .env files
 vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")
 vim.api.nvim_command("au! BufNewFile,BufRead zshrc set filetype=sh")
-vim.api.nvim_command("au! BufNewFile,BufRead *.conf set filetype=ini")
 
 -- hbs (html.handlebars)
 vim.api.nvim_create_autocmd(
@@ -27,7 +26,10 @@ vim.api.nvim_command("au! BufNewFile,BufRead tmux.conf set ft=tmux syntax=tmux")
 vim.api.nvim_command("au! BufNewFile,BufRead *justfile set ft=justfile syntax=make")
 comment.set('justfile', '#%s')
 
+-- config files
 vim.api.nvim_command("au! BufNewFile,BufRead *config set ft=sshconfig syntax=sshconfig")
+vim.api.nvim_command("au! BufNewFile,BufRead *gitconfig set filetype=ini")
+vim.api.nvim_command("au! BufNewFile,BufRead *.conf set filetype=ini")
 
 -- mdx
 vim.api.nvim_command("au! BufNewFile,BufRead *.mdx set ft=markdown")

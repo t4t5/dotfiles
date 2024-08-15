@@ -1,0 +1,24 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.accessibilitySupport": "off",
+  "typescript.tsserver.log": "verbose",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "git.openRepositoryInParentFolders": "always",
+  "rust-analyzer.server.extraEnv": null,
+  "editor.lineNumbers": "relative",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.gitignore": true,
+    "**/.gitmodules": true,
+    "**/node_modules": true,
+    "**/tmp": true,
+    "**/dist": true,
+    "**/target": true
+  }
+}

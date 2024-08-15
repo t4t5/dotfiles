@@ -14,3 +14,9 @@
     ~/.justfile: justfile
     ~/.bin: bin
     ~/.ignore: ignore
+    ~/Library/Application Support/Code/User/settings.json:
+      path: config/vscode/settings.json
+      force: true
+    ~/Library/Application Support/Code/User/keybindings.json:
+      path: config/vscode/keybindings.json
+      force: true

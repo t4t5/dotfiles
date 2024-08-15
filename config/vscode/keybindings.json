@@ -1,0 +1,103 @@
+// This should simulate our neovim setup:
+[
+  {
+    // Focus terminal:
+    "key": "ctrl+j",
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
+  },
+  {
+    // Unfocus terminal:
+    "key": "ctrl+k",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    // Open vim command:
+    "key": ":",
+    "command": "vscode-neovim.send",
+    "args": ":",
+    "when": "editorTextFocus && neovim.mode != insert"
+  },
+  {
+    // Send vim command:
+    "key": "enter",
+    "command": "vscode-neovim.send",
+    "args": "<CR>",
+    "when": "editorTextFocus && neovim.mode != insert && neovim.init"
+  },
+  {
+    // Move up the page:
+    "key": "ctrl+u",
+    "command": "cursorMove",
+
+    "args": {
+      "to": "up",
+      "by": "wrappedLine",
+      "value": 18
+    },
+    "when": "editorTextFocus"
+  },
+  {
+    // Move down the page:
+    "key": "ctrl+d",
+    "command": "cursorMove",
+    "args": {
+      "to": "down",
+      "by": "wrappedLine",
+      "value": 18
+    },
+    "when": "editorTextFocus"
+  },
+  {
+    // Emulate telescope file search:
+    "key": "ctrl+f",
+    "command": "workbench.action.quickOpen",
+    "when": "editorTextFocus"
+  },
+  {
+    // Emulate telescope fuzzy search:
+    "key": "ctrl+p",
+    "command": "extension.ripgrep",
+    "when": "editorTextFocus"
+  },
+  {
+    // Move down in file search:
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    // Move up in file search:
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+  {
+    // Toggle terminal window:
+    "key": "ctrl+a z",
+    "command": "workbench.action.togglePanel"
+  },
+  {
+    // Jump into explorer:
+    "key": "ctrl+h",
+    "command": "workbench.view.explorer",
+    "when": "editorTextFocus"
+  },
+  {
+    // Jump back into file:
+    "key": "ctrl+l",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "sideBarFocus"
+  },
+  {
+    "key": "ctrl+left",
+    "command": "workbench.action.previousEditor",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+right",
+    "command": "workbench.action.nextEditor",
+    "when": "editorTextFocus"
+  }
+]

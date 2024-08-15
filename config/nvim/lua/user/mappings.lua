@@ -40,9 +40,15 @@ vim.keymap.set('n', '<leader>F', require("spectre").open, {
   -- Use <leader>R to replace
 })
 
-vim.keymap.set('n', '<leader>t', "<cmd>NvimTreeToggle<cr>", {
-  desc = "Toggle explorer (nvimtree)",
-})
+-- Toggle file tree:
+if vim.g.vscode then
+  vim.api.nvim_set_keymap('n', ',t', '<Cmd>call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>',
+    { noremap = true, silent = true })
+else
+  vim.keymap.set('n', '<leader>t', "<cmd>NvimTreeToggle<cr>", {
+    desc = "Toggle explorer (nvimtree)",
+  })
+end
 
 -- Joshuto
 vim.keymap.set('n', '<leader>r', function() require("joshuto").joshuto({ edit_in_tab = true }) end,

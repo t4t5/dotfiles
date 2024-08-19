@@ -131,6 +131,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # zprof
 export PATH="$HOME/.fuelup/bin:$PATH"
 
+# for GPG sign of commits:
 export GPG_TTY=$(tty)
 
 # for gui elements:

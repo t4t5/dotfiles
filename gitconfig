@@ -58,6 +58,9 @@
   template = ~/.gitmessage
 	verbose = true
 	gpgsign = true
+
 [merge "merge-structure-sql"]
 	name = Rails structure.sql merge driver
 	driver = git-merge-structure-sql %A %O %B
+[gpg]
+	program = /opt/homebrew/bin/gpg

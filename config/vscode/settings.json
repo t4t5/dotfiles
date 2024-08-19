@@ -4,6 +4,11 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[rust]": {
+    // "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    // "editor.formatOnSave": true,
+    // "editor.formatOnSaveMode": "file"
+  },
   "editor.accessibilitySupport": "off",
   "typescript.tsserver.log": "verbose",
   "extensions.experimental.affinity": {

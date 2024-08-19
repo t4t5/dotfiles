@@ -91,13 +91,27 @@
     "when": "sideBarFocus"
   },
   {
+    // Go to previous tab:
     "key": "ctrl+left",
     "command": "workbench.action.previousEditor",
     "when": "editorTextFocus"
   },
   {
+    // Go to next tab:
     "key": "ctrl+right",
     "command": "workbench.action.nextEditor",
     "when": "editorTextFocus"
+  },
+  {
+    // Go down in autocomplete:
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    // Go up in autocomplete:
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   }
 ]

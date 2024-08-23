@@ -22,6 +22,19 @@ alias ls='eza -a'
 # git UI
 alias gg="gitui"
 
+v() {
+  # hermit messes up rust-analyzer sometimes. Don't use it in neovim:
+  if [ -n "$HERMIT_ENV" ] && command -v deactivate-hermit > /dev/null 2>&1; then
+    deactivate-hermit
+  fi
+
+  if [ $# -gt 0 ]; then
+    nvim "$@"
+  else
+    nvim
+  fi
+}
+
 ports() {
   lsof -iTCP -sTCP:LISTEN -n -P | awk 'NR>1 {print $9, $1, $2}' | sed 's/.*://' | while read port process pid; do echo "Port $port: $(ps -p $pid -o command= | sed 's/^-//') (PID: $pid)"; done | sort -n
 }

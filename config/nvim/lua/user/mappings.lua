@@ -36,7 +36,7 @@ vim.keymap.set('n', '<leader>T', "<cmd>TestFile<cr>", {
 
 -- Spectre (find and replace across files)
 vim.keymap.set('n', '<leader>F', require("spectre").open, {
-  desc = "Spectre (find and replace)"
+  desc = "Find + replace (spectre)"
   -- Use <leader>R to replace
 })
 
@@ -46,13 +46,13 @@ if vim.g.vscode then
     { noremap = true, silent = true })
 else
   vim.keymap.set('n', '<leader>t', "<cmd>NvimTreeToggle<cr>", {
-    desc = "Toggle explorer (nvimtree)",
+    desc = "Tree (toggle explorer)",
   })
 end
 
 -- Joshuto
 vim.keymap.set('n', '<leader>r', function() require("joshuto").joshuto({ edit_in_tab = true }) end,
-  { desc = "Toggle explorer (Joshuto)" })
+  { desc = "Ranger (Joshuto)" })
 
 -- Set group names for which-key:
 require("which-key").register({

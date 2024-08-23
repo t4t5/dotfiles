@@ -6,7 +6,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.cmd [[
   command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
 ]]
-vim.keymap.set('n', '<leader>o', ':Silent open %:h<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>o', ':Silent open %:h<cr>', { noremap = true, silent = true, desc = "Open in finder" })
 
 -- Copy error messages:
 vim.api.nvim_set_keymap('n', '<leader>e', [[:lua YankDiagnosticError()<CR>]],

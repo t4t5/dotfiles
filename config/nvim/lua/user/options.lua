@@ -8,6 +8,9 @@ vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 
+-- Enable inlay hints
+vim.lsp.inlay_hint.enable(true)
+
 -- Disable swap files, they're annoying:
 vim.opt.swapfile = false
 

@@ -51,8 +51,15 @@ else
 end
 
 -- Joshuto
-vim.keymap.set('n', '<leader>r', function() require("joshuto").joshuto({ edit_in_tab = true }) end,
-  { desc = "Ranger (Joshuto)" })
+-- empty new files in tab by default
+-- but if currently in empty buffer, just open it there
+vim.keymap.set('n', '<leader>r', function()
+  local current_buffer = vim.api.nvim_get_current_buf()
+  local is_empty = vim.api.nvim_buf_line_count(current_buffer) == 1 and
+      vim.api.nvim_buf_get_lines(current_buffer, 0, -1, false)[1] == ''
+
+  require("joshuto").joshuto({ edit_in_tab = not is_empty })
+end, { desc = "Ranger (Joshuto)" })
 
 -- Set group names for which-key:
 require("which-key").register({

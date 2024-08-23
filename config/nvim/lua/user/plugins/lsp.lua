@@ -100,6 +100,13 @@ return {
     end
   },
 
+  -- better rust support:
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^5', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+
   -- List references + definitions:
   {
     "dnlhc/glance.nvim",

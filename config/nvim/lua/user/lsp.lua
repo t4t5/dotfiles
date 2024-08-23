@@ -142,6 +142,8 @@ mason_lspconfig.setup_handlers {
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
+  -- disable default since we use rustaceanvim instead:
+  ['rust_analyzer'] = function() end,
 }
 
 -- nvim-cmp setup

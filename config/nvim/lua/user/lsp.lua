@@ -57,7 +57,7 @@ local function focus_hover_and_enter()
   -- If no floating window is found, just send Enter as usual
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', true)
 end
--- jump into hover window with Enter:
+-- jump into hover window with Enter (useful for hover actions):
 vim.keymap.set('n', '<CR>', focus_hover_and_enter, { noremap = true, silent = true })
 
 local function yank_hover_content()
@@ -82,11 +82,9 @@ vim.keymap.set('n', '<leader>y', yank_hover_content, { desc = 'Yank Hover Conten
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
 
 -- vim.keymap.set('n', '<leader>sd', vim.lsp.buf.definition, { desc = "go to definition" })
-vim.keymap.set('n', '<leader>fd', '<CMD>Glance definitions<CR>', { desc = "find definition" })
-
--- show references
+vim.keymap.set('n', '<leader>jt', '<CMD>Glance type_definitions<CR>', { desc = "jump to type definition" })
 -- vim.keymap.set('n', '<leader>sr', '<cmd>Telescope lsp_references<cr>', { desc = "find references" })
-vim.keymap.set('n', '<leader>fr', '<CMD>Glance references<CR>', { desc = "find references" })
+vim.keymap.set('n', '<leader>jr', '<CMD>Glance references<CR>', { desc = "jump to references" })
 
 
 -- LSP settings

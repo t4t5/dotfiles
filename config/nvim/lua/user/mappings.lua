@@ -56,8 +56,8 @@ vim.keymap.set('n', '<leader>r', function() require("joshuto").joshuto({ edit_in
 
 -- Set group names for which-key:
 require("which-key").register({
-  ["<leader>f"] = {
-    name = "find (/go to)"
+  ["<leader>j"] = {
+    name = "jump (go to)"
   },
   ["<leader>g"] = {
     name = "git"

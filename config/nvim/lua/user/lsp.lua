@@ -40,6 +40,26 @@ end
 vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
 vim.keymap.set('n', '<leader>aa', vim.lsp.buf.code_action, { desc = 'Code Actions' })
 
+local function focus_hover_and_enter()
+  -- Get a list of all floating windows
+  local wins = vim.api.nvim_list_wins()
+
+  for _, win in ipairs(wins) do
+    -- Check if the window is a floating window (hover window is a floating window)
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= "" then
+      -- Focus the hover window
+      vim.api.nvim_set_current_win(win)
+      return
+    end
+  end
+
+  -- If no floating window is found, just send Enter as usual
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', true)
+end
+-- jump into hover window with Enter:
+vim.keymap.set('n', '<CR>', focus_hover_and_enter, { noremap = true, silent = true })
+
 local function yank_hover_content()
   local orig_win = vim.api.nvim_get_current_win()
   -- Find the floating window

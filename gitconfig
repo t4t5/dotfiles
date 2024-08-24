@@ -1,7 +1,7 @@
 [user]
   name = Tristan (t4t5)
   email = t4t5@hey.com
-	signingkey = 77CE1D06193A3BDE
+  signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwkFgfUezTmYmKLgdR9F2x/oN7CtGCVKWN7R7h7bj7DFSxCTWn/TG9QniE0fmIHXU3Bh7ZJOuWGDx98f+cQDjZ79P2qEeI/7fqFCNObXlGqNmFr30L6+uYQWKp/ZFCb/OTHdKBRkwMaYHnoESOZRCB3U9w4A0acqUFlzYXMU+Qd+fmfAPGUa732v/PYKOXgovYLl/wA3WB9MXWK48dxsF7zTTqlstPcYVONeKM8Oojae6YOg/e9QYy0PYmSnFeYG+37xJ9psqLjAVEfM9Mt9KKuXoz9NpFNm7aEmrD5WUKJefYvJvw2s2JIM4GDS44JqCpumYwweFg9Xh9Gh81rmRt
 
 [core]
   editor = nvim
@@ -62,5 +62,9 @@
 [merge "merge-structure-sql"]
 	name = Rails structure.sql merge driver
 	driver = git-merge-structure-sql %A %O %B
+
 [gpg]
-	program = /opt/homebrew/bin/gpg
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"

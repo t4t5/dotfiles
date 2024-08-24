@@ -21,7 +21,7 @@ vim.opt.swapfile = false
 vim.wo.number = true
 
 -- disable mouse:
-vim.opt.mouse = ""
+-- vim.opt.mouse = ""
 
 -- wrap long lines
 vim.opt.wrap = true

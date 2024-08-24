@@ -61,6 +61,11 @@ vim.keymap.set('n', '<leader>r', function()
   require("joshuto").joshuto({ edit_in_tab = not is_empty })
 end, { desc = "Ranger (Joshuto)" })
 
+-- Debugger (nvim-dap)
+vim.keymap.set('n', '<leader>do', require("dapui").open, { desc = "Open debugger" })
+vim.keymap.set('n', '<leader>dc', require("dapui").close, { desc = "Close debugger" })
+vim.keymap.set('n', '<leader>dd', require 'dap'.toggle_breakpoint, { desc = "Toggle breakpoint" })
+
 -- Set group names for which-key:
 require("which-key").register({
   ["<leader>j"] = {
@@ -71,6 +76,9 @@ require("which-key").register({
   },
   ["<leader>a"] = {
     name = "diagnostics"
+  },
+  ["<leader>d"] = {
+    name = "debugger"
   },
   ["<leader>l"] = {
     name = "list"

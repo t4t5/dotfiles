@@ -83,30 +83,3 @@ vim.api.nvim_create_autocmd("FileType", {
     }
   end,
 })
-
--- vim.api.nvim_set_keymap('n', '<leader>E', [[:lua SendDiagnosticErrorToChatpGpt()<CR>]],
---   { noremap = true, silent = true, desc = "Send error to ChatGPT" })
---
--- local function open_url(url)
---   local command = 'open'
---   vim.fn.jobstart(command .. ' ' .. url, { detach = true })
--- end
---
--- function SendDiagnosticErrorToChatpGpt()
---   -- Copy error:
---   YankDiagnosticError()
---   local error_text = vim.fn.getreg('"')
---
---   -- Copy code:
---   vim.api.nvim_command('%yank')
---   local full_code = vim.fn.getreg('"')
---
---   -- Create prompt:
---   local prompt = "This is my code:\n\n" .. full_code .. "\n\nHere's the error I get:\n\n" .. error_text
---
---   -- Copy the prompt to the clipboard
---   vim.fn.setreg('"', prompt)
---
---   -- Finish yanking (wait 0.5s) then open ChatGPT:
---   vim.defer_fn(function() open_url('https://chat.openai.com') end, 500)
--- end

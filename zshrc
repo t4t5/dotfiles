@@ -137,6 +137,9 @@ export GPG_TTY=$(tty)
 # for gui elements:
 export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 
+# use homebrew version of java:
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
 # -- Use pyenv for python
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"

@@ -1,6 +1,9 @@
 snippet derive
 	#[derive(Debug)]
 
+snippet derive-serde
+	#[derive(Debug, Clone, Serialize, Deserialize)]
+
 snippet test
 	#[cfg(test)]
 	mod tests {

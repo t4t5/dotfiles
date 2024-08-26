@@ -66,9 +66,10 @@ vim.keymap.set('n', '<leader>r', function()
 end, { desc = "Ranger (Joshuto)" })
 
 -- Debugger (nvim-dap)
-vim.keymap.set('n', '<leader>do', require("dapui").open, { desc = "Open debugger" })
-vim.keymap.set('n', '<leader>dc', require("dapui").close, { desc = "Close debugger" })
+vim.keymap.set('n', '<leader>D', require("dapui").toggle, { desc = "Open debugger" })
 vim.keymap.set('n', '<leader>dd', require 'dap'.toggle_breakpoint, { desc = "Toggle breakpoint" })
+vim.keymap.set('n', '<leader>dr', require 'dap'.continue, { desc = "Continue (run)" })
+vim.keymap.set('n', '<leader>ds', require 'dap'.step_over, { desc = "Step" })
 
 -- Set group names for which-key:
 require("which-key").register({
@@ -79,16 +80,22 @@ require("which-key").register({
     name = "git"
   },
   ["<leader>a"] = {
-    name = "diagnostics/AI"
+    name = "diagnostics"
   },
   ["<leader>d"] = {
     name = "debugger"
   },
+  ["<leader>D"] = {
+    name = "Open debugger"
+  },
   ["<leader>l"] = {
-    name = "list"
+    name = "list (macros/clipboard)"
+  },
+  ["<leader>A"] = {
+    name = "AI Chat" -- avante
   },
   ["<leader>AA"] = {
-    name = "Ask AI" -- avante
+    name = "Ask AI"
   },
   ["<leader>Ad"] = {
     name = "Debug (unused)"

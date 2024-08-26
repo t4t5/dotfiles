@@ -35,5 +35,6 @@
     "**/dist": true,
     "**/target": true
   },
-  "tlaplus.tlc.modelChecker.options": "-workers 5 -dump dot ${modelName}.dot"
+  "tlaplus.tlc.modelChecker.options": "-workers 5 -dump dot ${modelName}.dot",
+  "workbench.iconTheme": "nand-ide"
 }

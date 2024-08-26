@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+if [ -z "$1" ]; then
+  echo "Usage: crun <c_file.c>"
+  return 1
+fi
+
+filename=$(basename -- "$1")
+extension="${filename##*.}"
+filename="${filename%.*}"
+
+if [ "$extension" != "c" ]; then
+  echo "Error: File must have .c extension"
+  return 1
+fi
+
+gcc -O3 "$1" -o "${filename}" && ./"${filename}"

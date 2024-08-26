@@ -3,7 +3,15 @@ return {
   {
     'folke/tokyonight.nvim',
     config = function()
-      vim.cmd.colorscheme 'tokyonight-moon'
+      require 'tokyonight'.setup({
+        style = 'moon',
+        on_colors = function(colors)
+          -- colors are here: https://github.com/folke/tokyonight.nvim/discussions/453
+          colors.border = colors.dark3
+        end
+      })
+
+      vim.cmd [[colorscheme tokyonight]]
     end
   },
 
@@ -56,7 +64,7 @@ return {
 
       require("scrollbar").setup({
         handle = {
-          color = colors.bg_highlight,
+          color = colors.fg_gutter,
         },
         handlers = {
           cursor = false,

@@ -16,6 +16,8 @@ vim.api.nvim_create_autocmd(
 )
 vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary") -- no newline at end of hbs files
 
+vim.api.nvim_command("au! BufNewFile,BufRead *.conf set filetype=ini")
+
 -- Caddyfile
 vim.api.nvim_command("au! BufNewFile,BufRead *Caddyfile set ft=caddyfile syntax=nginx")
 
@@ -29,7 +31,6 @@ comment.set('justfile', '#%s')
 -- config files
 vim.api.nvim_command("au! BufNewFile,BufRead *config set ft=sshconfig syntax=sshconfig")
 vim.api.nvim_command("au! BufNewFile,BufRead *gitconfig set filetype=ini")
-vim.api.nvim_command("au! BufNewFile,BufRead *.conf set filetype=ini")
 
 -- mdx
 vim.api.nvim_command("au! BufNewFile,BufRead *.mdx set ft=markdown")

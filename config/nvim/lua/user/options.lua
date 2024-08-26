@@ -8,6 +8,10 @@ vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 
+-- Recommended by avante.nvim:
+vim.opt.laststatus = 3
+vim.opt.splitkeep = "screen"
+
 -- Enable inlay hints
 vim.lsp.inlay_hint.enable(true)
 

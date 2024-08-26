@@ -87,4 +87,7 @@ require("which-key").register({
   ["<leader>l"] = {
     name = "list"
   },
+  ["<leader>ai"] = {
+    name = "Toggle AI Chat"
+  },
 })

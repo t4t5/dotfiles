@@ -21,6 +21,7 @@ require('lazy').setup({
   { import = 'user.plugins.git' },
   { import = 'user.plugins.ui' },
   { import = 'user.plugins.navigation' },
+  { import = 'user.plugins.ai' },
 
   -- respect camelcase/underscores
   { 'chaoren/vim-wordmotion' },
@@ -58,22 +59,6 @@ require('lazy').setup({
       })
       require('telescope').load_extension('neoclip')
     end,
-  },
-
-  -- GitHub Copilot:
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({})
-    end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end
   },
 
   -- So that you can paste inline with <leader>p

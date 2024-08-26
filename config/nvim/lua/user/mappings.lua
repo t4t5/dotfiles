@@ -1,7 +1,6 @@
 -- open splits with vv:
 vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "tt", ":LspRestart<cr>", { noremap = true, silent = true })
 
 -- jump to diffs:
 vim.keymap.set('n', '[[', '[c', { noremap = true, silent = true, desc = "Jump to previous diff" })
@@ -83,24 +82,15 @@ require("which-key").register({
     name = "diagnostics"
   },
   ["<leader>d"] = {
-    name = "debugger"
+    name = "debug tools"
   },
   ["<leader>D"] = {
-    name = "Open debugger"
+    name = "Launch debugger"
   },
   ["<leader>l"] = {
     name = "list (macros/clipboard)"
   },
   ["<leader>A"] = {
     name = "AI Chat" -- avante
-  },
-  ["<leader>AA"] = {
-    name = "Ask AI"
-  },
-  ["<leader>Ad"] = {
-    name = "Debug (unused)"
-  },
-  ["<leader>Ah"] = {
-    name = "Hint (unused)"
   },
 })

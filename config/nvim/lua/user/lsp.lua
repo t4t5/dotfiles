@@ -1,5 +1,8 @@
 ---@diagnostic disable: missing-fields
 
+-- Restart LSP with tt:
+vim.api.nvim_set_keymap("n", "tt", ":LspRestart<cr>", { noremap = true, silent = true })
+
 -- Treesitter
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter

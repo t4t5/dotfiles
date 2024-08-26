@@ -39,7 +39,7 @@ return {
         max_tokens = 4096,
       },
       mappings = {
-        ask = "<leader>AA",
+        ask = "<leader>A",
         --- @class AvanteConflictMappings
         diff = {
           ours = "co",
@@ -56,10 +56,6 @@ return {
         submit = {
           normal = "<CR>",
           insert = "<C-s>",
-        },
-        toggle = {
-          debug = "<leader>Ad",
-          hint = "<leader>Ah",
         },
       },
     },

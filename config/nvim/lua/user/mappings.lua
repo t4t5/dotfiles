@@ -3,6 +3,10 @@ vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "tt", ":LspRestart<cr>", { noremap = true, silent = true })
 
+-- jump to diffs:
+vim.keymap.set('n', '[[', '[c', { noremap = true, silent = true, desc = "Jump to previous diff" })
+vim.keymap.set('n', ']]', ']c', { noremap = true, silent = true, desc = "Jump to next diff" })
+
 -- find and replace:
 -- these don't show a preview in the command bar if we use <leader>:
 vim.api.nvim_set_keymap("n", "fr", ":%s//g<left><left>", { noremap = true })

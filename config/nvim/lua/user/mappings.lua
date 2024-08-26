@@ -79,7 +79,7 @@ require("which-key").register({
     name = "git"
   },
   ["<leader>a"] = {
-    name = "diagnostics"
+    name = "diagnostics/AI"
   },
   ["<leader>d"] = {
     name = "debugger"
@@ -87,7 +87,13 @@ require("which-key").register({
   ["<leader>l"] = {
     name = "list"
   },
-  ["<leader>ai"] = {
-    name = "Toggle AI Chat"
+  ["<leader>AA"] = {
+    name = "Ask AI" -- avante
+  },
+  ["<leader>Ad"] = {
+    name = "Debug (unused)"
+  },
+  ["<leader>Ah"] = {
+    name = "Hint (unused)"
   },
 })

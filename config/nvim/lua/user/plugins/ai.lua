@@ -39,15 +39,15 @@ return {
         max_tokens = 4096,
       },
       mappings = {
-        ask = "<leader>ai",
+        ask = "<leader>AA",
         --- @class AvanteConflictMappings
         diff = {
           ours = "co",
           theirs = "ct",
           none = "c0",
           both = "cb",
-          next = "]]",
-          prev = "[[",
+          next = "c]",
+          prev = "c[",
         },
         jump = {
           next = "]]",
@@ -58,8 +58,8 @@ return {
           insert = "<C-s>",
         },
         toggle = {
-          debug = "<leader>ad",
-          hint = "<leader>ah",
+          debug = "<leader>Ad",
+          hint = "<leader>Ah",
         },
       },
     },

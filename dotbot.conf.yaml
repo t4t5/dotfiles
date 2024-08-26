@@ -9,8 +9,8 @@
     ~/.tmux.conf: tmux.conf
     ~/.wezterm.lua: .wezterm.lua
     ~/.zshrc: zshrc
-    ~/.zshenv: zshenv
     ~/antigen.zsh: antigen.zsh
+    ~/aliases.zsh: aliases.zsh
     ~/.justfile: justfile
     ~/.bin: bin
     ~/.ignore: ignore

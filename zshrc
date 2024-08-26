@@ -4,6 +4,8 @@
 #
 # zmodload zsh/zprof
 
+source $HOME/aliases.zsh
+
 # Default PATH:
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 

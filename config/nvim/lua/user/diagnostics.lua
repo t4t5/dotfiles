@@ -28,7 +28,7 @@ end
 
 -- Copy error messages:
 vim.api.nvim_set_keymap('n', '<leader>e', [[:lua YankDiagnosticError()<CR>]],
-  { noremap = true, silent = true, desc = "Copy error" })
+  { noremap = true, silent = true, desc = "copy error" })
 
 function YankDiagnosticError()
   vim.diagnostic.open_float()

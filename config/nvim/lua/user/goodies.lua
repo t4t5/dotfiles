@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Paste inline with <leader>p:
 vim.api.nvim_set_keymap('n', '<leader>p', "<Plug>UnconditionalPasteInlinedAfter",
-  { noremap = true, silent = true, desc = "Paste inline" })
+  { noremap = true, silent = true, desc = "paste inline" })
 
 -- Set syntax highlighting for .env.local, .env.development, .env.production...
 vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")
@@ -36,7 +36,7 @@ vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary")
 
 -- write file without triggering autocommands (like formatting):
 vim.api.nvim_set_keymap('n', '<leader>w', [[:noautocmd w<cr>]],
-  { noremap = true, silent = true, desc = "Write without formatting" })
+  { noremap = true, silent = true, desc = "write without formatting" })
 
 -- noir
 vim.api.nvim_create_autocmd(

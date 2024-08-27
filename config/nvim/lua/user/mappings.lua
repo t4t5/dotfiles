@@ -40,7 +40,7 @@ vim.keymap.set('n', '<leader>T', "<cmd>TestFile<cr>", {
 vim.keymap.set('n', '<leader>N', function()
   require("notify")("Test notification!")
 end, {
-  desc = "Notify"
+  desc = "test notification"
 })
 
 -- Spectre (find and replace across files)
@@ -55,7 +55,7 @@ if vim.g.vscode then
     { noremap = true, silent = true })
 else
   vim.keymap.set('n', '<leader>t', "<cmd>NvimTreeToggle<cr>", {
-    desc = "Tree (toggle explorer)",
+    desc = "file explorer",
   })
 end
 
@@ -68,10 +68,10 @@ vim.keymap.set('n', '<leader>r', function()
       vim.api.nvim_buf_get_lines(current_buffer, 0, -1, false)[1] == ''
 
   require("joshuto").joshuto({ edit_in_tab = not is_empty })
-end, { desc = "Ranger (Joshuto)" })
+end, { desc = "ranger (joshuto)" })
 
 -- Debugger (nvim-dap)
-vim.keymap.set('n', '<leader>D', require("dapui").toggle, { desc = "Open debugger" })
+vim.keymap.set('n', '<leader>D', require("dapui").toggle, { desc = "Debugger" })
 vim.keymap.set('n', '<leader>dd', require 'dap'.toggle_breakpoint, { desc = "Toggle breakpoint" })
 vim.keymap.set('n', '<leader>dr', require 'dap'.continue, { desc = "Continue (run)" })
 vim.keymap.set('n', '<leader>ds', require 'dap'.step_over, { desc = "Step" })

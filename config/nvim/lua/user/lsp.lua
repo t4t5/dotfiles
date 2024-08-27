@@ -96,7 +96,7 @@ require('neodev').setup({
 vim.api.nvim_set_keymap("n", "tt", ":LspRestart<cr>", { noremap = true, silent = true })
 
 -- View documentation:
-vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { desc = 'Inspect (hover)' })
+vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { desc = 'hover' })
 vim.keymap.set('n', '<leader>aa', vim.lsp.buf.code_action, { desc = 'Code Actions' })
 -- go to definition:
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
@@ -148,4 +148,4 @@ local function yank_hover_content()
   vim.notify('No hover window found')
 end
 
-vim.keymap.set('n', '<leader>y', yank_hover_content, { desc = 'Yank Hover Content' })
+vim.keymap.set('n', '<leader>y', yank_hover_content, { desc = 'yank hover contents' })

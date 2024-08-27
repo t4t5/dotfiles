@@ -42,10 +42,35 @@ local function format_item(entry, vim_item)
 
   -- show icon + type:
   vim_item.kind = icon and (icon .. '  ' .. vim_item.kind) or vim_item.kind
-  -- or just show the icon
+  -- ...or just show the icon
   -- vim_item.kind = icon and icon or vim_item.kind
+  -- ...or use this for debugging:
+  -- vim_item.kind = entry:get_kind() .. ' VS ' .. cmp.lsp.CompletionItemKind.Snippet
 
   return vim_item
+end
+
+local function custom_sort(entry1, entry2)
+  local kind1 = entry1:get_kind()
+  local kind2 = entry2:get_kind()
+
+  local snippet_type = cmp.lsp.CompletionItemKind.Snippet
+
+  -- deprioritize snippets:
+  if kind1 == snippet_type then
+    return false
+  elseif kind2 == snippet_type then
+    return true
+  end
+
+  -- local copilot_type = cmp.lsp.CompletionItemKind.Copilot
+  -- if kind1 == copilot_type then
+  --   return true
+  -- elseif kind2 == copilot_type then
+  --   return false
+  -- end
+
+  return cmp.config.compare.sort_text(entry1, entry2)
 end
 
 cmp.setup {
@@ -65,19 +90,19 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
   },
   sources = {
+    { name = "copilot" },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = "copilot" },
   },
-  -- sorting = {
-  --   comparators = {
-  --     cmp.config.compare.kind,
-  --     -- custom_sort_suggestions,
-  --     cmp.config.compare.sort_text,
-  --     cmp.config.compare.length,
-  --     cmp.config.compare.order,
-  --   },
-  -- },
+  sorting = {
+    comparators = {
+      custom_sort,
+      -- cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
   formatting = {
     format = lspkind.cmp_format({
       -- mode = 'symbol',       -- show only symbol annotations

@@ -3,6 +3,7 @@ require "user.plugins"
 
 require "user.mappings"
 require "user.lsp"
+require "user.autocomplete"
 require "user.telescope"
 require "user.custom_langs"
 require "user.goodies"

@@ -15,6 +15,17 @@ return {
     end
   },
 
+  -- simple toast system:
+  {
+    'rcarriga/nvim-notify',
+    config = function()
+      require("notify").setup({
+        stages = "fade",
+        render = "minimal",
+      })
+    end
+  },
+
   -- telescope for code action
   -- { "malbertzard/telescope-ui-select.nvim" },
 

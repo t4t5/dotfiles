@@ -37,6 +37,12 @@ vim.keymap.set('n', '<leader>T', "<cmd>TestFile<cr>", {
   desc = "Test file"
 })
 
+vim.keymap.set('n', '<leader>N', function()
+  require("notify")("Test notification!")
+end, {
+  desc = "Notify"
+})
+
 -- Spectre (find and replace across files)
 vim.keymap.set('n', '<leader>F', require("spectre").open, {
   desc = "Find + replace (spectre)"

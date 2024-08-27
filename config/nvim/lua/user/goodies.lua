@@ -8,20 +8,6 @@ vim.cmd [[
 ]]
 vim.keymap.set('n', '<leader>o', ':Silent open %:h<cr>', { noremap = true, silent = true, desc = "Open in finder" })
 
--- Copy error messages:
-vim.api.nvim_set_keymap('n', '<leader>e', [[:lua YankDiagnosticError()<CR>]],
-  { noremap = true, silent = true, desc = "Copy error" })
-
-function YankDiagnosticError()
-  vim.diagnostic.open_float()
-  vim.diagnostic.open_float()
-  local win_id = vim.fn.win_getid()    -- get the window ID of the floating window
-  vim.cmd("normal! j")                 -- move down one row
-  vim.cmd("normal! VG")                -- select everything from that row down
-  vim.cmd("normal! y")                 -- yank selected text
-  vim.api.nvim_win_close(win_id, true) -- close the floating window by its ID
-end
-
 -- Highlight copied text when yanking:
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {

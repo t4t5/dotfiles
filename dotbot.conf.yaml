@@ -11,6 +11,7 @@
     ~/.zshrc: zshrc
     ~/antigen.zsh: antigen.zsh
     ~/aliases.zsh: aliases.zsh
+    ~/path_config.zsh: path_config.zsh
     ~/.justfile: justfile
     ~/.bin: bin
     ~/.ignore: ignore

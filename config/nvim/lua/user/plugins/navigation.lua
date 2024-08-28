@@ -38,6 +38,23 @@ return {
   -- joshuto
   { "theniceboy/joshuto.nvim" },
 
+  {
+    "echasnovski/mini.files",
+    config = function()
+      require('mini.files').setup({
+        mappings = {
+          close = '<Esc>',
+          go_in_plus = "<CR>",
+          reveal_cwd = '@',
+          synchronize = 's',
+        },
+        windows = {
+          preview = true
+        }
+      })
+    end
+  },
+
   -- find and replace across files
   {
     "nvim-pack/nvim-spectre",

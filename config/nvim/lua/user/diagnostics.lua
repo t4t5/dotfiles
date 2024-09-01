@@ -21,18 +21,14 @@ vim.diagnostic.config {
   float = { border = "rounded" },
 }
 
--- Use better icons for diagnosics:
+-- Use better icons for diagnostics:
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- Copy error messages:
-vim.api.nvim_set_keymap('n', '<leader>e', [[:lua YankDiagnosticError()<CR>]],
-  { noremap = true, silent = true, desc = "copy error" })
-
-function YankDiagnosticError()
+local function yank_diagnostic_error()
   vim.diagnostic.open_float()
   vim.diagnostic.open_float()
   local win_id = vim.fn.win_getid()    -- get the window ID of the floating window
@@ -41,3 +37,75 @@ function YankDiagnosticError()
   vim.cmd("normal! y")                 -- yank selected text
   vim.api.nvim_win_close(win_id, true) -- close the floating window by its ID
 end
+
+-- Copy error messages:
+vim.keymap.set('n', '<leader>e', yank_diagnostic_error,
+  { noremap = true, silent = true, desc = "copy error" })
+
+------------------
+-- AI WORKFLOW: --
+
+-- concatenate code yanked to "a" register
+-- with error yanked to default register:
+local function generate_ai_prompt()
+  -- 'a' register:
+  local reg_a_contents = vim.fn.getreg('a')
+
+  -- default register:
+  local default_reg_contents = vim.fn.getreg('"')
+
+  local prompt = string.format("This is my code:\n```\n%s\n```\n\nBut I'm getting this error:\n```\n%s\n```",
+    reg_a_contents, default_reg_contents)
+
+  vim.fn.setreg('"', prompt)
+
+  -- show non-blocking notification:
+  vim.schedule(function()
+    vim.notify("✨ Copied AI prompt to clipboard!", vim.log.levels.INFO)
+  end)
+end
+
+local function ask_ai()
+  -- Yank the selected text to register 'a'
+  vim.api.nvim_command('normal! gv"ay')
+
+  -- Get the start and end positions of the visual selection
+  local start_pos = vim.fn.getpos("'<")
+  local end_pos = vim.fn.getpos("'>")
+
+  -- Convert positions to (row, col) format
+  local start_line, start_col = start_pos[2], start_pos[3]
+  local end_line, end_col = end_pos[2], end_pos[3]
+
+  -- Get all diagnostics in the current buffer
+  local diagnostics = vim.diagnostic.get(0)
+
+  -- Filter diagnostics to those within the visual selection
+  local diagnostics_in_selection = {}
+  for _, diagnostic in ipairs(diagnostics) do
+    local d_line, d_col = diagnostic.lnum + 1, diagnostic.col + 1
+    if (d_line > start_line or (d_line == start_line and d_col >= start_col)) and
+        (d_line < end_line or (d_line == end_line and d_col <= end_col)) then
+      table.insert(diagnostics_in_selection, diagnostic)
+    end
+  end
+
+  -- Jump to the first diagnostic in the selection, if any
+  if #diagnostics_in_selection > 0 then
+    local first_diagnostic = diagnostics_in_selection[1]
+    vim.api.nvim_win_set_cursor(0, { first_diagnostic.lnum + 1, first_diagnostic.col })
+    yank_diagnostic_error()
+    generate_ai_prompt()
+  else
+    vim.schedule(function()
+      print("❌ No diagnostics found in selection")
+    end)
+  end
+end
+
+-- Create a command to call the function
+vim.api.nvim_create_user_command('AskAI', ask_ai,
+  { range = true })
+
+-- Map the command to a key in visual mode (e.g., <leader>jd)
+vim.api.nvim_set_keymap('x', '<leader>A', ':AskAI<CR>', { noremap = true, silent = true })

@@ -12,6 +12,8 @@ else
   vim.keymap.set('n', '<leader>ae',
     function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,
     { desc = 'Go to next error' })
+  vim.keymap.set('n', '<leader>ay', vim.diagnostic.enable, { desc = 'Enable diagnostics (yes)' })
+  vim.keymap.set('n', '<leader>an', vim.diagnostic.disable, { desc = 'Disable diagnostics (no)' })
 end
 
 -- Show bordered window for errors:

@@ -2,6 +2,10 @@ vim.g.mapleader = ','
 
 vim.wo.relativenumber = true
 
+-- highlight current line number:
+vim.wo.cursorline = true
+vim.opt.cursorlineopt = "number"
+
 -- Use 2 spaces by default for tabs:
 vim.o.expandtab = true
 vim.o.tabstop = 2

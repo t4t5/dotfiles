@@ -65,7 +65,7 @@ local function generate_ai_prompt()
   end)
 end
 
-local function ask_ai()
+local function yank_ai_prompt()
   -- Yank the selected text to register 'a'
   vim.api.nvim_command('normal! gv"ay')
 
@@ -104,8 +104,9 @@ local function ask_ai()
 end
 
 -- Create a command to call the function
-vim.api.nvim_create_user_command('AskAI', ask_ai,
+vim.api.nvim_create_user_command('YankAiErrorPrompt', yank_ai_prompt,
   { range = true })
 
--- Map the command to a key in visual mode (e.g., <leader>jd)
-vim.api.nvim_set_keymap('x', '<leader>A', ':AskAI<CR>', { noremap = true, silent = true })
+-- Visual mode only:
+vim.api.nvim_set_keymap('x', '<leader>ae', ':YankAiErrorPrompt<CR>',
+  { noremap = true, silent = true, desc = "Generate prompt for error" })

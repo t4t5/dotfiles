@@ -106,7 +106,13 @@ require("which-key").register({
   ["<leader>l"] = {
     name = "list (macros/clipboard)"
   },
-  ["<leader>A"] = {
-    name = "AI Chat" -- avante
-  },
 })
+
+require("which-key").register({
+  ["<leader>g"] = {
+    name = "git"
+  },
+  ["<leader>a"] = {
+    name = "AI"
+  },
+}, { mode = "x" })

@@ -7,6 +7,7 @@ pathadd() {
 
 # System default:
 PATH="$HOME/bin:/usr/bin:/bin"
+pathadd "/usr/sbin"
 
 # Personalized scripts:
 pathadd "$HOME/.bin"

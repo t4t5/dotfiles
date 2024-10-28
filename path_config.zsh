@@ -12,6 +12,9 @@ pathadd "/usr/sbin"
 # Personalized scripts:
 pathadd "$HOME/.bin"
 
+# ollama, orb, docker...
+pathadd "/usr/local/bin"
+
 # fig, lvim, scarb...
 pathadd "$HOME/.local/bin"
 

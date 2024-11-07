@@ -4,6 +4,8 @@ alias s="reload"
 # Needs alias in order to overwrite built-in "r" command:
 alias r='joshuto --output-file /tmp/joshutodir; LASTDIR=`cat /tmp/joshutodir`; cd "$LASTDIR"'
 
+alias ai="ollama run llama3"
+
 # use "just server" instead?
 alias pythonserver="python3 -m http.server 8000"
 

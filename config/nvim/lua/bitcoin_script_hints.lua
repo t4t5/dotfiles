@@ -201,6 +201,32 @@ local op_effects = {
     table.insert(new_state.main, tostring(a) .. tostring(b))
     return new_state
   end,
+
+  OP_2DUP = function(state)
+    if #state.main < 2 then
+      return make_error("Need two items for 2DUP", state)
+    end
+    local new_state = vim.deepcopy(state)
+    local a = new_state.main[#new_state.main]     -- peek top item
+    local b = new_state.main[#new_state.main - 1] -- peek second item
+    table.insert(new_state.main, b)
+    table.insert(new_state.main, a)
+    return new_state
+  end,
+
+  OP_ROT = function(state)
+    if #state.main < 3 then
+      return make_error("Need three items for ROT", state)
+    end
+    local new_state = vim.deepcopy(state)
+    local a = table.remove(new_state.main) -- top
+    local b = table.remove(new_state.main) -- second
+    local c = table.remove(new_state.main) -- third
+    table.insert(new_state.main, b)        -- second -> bottom
+    table.insert(new_state.main, a)        -- top -> middle
+    table.insert(new_state.main, c)        -- third -> top
+    return new_state
+  end,
 }
 
 -- Modified format_state function to handle errors
@@ -301,22 +327,51 @@ function M.setup()
             local current_state = initial_state
             debug_log("Initial state: " .. format_state(current_state))
 
+            -- Add branch tracking
+            local branch_state = {
+              in_if = false,
+              in_else = false,
+              executing = true -- whether we're in a branch that should execute
+            }
+
             -- Process each operation
             for i, line in ipairs(lines) do
               local op = line:match("OP_%w+")
-              if op and op_effects[op] then
-                -- Calculate new state
-                current_state = op_effects[op](vim.deepcopy(current_state))
-                debug_log("After " .. op .. ": " .. format_state(current_state))
+              if op then
+                local should_execute = true
 
-                -- Add virtual text
-                vim.api.nvim_buf_set_extmark(bufnr, M.namespace, start_row + i - 2, 0, {
-                  virt_text = { {
-                    " → " .. format_state(current_state),
-                    current_state.error and "ErrorMsg" or "Comment"
-                  } },
-                  virt_text_pos = "eol",
-                })
+                -- Handle branch operations
+                if op == "OP_IF" then
+                  branch_state.in_if = true
+                  current_state = op_effects[op](current_state)
+                  -- Set execution state based on IF condition
+                  branch_state.executing = not current_state.error and current_state.if_result
+                  should_execute = false -- IF itself doesn't need a hint
+                elseif op == "OP_ELSE" then
+                  branch_state.in_if = false
+                  branch_state.in_else = true
+                  -- Invert execution state
+                  branch_state.executing = not branch_state.executing
+                  should_execute = false -- ELSE itself doesn't need a hint
+                elseif op == "OP_ENDIF" then
+                  branch_state.in_if = false
+                  branch_state.in_else = false
+                  branch_state.executing = true
+                  should_execute = false -- ENDIF itself doesn't need a hint
+                end
+
+                -- Only execute and show hints for operations in the active branch
+                if should_execute and branch_state.executing and op_effects[op] then
+                  -- Calculate new state
+                  current_state = op_effects[op](current_state)
+                  debug_log("After " .. op .. ": " .. format_state(current_state))
+
+                  -- Add virtual text
+                  vim.api.nvim_buf_set_extmark(bufnr, M.namespace, start_row + i - 2, 0, {
+                    virt_text = { { " → " .. format_state(current_state), current_state.error and "ErrorMsg" or "Comment" } },
+                    virt_text_pos = "eol",
+                  })
+                end
               end
             end
           end

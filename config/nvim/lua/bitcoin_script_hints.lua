@@ -100,6 +100,54 @@ local op_effects = {
     return new_state
   end,
 
+  OP_SUB = function(state)
+    if #state.main < 2 then
+      return make_error("Need two items for SUB", state)
+    end
+    local new_state = vim.deepcopy(state)
+    local a = table.remove(new_state.main)
+    local b = table.remove(new_state.main)
+
+    local num_a, err_a = to_number(a)
+    if not num_a then
+      return make_error(err_a, state)
+    end
+
+    local num_b, err_b = to_number(b)
+    if not num_b then
+      return make_error(err_b, state)
+    end
+
+    table.insert(new_state.main, num_b - num_a)
+    return new_state
+  end,
+
+  OP_1ADD = function(state)
+    local new_state = vim.deepcopy(state)
+    local a = table.remove(new_state.main)
+
+    local num_a, err_a = to_number(a)
+    if not num_a then
+      return make_error(err_a, state)
+    end
+
+    table.insert(new_state.main, num_a + 1)
+    return new_state
+  end,
+
+  OP_1SUB = function(state)
+    local new_state = vim.deepcopy(state)
+    local a = table.remove(new_state.main)
+
+    local num_a, err_a = to_number(a)
+    if not num_a then
+      return make_error(err_a, state)
+    end
+
+    table.insert(new_state.main, num_a - 1)
+    return new_state
+  end,
+
   OP_GREATERTHAN = function(state)
     if #state.main < 2 then
       return make_error("Need two items for GREATERTHAN", state)
@@ -120,6 +168,52 @@ local op_effects = {
 
     -- Bitcoin script uses reverse order for comparison
     table.insert(new_state.main, num_b > num_a and 1 or 0)
+    return new_state
+  end,
+
+  OP_NUMEQUAL = function(state)
+    if #state.main < 2 then
+      return make_error("Need two items for NUMEQUAL", state)
+    end
+    local new_state = vim.deepcopy(state)
+    local a = table.remove(new_state.main)
+    local b = table.remove(new_state.main)
+
+    local num_a, err_a = to_number(a)
+    if not num_a then
+      return make_error(err_a, state)
+    end
+
+    local num_b, err_b = to_number(b)
+    if not num_b then
+      return make_error(err_b, state)
+    end
+
+    -- Bitcoin script uses reverse order for comparison
+    table.insert(new_state.main, num_b == num_a and 1 or 0)
+    return new_state
+  end,
+
+  OP_NUMNOTEQUAL = function(state)
+    if #state.main < 2 then
+      return make_error("Need two items for NUMNOTEQUAL", state)
+    end
+    local new_state = vim.deepcopy(state)
+    local a = table.remove(new_state.main)
+    local b = table.remove(new_state.main)
+
+    local num_a, err_a = to_number(a)
+    if not num_a then
+      return make_error(err_a, state)
+    end
+
+    local num_b, err_b = to_number(b)
+    if not num_b then
+      return make_error(err_b, state)
+    end
+
+    -- Bitcoin script uses reverse order for comparison
+    table.insert(new_state.main, num_b ~= num_a and 1 or 0)
     return new_state
   end,
 
@@ -240,16 +334,15 @@ local function format_state(state)
 end
 
 -- Parse initial stack state from comment
--- Parse initial stack state from comment
 local function parse_initial_state(comment)
   debug_log("Parsing comment: " .. comment)
 
   -- Try to match both stacks first
-  local main_str, alt_str = comment:match("Example:%s*(%[[^%]]*%]),%s*(%[[^%]]*%])")
+  local main_str, alt_str = comment:match("%s*(%[[^%]]*%]),%s*(%[[^%]]*%])")
 
   -- If that fails, try to match just one stack
   if not main_str then
-    main_str = comment:match("Example:%s*(%[[^%]]*%])")
+    main_str = comment:match("%s*(%[[^%]]*%])")
     alt_str = "[]" -- Default empty altstack
   end
 
@@ -316,7 +409,7 @@ function M.setup()
           local initial_state
           local start_row = node:range()
           for i, line in ipairs(lines) do
-            if line:match("Example:") then
+            if line:match("^%s*//.*%[") then -- Matches any line starting with comment and containing [
               initial_state = parse_initial_state(line)
               start_row = start_row + i - 1
               break

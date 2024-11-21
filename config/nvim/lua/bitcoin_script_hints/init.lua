@@ -123,7 +123,7 @@ function M.setup()
                 local should_execute = true
 
                 -- Handle branch operations
-                if op == "OP_IF" then
+                if op == "OP_IF" or op == "OP_NOTIF" then
                   branch_state.in_if = true
                   current_state = op_effects[op](current_state)
                   -- Set execution state based on IF condition

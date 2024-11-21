@@ -9,19 +9,46 @@ local OP_1ADD = require('bitcoin_script_hints.op_codes.OP_1ADD')
 local OP_1SUB = require('bitcoin_script_hints.op_codes.OP_1SUB')
 local OP_GREATERTHAN = require('bitcoin_script_hints.op_codes.OP_GREATERTHAN')
 local OP_NUMEQUAL = require('bitcoin_script_hints.op_codes.OP_NUMEQUAL')
+local OP_NUMEQUALVERIFY = require('bitcoin_script_hints.op_codes.OP_NUMEQUALVERIFY')
 local OP_NUMNOTEQUAL = require('bitcoin_script_hints.op_codes.OP_NUMNOTEQUAL')
 local OP_IF = require('bitcoin_script_hints.op_codes.OP_IF')
 local OP_NOTIF = require('bitcoin_script_hints.op_codes.OP_NOTIF')
 local OP_ELSE = require('bitcoin_script_hints.op_codes.OP_ELSE')
 local OP_ENDIF = require('bitcoin_script_hints.op_codes.OP_ENDIF')
 local OP_SWAP = require('bitcoin_script_hints.op_codes.OP_SWAP')
-local OP_SHA256 = require('bitcoin_script_hints.op_codes.OP_SHA256')
+local OP_HASH = require('bitcoin_script_hints.op_codes.OP_HASH')
 local OP_CAT = require('bitcoin_script_hints.op_codes.OP_CAT')
 local OP_2DUP = require('bitcoin_script_hints.op_codes.OP_2DUP')
+local OP_2DROP = require('bitcoin_script_hints.op_codes.OP_2DROP')
+local OP_3DUP = require('bitcoin_script_hints.op_codes.OP_3DUP')
 local OP_ROT = require('bitcoin_script_hints.op_codes.OP_ROT')
 local OP_NOP = require('bitcoin_script_hints.op_codes.OP_NOP')
 local OP_VERIFY = require('bitcoin_script_hints.op_codes.OP_VERIFY')
 local OP_IFDUP = require('bitcoin_script_hints.op_codes.OP_IFDUP')
+local OP_DROP = require('bitcoin_script_hints.op_codes.OP_DROP')
+local OP_NIP = require('bitcoin_script_hints.op_codes.OP_NIP')
+local OP_OVER = require('bitcoin_script_hints.op_codes.OP_OVER')
+local OP_PICK = require('bitcoin_script_hints.op_codes.OP_PICK')
+local OP_ROLL = require('bitcoin_script_hints.op_codes.OP_ROLL')
+local OP_TUCK = require('bitcoin_script_hints.op_codes.OP_TUCK')
+local OP_2OVER = require('bitcoin_script_hints.op_codes.OP_2OVER')
+local OP_2ROT = require('bitcoin_script_hints.op_codes.OP_2ROT')
+local OP_2SWAP = require('bitcoin_script_hints.op_codes.OP_2SWAP')
+local OP_EQUAL = require('bitcoin_script_hints.op_codes.OP_EQUAL')
+local OP_EQUALVERIFY = require('bitcoin_script_hints.op_codes.OP_EQUALVERIFY')
+local OP_SIZE = require('bitcoin_script_hints.op_codes.OP_SIZE')
+local OP_NEGATE = require('bitcoin_script_hints.op_codes.OP_NEGATE')
+local OP_ABS = require('bitcoin_script_hints.op_codes.OP_ABS')
+local OP_NOT = require('bitcoin_script_hints.op_codes.OP_NOT')
+local OP_0NOTEQUAL = require('bitcoin_script_hints.op_codes.OP_0NOTEQUAL')
+local OP_BOOLAND = require('bitcoin_script_hints.op_codes.OP_BOOLAND')
+local OP_BOOLOR = require('bitcoin_script_hints.op_codes.OP_BOOLOR')
+local OP_MIN = require('bitcoin_script_hints.op_codes.OP_MIN')
+local OP_MAX = require('bitcoin_script_hints.op_codes.OP_MAX')
+local OP_WITHIN = require('bitcoin_script_hints.op_codes.OP_WITHIN')
+local OP_LESSTHAN = require('bitcoin_script_hints.op_codes.OP_LESSTHAN')
+local OP_GREATERTHANOREQUAL = require('bitcoin_script_hints.op_codes.OP_GREATERTHANOREQUAL')
+local OP_LESSTHANOREQUAL = require('bitcoin_script_hints.op_codes.OP_LESSTHANOREQUAL')
 
 -- The opcodes follow the same order as displayed on:
 -- https://en.bitcoin.it/wiki/Script
@@ -66,58 +93,58 @@ return {
   OP_FROMALTSTACK = OP_FROMALTSTACK,
   OP_IFDUP = OP_IFDUP,
   OP_DEPTH = OP_DEPTH,
-  -- TODO: OP_DROP
+  OP_DROP = OP_DROP,
   OP_DUP = OP_DUP,
-  -- TODO: OP_NIP
-  -- TODO: OP_OVER
-  -- TODO: OP_PICK
-  -- TODO: OP_ROLL
+  OP_NIP = OP_NIP,
+  OP_OVER = OP_OVER,
+  OP_PICK = OP_PICK,
+  OP_ROLL = OP_ROLL,
   OP_ROT = OP_ROT,
   OP_SWAP = OP_SWAP,
-  -- TODO: OP_TUCK
-  -- TODO: OP_2DROP
+  OP_TUCK = OP_TUCK,
+  OP_2DROP = OP_2DROP,
   OP_2DUP = OP_2DUP,
-  -- TODO: OP_3DUP
-  -- TODO: OP_2OVER
-  -- TODO: OP_2ROT
-  -- TODO: OP_2SWAP
+  OP_3DUP = OP_3DUP,
+  OP_2OVER = OP_2OVER,
+  OP_2ROT = OP_2ROT,
+  OP_2SWAP = OP_2SWAP,
 
   -- Splice:
   OP_CAT = OP_CAT,
-  -- TODO: OP_SIZE
+  OP_SIZE = OP_SIZE,
 
   -- Bitwise logic:
-  -- TODO: OP_EQUAL
-  -- TODO: OP_EQUALVERIFY
+  OP_EQUAL = OP_EQUAL,
+  OP_EQUALVERIFY = OP_EQUALVERIFY,
 
   -- Arithmetic:
   OP_1ADD = OP_1ADD,
   OP_1SUB = OP_1SUB,
-  -- TODO: OP_NEGATE
-  -- TODO: OP_ABS
-  -- TODO: OP_NOT
-  -- TODO: OP_0NOTEQUAL
+  OP_NEGATE = OP_NEGATE,
+  OP_ABS = OP_ABS,
+  OP_NOT = OP_NOT,
+  OP_0NOTEQUAL = OP_0NOTEQUAL,
   OP_ADD = OP_ADD,
   OP_SUB = OP_SUB,
-  -- TODO: OP_BOOLAND
-  -- TODO: OP_BOOLOR
+  OP_BOOLAND = OP_BOOLAND,
+  OP_BOOLOR = OP_BOOLOR,
   OP_NUMEQUAL = OP_NUMEQUAL,
-  -- TODO: OP_NUMEQUALVERIFY
+  OP_NUMEQUALVERIFY = OP_NUMEQUALVERIFY,
   OP_NUMNOTEQUAL = OP_NUMNOTEQUAL,
-  -- TODO: OP_LESSTHAN
+  OP_LESSTHAN = OP_LESSTHAN,
   OP_GREATERTHAN = OP_GREATERTHAN,
-  -- TODO: OP_LESSTHANOREQUAL
-  -- TODO: OP_GREATERTHANOREQUAL
-  -- TODO: OP_MIN
-  -- TODO: OP_MAX
-  -- TODO: OP_WITHIN
+  OP_LESSTHANOREQUAL = OP_LESSTHANOREQUAL,
+  OP_GREATERTHANOREQUAL = OP_GREATERTHANOREQUAL,
+  OP_MIN = OP_MIN,
+  OP_MAX = OP_MAX,
+  OP_WITHIN = OP_WITHIN,
 
   -- Crypto:
-  -- TODO: OP_RIPEMD160 (same as sha)
-  -- TODO: OP_SHA1 (same as sha)
-  OP_SHA256 = OP_SHA256,
-  -- TODO: OP_HASH160 (same as sha)
-  -- TODO: OP_HASH256 (same as sha)
+  OP_RIPEMD160 = OP_HASH,
+  OP_SHA1 = OP_HASH,
+  OP_SHA256 = OP_HASH,
+  OP_HASH160 = OP_HASH,
+  OP_HASH256 = OP_HASH,
   -- TODO: OP_CODESSEPARATOR
   -- TODO: OP_CHECKSIG
   -- TODO: OP_CHECKSIGVERIFY

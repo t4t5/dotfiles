@@ -49,6 +49,11 @@ local OP_WITHIN = require('bitcoin_script_hints.op_codes.OP_WITHIN')
 local OP_LESSTHAN = require('bitcoin_script_hints.op_codes.OP_LESSTHAN')
 local OP_GREATERTHANOREQUAL = require('bitcoin_script_hints.op_codes.OP_GREATERTHANOREQUAL')
 local OP_LESSTHANOREQUAL = require('bitcoin_script_hints.op_codes.OP_LESSTHANOREQUAL')
+local OP_CHECKSIG = require('bitcoin_script_hints.op_codes.OP_CHECKSIG')
+local OP_CHECKSIGVERIFY = require('bitcoin_script_hints.op_codes.OP_CHECKSIGVERIFY')
+local OP_CHECKMULTISIG = require('bitcoin_script_hints.op_codes.OP_CHECKMULTISIG')
+local OP_CHECKMULTISIGVERIFY = require('bitcoin_script_hints.op_codes.OP_CHECKMULTISIGVERIFY')
+local OP_CHECKSIGADD = require('bitcoin_script_hints.op_codes.OP_CHECKSIGADD')
 
 -- The opcodes follow the same order as displayed on:
 -- https://en.bitcoin.it/wiki/Script
@@ -145,14 +150,14 @@ return {
   OP_SHA256 = OP_HASH,
   OP_HASH160 = OP_HASH,
   OP_HASH256 = OP_HASH,
-  -- TODO: OP_CODESSEPARATOR
-  -- TODO: OP_CHECKSIG
-  -- TODO: OP_CHECKSIGVERIFY
-  -- TODO: OP_CHECKMULTISIG
-  -- TODO: OP_CHECKMULTISIGVERIFY
-  -- TODO: OP_CHECKSIGADD
+  OP_CODESEPARATOR = OP_NOP,
+  OP_CHECKSIG = OP_CHECKSIG,
+  OP_CHECKSIGVERIFY = OP_CHECKSIGVERIFY,
+  OP_CHECKMULTISIG = OP_CHECKMULTISIG,
+  OP_CHECKMULTISIGVERIFY = OP_CHECKMULTISIGVERIFY,
+  OP_CHECKSIGADD = OP_CHECKSIGADD,
 
   -- Locktime:
-  -- TODO: OP_CHECKLOCKTIMEVERIFY
-  -- TODO: OP_CHECKSEQUENCEVERIFY
+  OP_CHECKLOCKTIMEVERIFY = OP_NOP,
+  OP_CHECKSEQUENCEVERIFY = OP_NOP,
 }

@@ -153,6 +153,11 @@ function M.setup()
                     virt_text = { { " → " .. format_state(current_state), current_state.error and "ErrorMsg" or "Comment" } },
                     virt_text_pos = "eol",
                   })
+
+                  -- If we got an error, stop processing
+                  if current_state.error then
+                    break
+                  end
                 end
               end
             end

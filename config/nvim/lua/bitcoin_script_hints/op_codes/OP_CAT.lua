@@ -9,6 +9,6 @@ return function(state)
   local a = table.remove(new_state.main)
   local b = table.remove(new_state.main)
 
-  table.insert(new_state.main, tostring(a) .. tostring(b))
+  table.insert(new_state.main, tostring(a) .. "|" .. tostring(b))
   return new_state
 end

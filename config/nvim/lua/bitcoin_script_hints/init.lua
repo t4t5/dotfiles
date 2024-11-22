@@ -3,7 +3,7 @@ local op_effects = require("bitcoin_script_hints.op_codes")
 
 local M = {}
 
--- Modified format_state function to handle errors
+-- Format as: "[A, B, C], [D, E]"
 local function format_state(state)
   if state.error then
     return "ERROR: " .. state.error
@@ -11,6 +11,14 @@ local function format_state(state)
   local main_str = "[" .. table.concat(state.main, ", ") .. "]"
   local alt_str = "[" .. table.concat(state.alt, ", ") .. "]"
   return main_str .. ", " .. alt_str
+end
+
+-- Show either current state or error:
+local function render_hint(bufnr, namespace, row, current_state)
+  vim.api.nvim_buf_set_extmark(bufnr, namespace, row, 0, {
+    virt_text = { { " → " .. format_state(current_state), current_state.error and "ErrorMsg" or "Comment" } },
+    virt_text_pos = "eol",
+  })
 end
 
 -- Parse initial stack state from comment
@@ -24,6 +32,7 @@ local function parse_initial_state(comment)
     alt_str = "[]" -- Default empty altstack
   end
 
+  -- String is invalid:
   if not main_str then
     return nil
   end
@@ -43,7 +52,8 @@ local function parse_initial_state(comment)
 
   local state = {
     main = parse_stack(main_str),
-    alt = parse_stack(alt_str or "[]") -- Handle case where alt_str is nil
+    -- Specifying the alt stack is optional, so we need a fallback:
+    alt = parse_stack(alt_str or "[]")
   }
 
   return state
@@ -54,7 +64,7 @@ local function handle_branch_operation(op, branch_state, current_state)
     branch_state.in_if = true
     current_state = op_effects[op](current_state)
     branch_state.executing = not current_state.error and current_state.if_result
-    return current_state, false -- false means don't show hint
+    return current_state, false -- false means "don't show hint"
   elseif op == "OP_ELSE" then
     branch_state.in_if = false
     branch_state.in_else = true
@@ -66,31 +76,22 @@ local function handle_branch_operation(op, branch_state, current_state)
     branch_state.executing = true
     return current_state, false
   end
-  return current_state, true -- true means show hint
-end
-
-
-local function render_hint(bufnr, namespace, row, current_state)
-  vim.api.nvim_buf_set_extmark(bufnr, namespace, row, 0, {
-    virt_text = { { " → " .. format_state(current_state), current_state.error and "ErrorMsg" or "Comment" } },
-    virt_text_pos = "eol",
-  })
+  return current_state, true -- true means "show hint"
 end
 
 local function process_script_content(node, bufnr, namespace)
-  local content = vim.treesitter.get_node_text(node, bufnr)
-
-  -- Getting the start position and content
+  -- Get start position:
   local start_row = node:range()
 
-  -- Split content into lines, keeping empty lines
+  local content = vim.treesitter.get_node_text(node, bufnr)
   local lines = vim.split(content, "\n", { plain = true })
 
-  -- Find the Example comment and initial state
+  -- Find comment that initialises the state, example:
+  -- "// [A, B], [C]"
   local initial_state
   local op_start_line = start_row
   for i, line in ipairs(lines) do
-    if line:match("^%s*//.*%[") then -- Matches any line starting with comment and containing [
+    if line:match("^%s*//.*%[") then -- Matches any line starting with comment ("//") + "["
       initial_state = parse_initial_state(line)
       start_row = start_row + i - 1
       break
@@ -101,19 +102,16 @@ local function process_script_content(node, bufnr, namespace)
     local current_state = initial_state
     local current_line = op_start_line
 
-    -- Add branch tracking
+    -- Track if/else branches:
     local branch_state = {
       in_if = false,
       in_else = false,
       executing = true -- whether we're in a branch that should execute
     }
 
-    -- Process each operation
+    -- Process each operation:
     for i, line in ipairs(lines) do
-      -- Clean the line of whitespace
-      local cleaned_line = line:match("^%s*(.-)%s*$")
-
-      -- Only process and render for lines with operations
+      local cleaned_line = line:match("^%s*(.-)%s*$") -- remove whitespace chars
       local op = cleaned_line:match("OP_%w+")
 
       if op then
@@ -122,13 +120,11 @@ local function process_script_content(node, bufnr, namespace)
 
         -- Only execute and show hints for operations in the active branch
         if should_execute and branch_state.executing and op_effects[op] then
-          -- Calculate new state
-          current_state = op_effects[op](current_state)
+          current_state = op_effects[op](current_state) -- new state
 
-          -- Add virtual text
           render_hint(bufnr, namespace, start_row + i - 2, current_state)
 
-          -- If we got an error, stop processing
+          -- If we get an error, stop processing
           if current_state.error then
             break
           end
@@ -143,6 +139,7 @@ end
 function M.setup()
   M.namespace = vim.api.nvim_create_namespace('bitcoin_script_hints')
 
+  -- Reprocess every time we save the file or change the buffer:
   vim.api.nvim_create_autocmd({ "BufEnter", "BufWrite", "InsertLeave" }, {
     callback = function()
       local bufnr = vim.api.nvim_get_current_buf()
@@ -151,6 +148,7 @@ function M.setup()
       -- Clear existing virtual text
       vim.api.nvim_buf_clear_namespace(bufnr, M.namespace, 0, -1)
 
+      -- Look for the "script!" macro:
       local query = vim.treesitter.query.parse('rust', [[
         (macro_invocation
           macro: (identifier) @macro (#eq? @macro "script")

@@ -77,6 +77,69 @@ local function render_hint(bufnr, namespace, row, current_state)
   })
 end
 
+local function process_script_content(node, bufnr, namespace)
+  local content = vim.treesitter.get_node_text(node, bufnr)
+
+  -- Getting the start position and content
+  local start_row = node:range()
+
+  -- Split content into lines, keeping empty lines
+  local lines = vim.split(content, "\n", { plain = true })
+
+  -- Find the Example comment and initial state
+  local initial_state
+  local op_start_line = start_row
+  for i, line in ipairs(lines) do
+    if line:match("^%s*//.*%[") then -- Matches any line starting with comment and containing [
+      initial_state = parse_initial_state(line)
+      start_row = start_row + i - 1
+      break
+    end
+  end
+
+  if initial_state then
+    local current_state = initial_state
+    local current_line = op_start_line
+
+    -- Add branch tracking
+    local branch_state = {
+      in_if = false,
+      in_else = false,
+      executing = true -- whether we're in a branch that should execute
+    }
+
+    -- Process each operation
+    for i, line in ipairs(lines) do
+      -- Clean the line of whitespace
+      local cleaned_line = line:match("^%s*(.-)%s*$")
+
+      -- Only process and render for lines with operations
+      local op = cleaned_line:match("OP_%w+")
+
+      if op then
+        local should_execute
+        current_state, should_execute = handle_branch_operation(op, branch_state, current_state)
+
+        -- Only execute and show hints for operations in the active branch
+        if should_execute and branch_state.executing and op_effects[op] then
+          -- Calculate new state
+          current_state = op_effects[op](current_state)
+
+          -- Add virtual text
+          render_hint(bufnr, namespace, start_row + i - 2, current_state)
+
+          -- If we got an error, stop processing
+          if current_state.error then
+            break
+          end
+        end
+      end
+
+      current_line = current_line + 1
+    end
+  end
+end
+
 function M.setup()
   M.namespace = vim.api.nvim_create_namespace('bitcoin_script_hints')
 
@@ -101,66 +164,7 @@ function M.setup()
 
       for _, node in query:iter_captures(root, bufnr, 0, -1) do
         if node:type() == "token_tree" then
-          local content = vim.treesitter.get_node_text(node, bufnr)
-
-          -- Getting the start position and content
-          local start_row = node:range()
-
-          -- Split content into lines, keeping empty lines
-          local lines = vim.split(content, "\n", { plain = true })
-
-          -- Find the Example comment and initial state
-          local initial_state
-          local op_start_line = start_row
-          for i, line in ipairs(lines) do
-            if line:match("^%s*//.*%[") then -- Matches any line starting with comment and containing [
-              initial_state = parse_initial_state(line)
-              start_row = start_row + i - 1
-              break
-            end
-          end
-
-          if initial_state then
-            local current_state = initial_state
-            local current_line = op_start_line
-
-            -- Add branch tracking
-            local branch_state = {
-              in_if = false,
-              in_else = false,
-              executing = true -- whether we're in a branch that should execute
-            }
-
-            -- Process each operation
-            for i, line in ipairs(lines) do
-              -- Clean the line of whitespace
-              local cleaned_line = line:match("^%s*(.-)%s*$")
-
-              -- Only process and render for lines with operations
-              local op = cleaned_line:match("OP_%w+")
-
-              if op then
-                local should_execute
-                current_state, should_execute = handle_branch_operation(op, branch_state, current_state)
-
-                -- Only execute and show hints for operations in the active branch
-                if should_execute and branch_state.executing and op_effects[op] then
-                  -- Calculate new state
-                  current_state = op_effects[op](current_state)
-
-                  -- Add virtual text
-                  render_hint(bufnr, M.namespace, start_row + i - 2, current_state)
-
-                  -- If we got an error, stop processing
-                  if current_state.error then
-                    break
-                  end
-                end
-              end
-
-              current_line = current_line + 1
-            end
-          end
+          process_script_content(node, bufnr, M.namespace)
         end
       end
     end

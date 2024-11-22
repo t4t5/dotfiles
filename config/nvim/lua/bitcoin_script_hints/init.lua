@@ -3,15 +3,6 @@ local op_effects = require("bitcoin_script_hints.op_codes")
 
 local M = {}
 
---[[ local function debug_log(msg)
-  local log_file = '/tmp/bitcoin_script_hints.log'
-  local f = io.open(log_file, 'a')
-  if f then
-    f:write(os.date('%Y-%m-%d %H:%M:%S') .. ': ' .. msg .. '\n')
-    f:close()
-  end
-end ]]
-
 -- Modified format_state function to handle errors
 local function format_state(state)
   if state.error then
@@ -24,8 +15,6 @@ end
 
 -- Parse initial stack state from comment
 local function parse_initial_state(comment)
-  -- debug_log("Parsing comment: " .. comment)
-
   -- Try to match both stacks first
   local main_str, alt_str = comment:match("%s*(%[[^%]]*%]),%s*(%[[^%]]*%])")
 
@@ -36,7 +25,6 @@ local function parse_initial_state(comment)
   end
 
   if not main_str then
-    -- debug_log("Failed to parse stacks from comment")
     return nil
   end
 
@@ -57,8 +45,36 @@ local function parse_initial_state(comment)
     main = parse_stack(main_str),
     alt = parse_stack(alt_str or "[]") -- Handle case where alt_str is nil
   }
-  -- debug_log("Parsed initial state: main=" .. vim.inspect(state.main) .. ", alt=" .. vim.inspect(state.alt))
+
   return state
+end
+
+local function handle_branch_operation(op, branch_state, current_state)
+  if op == "OP_IF" or op == "OP_NOTIF" then
+    branch_state.in_if = true
+    current_state = op_effects[op](current_state)
+    branch_state.executing = not current_state.error and current_state.if_result
+    return current_state, false -- false means don't show hint
+  elseif op == "OP_ELSE" then
+    branch_state.in_if = false
+    branch_state.in_else = true
+    branch_state.executing = not branch_state.executing
+    return current_state, false
+  elseif op == "OP_ENDIF" then
+    branch_state.in_if = false
+    branch_state.in_else = false
+    branch_state.executing = true
+    return current_state, false
+  end
+  return current_state, true -- true means show hint
+end
+
+
+local function render_hint(bufnr, namespace, row, current_state)
+  vim.api.nvim_buf_set_extmark(bufnr, namespace, row, 0, {
+    virt_text = { { " → " .. format_state(current_state), current_state.error and "ErrorMsg" or "Comment" } },
+    virt_text_pos = "eol",
+  })
 end
 
 function M.setup()
@@ -73,11 +89,11 @@ function M.setup()
       vim.api.nvim_buf_clear_namespace(bufnr, M.namespace, 0, -1)
 
       local query = vim.treesitter.query.parse('rust', [[
-                (macro_invocation
-                    macro: (identifier) @macro (#eq? @macro "script")
-                    (token_tree) @script_content
-                )
-            ]])
+        (macro_invocation
+          macro: (identifier) @macro (#eq? @macro "script")
+          (token_tree) @script_content
+        )
+      ]])
 
       local parser = parsers.get_parser(bufnr)
       local tree = parser:parse()[1]
@@ -86,13 +102,6 @@ function M.setup()
       for _, node in query:iter_captures(root, bufnr, 0, -1) do
         if node:type() == "token_tree" then
           local content = vim.treesitter.get_node_text(node, bufnr)
-          -- debug_log("Processing script content: " .. content)
-
-          -- Split content into lines
-          --[[ local lines = {}
-          for line in content:gmatch("[^\r\n]+") do
-            table.insert(lines, line)
-          end ]]
 
           -- Getting the start position and content
           local start_row = node:range()
@@ -114,7 +123,6 @@ function M.setup()
           if initial_state then
             local current_state = initial_state
             local current_line = op_start_line
-            -- debug_log("Initial state: " .. format_state(current_state))
 
             -- Add branch tracking
             local branch_state = {
@@ -132,50 +140,25 @@ function M.setup()
               local op = cleaned_line:match("OP_%w+")
 
               if op then
-                local should_execute = true
-
-                -- Handle branch operations
-                if op == "OP_IF" or op == "OP_NOTIF" then
-                  branch_state.in_if = true
-                  current_state = op_effects[op](current_state)
-                  -- Set execution state based on IF condition
-                  branch_state.executing = not current_state.error and current_state.if_result
-                  should_execute = false -- IF itself doesn't need a hint
-                elseif op == "OP_ELSE" then
-                  branch_state.in_if = false
-                  branch_state.in_else = true
-                  -- Invert execution state
-                  branch_state.executing = not branch_state.executing
-                  should_execute = false -- ELSE itself doesn't need a hint
-                elseif op == "OP_ENDIF" then
-                  branch_state.in_if = false
-                  branch_state.in_else = false
-                  branch_state.executing = true
-                  should_execute = false -- ENDIF itself doesn't need a hint
-                end
+                local should_execute
+                current_state, should_execute = handle_branch_operation(op, branch_state, current_state)
 
                 -- Only execute and show hints for operations in the active branch
                 if should_execute and branch_state.executing and op_effects[op] then
                   -- Calculate new state
                   current_state = op_effects[op](current_state)
-                  -- debug_log("After " .. op .. ": " .. format_state(current_state))
 
                   -- Add virtual text
-                  vim.api.nvim_buf_set_extmark(bufnr, M.namespace, start_row + i - 2, 0, {
-                    virt_text = { { " → " .. format_state(current_state), current_state.error and "ErrorMsg" or "Comment" } },
-                    virt_text_pos = "eol",
-                  })
+                  render_hint(bufnr, M.namespace, start_row + i - 2, current_state)
 
                   -- If we got an error, stop processing
                   if current_state.error then
                     break
                   end
                 end
-                current_line = current_line + 1
-              elseif cleaned_line ~= "" then
-                -- If there's content but no operation, still increment the line
-                current_line = current_line + 1
               end
+
+              current_line = current_line + 1
             end
           end
         end

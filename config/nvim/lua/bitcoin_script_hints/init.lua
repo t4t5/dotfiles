@@ -89,14 +89,20 @@ function M.setup()
           -- debug_log("Processing script content: " .. content)
 
           -- Split content into lines
-          local lines = {}
+          --[[ local lines = {}
           for line in content:gmatch("[^\r\n]+") do
             table.insert(lines, line)
-          end
+          end ]]
+
+          -- Getting the start position and content
+          local start_row = node:range()
+
+          -- Split content into lines, keeping empty lines
+          local lines = vim.split(content, "\n", { plain = true })
 
           -- Find the Example comment and initial state
           local initial_state
-          local start_row = node:range()
+          local op_start_line = start_row
           for i, line in ipairs(lines) do
             if line:match("^%s*//.*%[") then -- Matches any line starting with comment and containing [
               initial_state = parse_initial_state(line)
@@ -107,6 +113,7 @@ function M.setup()
 
           if initial_state then
             local current_state = initial_state
+            local current_line = op_start_line
             -- debug_log("Initial state: " .. format_state(current_state))
 
             -- Add branch tracking
@@ -118,7 +125,12 @@ function M.setup()
 
             -- Process each operation
             for i, line in ipairs(lines) do
-              local op = line:match("OP_%w+")
+              -- Clean the line of whitespace
+              local cleaned_line = line:match("^%s*(.-)%s*$")
+
+              -- Only process and render for lines with operations
+              local op = cleaned_line:match("OP_%w+")
+
               if op then
                 local should_execute = true
 
@@ -159,6 +171,10 @@ function M.setup()
                     break
                   end
                 end
+                current_line = current_line + 1
+              elseif cleaned_line ~= "" then
+                -- If there's content but no operation, still increment the line
+                current_line = current_line + 1
               end
             end
           end

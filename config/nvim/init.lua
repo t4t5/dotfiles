@@ -12,4 +12,4 @@ require "user.tabs"
 require "user.git"
 require "user.snippets"
 
-require('bitcoin_script_hints.init').setup()
+-- require('bitcoin_script_hints.init').setup()

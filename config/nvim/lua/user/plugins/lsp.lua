@@ -100,11 +100,20 @@ return {
     end
   },
 
+  -- show bitcoin script steps
+  {
+    't4t5/bitcoin-script-hints.nvim',
+    dir = vim.fn.expand("~/dev/nvim/bitcoin-script-hints.nvim"), -- test locally
+    config = function()
+      require('bitcoin-script-hints').setup()
+    end
+  },
+
   -- better rust support:
   {
     'mrcjkb/rustaceanvim',
     version = '^5', -- Recommended
-    lazy = false, -- This plugin is already lazy
+    lazy = false,   -- This plugin is already lazy
   },
 
   -- List references + definitions:

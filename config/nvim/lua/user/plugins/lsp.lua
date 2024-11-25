@@ -102,8 +102,8 @@ return {
 
   -- show bitcoin script steps
   {
-    't4t5/bitcoin-script-hints.nvim',
-    dir = vim.fn.expand("~/dev/nvim/bitcoin-script-hints.nvim"), -- test locally
+    'taproot-wizards/bitcoin-script-hints.nvim',
+    -- dir = vim.fn.expand("~/dev/nvim/bitcoin-script-hints.nvim"), -- test locally
     config = function()
       require('bitcoin-script-hints').setup()
     end

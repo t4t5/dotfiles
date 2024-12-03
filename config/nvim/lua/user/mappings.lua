@@ -88,31 +88,11 @@ vim.keymap.set('n', '<leader>ds', require 'dap'.step_over, { desc = "Step" })
 
 -- Set group names for which-key:
 require("which-key").register({
-  ["<leader>j"] = {
-    name = "jump (go to)"
-  },
-  ["<leader>g"] = {
-    name = "git"
-  },
-  ["<leader>a"] = {
-    name = "diagnostics"
-  },
-  ["<leader>d"] = {
-    name = "debug tools"
-  },
-  ["<leader>D"] = {
-    name = "Launch debugger"
-  },
-  ["<leader>l"] = {
-    name = "list (macros/clipboard)"
-  },
-})
-
-require("which-key").register({
-  ["<leader>g"] = {
-    name = "git"
-  },
-  ["<leader>a"] = {
-    name = "AI"
-  },
-}, { mode = "x" })
+  { "Git",         group = "git",                    mode = { "n", "x" } },
+  { "Debugger",    group = "debugger" },
+  { "Diagnostics", group = "diagnostics" },
+  { "Jump",        group = "jump (go to)" },
+  { "List",        group = "list (macros/clipboard)" },
+  { "Debug tools", group = "debug tools" },
+  { "AI",          group = "AI",                     mode = "x" },
+});

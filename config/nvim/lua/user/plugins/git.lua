@@ -16,11 +16,11 @@ return {
     end,
   },
 
-  { "sindrets/diffview.nvim" }, -- git status
-  { "ruanyl/vim-gh-line" },     -- open blame in github
-  -- { "f-person/git-blame.nvim" }, -- show last commit per line in editor
+  { "sindrets/diffview.nvim" },  -- git status
+  { "ruanyl/vim-gh-line" },      -- open blame in github
+  { "f-person/git-blame.nvim" }, -- show last commit per line in editor
   {
-    "tpope/vim-fugitive", -- needed for vim-conflicted
+    "tpope/vim-fugitive",        -- needed for vim-conflicted
     cmd = {
       "G",
       "Git",

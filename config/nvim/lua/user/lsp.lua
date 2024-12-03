@@ -11,7 +11,7 @@ local servers = {
       disabled = { "inactive-code" },
     }
   },
-  tsserver = {},
+  -- tsserver = {},
   tailwindcss = {
     filetypes = { 'typescriptreact', 'astro' },
     tailwindCSS = {

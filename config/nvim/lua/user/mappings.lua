@@ -87,7 +87,7 @@ vim.keymap.set('n', '<leader>dr', require 'dap'.continue, { desc = "Continue (ru
 vim.keymap.set('n', '<leader>ds', require 'dap'.step_over, { desc = "Step" })
 
 -- Set group names for which-key:
-require("which-key").register({
+require("which-key").add({
   { "Git",         group = "git",                    mode = { "n", "x" } },
   { "Debugger",    group = "debugger" },
   { "Diagnostics", group = "diagnostics" },

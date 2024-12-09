@@ -21,3 +21,6 @@ ngrok port:
 
 bitcoin-regtest:
   bitcoind -regtest -rpcuser=user -rpcpassword=password
+
+casks tap:
+  brew tap-info homebrew/cask-fonts {{tap}} --json | jq -r '.[]|(.formula_names[],.cask_tokens[])'

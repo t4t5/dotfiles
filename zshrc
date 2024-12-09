@@ -27,6 +27,8 @@ antigen apply
 
 # Homebrew
 alias brew='arch -arm64 brew'
+# Prevent brew from upgrading everything every time:
+HOMEBREW_NO_AUTO_UPDATE=1
 
 # Ruby
 alias gem='arch -arm64 gem'

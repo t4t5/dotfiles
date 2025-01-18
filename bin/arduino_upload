@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+# Get board info and extract port + FQBN for USB-connected Arduino
+BOARD_INFO=$(arduino-cli board list)
+PORT=$(echo "$BOARD_INFO" | grep "Serial Port (USB)" | awk '{print $1}')
+FQBN=$(echo "$BOARD_INFO" | grep "Serial Port (USB)" | awk '{print $8}')
+
+# Check if we found both PORT and FQBN
+if [ -z "$PORT" ] || [ -z "$FQBN" ]; then
+    echo "Error: Could not find USB-connected Arduino board"
+    exit 1
+fi
+
+# Upload using the extracted values
+echo "Uploading to $PORT with FQBN: $FQBN"
+arduino-cli upload -p "$PORT" --fqbn "$FQBN" .

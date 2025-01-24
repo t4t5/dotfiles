@@ -10,6 +10,9 @@ if [ -z "$PORT" ] || [ -z "$FQBN" ]; then
     exit 1
 fi
 
+echo "Compiling..."
+arduino-cli compile --fqbn "$FQBN" .
+
 # Upload using the extracted values
 echo "Uploading to $PORT with FQBN: $FQBN"
 arduino-cli upload -p "$PORT" --fqbn "$FQBN" .

@@ -15,6 +15,7 @@
     ~/.justfile: justfile
     ~/.bin: bin
     ~/.ignore: ignore
+    ~/Library/Arduino15/arduino-cli.yaml: arduino-cli.yaml
     ~/Library/Application Support/Code/User/settings.json:
       path: config/vscode/settings.json
       force: true

@@ -57,11 +57,11 @@ local function custom_sort(entry1, entry2)
   local snippet_type = cmp.lsp.CompletionItemKind.Snippet
 
   -- deprioritize snippets:
-  if kind1 == snippet_type then
+  --[[ if kind1 == snippet_type then
     return false
   elseif kind2 == snippet_type then
     return true
-  end
+  end ]]
 
   -- local copilot_type = cmp.lsp.CompletionItemKind.Copilot
   -- if kind1 == copilot_type then
@@ -96,8 +96,8 @@ cmp.setup {
   },
   sorting = {
     comparators = {
-      custom_sort,
-      -- cmp.config.compare.kind,
+      -- custom_sort,
+      cmp.config.compare.kind,
       cmp.config.compare.sort_text,
       cmp.config.compare.length,
       cmp.config.compare.order,

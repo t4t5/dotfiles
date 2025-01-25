@@ -1,6 +1,8 @@
 -- open splits with vv:
-vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
+if not vim.g.vscode then
+  vim.api.nvim_set_keymap("n", "vv", ":vnew<cr>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "--", ":new<cr>", { noremap = true, silent = true })
+end
 
 -- jump to diffs:
 vim.keymap.set('n', '[[', '[c', { noremap = true, silent = true, desc = "Jump to previous diff" })
@@ -18,11 +20,18 @@ vim.api.nvim_set_keymap("n", "<esc>", ":noh<cr>", { noremap = true, silent = tru
 vim.api.nvim_set_keymap("n", "<space>", "@q", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<space>", ":<C-U>'<,'>norm! @q<CR>", { noremap = true, silent = true })
 
+if vim.g.vscode then
+  -- do nothing for <C-l>:
+  vim.keymap.set("n", "<C-l>", "<nop>", { desc = "Do nothing" })
+end
+
 -- better window movement (supporting tmux)
-vim.keymap.set("n", "<C-h>", "<cmd>lua require'tmux'.move_left()<cr>", { desc = "Go to left window" })
-vim.keymap.set("n", "<C-j>", "<cmd>lua require'tmux'.move_bottom()<cr>", { desc = "Go to lower window" })
-vim.keymap.set("n", "<C-k>", "<cmd>lua require'tmux'.move_top()<cr>", { desc = "Go to upper window" })
-vim.keymap.set("n", "<C-l>", "<cmd>lua require'tmux'.move_right()<cr>", { desc = "Go to right window" })
+if not vim.g.vscode then
+  vim.keymap.set("n", "<C-h>", "<cmd>lua require'tmux'.move_left()<cr>", { desc = "Go to left window" })
+  vim.keymap.set("n", "<C-j>", "<cmd>lua require'tmux'.move_bottom()<cr>", { desc = "Go to lower window" })
+  vim.keymap.set("n", "<C-k>", "<cmd>lua require'tmux'.move_top()<cr>", { desc = "Go to upper window" })
+  vim.keymap.set("n", "<C-l>", "<cmd>lua require'tmux'.move_right()<cr>", { desc = "Go to right window" })
+end
 
 -- resize windows with arrow keys
 vim.keymap.set('n', '<left>', ':vertical resize -10<cr>')

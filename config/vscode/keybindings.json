@@ -95,18 +95,28 @@
     "command": "workbench.action.terminal.focusNext"
   },
   {
-    // Go to prev terminal tab:
+    // Go to previous terminal tab:
     "key": "ctrl+a h",
     "command": "workbench.action.terminal.focusPrevious"
   },
   {
-    // Go to previous tab:
+    // Open new terminal tab:
+    "key": "ctrl+a n",
+    "command": "workbench.action.terminal.new"
+  },
+  {
+    // Close terminal tab:
+    "key": "ctrl+a x",
+    "command": "workbench.action.terminal.kill"
+  },
+  {
+    // Go to previous editor tab:
     "key": "ctrl+left",
     "command": "workbench.action.previousEditor",
     "when": "editorTextFocus"
   },
   {
-    // Go to next tab:
+    // Go to next editor tab:
     "key": "ctrl+right",
     "command": "workbench.action.nextEditor",
     "when": "editorTextFocus"

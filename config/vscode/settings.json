@@ -1,6 +1,13 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.guides.bracketPairs": false,
+  "editor.bracketPairColorization.enabled": false,
+  "editor.occurrencesHighlight": "off",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorStyle": "block",
+  "editor.matchBrackets": "never",
+  "editor.selectionHighlight": false,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -36,5 +43,7 @@
     "**/target": true
   },
   "tlaplus.tlc.modelChecker.options": "-workers 5 -dump dot ${modelName}.dot",
-  "workbench.iconTheme": "nand-ide"
+  "workbench.iconTheme": "nand-ide",
+  "workbench.colorTheme": "Tokyo Night Gogh",
+  "panel.hideOtherPanels": true
 }

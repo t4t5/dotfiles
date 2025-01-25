@@ -61,11 +61,13 @@ return {
     main = "ibl",
     opts = {},
     config = function()
-      local ibl = require("ibl")
+      if not vim.g.vscode then
+        local ibl = require("ibl")
 
-      ibl.setup({
-        indent = { char = '┊', highlight = "LineNr" }
-      })
+        ibl.setup({
+          indent = { char = '┊', highlight = "LineNr" }
+        })
+      end
     end
   },
 

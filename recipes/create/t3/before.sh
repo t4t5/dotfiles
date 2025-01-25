@@ -1,1 +1,1 @@
-pnpm create t3-app@latest --trpc --prisma --tailwind
+pnpm create t3-app@latest . --trpc --prisma --tailwind

@@ -1,5 +1,4 @@
 return {
-  -- Theme:
   {
     'folke/tokyonight.nvim',
     config = function()
@@ -11,7 +10,9 @@ return {
         end
       })
 
-      vim.cmd [[colorscheme tokyonight]]
+      if not vim.g.vscode then
+        vim.cmd [[colorscheme tokyonight]]
+      end
     end
   },
 
@@ -71,21 +72,23 @@ return {
   {
     'petertriho/nvim-scrollbar',
     config = function()
-      local colors = require("tokyonight.colors").setup()
+      if not vim.g.vscode then
+        local colors = require("tokyonight.colors").setup()
 
-      require("scrollbar").setup({
-        handle = {
-          color = colors.fg_gutter,
-        },
-        handlers = {
-          cursor = false,
-          diagnostic = false,
-          gitsigns = false,
-          handle = true,
-          search = false,
-          ale = false,
-        },
-      })
+        require("scrollbar").setup({
+          handle = {
+            color = colors.fg_gutter,
+          },
+          handlers = {
+            cursor = false,
+            diagnostic = false,
+            gitsigns = false,
+            handle = true,
+            search = false,
+            ale = false,
+          },
+        })
+      end
     end
   }
 }

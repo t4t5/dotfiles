@@ -44,7 +44,7 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
 
 # Use tmux by default when using terminal
-if [ -z "$TMUX" ]; then
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
   tmux attach -t default || tmux new -s default
 fi
 

@@ -168,8 +168,15 @@ require("which-key").add({
   { "Debug tools", group = "debug tools" },
   { "AI", group = "AI", mode = "x" },
   { "<leader>a", group = "AI", icon = "✨" },
+  {
+    "<leader>a",
+    group = "AI",
+    mode = "x",
+    icon = "✨"
+  },
   { "<leader>g", group = "git", icon = "" },
-  { "<leader>j", group = "jump to", icon = "" },
+  { "<leader>g", group = "git", mode = "x", desc = "which_key_ignore" },
+  { "<leader>j", group = "jump to", icon = "" },
   { "<leader>h", group = "history", icon = "󰋚" },
   { "<leader>d", group = "debug", icon = "" },
 });

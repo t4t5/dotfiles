@@ -106,7 +106,61 @@ require("which-key").add({
   },
 })
 
-vim.keymap.set('n', '<leader>aa', vim.lsp.buf.code_action, { desc = 'Code Actions' })
+-- Avante actions (ignore most of them):
+-- visual mode:
+require("which-key").add({
+  {
+    "<leader>aa",
+    desc = "edit with AI",
+    mode = "x",
+    icon = "🪄"
+  },
+  {
+    "<leader>aA",
+    desc = "ask AI",
+    mode = "x",
+    icon = "󰚩"
+  },
+})
+-- normal mode:
+require("which-key").add({
+  {
+    "<leader>aa",
+    vim.lsp.buf.code_action,
+    desc = "code action",
+    mode = "n",
+    icon = ""
+  },
+  {
+    "<leader>ad", -- avante debug
+    desc = "which_key_ignore",
+  },
+  {
+    "<leader>af", -- avante focus
+    desc = "which_key_ignore",
+  },
+  {
+    "<leader>ah", -- avante toggle hint
+    desc = "which_key_ignore",
+  },
+  {
+    "<leader>ar", -- avante refresh
+    desc = "which_key_ignore",
+  },
+  {
+    "<leader>aR", -- avante display repo map
+    desc = "which_key_ignore",
+  },
+  {
+    "<leader>as", -- avante toggle suggestion
+    desc = "which_key_ignore",
+  },
+  {
+    "<leader>at", -- avante toggle
+    desc = "which_key_ignore",
+  },
+})
+
 -- go to definition:
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
 

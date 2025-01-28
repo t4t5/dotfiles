@@ -7,13 +7,43 @@ if vim.g.vscode then
     { noremap = true, silent = true })
 else
   -- Regular Neovim settings
-  vim.keymap.set('n', '<leader>ak', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
-  vim.keymap.set('n', '<leader>aj', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
-  vim.keymap.set('n', '<leader>ae',
-    function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,
-    { desc = 'Go to next error' })
-  vim.keymap.set('n', '<leader>ay', vim.diagnostic.enable, { desc = 'Enable diagnostics (yes)' })
-  vim.keymap.set('n', '<leader>an', vim.diagnostic.disable, { desc = 'Disable diagnostics (no)' })
+  require("which-key").add({
+    {
+      "<leader>ak",
+      vim.diagnostic.goto_prev,
+      desc = "go to previous diagnostic",
+      mode = "n",
+      icon = "󰒮"
+    },
+    {
+      "<leader>aj",
+      vim.diagnostic.goto_next,
+      desc = "go to next diagnostic",
+      mode = "n",
+      icon = "󰒭"
+    },
+    {
+      "<leader>ae",
+      function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true }) end,
+      desc = "go to next error",
+      mode = "n",
+      icon = ""
+    },
+    {
+      "<leader>ay",
+      vim.diagnostic.enable,
+      desc = "enable diagnostics",
+      mode = "n",
+      icon = ""
+    },
+    {
+      "<leader>an",
+      vim.diagnostic.enable,
+      desc = "disable diagnostics",
+      mode = "n",
+      icon = ""
+    },
+  })
 end
 
 -- Show bordered window for errors:
@@ -116,5 +146,12 @@ vim.api.nvim_create_user_command('YankAiErrorPrompt', yank_ai_prompt,
   { range = true })
 
 -- Visual mode only:
-vim.api.nvim_set_keymap('x', '<leader>ae', ':YankAiErrorPrompt<CR>',
-  { noremap = true, silent = true, desc = "Generate prompt for error" })
+require("which-key").add({
+  {
+    "<leader>ae",
+    ':YankAiErrorPrompt<CR>',
+    desc = "generate prompt for error",
+    mode = "x",
+    icon = "󰵅"
+  },
+})

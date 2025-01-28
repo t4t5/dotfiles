@@ -59,7 +59,8 @@ require("which-key").add({
     function()
       require("notify")("Test notification!")
     end,
-    desc = "test notification",
+    -- desc = "test notification",
+    desc = "which_key_ignore",
     mode = "n",
     icon = "󰂞"
   },

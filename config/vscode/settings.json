@@ -36,7 +36,6 @@
   "editor.lineNumbers": "relative",
   "files.exclude": {
     "**/.git": true,
-    "**/.gitignore": true,
     "**/.gitmodules": true,
     "**/node_modules": true,
     "**/tmp": true,

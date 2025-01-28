@@ -13,7 +13,7 @@ require("which-key").add({
     ':Silent open %:h<cr>',
     desc = "open in finder",
     mode = "n",
-    icon = ""
+    icon = "󰀶"
   },
 })
 

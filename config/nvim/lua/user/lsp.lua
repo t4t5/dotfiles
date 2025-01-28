@@ -100,9 +100,9 @@ require("which-key").add({
   {
     "<leader>k",
     vim.lsp.buf.hover,
-    desc = "hover",
+    desc = "inspect (hover)",
     mode = "n",
-    icon = ""
+    icon = ""
   },
 })
 
@@ -111,25 +111,31 @@ require("which-key").add({
 require("which-key").add({
   {
     "<leader>aa",
-    desc = "edit with AI",
+    desc = "edit snippet with AI",
     mode = "x",
     icon = "🪄"
   },
   {
     "<leader>aA",
-    desc = "ask AI",
+    desc = "ask AI (about snippet)",
     mode = "x",
-    icon = "󰚩"
+    icon = "✨"
   },
 })
 -- normal mode:
 require("which-key").add({
   {
+    "<leader>aA",
+    desc = "ask AI (about file)",
+    mode = "n",
+    icon = "✨"
+  },
+  {
     "<leader>aa",
     vim.lsp.buf.code_action,
-    desc = "code action",
+    desc = "automatic action",
     mode = "n",
-    icon = ""
+    icon = "🪄"
   },
   {
     "<leader>ad", -- avante debug

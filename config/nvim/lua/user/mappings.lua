@@ -160,6 +160,7 @@ require("which-key").add({
 })
 
 -- Set group names for which-key:
+-- Use icons from https://www.nerdfonts.com/cheat-sheet
 require("which-key").add({
   { "Git", group = "git", mode = { "n", "x" } },
   { "Debugger", group = "debugger", icon = "🐞" },

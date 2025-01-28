@@ -5,6 +5,14 @@ function OpenLuaSnipFile()
   vim.api.nvim_command("vsplit " .. path)
 end
 
-vim.keymap.set("n", "<leader>S", OpenLuaSnipFile, { desc = "Edit snippets" })
+require("which-key").add({
+  {
+    "<leader>S",
+    OpenLuaSnipFile,
+    desc = "edit snippets",
+    mode = "n",
+    icon = ""
+  },
+})
 
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/luasnippets" })

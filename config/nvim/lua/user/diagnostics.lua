@@ -39,8 +39,16 @@ local function yank_diagnostic_error()
 end
 
 -- Copy error messages:
-vim.keymap.set('n', '<leader>e', yank_diagnostic_error,
-  { noremap = true, silent = true, desc = "copy error" })
+require("which-key").add({
+  {
+    -- open file explorer at position of current file:
+    "<leader>e",
+    yank_diagnostic_error,
+    desc = "copy error",
+    mode = "n",
+    icon = ""
+  },
+})
 
 ------------------
 -- AI WORKFLOW: --

@@ -39,7 +39,7 @@ vim.keymap.set('n', '<C-p>', builtin.live_grep, { desc = '[S]earch by [G]rep' })
 -- vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 
 -- Show clipboard history
-vim.keymap.set('n', '<leader>lc', '<cmd>Telescope neoclip<cr>', { desc = 'Clipboard history' })
+vim.keymap.set('n', '<leader>hc', '<cmd>Telescope neoclip<cr>', { desc = 'Clipboard history' })
 
 -- Show macros history
-vim.keymap.set('n', '<leader>lm', require('telescope').extensions.macroscope.default, { desc = 'Macros history' })
+vim.keymap.set('n', '<leader>hm', require('telescope').extensions.macroscope.default, { desc = 'Macros history' })

@@ -42,20 +42,38 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
 -- test file
-vim.keymap.set('n', '<leader>T', "<cmd>TestFile<cr>", {
-  desc = "Test file"
+require("which-key").add({
+  {
+    -- open file explorer at position of current file:
+    "<leader>T",
+    "<cmd>TestFile<cr>",
+    desc = "test file",
+    mode = "n",
+    icon = ""
+  },
 })
 
-vim.keymap.set('n', '<leader>N', function()
-  require("notify")("Test notification!")
-end, {
-  desc = "test notification"
+require("which-key").add({
+  {
+    "<leader>N",
+    function()
+      require("notify")("Test notification!")
+    end,
+    desc = "test notification",
+    mode = "n",
+    icon = "󰂞"
+  },
 })
 
 -- Spectre (find and replace across files)
-vim.keymap.set('n', '<leader>F', require("spectre").open, {
-  desc = "Find + replace (spectre)"
-  -- Use <leader>R to replace
+require("which-key").add({
+  {
+    "<leader>F",
+    require("spectre").open,
+    desc = "Find + replace (spectre)",
+    mode = "n",
+    icon = "󰛔"
+  },
 })
 
 -- Toggle file tree:
@@ -63,8 +81,14 @@ if vim.g.vscode then
   vim.api.nvim_set_keymap('n', ',t', '<Cmd>call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>',
     { noremap = true, silent = true })
 else
-  vim.keymap.set('n', '<leader>t', "<cmd>NvimTreeToggle<cr>", {
-    desc = "file explorer",
+  require("which-key").add({
+    {
+      "<leader>t",
+      "<cmd>NvimTreeToggle<cr>",
+      desc = "toggle explorer",
+      mode = "n",
+      icon = ""
+    },
   })
 end
 
@@ -79,29 +103,73 @@ end
 --   require("joshuto").joshuto({ edit_in_tab = not is_empty })
 -- end, { desc = "ranger (joshuto)" })
 
--- open file explorer at position of current file:
-vim.keymap.set('n', '<leader>r', function()
-  require('mini.files').open(vim.api.nvim_buf_get_name(0))
-end, { desc = "minifiles (curr)" })
-
--- open file explorer at root:
-vim.keymap.set('n', '<leader>R', function()
-  require('mini.files').open(nil, false)
-end, { desc = "minifiles (root)" })
+-- explorer
+require("which-key").add({
+  {
+    -- open file explorer at position of current file:
+    "<leader>r",
+    function()
+      require('mini.files').open(vim.api.nvim_buf_get_name(0))
+    end,
+    desc = "ranger (./)",
+    mode = "n",
+    icon = "󰙅"
+  },
+  {
+    -- open file explorer at root:
+    "<leader>R",
+    function()
+      require('mini.files').open(nil, false)
+    end,
+    desc = "ranger (~/root)",
+    mode = "n",
+    icon = "󰙅"
+  },
+})
 
 -- Debugger (nvim-dap)
-vim.keymap.set('n', '<leader>D', require("dapui").toggle, { desc = "Debugger" })
-vim.keymap.set('n', '<leader>dd', require 'dap'.toggle_breakpoint, { desc = "Toggle breakpoint" })
-vim.keymap.set('n', '<leader>dr', require 'dap'.continue, { desc = "Continue (run)" })
-vim.keymap.set('n', '<leader>ds', require 'dap'.step_over, { desc = "Step" })
+require("which-key").add({
+  {
+    "<leader>D",
+    require("dapui").toggle,
+    desc = "Debugger",
+    mode = "n",
+  },
+  {
+    "<leader>dd",
+    require("dap").toggle_breakpoint,
+    desc = "toggle breakpoint",
+    mode = "n",
+    icon = ""
+  },
+  {
+    "<leader>dr",
+    require("dap").continue,
+    desc = "continue (run)",
+    mode = "n",
+    icon = ""
+  },
+  {
+    "<leader>ds",
+    require("dap").step_over,
+    desc = "step",
+    mode = "n",
+    icon = ""
+  },
+})
 
 -- Set group names for which-key:
 require("which-key").add({
-  { "Git",         group = "git",                    mode = { "n", "x" } },
-  { "Debugger",    group = "debugger" },
+  { "Git", group = "git", mode = { "n", "x" } },
+  { "Debugger", group = "debugger", icon = "🐞" },
   { "Diagnostics", group = "diagnostics" },
-  { "Jump",        group = "jump (go to)" },
-  { "List",        group = "list (macros/clipboard)" },
+  { "Jump", group = "jump (go to)" },
+  { "List", group = "list (macros/clipboard)" },
   { "Debug tools", group = "debug tools" },
-  { "AI",          group = "AI",                     mode = "x" },
+  { "AI", group = "AI", mode = "x" },
+  { "<leader>a", group = "AI", icon = "✨" },
+  { "<leader>g", group = "git", icon = "" },
+  { "<leader>j", group = "jump to", icon = "" },
+  { "<leader>h", group = "history", icon = "󰋚" },
+  { "<leader>d", group = "debug", icon = "" },
 });

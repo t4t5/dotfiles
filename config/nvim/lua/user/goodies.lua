@@ -6,7 +6,16 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.cmd [[
   command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
 ]]
-vim.keymap.set('n', '<leader>o', ':Silent open %:h<cr>', { noremap = true, silent = true, desc = "Open in finder" })
+require("which-key").add({
+  {
+    -- Show current file in finder:
+    "<leader>o",
+    ':Silent open %:h<cr>',
+    desc = "open in finder",
+    mode = "n",
+    icon = ""
+  },
+})
 
 -- Highlight copied text when yanking:
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -19,8 +28,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Paste inline with <leader>p:
-vim.api.nvim_set_keymap('n', '<leader>p', "<Plug>UnconditionalPasteInlinedAfter",
-  { noremap = true, silent = true, desc = "paste inline" })
+require("which-key").add({
+  { "<leader>p", "<Plug>UnconditionalPasteInlinedAfter", desc = "paste inline", mode = "n", icon = "" },
+})
 
 -- Set syntax highlighting for .env.local, .env.development, .env.production...
 vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")
@@ -35,8 +45,15 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_command("autocmd FileType html.handlebars setlocal noeol binary")
 
 -- write file without triggering autocommands (like formatting):
-vim.api.nvim_set_keymap('n', '<leader>w', [[:noautocmd w<cr>]],
-  { noremap = true, silent = true, desc = "write without formatting" })
+require("which-key").add({
+  {
+    "<leader>w",
+    [[:noautocmd w<cr>]],
+    desc = "write without formatting",
+    mode = "n",
+    icon = ""
+  },
+})
 
 -- noir
 vim.api.nvim_create_autocmd(

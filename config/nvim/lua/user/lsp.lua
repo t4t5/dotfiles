@@ -110,13 +110,13 @@ require("which-key").add({
 -- visual mode:
 require("which-key").add({
   {
-    "<leader>aa",
+    "<leader>ak",
     desc = "edit snippet with AI",
     mode = "x",
     icon = "🪄"
   },
   {
-    "<leader>aA",
+    "<leader>al",
     desc = "ask AI (about snippet)",
     mode = "x",
     icon = "✨"
@@ -125,10 +125,16 @@ require("which-key").add({
 -- normal mode:
 require("which-key").add({
   {
-    "<leader>aA",
+    "<leader>al",
     desc = "ask AI (about file)",
     mode = "n",
     icon = "✨"
+  },
+  {
+    "<leader>ai",
+    desc = "superagent",
+    mode = "v",
+    icon = "💪"
   },
   {
     "<leader>aa",
@@ -139,6 +145,10 @@ require("which-key").add({
   },
   {
     "<leader>ad", -- avante debug
+    desc = "which_key_ignore",
+  },
+  {
+    "<leader>ac", -- avante add to buffer
     desc = "which_key_ignore",
   },
   {

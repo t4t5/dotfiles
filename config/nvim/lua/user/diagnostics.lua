@@ -152,6 +152,6 @@ require("which-key").add({
     ':YankAiErrorPrompt<CR>',
     desc = "generate prompt for error",
     mode = "x",
-    icon = "󰵅"
+    icon = "🐞"
   },
 })

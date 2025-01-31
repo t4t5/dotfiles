@@ -15,6 +15,15 @@ return {
     end
   },
 
+  -- own plugin
+  {
+    'superagent',
+    dir = vim.fn.expand("~/dev/nvim/superagent"), -- test locally
+    config = function()
+      require('superagent').setup()
+    end
+  },
+
   -- Avante
   -- (AI chatbot):
   {
@@ -39,8 +48,8 @@ return {
         max_tokens = 4096,
       },
       mappings = {
-        ask = "<leader>aA",
-        edit = "<leader>aa",
+        ask = "<leader>al",
+        edit = "<leader>ak",
         --- @class AvanteConflictMappings
         diff = {
           ours = "co",

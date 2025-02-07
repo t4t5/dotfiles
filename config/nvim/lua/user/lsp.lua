@@ -177,6 +177,26 @@ require("which-key").add({
   },
 })
 
+-- -- Make sure ts_ls (i.e import suggestions) come before other things like eslint
+-- -- when using <leader>aa for code actions:
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.sort = function(items)
+    table.sort(items, function(a, b)
+      if a.source == "tsserver" then
+        return true
+      elseif b.source == "tsserver" then
+        return false
+      else
+        return a.source < b.source
+      end
+    end)
+    return items
+  end
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 -- go to definition:
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
 

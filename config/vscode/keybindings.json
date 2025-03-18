@@ -25,6 +25,12 @@
     "when": "!editorTextFocus"
   },
   {
+    // Close parent directory in explorer:
+    "key": "p",
+    "command": "list.collapse",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
+  },
+  {
     // Open vim command:
     "key": ":",
     "command": "vscode-neovim.send",

@@ -9,6 +9,8 @@ local comment = require('Comment.ft')
 vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")
 vim.api.nvim_command("au! BufNewFile,BufRead zshrc set filetype=sh")
 
+vim.api.nvim_command("au! BufNewFile,BufRead .cursorrules* set filetype=markdown")
+
 -- hbs (html.handlebars)
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },

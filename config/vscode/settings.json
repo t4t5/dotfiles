@@ -49,5 +49,6 @@
     "plaintext": false,
     "markdown": false,
     "scminput": false
-  }
+  },
+  "lldb.suppressUpdateNotifications": true
 }

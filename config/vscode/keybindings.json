@@ -138,5 +138,9 @@
     "key": "ctrl+k",
     "command": "selectPrevSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
   }
 ]

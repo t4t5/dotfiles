@@ -18,6 +18,9 @@ pathadd "/usr/local/bin"
 # fig, lvim, scarb...
 pathadd "$HOME/.local/bin"
 
+# Homebrew version of llvm/clang:
+pathadd "/usr/local/opt/llvm/bin"
+
 # homebrew:
 export BREW_ROOT="/opt/homebrew"
 pathadd "$BREW_ROOT/bin"

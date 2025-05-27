@@ -17,6 +17,11 @@ local function format_tailwind_color_preview(entry, vim_item)
   -- we assume this is a hex color (e.g. '#000000')
   local color = entry.completion_item.documentation
 
+  -- if color is not string, return early:
+  if type(color) ~= 'string' then
+    return vim_item
+  end
+
   -- get just the hex value (without '#')
   local color_str = string.sub(color, 2, 7)
 

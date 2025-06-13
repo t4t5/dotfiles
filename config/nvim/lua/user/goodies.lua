@@ -130,3 +130,15 @@ vim.api.nvim_create_user_command('CopyClaudeContextRef', copy_claude_context_ref
   range = true,
   desc = "Copy Claude context ref (with @)"
 })
+
+require("which-key").add({
+  {
+    "<leader>C",
+    function()
+      vim.fn.system('tmux split-window -h "claude" \\; resize-pane -x 80')
+    end,
+    desc = "Claude Code",
+    mode = "n",
+    icon = "🤖"
+  },
+})

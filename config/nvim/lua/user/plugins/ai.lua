@@ -16,13 +16,13 @@ return {
   },
 
   -- own plugin
-  {
-    'superagent',
-    dir = vim.fn.expand("~/dev/nvim/superagent"), -- test locally
-    config = function()
-      require('superagent').setup()
-    end
-  },
+  -- {
+  --   'superagent',
+  --   dir = vim.fn.expand("~/dev/nvim/superagent"), -- test locally
+  --   config = function()
+  --     require('superagent').setup()
+  --   end
+  -- },
 
   -- Avante
   -- (AI chatbot):

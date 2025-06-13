@@ -116,26 +116,30 @@ require("which-key").add({
     icon = "🪄"
   },
   {
-    "<leader>al",
-    desc = "ask AI (about snippet)",
-    mode = "x",
-    icon = "✨"
+    "<leader>al", -- avante ask
+    desc = "which_key_ignore",
+    mode = "x"
   },
+  -- {
+  --   "<leader>al",
+  --   desc = "ask AI (about snippet)",
+  --   mode = "x",
+  --   icon = "✨"
+  -- },
 })
 -- normal mode:
 require("which-key").add({
   {
-    "<leader>al",
-    desc = "ask AI (about file)",
-    mode = "n",
-    icon = "✨"
+    "<leader>al", -- avante ask
+    desc = "which_key_ignore",
+    mode = "n"
   },
-  {
-    "<leader>ai",
-    desc = "superagent",
-    mode = "v",
-    icon = "💪"
-  },
+  -- {
+  --   "<leader>ai",
+  --   desc = "superagent",
+  --   mode = "v",
+  --   icon = "💪"
+  -- },
   {
     "<leader>aa",
     vim.lsp.buf.code_action,

@@ -86,3 +86,47 @@ vim.api.nvim_create_autocmd("FileType", {
     }
   end,
 })
+
+local function copy_claude_context_ref()
+  -- Get the start and end line numbers of the visual selection
+  local start_line = vim.fn.getpos("'<")[2]
+  local end_line = vim.fn.getpos("'>")[2]
+
+  -- Get the current file path
+  local file_path = vim.fn.expand('%:p')
+
+  if file_path == '' then
+    print("Error: No file is currently open")
+    return
+  end
+
+  -- Get git root directory
+  local git_root = vim.fn.system('git rev-parse --show-toplevel 2>/dev/null'):gsub('\n', '')
+
+  if vim.v.shell_error ~= 0 then
+    print("Error: Not in a git repository")
+    return
+  end
+
+  -- Make file path relative to git root
+  local relative_path = file_path:gsub('^' .. git_root .. '/', '')
+
+  -- Create the formatted string
+  local result
+  if start_line == end_line then
+    result = string.format("@%s#L%d", relative_path, start_line)
+  else
+    result = string.format("@%s#L%d-%d", relative_path, start_line, end_line)
+  end
+
+  -- Copy to clipboard (both + and * registers for maximum compatibility)
+  vim.fn.setreg('+', result)
+  vim.fn.setreg('*', result)
+
+  print("Copied to clipboard: " .. result)
+end
+
+vim.api.nvim_create_user_command('CopyClaudeContextRef', copy_claude_context_ref, {
+  range = true,
+  desc = "Copy Claude context ref (with @)"
+})

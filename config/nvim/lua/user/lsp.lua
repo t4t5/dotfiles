@@ -120,6 +120,12 @@ require("which-key").add({
     desc = "which_key_ignore",
     mode = "x"
   },
+  {
+    "<leader>aa",
+    ":CopyClaudeContextRef<CR>",
+    desc = "get claude @ref",
+    mode = "v"
+  }
   -- {
   --   "<leader>al",
   --   desc = "ask AI (about snippet)",

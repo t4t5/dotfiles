@@ -99,7 +99,9 @@ vim.api.nvim_set_keymap("n", "tt", ":LspRestart<cr>", { noremap = true, silent =
 require("which-key").add({
   {
     "<leader>k",
-    vim.lsp.buf.hover,
+    function()
+      vim.lsp.buf.hover { border = "single", max_height = 25 }
+    end,
     desc = "inspect (hover)",
     mode = "n",
     icon = ""
@@ -214,11 +216,6 @@ vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
 vim.keymap.set('n', '<leader>jt', '<CMD>Glance type_definitions<CR>', { desc = "jump to type definition" })
 -- vim.keymap.set('n', '<leader>sr', '<cmd>Telescope lsp_references<cr>', { desc = "find references" })
 vim.keymap.set('n', '<leader>jr', '<CMD>Glance references<CR>', { desc = "jump to references" })
-
--- Show bordered window for documentation (<leader>k) window:
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
 
 -- Be able to quickly copy documentation:
 local function focus_hover_and_enter()

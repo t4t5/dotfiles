@@ -135,7 +135,10 @@ require("which-key").add({
   {
     "<leader>C",
     function()
-      vim.fn.system('tmux split-window -h "claude" \\; resize-pane -x 80')
+      vim.fn.system(
+        'tmux split-window -h "~/.claude/local/claude" \\; resize-pane -x 80')
+      -- keep window open:
+      --'tmux split-window -h -c "#{pane_current_path}" "~/.claude/local/claude; exec $SHELL" \\; resize-pane -x 80')
     end,
     desc = "Claude Code",
     mode = "n",

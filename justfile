@@ -1,10 +1,6 @@
 default:
   @just --choose
 
-@kill port:
-  lsof -i tcp:{{port}} | awk 'NR!=1 {print $2}' | xargs kill;
-  echo "Killed port {{port}} ✅"
-
 addtoworkspace app library:
   cd {{invocation_directory()}} && \
   pnpm --filter="{{app}}" add {{library}}

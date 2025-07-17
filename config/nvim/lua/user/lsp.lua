@@ -69,20 +69,20 @@ require('nvim-treesitter.configs').setup {
 -- Ensure the servers above are installed
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
+  automatic_enable = true,
 }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
+-- Configure each server using the new native LSP config API
+for server_name, server_config in pairs(servers) do
+  -- Skip rust_analyzer since we use rustaceanvim
+  if server_name ~= 'rust_analyzer' then
     lspconfig[server_name].setup {
       capabilities = capabilities,
-      -- on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
+      settings = server_config,
+      filetypes = (server_config or {}).filetypes,
     }
-  end,
-  -- disable default since we use rustaceanvim instead:
-  ['rust_analyzer'] = function() end,
-}
+  end
+end
 
 -- Setup neovim lua configuration
 require('neodev').setup({

@@ -49,14 +49,15 @@ end
 -- Show bordered window for errors:
 vim.diagnostic.config {
   float = { border = "rounded" },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "󰌵",
+      [vim.diagnostic.severity.INFO] = "",
+    },
+  },
 }
-
--- Use better icons for diagnostics:
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
 
 local function yank_diagnostic_error()
   vim.diagnostic.open_float()

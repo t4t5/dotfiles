@@ -31,21 +31,11 @@ return {
     event = "VeryLazy",
     build = "make",
     opts = {
-      ---@alias Provider "openai" | "claude" | "azure"  | "copilot" | [string]
-      -- provider = "openai",
-      -- openai = {
-      --   endpoint = "https://api.openai.com/v1",
-      --   model = "gpt-4o",
-      --   temperature = 0,
-      --   max_tokens = 4096,
-      --   ["local"] = false,
-      -- },
-      provider = "claude",
-      claude = {
-        endpoint = "https://api.anthropic.com",
-        model = "claude-3-5-sonnet-20240620",
-        temperature = 0,
-        max_tokens = 4096,
+      providers = {
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          model = "claude-3-5-sonnet-20240620",
+        },
       },
       mappings = {
         ask = "<leader>al",

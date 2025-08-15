@@ -20,10 +20,16 @@ return {
   {
     'rcarriga/nvim-notify',
     config = function()
-      require("notify").setup({
+      local nvim_notify = require("notify")
+      nvim_notify.setup({
         stages = "fade",
         render = "minimal",
       })
+
+      -- Redirect all LSP errors to a less intrusive location
+      vim.notify = function(msg, level, opts)
+        return nvim_notify(msg, level, opts)
+      end
     end
   },
 

@@ -37,6 +37,9 @@ vim.api.nvim_command("au! BufNewFile,BufRead *gitconfig set filetype=ini")
 -- mdx
 vim.api.nvim_command("au! BufNewFile,BufRead *.mdx set ft=markdown")
 
+-- snippets files - disable folding to show content properly
+vim.api.nvim_command("au! BufNewFile,BufRead *.snippets setlocal nofoldenable foldmethod=manual")
+
 -- Noir:
 vim.api.nvim_command("au! BufNewFile,BufRead *.nr set ft=noir syntax=rust")
 

@@ -1,12 +1,12 @@
 snippet rct-component
-	export default function ${1:ComponentName}() {
+	export function ${1:ComponentName}() {
 		return <div></div>
 	}
 
 snippet rct-component-with-children
 	import { type ReactNode } from "react";
 
-	export default function ${1:ComponentName}({ children, className }: { children: ReactNode, className?: string }) {
+	export function ${1:ComponentName}({ children, className }: { children: ReactNode, className?: string }) {
 		return (
 			<div className={className}>
 				{children}

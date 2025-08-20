@@ -23,7 +23,7 @@ return {
       local nvim_notify = require("notify")
       nvim_notify.setup({
         stages = "fade",
-        render = "minimal",
+        render = "wrapped-default",
       })
 
       -- Redirect all LSP errors to a less intrusive location

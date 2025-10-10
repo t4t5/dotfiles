@@ -116,6 +116,22 @@ return {
     lazy = false,   -- This plugin is already lazy
   },
 
+  -- noir lang support
+  {
+    "noir-lang/noir-nvim",
+    ft = "noir",
+    config = function()
+      local lspconfig = require("lspconfig")
+      lspconfig.noir_ls = {
+        default_config = {
+          cmd = { "nargo", "lsp" },
+          filetypes = { "noir" },
+          root_dir = lspconfig.util.root_pattern("Nargo.toml"),
+        },
+      }
+    end,
+  },
+
   -- List references + definitions:
   {
     "dnlhc/glance.nvim",

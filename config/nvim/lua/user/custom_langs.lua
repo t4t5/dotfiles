@@ -40,23 +40,6 @@ vim.api.nvim_command("au! BufNewFile,BufRead *.mdx set ft=markdown")
 -- snippets files - disable folding to show content properly
 vim.api.nvim_command("au! BufNewFile,BufRead *.snippets setlocal nofoldenable foldmethod=manual")
 
--- Noir:
-vim.api.nvim_command("au! BufNewFile,BufRead *.nr set ft=noir syntax=rust")
-
-if not configs.noir_lsp then
-  configs.noir_lsp = {
-    default_config = {
-      cmd = { 'nargo', 'lsp' },
-      root_dir = lspconfig.util.root_pattern('.git'),
-      filetypes = { 'noir' },
-    },
-  }
-end
-
-lspconfig.noir_lsp.setup {}
-
-comment.set('noir', '//%s')
-
 -- Cairo:
 if not configs.cairo_lsp then
   configs.cairo_lsp = {

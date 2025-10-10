@@ -55,12 +55,6 @@ require("which-key").add({
   },
 })
 
--- noir
-vim.api.nvim_create_autocmd(
-  { "BufRead", "BufNewFile" },
-  { pattern = { "*.nr" }, command = "set ft=noir syntax=rust" }
-)
-
 -- Caddyfile
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },

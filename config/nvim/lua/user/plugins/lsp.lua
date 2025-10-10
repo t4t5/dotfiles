@@ -118,7 +118,8 @@ return {
 
   -- noir lang support
   {
-    "noir-lang/noir-nvim",
+    "semaraugusto/noir-nvim",
+    -- "noir-lang/noir-nvim",
     ft = "noir",
     config = function()
       local lspconfig = require("lspconfig")

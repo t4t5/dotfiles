@@ -74,5 +74,8 @@ pathadd "$BREW_ROOT/opt/openjdk/bin"
 export BUN_INSTALL="$HOME/.bun"
 pathadd "$BUN_INSTALL/bin"
 
+# bb (noir lang)
+pathadd "$HOME/.bb"
+
 # FINAL EXPORT:
 export PATH

@@ -97,7 +97,7 @@ local function copy_claude_context_ref()
 
   if file_path == '' then
     print("Error: No file is currently open")
-    return
+    return nil
   end
 
   -- Get git root directory
@@ -105,7 +105,7 @@ local function copy_claude_context_ref()
 
   if vim.v.shell_error ~= 0 then
     print("Error: Not in a git repository")
-    return
+    return nil
   end
 
   -- Make file path relative to git root
@@ -124,24 +124,45 @@ local function copy_claude_context_ref()
   vim.fn.setreg('*', result)
 
   print("Copied to clipboard: " .. result)
+
+  return result
 end
 
+-- Claude Code
 vim.api.nvim_create_user_command('CopyClaudeContextRef', copy_claude_context_ref, {
   range = true,
   desc = "Copy Claude context ref (with @)"
 })
 
+local function open_claude_in_tmux()
+  vim.fn.system('tmux split-window -h "~/.claude/local/claude" \\; resize-pane -x 80')
+end
+
 require("which-key").add({
   {
     "<leader>C",
     function()
-      vim.fn.system(
-        'tmux split-window -h "~/.claude/local/claude" \\; resize-pane -x 80')
-      -- keep window open:
-      --'tmux split-window -h -c "#{pane_current_path}" "~/.claude/local/claude; exec $SHELL" \\; resize-pane -x 80')
+      local mode = vim.api.nvim_get_mode().mode
+
+      -- visual mode:
+      if mode == 'v' or mode == 'V' then
+        -- Copy the selection (same as <leader>aa)
+        vim.cmd("normal! :")
+        vim.cmd("CopyClaudeContextRef")
+
+        -- Open Claude:
+        open_claude_in_tmux()
+
+        -- Wait for Claude to load, then paste from clipboard:
+        vim.fn.system('sleep 2 && tmux send-keys "$(pbpaste)"')
+        return
+      else
+        -- normal mode:
+        open_claude_in_tmux()
+      end
     end,
     desc = "Claude Code",
-    mode = "n",
+    mode = { "n", "v" },
     icon = "🤖"
   },
 })

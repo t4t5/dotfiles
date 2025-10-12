@@ -67,6 +67,12 @@ vim.api.nvim_create_autocmd(
   { pattern = { "*.mdx" }, command = "set ft=markdown syntax=markdown" }
 )
 
+-- txtx
+vim.api.nvim_create_autocmd(
+  { "BufRead", "BufNewFile" },
+  { pattern = { "*.tx" }, command = "set ft=txtx syntax=hcl" }
+)
+
 -- For ruby files:
 -- See: https://github.com/testdouble/standard/wiki/IDE:-neovim
 vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though

@@ -10,7 +10,6 @@ sudo pacman -S --needed --noconfirm \
   neovim \
   tmux \
   ripgrep \
-  ack \
   hub \
   imagemagick \
   postgresql \

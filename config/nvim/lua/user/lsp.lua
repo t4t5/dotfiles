@@ -48,24 +48,6 @@ local servers = {
   },
 }
 
--- Treesitter
-require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'astro' },
-  -- Autoinstall languages that are not installed:
-  auto_install = true,
-  highlight = { enable = true, disable = { "bash" } },
-  indent = { enable = true, disable = { 'python' } },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<M-space>',
-    },
-  },
-}
-
 -- Ensure the servers above are installed
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),

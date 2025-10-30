@@ -5,6 +5,7 @@
     ~/.config/nvim: config/nvim
     ~/.config/ranger: config/ranger
     ~/.config/joshuto: config/joshuto
+    ~/.config/hypr: config/hypr
     ~/.gitconfig: gitconfig
     ~/.gitconfig-macos:
       path: gitconfig-macos

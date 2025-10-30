@@ -1,2 +1,7 @@
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  template = ~/.gitmessage
+	verbose = true
+	gpgsign = true

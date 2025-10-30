@@ -16,16 +16,16 @@
     ~/.justfile: justfile
     ~/.bin: bin
     ~/.ignore: ignore
-    ~/Library/Arduino15/arduino-cli.yaml: arduino-cli.yaml
-    ~/Library/Application Support/Code/User/settings.json:
-      path: config/vscode/settings.json
-      force: true
-    ~/Library/Application Support/Code/User/keybindings.json:
-      path: config/vscode/keybindings.json
-      force: true
-    ~/Library/Application Support/Cursor/User/settings.json:
-      path: config/vscode/settings.json
-      force: true
-    ~/Library/Application Support/Cursor/User/keybindings.json:
-      path: config/vscode/keybindings.json
-      force: true
+    # ~/Library/Arduino15/arduino-cli.yaml: arduino-cli.yaml
+    # ~/Library/Application Support/Code/User/settings.json:
+    #   path: config/vscode/settings.json
+    #   force: true
+    # ~/Library/Application Support/Code/User/keybindings.json:
+    #   path: config/vscode/keybindings.json
+    #   force: true
+    # ~/Library/Application Support/Cursor/User/settings.json:
+    #   path: config/vscode/settings.json
+    #   force: true
+    # ~/Library/Application Support/Cursor/User/keybindings.json:
+    #   path: config/vscode/keybindings.json
+    #   force: true

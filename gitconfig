@@ -66,8 +66,8 @@
 [gpg]
   format = ssh
 
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[include]
+  path = ~/.gitconfig-macos
 
 [http]
   postBuffer = 524288000

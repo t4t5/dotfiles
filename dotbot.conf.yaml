@@ -6,6 +6,9 @@
     ~/.config/ranger: config/ranger
     ~/.config/joshuto: config/joshuto
     ~/.gitconfig: gitconfig
+    ~/.gitconfig-macos:
+      path: gitconfig-macos
+      if: '[ "$(uname)" = "Darwin" ]'
     ~/.gitmessage: gitmessage
     ~/.tmux.conf: tmux.conf
     ~/.wezterm.lua: .wezterm.lua
@@ -16,16 +19,20 @@
     ~/.justfile: justfile
     ~/.bin: bin
     ~/.ignore: ignore
-    # ~/Library/Arduino15/arduino-cli.yaml: arduino-cli.yaml
-    # ~/Library/Application Support/Code/User/settings.json:
-    #   path: config/vscode/settings.json
-    #   force: true
-    # ~/Library/Application Support/Code/User/keybindings.json:
-    #   path: config/vscode/keybindings.json
-    #   force: true
-    # ~/Library/Application Support/Cursor/User/settings.json:
-    #   path: config/vscode/settings.json
-    #   force: true
-    # ~/Library/Application Support/Cursor/User/keybindings.json:
-    #   path: config/vscode/keybindings.json
-    #   force: true
+
+    ~/Library/Application Support/Code/User/settings.json:
+      path: config/vscode/settings.json
+      force: true
+      if: '[ "$(uname)" = "Darwin" ]'
+    ~/Library/Application Support/Code/User/keybindings.json:
+      path: config/vscode/keybindings.json
+      force: true
+      if: '[ "$(uname)" = "Darwin" ]'
+    ~/Library/Application Support/Cursor/User/settings.json:
+      path: config/vscode/settings.json
+      force: true
+      if: '[ "$(uname)" = "Darwin" ]'
+    ~/Library/Application Support/Cursor/User/keybindings.json:
+      path: config/vscode/keybindings.json
+      force: true
+      if: '[ "$(uname)" = "Darwin" ]'

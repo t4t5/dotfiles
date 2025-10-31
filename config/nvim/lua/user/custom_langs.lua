@@ -69,7 +69,7 @@ vim.lsp.config('arduino_language_server', {
     MY_FQBN
   }
 })
-vim.lsp.enable('arduino_language_server')
+-- vim.lsp.enable('arduino_language_server')
 
 -- not working:
 -- require('conform').formatters.sway = {

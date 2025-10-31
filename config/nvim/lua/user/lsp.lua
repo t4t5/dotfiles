@@ -1,6 +1,3 @@
-local lspconfig = require 'lspconfig'
-local mason_lspconfig = require 'mason-lspconfig'
-
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -48,34 +45,67 @@ local servers = {
   },
 }
 
--- Ensure the servers above are installed
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-  automatic_enable = true,
+-- Formatters to auto-install via Mason
+local formatters = {
+  'prettier',
+  'stylua',
 }
 
--- Configure each server using the new native LSP config API
-for server_name, server_config in pairs(servers) do
-  -- Skip rust_analyzer since we use rustaceanvim
-  if server_name ~= 'rust_analyzer' then
-    lspconfig[server_name].setup {
-      capabilities = capabilities,
-      settings = server_config,
-      filetypes = (server_config or {}).filetypes,
-    }
+-- Ensure the servers and formatters above are installed via Mason
+require('mason').setup()
+
+-- Auto-install LSP servers via Mason registry
+local mr = require('mason-registry')
+mr:on('package:install:success', vim.schedule_wrap(function()
+  -- Restart all LSP clients
+  for _, client in ipairs(vim.lsp.get_clients()) do
+    vim.lsp.stop_client(client.id, true)
+  end
+end))
+
+for server_name, _ in pairs(servers) do
+  local package_name = server_name:gsub('_', '-')
+  if mr.has_package(package_name) then
+    local pkg = mr.get_package(package_name)
+    if not pkg:is_installed() then
+      pkg:install()
+    end
   end
 end
 
--- Setup neovim lua configuration
-require('neodev').setup({
-  library = { plugins = { "nvim-dap-ui" }, types = true },
-})
+-- Auto-install formatters via Mason registry
+for _, formatter_name in ipairs(formatters) do
+  if mr.has_package(formatter_name) then
+    local pkg = mr.get_package(formatter_name)
+    if not pkg:is_installed() then
+      pkg:install()
+    end
+  end
+end
+
+-- Configure each server using the new native vim.lsp.config API
+for server_name, server_config in pairs(servers) do
+  -- Skip rust_analyzer since we use rustaceanvim
+  if server_name ~= 'rust_analyzer' then
+    vim.lsp.config(server_name, {
+      capabilities = capabilities,
+      settings = server_config,
+      filetypes = (server_config or {}).filetypes,
+    })
+    vim.lsp.enable(server_name)
+  end
+end
 
 
 --- KEYMAPS: ---
 
 -- Restart LSP with tt:
-vim.api.nvim_set_keymap("n", "tt", ":LspRestart<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "tt", function()
+  for _, client in ipairs(vim.lsp.get_clients()) do
+    vim.lsp.stop_client(client.id, true)
+  end
+  vim.notify("LSP clients restarted")
+end, { noremap = true, silent = true, desc = "Restart LSP" })
 
 -- View documentation:
 require("which-key").add({

@@ -1,25 +1,26 @@
 ---@diagnostic disable: missing-fields
 return {
-  -- LSP Configuration & Plugins:
+  -- LSP server installer (configured in lua/user/lsp.lua)
+  'williamboman/mason.nvim',
+
+  -- Show spinner when LSP is loading
   {
-    -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      { 'williamboman/mason.nvim', config = true },
-      'williamboman/mason-lspconfig.nvim',
+    'linrongbin16/lsp-progress.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lsp-progress').setup()
+    end
+  },
 
-      -- Show spinner when LSP is loading
-      {
-        'linrongbin16/lsp-progress.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = function()
-          require('lsp-progress').setup()
-        end
+  -- Neovim Lua development with proper type hints
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+        { plugins = { 'nvim-dap-ui' }, types = true },
       },
-
-      -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
     },
   },
 
@@ -140,14 +141,12 @@ return {
     -- "noir-lang/noir-nvim",
     ft = "noir",
     config = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.noir_ls = {
-        default_config = {
-          cmd = { "nargo", "lsp" },
-          filetypes = { "noir" },
-          root_dir = lspconfig.util.root_pattern("Nargo.toml"),
-        },
-      }
+      vim.lsp.config('noir_ls', {
+        cmd = { "nargo", "lsp" },
+        filetypes = { "noir" },
+        root_dir = vim.fs.root(0, { 'Nargo.toml' }),
+      })
+      vim.lsp.enable('noir_ls')
     end,
   },
 

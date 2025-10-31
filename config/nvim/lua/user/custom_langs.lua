@@ -1,8 +1,6 @@
 --- Some languages don't have their own LSP
 --- or syntax files, so we need to configure them manually:
 
-local lspconfig = require 'lspconfig'
-local configs = require 'lspconfig.configs'
 local comment = require('Comment.ft')
 
 -- .env files
@@ -41,48 +39,37 @@ vim.api.nvim_command("au! BufNewFile,BufRead *.mdx set ft=markdown")
 vim.api.nvim_command("au! BufNewFile,BufRead *.snippets setlocal nofoldenable foldmethod=manual")
 
 -- Cairo:
-if not configs.cairo_lsp then
-  configs.cairo_lsp = {
-    default_config = {
-      cmd = { 'scarb', 'cairo-language-server' },
-      root_dir = lspconfig.util.root_pattern('.git'),
-      filetypes = { 'cairo' },
-    },
-  }
-end
-
-lspconfig.cairo_lsp.setup {}
+vim.lsp.config('cairo_lsp', {
+  cmd = { 'scarb', 'cairo-language-server' },
+  root_dir = vim.fs.root(0, { '.git' }),
+  filetypes = { 'cairo' },
+})
+vim.lsp.enable('cairo_lsp')
 
 -- FuelVM:
-if not configs.sway_lsp then
-  configs.sway_lsp = {
-    default_config = {
-      cmd = { 'forc-lsp' },
-      filetypes = { 'sway' },
-      init_options = {
-        logging = { level = 'trace' }
-      },
-      root_dir = function(fname)
-        return lspconfig.util.find_git_ancestor(fname)
-      end,
-      settings = {},
-    },
-  }
-end
-
-lspconfig.sway_lsp.setup {}
+vim.lsp.config('sway_lsp', {
+  cmd = { 'forc-lsp' },
+  filetypes = { 'sway' },
+  init_options = {
+    logging = { level = 'trace' }
+  },
+  root_dir = vim.fs.root(0, { '.git' }),
+  settings = {},
+})
+vim.lsp.enable('sway_lsp')
 
 -- Arduino:
 local MY_FQBN = "arduino:avr:uno"
 
-lspconfig.arduino_language_server.setup {
+vim.lsp.config('arduino_language_server', {
   cmd = {
     "arduino-language-server",
     "-cli-config", "/path/to/arduino-cli.yaml",
     "-fqbn",
     MY_FQBN
   }
-}
+})
+vim.lsp.enable('arduino_language_server')
 
 -- not working:
 -- require('conform').formatters.sway = {

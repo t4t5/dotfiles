@@ -16,6 +16,7 @@ sudo pacman -S --needed --noconfirm \
   imagemagick \
   postgresql \
   git-delta \
+  yazi \
   fzf
 
 echo "Core packages installed successfully!"
@@ -31,5 +32,8 @@ fi
 
 # Install desktop apps:
 yay -S chatwise
+yay -S slack-desktop
+yay -S notion-app-electron
+yay -S volta # for nodejs
 
 echo "Desktop apps installed successfully!"

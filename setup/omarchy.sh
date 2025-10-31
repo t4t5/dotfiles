@@ -18,6 +18,9 @@ sudo pacman -S --needed --noconfirm \
   git-delta \
   fzf
 
+echo "Core packages installed successfully!"
+
+# Set shell to zsh:
 current_shell=$(basename "$SHELL")
 
 if [ "$current_shell" != "zsh" ]; then
@@ -26,4 +29,7 @@ if [ "$current_shell" != "zsh" ]; then
   chsh -s $(which zsh)
 fi
 
-echo "Package installation complete!"
+# Install desktop apps:
+yay -S chatwise
+
+echo "Desktop apps installed successfully!"

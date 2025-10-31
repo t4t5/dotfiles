@@ -25,9 +25,6 @@ antigen bundle Aloxaf/fzf-tab
 antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 
-# Claude Code
-alias claude="/Users/tristan/.claude/local/claude"
-
 # Homebrew
 alias brew='arch -arm64 brew'
 # Prevent brew from upgrading everything every time:

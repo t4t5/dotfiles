@@ -17,6 +17,8 @@ sudo pacman -S --needed --noconfirm \
   postgresql \
   git-delta \
   yazi \
+  just \
+  wget \
   fzf
 
 echo "Core packages installed successfully!"
@@ -35,5 +37,6 @@ yay -S chatwise
 yay -S slack-desktop
 yay -S notion-app-electron
 yay -S volta # for nodejs
+yay -S tableplus
 
 echo "Desktop apps installed successfully!"

@@ -84,6 +84,11 @@ alias f='cd && cd "$(fd --type d | fzf)"'
 # for GPG sign of commits:
 export GPG_TTY=$(tty)
 
+# Start SSH agent automatically:
+# if [ -z "$SSH_AUTH_SOCK" ]; then
+#    eval "$(ssh-agent -s)"
+# fi
+
 # -- Use pyenv for python
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"

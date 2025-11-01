@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+pkill chatwise
+chatwise > /dev/null 2>&1 &

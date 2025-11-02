@@ -5,11 +5,7 @@
     ~/.config/nvim: config/nvim
     ~/.config/ranger: config/ranger
     ~/.config/joshuto: config/joshuto
-    ~/.config/hypr: config/hypr
     ~/.gitconfig: gitconfig
-    ~/.gitconfig-macos:
-      path: gitconfig-macos
-      if: '[ "$(uname)" = "Darwin" ]'
     ~/.gitmessage: gitmessage
     ~/.tmux.conf: tmux.conf
     ~/.wezterm.lua: .wezterm.lua
@@ -17,11 +13,21 @@
     ~/antigen.zsh: antigen.zsh
     ~/aliases.zsh: aliases.zsh
     ~/path_config.zsh: path_config.zsh
-    ~/.XCompose: XCompose
     ~/.justfile: justfile
     ~/.bin: bin
     ~/.ignore: ignore
 
+    # omarchy:
+    ~/.config/hypr: config/hypr
+    ~/.config/waybar: config/waybar
+    ~/.XCompose:
+      path: XCompose
+      if: '[ "$(uname)" = "Linux" ]'
+
+    # macos:
+    ~/.gitconfig-macos:
+      path: gitconfig-macos
+      if: '[ "$(uname)" = "Darwin" ]'
     ~/Library/Application Support/Code/User/settings.json:
       path: config/vscode/settings.json
       force: true

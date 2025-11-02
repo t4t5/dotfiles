@@ -7,7 +7,7 @@
   border: none;
   border-radius: 0;
   min-height: 0;
-  font-family: 'CaskaydiaMono Nerd Font';
+  font-family: "CaskaydiaMono Nerd Font";
   font-size: 12px;
 }
 
@@ -82,15 +82,15 @@ tooltip {
   color: #a55555;
 }
 
-#custom-mullvad {
+#custom-vpn {
   min-width: 12px;
   margin: 0 7.5px;
 }
 
-#custom-mullvad.connected {
+#custom-vpn.connected {
   color: #55a555;
 }
 
-#custom-mullvad.disconnected {
+#custom-vpn.disconnected {
   color: #a55555;
 }

@@ -39,5 +39,7 @@ yay -S slack-desktop
 yay -S notion-app-electron
 yay -S volta # for nodejs
 yay -S tableplus
+yay -S nordvpn-bin
+yay -S nordvpn-gui
 
 echo "Desktop apps installed successfully!"

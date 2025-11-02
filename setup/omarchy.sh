@@ -19,6 +19,7 @@ sudo pacman -S --needed --noconfirm \
   yazi \
   just \
   wget \
+  go \
   fzf
 
 echo "Core packages installed successfully!"

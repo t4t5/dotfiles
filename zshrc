@@ -62,13 +62,15 @@ fi
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# For Go:
+# For Go (mac):
 export GOPATH="${HOME}/.go"
-export GOROOT="/opt/homebrew/opt/go/libexec"
 pathadd "${GOPATH}/bin"
+
+# export GOROOT="/opt/homebrew/opt/go/libexec"
+export GOROOT="/usr/lib/go"
 pathadd "${GOROOT}/bin"
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+# test -d "${GOPATH}" || mkdir "${GOPATH}"
+# test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'

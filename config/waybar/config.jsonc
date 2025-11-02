@@ -10,6 +10,7 @@
     "group/tray-expander",
     "bluetooth",
     "network",
+    "custom/mullvad",
     "pulseaudio",
     "cpu",
     "battery"
@@ -135,5 +136,11 @@
   "tray": {
     "icon-size": 12,
     "spacing": 17
+  },
+  "custom/mullvad": {
+    "exec": "~/.config/waybar/scripts/mullvad-status.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "mullvad-vpn"
   }
 }

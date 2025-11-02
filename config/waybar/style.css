@@ -81,3 +81,16 @@ tooltip {
 #custom-screenrecording-indicator.active {
   color: #a55555;
 }
+
+#custom-mullvad {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#custom-mullvad.connected {
+  color: #55a555;
+}
+
+#custom-mullvad.disconnected {
+  color: #a55555;
+}

@@ -12,7 +12,7 @@
     "network",
     "custom/vpn",
     "pulseaudio",
-    "cpu",
+    // "cpu",
     "battery"
   ],
   "hyprland/workspaces": {

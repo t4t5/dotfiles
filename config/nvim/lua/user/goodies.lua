@@ -135,7 +135,7 @@ vim.api.nvim_create_user_command('CopyClaudeContextRef', copy_claude_context_ref
 })
 
 local function open_claude_in_tmux()
-  vim.fn.system('tmux split-window -h "~/.claude/local/claude" \\; resize-pane -x 80')
+  vim.fn.system('tmux split-window -h "claude" \\; resize-pane -x 80')
 end
 
 require("which-key").add({

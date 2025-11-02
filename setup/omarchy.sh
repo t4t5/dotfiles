@@ -22,6 +22,9 @@ sudo pacman -S --needed --noconfirm \
   go \
   fzf
 
+# Create tmux config directory if it doesn't exist
+mkdir -p ~/.tmux
+
 echo "Core packages installed successfully!"
 
 # Set shell to zsh:

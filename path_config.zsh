@@ -39,6 +39,9 @@ pathadd "$HOME/.cargo/bin"
 # Solana CLI:
 pathadd "$HOME/.local/share/solana/install/active_release/bin"
 
+# Omarchy commands:
+pathadd "$HOME/.local/share/omarchy/bin"
+
 # Anchor (Solana)
 pathadd "$HOME/.avm/bin"
 

@@ -8,7 +8,10 @@ local servers = {
       disabled = { "inactive-code" },
     }
   },
-  -- tsserver = {},
+  typescript_language_server = {
+    cmd = { 'typescript-language-server', '--stdio' },
+    filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  },
   tailwindcss = {
     filetypes = { 'typescriptreact', 'astro' },
     tailwindCSS = {
@@ -88,9 +91,10 @@ for server_name, server_config in pairs(servers) do
   -- Skip rust_analyzer since we use rustaceanvim
   if server_name ~= 'rust_analyzer' then
     vim.lsp.config(server_name, {
+      cmd = server_config.cmd,
       capabilities = capabilities,
       settings = server_config,
-      filetypes = (server_config or {}).filetypes,
+      filetypes = server_config.filetypes,
     })
     vim.lsp.enable(server_name)
   end
@@ -98,6 +102,27 @@ end
 
 
 --- KEYMAPS: ---
+
+-- Custom :LspInfo command for the new native API:
+vim.api.nvim_create_user_command('LspInfo', function()
+  local clients = vim.lsp.get_clients({bufnr=0})
+
+  if #clients == 0 then
+    vim.notify("No LSP clients attached to this buffer", vim.log.levels.INFO)
+    return
+  end
+
+  local lines = {}
+  for _, client in ipairs(clients) do
+    local info = client.name .. " (id: " .. client.id .. ")"
+    -- if client.config and client.config.root_dir then
+    --   info = info .. "\n  Root: " .. client.config.root_dir
+    -- end
+    table.insert(lines, info)
+  end
+
+  vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO)
+end, {})
 
 -- Restart LSP with tt:
 vim.keymap.set("n", "tt", function()

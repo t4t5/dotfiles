@@ -20,6 +20,8 @@ sudo pacman -S --needed --noconfirm \
   just \
   wget \
   go \
+  netcat \
+  lsof \
   fzf
 
 # Create tmux config directory if it doesn't exist

@@ -12,6 +12,9 @@ fi
 # Get the bluetooth sink name (first field)
 bt_sink_name=$(echo "$bt_sinks" | head -n1 | awk '{print $2}')
 
+# Get device name/description
+device_name=$(pactl list sinks | grep -A 30 "Name: $bt_sink_name" | grep "Description:" | sed 's/.*Description: //')
+
 # Get default sink and source
 default_sink=$(pactl get-default-sink)
 default_source=$(pactl get-default-source)
@@ -23,11 +26,11 @@ bt_source_name=$(echo "$bt_sink_name" | sed 's/bluez_output/bluez_input/')
 # Determine status
 if [ "$default_sink" = "$bt_sink_name" ] && echo "$default_source" | grep -q "bluez"; then
     # Green: used for both output and input
-    echo "{\"text\":\"󰋋\",\"tooltip\":\"Headphones: Active (Output + Input)\",\"class\":\"active\"}"
+    echo "{\"text\":\"󰋋\",\"tooltip\":\"$device_name\\nActive (Output + Input)\",\"class\":\"active\"}"
 elif [ "$default_sink" = "$bt_sink_name" ]; then
     # Yellow/Orange: used for output only
-    echo "{\"text\":\"󰋋\",\"tooltip\":\"Headphones: Output Only\",\"class\":\"output-only\"}"
+    echo "{\"text\":\"󰋋\",\"tooltip\":\"$device_name\\nOutput Only\",\"class\":\"output-only\"}"
 else
     # Red: connected but not being used
-    echo "{\"text\":\"󰋋\",\"tooltip\":\"Headphones: Connected (Not in use)\",\"class\":\"inactive\"}"
+    echo "{\"text\":\"󰋋\",\"tooltip\":\"$device_name\\nConnected (Not in use)\",\"class\":\"inactive\"}"
 fi

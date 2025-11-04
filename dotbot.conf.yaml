@@ -20,6 +20,7 @@
     # omarchy:
     ~/.config/hypr: config/hypr
     ~/.config/waybar: config/waybar
+    ~/.config/walker: config/walker
     ~/.XCompose:
       path: XCompose
       if: '[ "$(uname)" = "Linux" ]'

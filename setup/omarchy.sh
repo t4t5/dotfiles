@@ -46,5 +46,6 @@ yay -S volta # for nodejs
 yay -S tableplus
 yay -S nordvpn-bin
 yay -S nordvpn-gui
+yay -S emote
 
 echo "Desktop apps installed successfully!"

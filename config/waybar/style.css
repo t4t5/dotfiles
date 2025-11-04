@@ -94,3 +94,20 @@ tooltip {
 #custom-vpn.disconnected {
   color: #a55555;
 }
+
+#custom-headphones {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#custom-headphones.active {
+  color: #55a555;
+}
+
+#custom-headphones.inactive {
+  color: #a55555;
+}
+
+#custom-headphones.output-only {
+  color: #d5a555;
+}

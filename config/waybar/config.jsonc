@@ -12,6 +12,7 @@
     "network",
     "custom/vpn",
     "pulseaudio",
+    "custom/headphones",
     // "cpu",
     "battery"
   ],
@@ -106,7 +107,8 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "xdg-terminal-exec --app-id=com.omarchy.Wiremix -e wiremix",
+    // "on-click": "xdg-terminal-exec --app-id=com.omarchy.Wiremix -e wiremix",
+    "on-click": "pavucontrol",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
@@ -142,5 +144,11 @@
     "return-type": "json",
     "interval": 5,
     "on-click": "nordvpn-gui"
+  },
+  "custom/headphones": {
+    "exec": "~/.config/waybar/scripts/headphone-status.sh",
+    "return-type": "json",
+    "interval": 3,
+    "on-click": "pavucontrol"
   }
 }

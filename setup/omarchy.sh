@@ -26,6 +26,7 @@ sudo pacman -S --needed --noconfirm \
 
 # Create tmux config directory if it doesn't exist
 mkdir -p ~/.tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "Core packages installed successfully!"
 

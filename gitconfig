@@ -60,5 +60,8 @@
 [include]
   path = ~/.gitconfig-macos
 
+[include]
+  path = ~/.gitconfig-linux
+
 [http]
   postBuffer = 524288000

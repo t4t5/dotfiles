@@ -24,6 +24,9 @@
     ~/.XCompose:
       path: XCompose
       if: '[ "$(uname)" = "Linux" ]'
+    ~/.gitconfig-linux:
+      path: gitconfig-linux
+      if: '[ "$(uname)" = "Linux" ]'
 
     # macos:
     ~/.gitconfig-macos:

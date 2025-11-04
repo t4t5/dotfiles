@@ -23,6 +23,7 @@ sudo pacman -S --needed --noconfirm \
   netcat \
   lsof \
   pavucontrol \
+  python-pip \
   fzf
 
 # Create tmux config directory if it doesn't exist

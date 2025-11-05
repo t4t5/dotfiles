@@ -2,6 +2,7 @@
     ~/.config/coc: config/coc
     ~/.config/gitui: config/gitui
     ~/.config/yazi: config/yazi
+    ~/.config/kitty: config/kitty
     ~/.config/nvim: config/nvim
     ~/.config/ranger: config/ranger
     ~/.config/joshuto: config/joshuto

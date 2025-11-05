@@ -1,0 +1,37 @@
+# Yazi Keybindings Configuration
+# Press ~ in yazi to see all keybindings
+
+[mgr]
+prepend_keymap = [
+  # File operations (copy/cut/paste)
+  { on = "y", run = "yank", desc = "Yank (copy) selected files" },
+  { on = "x", run = "yank --cut", desc = "Cut selected files" },
+  { on = "p", run = "paste", desc = "Paste files" },
+  { on = "P", run = "paste --force", desc = "Paste files (overwrite)" },
+
+  # Selection
+  { on = "<Space>", run = "select --state=none", desc = "Toggle selection" },
+  { on = "v", run = "visual_mode", desc = "Enter visual mode" },
+  { on = "V", run = "visual_mode --unset", desc = "Exit visual mode" },
+  { on = "<C-a>", run = "select_all --state=true", desc = "Select all" },
+  { on = "<C-r>", run = "select_all --state=none", desc = "Inverse selection" },
+
+  # File management
+  { on = "d", run = "remove", desc = "Delete selected files" },
+  { on = "D", run = "remove --permanently", desc = "Permanently delete" },
+  { on = "a", run = "create", desc = "Create new file/directory" },
+  { on = "r", run = "rename", desc = "Rename file" },
+
+  # Navigation
+  { on = "h", run = "leave", desc = "Go to parent directory" },
+  { on = "l", run = "enter", desc = "Enter directory" },
+  { on = "k", run = "arrow -1", desc = "Move up" },
+  { on = "j", run = "arrow 1", desc = "Move down" },
+
+  # Search and filter
+  { on = "/", run = "find --smart", desc = "Find files" },
+  { on = "f", run = "filter", desc = "Filter files" },
+
+  # Help
+  { on = "~", run = "help", desc = "Show help menu" },
+]

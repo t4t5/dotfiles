@@ -77,7 +77,7 @@ show_region_tab() {
 }
 
 main_menu() {
-  local choice=$(printf "Screen\nWindow\nRegion" | walker --dmenu --theme omarchy-default -p "Share…" 2>/dev/null)
+  local choice=$(printf "Screen\nWindow\nRegion" | walker --dmenu -p "Share…" 2>/dev/null)
 
   case "$choice" in
   Screen) show_screen_tab ;;

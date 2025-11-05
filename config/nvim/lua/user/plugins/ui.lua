@@ -1,36 +1,28 @@
 return {
   {
     'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      require 'tokyonight'.setup({
-        style = 'moon',
-        on_colors = function(colors)
-          -- colors are here: https://github.com/folke/tokyonight.nvim/discussions/453
-          colors.border = colors.dark3
-        end
-      })
-
-      if not vim.g.vscode then
-        vim.cmd [[colorscheme tokyonight]]
-      end
-    end
+      vim.cmd [[colorscheme tokyonight-night]]
+    end,
   },
 
   -- simple toast system:
   {
     'rcarriga/nvim-notify',
     config = function()
-      local nvim_notify = require("notify")
-      nvim_notify.setup({
-        stages = "fade",
-        render = "wrapped-default",
-      })
+      local nvim_notify = require 'notify'
+      nvim_notify.setup {
+        stages = 'fade',
+        render = 'wrapped-default',
+      }
 
       -- Redirect all LSP errors to a less intrusive location
       vim.notify = function(msg, level, opts)
         return nvim_notify(msg, level, opts)
       end
-    end
+    end,
   },
 
   -- telescope for code action
@@ -47,7 +39,7 @@ return {
     'akinsho/bufferline.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-    }
+    },
   },
 
   -- Useful plugin to show you pending keybinds.
@@ -57,33 +49,33 @@ return {
   {
     'norcalli/nvim-colorizer.lua',
     config = function()
-      require 'colorizer'.setup()
-    end
+      require('colorizer').setup()
+    end,
   },
 
   -- Show indentation guides (┊)
   {
     'lukas-reineke/indent-blankline.nvim',
-    main = "ibl",
+    main = 'ibl',
     opts = {},
     config = function()
       if not vim.g.vscode then
-        local ibl = require("ibl")
+        local ibl = require 'ibl'
 
-        ibl.setup({
-          indent = { char = '┊', highlight = "LineNr" }
-        })
+        ibl.setup {
+          indent = { char = '┊', highlight = 'LineNr' },
+        }
       end
-    end
+    end,
   },
 
   {
     'petertriho/nvim-scrollbar',
     config = function()
       if not vim.g.vscode then
-        local colors = require("tokyonight.colors").setup()
+        local colors = require('tokyonight.colors').setup()
 
-        require("scrollbar").setup({
+        require('scrollbar').setup {
           handle = {
             color = colors.fg_gutter,
           },
@@ -95,8 +87,8 @@ return {
             search = false,
             ale = false,
           },
-        })
+        }
       end
-    end
-  }
+    end,
+  },
 }

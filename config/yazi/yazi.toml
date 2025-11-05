@@ -1,2 +1,7 @@
 [mgr]
 show_hidden = true
+
+# Enable tmux passthrough for image previews
+# This allows kitty graphics protocol to work inside tmux
+[preview.image]
+passthrough = "auto"

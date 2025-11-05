@@ -5,6 +5,7 @@
     ~/.config/nvim: config/nvim
     ~/.config/ranger: config/ranger
     ~/.config/joshuto: config/joshuto
+    ~/.config/xdg-terminals.list: config/xdg-terminals.list
     ~/.gitconfig: gitconfig
     ~/.gitmessage: gitmessage
     ~/.tmux.conf: tmux.conf

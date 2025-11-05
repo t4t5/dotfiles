@@ -1,24 +1,14 @@
 #!/bin/bash
 
-# Debug logging
-LOGFILE="/tmp/hyprland-share-picker.log"
-exec 2>>"$LOGFILE"
-echo "=== Picker started at $(date) ===" >> "$LOGFILE"
-echo "Arguments: $@" >> "$LOGFILE"
-
 ALLOW_TOKEN=true  # Always allow restore token to prevent re-prompting
-# [[ "$1" == "--allow-token" ]] && ALLOW_TOKEN=true
-echo "ALLOW_TOKEN=$ALLOW_TOKEN" >> "$LOGFILE"
 
 output_selection() {
   local type="$1"
   local value="$2"
 
-  echo "output_selection called: type=$type value=$value" >> "$LOGFILE"
   echo -n "[SELECTION]"
   [[ "$ALLOW_TOKEN" == "true" ]] && echo -n "r"
   echo "/${type}:${value}"
-  echo "Output sent to stdout" >> "$LOGFILE"
   exit 0
 }
 
@@ -26,25 +16,18 @@ show_screen_tab() {
   local options=()
   local connectors=()
 
-  echo "show_screen_tab called" >> "$LOGFILE"
-
   while IFS='|' read -r connector desc width height; do
     local friendly_name=$(sed -E 's/ (0x[0-9A-F]+|[A-Z0-9]{10,})$//' <<<"$desc")
     options+=("$friendly_name (${width}x${height}) - $connector")
     connectors+=("$connector")
-    echo "Added option: $friendly_name (${width}x${height}) - $connector" >> "$LOGFILE"
   done < <(hyprctl monitors -j 2>/dev/null | jq -r '.[] | "\(.name)|\(.description)|\(.width)|\(.height)"' 2>/dev/null)
 
-  echo "Showing walker menu..." >> "$LOGFILE"
-  local selected=$(printf '%s\n' "${options[@]}" | walker --dmenu -p "Share Screen…" 2>>"$LOGFILE")
-  echo "Walker returned: '$selected'" >> "$LOGFILE"
+  local selected=$(printf '%s\n' "${options[@]}" | walker --dmenu -p "Share Screen…" 2>/dev/null)
 
   for i in "${!options[@]}"; do
-    echo "Checking if '${options[$i]}' == '$selected'" >> "$LOGFILE"
     [[ "${options[$i]}" == "$selected" ]] && output_selection "screen" "${connectors[$i]}"
   done
 
-  echo "No match found, exiting with code 1" >> "$LOGFILE"
   exit 1
 }
 
@@ -73,7 +56,7 @@ show_window_tab() {
     fi
   done
 
-  local selected=$(printf '%s\n' "${options[@]}" | walker --dmenu -w 350 -p "Share Window…" 2>/dev/null)
+  local selected=$(printf '%s\n' "${options[@]}" | walker --dmenu -p "Share Window…" 2>/dev/null)
 
   for i in "${!options[@]}"; do
     [[ "${options[$i]}" == "$selected" ]] && output_selection "window" "${ids[$i]}"
@@ -94,15 +77,13 @@ show_region_tab() {
 }
 
 main_menu() {
-  echo "main_menu called" >> "$LOGFILE"
-  local choice=$(printf "Screen\nWindow\nRegion" | walker --dmenu --theme omarchy-default -p "Share…" 2>>"$LOGFILE")
-  echo "Main menu choice: '$choice'" >> "$LOGFILE"
+  local choice=$(printf "Screen\nWindow\nRegion" | walker --dmenu --theme omarchy-default -p "Share…" 2>/dev/null)
 
   case "$choice" in
   Screen) show_screen_tab ;;
   Window) show_window_tab ;;
   Region) show_region_tab ;;
-  *) echo "No valid choice, exiting" >> "$LOGFILE"; exit 1 ;;
+  *) exit 1 ;;
   esac
 }
 

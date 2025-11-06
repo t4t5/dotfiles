@@ -36,4 +36,7 @@ prepend_keymap = [
 
   # Help
   { on = "~", run = "help", desc = "Show help menu" },
+
+  { on = ["c", "g"], run = "plugin path-from-root", desc = "Copies path from git root" },
 ]
+

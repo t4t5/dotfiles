@@ -1,7 +1,36 @@
 #!/bin/bash
 
+# State file to track connection status
+STATE_FILE="/tmp/airpods-connection-state"
+SOUND_FILE="$HOME/dev/dotfiles/sounds/airpods_connected.mp3"
+
 # Get bluetooth audio sinks (headphones/earbuds)
 bt_sinks=$(pactl list sinks short | grep bluez)
+
+# Determine if bluetooth device is currently connected
+if [ -z "$bt_sinks" ]; then
+    current_state="disconnected"
+else
+    current_state="connected"
+fi
+
+# Read previous state
+if [ -f "$STATE_FILE" ]; then
+    previous_state=$(cat "$STATE_FILE")
+else
+    previous_state="disconnected"
+fi
+
+# Detect connection event and play sound
+if [ "$previous_state" = "disconnected" ] && [ "$current_state" = "connected" ]; then
+    # AirPods just connected - play sound in background
+    if [ -f "$SOUND_FILE" ]; then
+        paplay "$SOUND_FILE" &
+    fi
+fi
+
+# Save current state
+echo "$current_state" > "$STATE_FILE"
 
 # If no bluetooth audio devices connected, show nothing
 if [ -z "$bt_sinks" ]; then

@@ -49,6 +49,7 @@ yay -S volta # for nodejs
 yay -S tableplus
 yay -S nordvpn-bin
 yay -S nordvpn-gui
-yay -S emote
+yay -S emote # emojis
+yay -S xdg-desktop-portal-termfilechooser-hunkyburrito-git # use yazi as default file selector
 
 echo "Desktop apps installed successfully!"

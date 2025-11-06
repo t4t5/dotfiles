@@ -1,6 +1,6 @@
 require("bunny"):setup({
 	hops = {
-		{ key = "r", path = "/", desc = "system root" },
+		{ key = "R", path = "/", desc = "system root" },
 		{ key = "h", path = "~", desc = "home" },
 		{ key = ".", path = "~/dev/dotfiles", desc = "dotfiles" },
 		{ key = ",", path = "~/dev", desc = "dev" },

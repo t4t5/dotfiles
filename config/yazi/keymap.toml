@@ -34,9 +34,23 @@ prepend_keymap = [
   { on = "/", run = "find --smart", desc = "Find files" },
   { on = "f", run = "filter", desc = "Filter files" },
 
+  # Sorting
+	{ on = [ "s", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by modified time" },
+	{ on = [ "s", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ],    desc = "Sort by modified time (reverse)" },
+	{ on = [ "s", "c" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort by creation time" },
+	{ on = [ "s", "C" ], run = [ "sort btime --reverse", "linemode btime" ],    desc = "Sort by creation time (reverse)" },
+	{ on = [ "s", "a" ], run = "sort alphabetical --reverse=no",                desc = "Sort alphabetically" },
+	{ on = [ "s", "A" ], run = "sort alphabetical --reverse",                   desc = "Sort alphabetically (reverse)" },
+	{ on = [ "s", "n" ], run = "sort natural --reverse=no",                     desc = "Sort naturally" },
+	{ on = [ "s", "N" ], run = "sort natural --reverse",                        desc = "Sort naturally (reverse)" },
+	{ on = [ "s", "s" ], run = [ "sort size --reverse=no", "linemode size" ],   desc = "Sort by size" },
+	{ on = [ "s", "S" ], run = [ "sort size --reverse", "linemode size" ],      desc = "Sort by size (reverse)" },
+
   # Help
   { on = "~", run = "help", desc = "Show help menu" },
 
   { on = ["c", "g"], run = "plugin path-from-root", desc = "Copies path from git root" },
-]
 
+  # bunny:
+  { on = ",", run = "plugin bunny", desc = "Start bunny.yazi" },
+]

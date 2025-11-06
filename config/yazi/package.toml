@@ -3,5 +3,10 @@ use = "aresler/path-from-root"
 rev = "c4f03df"
 hash = "5022fdb08fcb05c10eb59b63663edb10"
 
+[[plugin.deps]]
+use = "stelcodes/bunny"
+rev = "7137a44"
+hash = "58bfa473bcac8574400e573787954512"
+
 [flavor]
 deps = []

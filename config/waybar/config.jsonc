@@ -13,6 +13,7 @@
     "custom/vpn",
     "pulseaudio",
     "custom/headphones",
+    "custom/notifications",
     // "cpu",
     "battery"
   ],
@@ -150,5 +151,12 @@
     "return-type": "json",
     "interval": 3,
     "on-click": "pavucontrol"
+  },
+  "custom/notifications": {
+    "exec": "~/.config/waybar/scripts/notification-status.sh",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "makoctl mode -t do-not-disturb",
+    "signal": 9
   }
 }

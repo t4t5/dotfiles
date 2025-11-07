@@ -111,3 +111,12 @@ tooltip {
 #custom-headphones.output-only {
   color: #d5a555;
 }
+
+#custom-notifications {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#custom-notifications.silenced {
+  color: #d5a555;
+}

@@ -13,6 +13,7 @@ sudo pacman -S --needed --noconfirm \
   tmux \
   ripgrep \
   hub \
+  tree \
   imagemagick \
   postgresql \
   git-delta \

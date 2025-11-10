@@ -58,6 +58,9 @@ pathadd "$VOLTA_HOME/bin"
 # Starklings
 pathadd "$HOME/.starklings/dist/starklings"
 
+# Opencode:
+pathadd "$HOME/.opencode/bin"
+
 # Foundry
 pathadd "$HOME/.foundry/bin"
 

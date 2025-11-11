@@ -1,0 +1,7 @@
+{
+    "profile": "main",
+    "rate_control": "CRF",
+    "crf": 23,
+    "preset": "veryfast",
+    "x264opts": "level=4.0"
+}

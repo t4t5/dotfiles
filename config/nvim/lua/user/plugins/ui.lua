@@ -1,4 +1,12 @@
 return {
+  -- startup screen
+  {
+    'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("user.startify").setup()
+    end
+  },
   {
     'folke/tokyonight.nvim',
     lazy = false,

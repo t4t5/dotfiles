@@ -84,4 +84,27 @@ return {
       vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)')
     end
   },
+
+  -- clipboard + macro history in telescope
+  {
+    "AckslD/nvim-neoclip.lua",
+    dependencies = {
+      { 'nvim-telescope/telescope.nvim' },
+    },
+    config = function()
+      require('neoclip').setup({
+        -- sync with unnamedplus
+        default_register = { '+', '*', '"' },
+        keys = {
+          telescope = {
+            i = {
+              -- to prevent overriding of <c-k>
+              paste_behind = '<c-P>',
+            }
+          },
+        }
+      })
+      require('telescope').load_extension('neoclip')
+    end,
+  },
 }

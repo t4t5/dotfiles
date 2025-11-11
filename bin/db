@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# Database connection helper script
+
+select_db() {
+  # Select database from 1Password using fzf
+  local selected_db=$(op item list --categories Database --format json | jq -r '.[].title' | fzf)
+
+  if [ -z "$selected_db" ]; then
+    echo "No database selected" >&2
+    exit 1
+  fi
+
+  # Get all URL fields containing "://"
+  local item_json=$(op item get "$selected_db" --format json)
+  local url_count=$(echo "$item_json" | jq '[.fields[] | select(.value? | type == "string" and contains("://"))] | length')
+
+  if [ "$url_count" -eq 0 ]; then
+    echo "No URL found for database: $selected_db" >&2
+    exit 1
+  elif [ "$url_count" -eq 1 ]; then
+    # Single URL, return it directly
+    local db_url=$(echo "$item_json" | jq -r '.fields[] | select(.value? | type == "string" and contains("://")) | .value')
+    echo "$db_url"
+  else
+    # Multiple URLs, let user select by label
+    local selected_label=$(echo "$item_json" | jq -r '.fields[] | select(.value? | type == "string" and contains("://")) | .label' | fzf)
+
+    if [ -z "$selected_label" ]; then
+      echo "No URL selected" >&2
+      exit 1
+    fi
+
+    # Get the URL for the selected label
+    local db_url=$(echo "$item_json" | jq -r --arg label "$selected_label" '.fields[] | select(.label == $label) | .value')
+    echo "$db_url"
+  fi
+}
+
+if [ $# -lt 1 ]; then
+  echo "Usage: db <command>"
+  echo ""
+  echo "Commands:"
+  echo "  op    Select database from 1Password and connect via rainfrog"
+  echo "  env   Connect to database using environment variables"
+  echo "  test  See what Database URL shows up"
+  exit 1
+fi
+
+if [ "$1" = "op" ]; then
+  db_url=$(select_db)
+  # Connect to database using rainfrog
+  rainfrog --url "$db_url"
+
+elif [ "$1" = "env" ]; then
+  # Connect using environment variables
+  rainfrog
+
+elif [ "$1" = "test" ]; then
+  db_url=$(select_db)
+  echo "Database URL: $db_url"
+else
+  echo "Unknown command: $1"
+  echo "Run 'db' without arguments for usage information"
+  exit 1
+fi

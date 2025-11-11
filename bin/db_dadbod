@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Check if URL parameter is provided
+if [ -z "$1" ]; then
+  echo "Usage: db_dadbod <database_url>"
+  echo "Example: db_dadbod postgresql://localhost/mydb"
+  exit 1
+fi
+
+# Open Neovim and run DBUIConnect command
+nvim -c "DBUIConnect $1"

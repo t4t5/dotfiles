@@ -2,6 +2,44 @@
 
 # Database connection helper script
 
+find_db_url_in_env() {
+  local env_file=""
+
+  # First check current directory for .env.local then .env
+  if [ -f ".env.local" ]; then
+    env_file=".env.local"
+  elif [ -f ".env" ]; then
+    env_file=".env"
+  else
+    # Not found in current directory, check git root
+    local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+
+    if [ -n "$git_root" ]; then
+      if [ -f "$git_root/.env.local" ]; then
+        env_file="$git_root/.env.local"
+      elif [ -f "$git_root/.env" ]; then
+        env_file="$git_root/.env"
+      fi
+    fi
+  fi
+
+  # If still not found, error out
+  if [ -z "$env_file" ]; then
+    echo "No .env or .env.local file found in current directory or git root" >&2
+    return 1
+  fi
+
+  # Extract DATABASE_URL from env file
+  local db_url=$(grep -E "^DATABASE_URL=" "$env_file" | cut -d '=' -f 2- | tr -d '"' | tr -d "'")
+
+  if [ -z "$db_url" ]; then
+    echo "DATABASE_URL not found in $env_file" >&2
+    return 1
+  fi
+
+  echo "$db_url"
+}
+
 select_db() {
   # Select database from 1Password using fzf
   local selected_db=$(op item list --categories Database --format json | jq -r '.[].title' | fzf)
@@ -50,11 +88,12 @@ fi
 if [ "$1" = "op" ]; then
   db_url=$(select_db)
   # Connect to database using rainfrog
-  rainfrog --url "$db_url"
+  db_dadbod "$db_url"
 
 elif [ "$1" = "env" ]; then
-  # Connect using environment variables
-  rainfrog
+  # Connect using environment variables from .env file
+  db_url=$(find_db_url_in_env)
+  db_dadbod $db_url
 
 elif [ "$1" = "test" ]; then
   db_url=$(select_db)

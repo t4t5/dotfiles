@@ -8,6 +8,9 @@ end
 vim.keymap.set('n', '[[', '[c', { noremap = true, silent = true, desc = "Jump to previous diff" })
 vim.keymap.set('n', ']]', ']c', { noremap = true, silent = true, desc = "Jump to next diff" })
 
+vim.keymap.set('n', 'W', 'f|', { noremap = true, silent = true, desc = "Next column (DBUI)" })
+vim.keymap.set('n', 'B', 'F|', { noremap = true, silent = true, desc = "Prev column (DBUI)" })
+
 -- find and replace:
 -- these don't show a preview in the command bar if we use <leader>:
 vim.api.nvim_set_keymap("n", "fr", ":%s//g<left><left>", { noremap = true })

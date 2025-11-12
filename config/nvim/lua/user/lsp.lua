@@ -29,6 +29,7 @@ local servers = {
   eslint = {},
   jsonls = {
     cmd = { 'vscode-json-language-server', '--stdio' },
+    filetypes = { 'json', 'jsonc' },
     json = {
       validate = { enable = true },
     },
@@ -131,10 +132,23 @@ end, {})
 
 -- Restart LSP with tt:
 vim.keymap.set("n", "tt", function()
-  for _, client in ipairs(vim.lsp.get_clients()) do
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
+  -- Collect server names before stopping
+  local server_names = {}
+  for _, client in ipairs(clients) do
+    table.insert(server_names, client.name)
     vim.lsp.stop_client(client.id, true)
   end
-  vim.notify("LSP clients restarted")
+
+  -- Re-enable the servers after stopping
+  vim.defer_fn(function()
+    for _, server_name in ipairs(server_names) do
+      vim.lsp.enable(server_name)
+    end
+    vim.notify("LSP clients restarted: " .. table.concat(server_names, ", "))
+  end, 100)
 end, { noremap = true, silent = true, desc = "Restart LSP" })
 
 -- View documentation:

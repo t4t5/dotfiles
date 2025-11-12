@@ -27,7 +27,12 @@ local servers = {
   prismals = {},
   dockerls = {},
   eslint = {},
-  jsonls = {},
+  jsonls = {
+    cmd = { 'vscode-json-language-server', '--stdio' },
+    json = {
+      validate = { enable = true },
+    },
+  },
   cssls = {
     css = {
       validate = false

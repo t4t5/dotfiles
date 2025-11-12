@@ -31,17 +31,17 @@ alias brew='arch -arm64 brew'
 HOMEBREW_NO_AUTO_UPDATE=1
 
 # Ruby
-alias gem='arch -arm64 gem'
-alias bundle='arch -arm64 bundle'
-rbenv() {
-  arch -arm64 rbenv "$@"
-}
+# alias gem='arch -arm64 gem'
+# alias bundle='arch -arm64 bundle'
+# rbenv() {
+#   arch -arm64 rbenv "$@"
+# }
 
 # OpenSSL
-export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
+# export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
 
 # Use tmux by default when using terminal
 if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then

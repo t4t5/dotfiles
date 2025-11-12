@@ -27,8 +27,8 @@ pathadd "$BREW_ROOT/bin"
 pathadd "$BREW_ROOT/sbin"
 
 # rbenv:
-export RBENV_ROOT="$BREW_ROOT/opt/rbenv"
-pathadd "$RBENV_ROOT/bin"
+# export RBENV_ROOT="$BREW_ROOT/opt/rbenv"
+# pathadd "$RBENV_ROOT/bin"
 
 # postgres:
 pathadd "$BREW_ROOT/opt/postgresql@15/bin"

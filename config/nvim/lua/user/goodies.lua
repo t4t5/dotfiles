@@ -75,17 +75,17 @@ vim.api.nvim_create_autocmd(
 
 -- For ruby files:
 -- See: https://github.com/testdouble/standard/wiki/IDE:-neovim
-vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "ruby",
-  group = vim.api.nvim_create_augroup("RubyLSP", { clear = true }), -- also this is not /needed/ but it's good practice
-  callback = function()
-    vim.lsp.start {
-      name = "standard",
-      cmd = { "/opt/homebrew/opt/rbenv/shims/standardrb", "--lsp" },
-    }
-  end,
-})
+-- vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "ruby",
+--   group = vim.api.nvim_create_augroup("RubyLSP", { clear = true }), -- also this is not /needed/ but it's good practice
+--   callback = function()
+--     vim.lsp.start {
+--       name = "standard",
+--       cmd = { "/opt/homebrew/opt/rbenv/shims/standardrb", "--lsp" },
+--     }
+--   end,
+-- })
 
 local function copy_claude_context_ref()
   -- Get the start and end line numbers of the visual selection

@@ -15,7 +15,6 @@ r() {
 
 alias ai="ollama run llama3.3"
 
-# use "just server" instead?
 alias pythonserver="python3 -m http.server 8000"
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;
@@ -25,8 +24,6 @@ alias rust="evcxr"
 
 # Go to the "experiments" folder
 alias exp='cd ~/dev/projects/experiments'
-
-alias ord='~/dev/projects/ordinals/ord-api/target/debug/ord'
 
 alias reload_waybar="killall waybar && waybar &"
 
@@ -51,10 +48,6 @@ v() {
 ports() {
   lsof -iTCP -sTCP:LISTEN -n -P | awk 'NR>1 {print $9, $1, $2}' | sed 's/.*://' | while read port process pid; do echo "Port $port: $(ps -p $pid -o command= | sed 's/^-//') (PID: $pid)"; done | sort -n
 }
-
-# Python
-# alias python='python3'
-# alias pip='pip3'
 
 # Postgres CLI
 alias pg='pgcli postgres'

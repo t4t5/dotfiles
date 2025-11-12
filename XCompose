@@ -1,9 +1,5 @@
 include "%H/.local/share/omarchy/default/xcompose"
 
-# Identification
-<Multi_key> <space> <n> : "Tristan"
-<Multi_key> <space> <e> : "t4t5@hey.com"
-
 # Right-Alt + u for umlauts (ö, ä)
 <Multi_key> <u> <o> : "ö"
 <Multi_key> <u> <O> : "Ö"

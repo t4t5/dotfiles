@@ -64,7 +64,6 @@ local MY_FQBN = "arduino:avr:uno"
 vim.lsp.config('arduino_language_server', {
   cmd = {
     "arduino-language-server",
-    "-cli-config", "/path/to/arduino-cli.yaml",
     "-fqbn",
     MY_FQBN
   }

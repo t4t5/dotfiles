@@ -76,8 +76,6 @@ pathadd "${GOROOT}/bin"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND='ag --nocolor -g ""'
 
-alias f='cd && cd "$(fd --type d | fzf)"'
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # bun completions

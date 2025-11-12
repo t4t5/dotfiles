@@ -22,6 +22,9 @@ killall Finder /System/Library/CoreServices/Finder.app'
 
 alias rust="evcxr"
 
+# cd into any directory:
+alias f='cd "$(fd --type d | fzf)"'
+
 # Go to the "experiments" folder
 alias exp='cd ~/dev/projects/experiments'
 

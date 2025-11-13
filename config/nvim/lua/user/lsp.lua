@@ -103,6 +103,12 @@ setup_lsp("tailwindcss", {
         recommendedVariantOrder = "warning",
       },
       classAttributes = { "class", "className", "classList" },
+      experimental = {
+        classRegex = {
+          "cva\\(([^)]*)\\)",
+          "[\"'`]([^\"'`]*).*?[\"'`]",
+        },
+      },
     },
   },
 })

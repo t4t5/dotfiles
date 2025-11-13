@@ -1,160 +1,258 @@
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+-- LSP Configuration using vim.lsp.config API (Nvim 0.11+)
+-- For language examples:
+-- https://github.com/neovim/nvim-lspconfig/blob/37cc31c64d657feff6f752a1bf15f584d4734eca/lsp/eslint.lua
 
-local servers = {
-  rust_analyzer = {
-    diagnostics = {
-      disabled = { "inactive-code" },
-    },
-  },
-  typescript_language_server = {
-    cmd = { "typescript-language-server", "--stdio" },
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-  },
-  tailwindcss = {
-    filetypes = { "typescriptreact", "astro" },
-    tailwindCSS = {
-      experimental = {
-        classRegex = {
-          "cva\\(([^)]*)\\)",
-          "[\"'`]([^\"'`]*).*?[\"'`]",
-        },
-      },
-    },
-  },
-  terraformls = {},
-  tflint = {},
-  prismals = {},
-  dockerls = {},
-  eslint = {},
-  jsonls = {
-    cmd = { "vscode-json-language-server", "--stdio" },
-    filetypes = { "json", "jsonc" },
-    json = {
-      validate = { enable = true },
-    },
-  },
-  cssls = {
-    css = {
-      validate = false,
-    },
-  },
-  yamlls = {
-    keyOrdering = false,
-  },
-  solidity_ls_nomicfoundation = {},
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-      diagnostics = {
-        globals = { "vim" },
-      },
-    },
-  },
-}
+-- ============================================================================
+-- Mason: Auto-install LSP servers and formatters
+-- ============================================================================
 
--- Formatters to auto-install via Mason
-local formatters = {
-  "prettier",
-  "stylua",
-}
-
--- Ensure the servers and formatters above are installed via Mason
 require("mason").setup()
 
--- Auto-install LSP servers via Mason registry
 local mr = require "mason-registry"
+
+-- Restart LSP clients when Mason installs a package
 mr:on(
   "package:install:success",
   vim.schedule_wrap(function()
-    -- Restart all LSP clients
     for _, client in ipairs(vim.lsp.get_clients()) do
       vim.lsp.stop_client(client.id, true)
     end
   end)
 )
 
-for server_name, _ in pairs(servers) do
-  local package_name = server_name:gsub("_", "-")
-  if mr.has_package(package_name) then
-    local pkg = mr.get_package(package_name)
+-- Auto-install these LSP servers via Mason
+local servers = {
+  "rust-analyzer", -- Handled by rustaceanvim
+  "typescript-language-server",
+  "tailwindcss-language-server",
+  "terraform-ls",
+  "tflint",
+  "prismals",
+  "dockerfile-language-server",
+  "eslint",
+  "vscode-json-language-server",
+  "css-lsp",
+  "yaml-language-server",
+  "solidity-ls-nomicfoundation",
+  "lua-language-server",
+}
+
+-- Auto-install formatters via Mason
+local formatters = {
+  "prettier",
+  "stylua",
+}
+
+-- Install servers
+for _, server in ipairs(servers) do
+  if mr.has_package(server) then
+    local pkg = mr.get_package(server)
     if not pkg:is_installed() then
       pkg:install()
     end
   end
 end
 
--- Auto-install formatters via Mason registry
-for _, formatter_name in ipairs(formatters) do
-  if mr.has_package(formatter_name) then
-    local pkg = mr.get_package(formatter_name)
+-- Install formatters
+for _, formatter in ipairs(formatters) do
+  if mr.has_package(formatter) then
+    local pkg = mr.get_package(formatter)
     if not pkg:is_installed() then
       pkg:install()
     end
   end
 end
 
--- Configure each server using the new native vim.lsp.config API
-for server_name, server_config in pairs(servers) do
-  -- Skip rust_analyzer since we use rustaceanvim
-  if server_name ~= "rust_analyzer" then
-    vim.lsp.config(server_name, {
-      cmd = server_config.cmd,
-      capabilities = capabilities,
-      settings = server_config,
-      filetypes = server_config.filetypes,
-    })
-    vim.lsp.enable(server_name)
-  end
+-- ============================================================================
+-- LSP Server Configurations
+-- ============================================================================
+
+-- Broadcast nvim-cmp completion capabilities to all servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+-- Helper function to configure and enable LSP servers
+local function setup_lsp(name, config)
+  config.capabilities = capabilities
+  vim.lsp.config(name, config)
+  vim.lsp.enable(name)
 end
 
---- KEYMAPS: ---
+-- TypeScript
+setup_lsp("typescript_language_server", {
+  cmd = { "typescript-language-server", "--stdio" },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+})
 
--- Custom :LspInfo command for the new native API:
+-- Tailwind CSS
+setup_lsp("tailwindcss", {
+  cmd = { "tailwindcss-language-server", "--stdio" },
+  filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact", "astro" },
+  root_markers = { "tailwind.config.js", "tailwind.config.ts", "postcss.config.js", ".git" },
+  settings = {
+    tailwindCSS = {
+      validate = true,
+      lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidScreen = "error",
+        invalidVariant = "error",
+        invalidConfigPath = "error",
+        invalidTailwindDirective = "error",
+        recommendedVariantOrder = "warning",
+      },
+      classAttributes = { "class", "className", "classList" },
+    },
+  },
+})
+
+-- Terraform
+setup_lsp("terraformls", {
+  cmd = { "terraform-ls", "serve" },
+  filetypes = { "terraform", "terraform-vars" },
+  root_markers = { ".terraform", ".git" },
+})
+
+-- TFLint
+setup_lsp("tflint", {
+  cmd = { "tflint", "--langserver" },
+  filetypes = { "terraform" },
+  root_markers = { ".terraform", ".git" },
+})
+
+-- Prisma
+setup_lsp("prismals", {
+  cmd = { "prisma-language-server", "--stdio" },
+  filetypes = { "prisma" },
+  root_markers = { "package.json", ".git" },
+  settings = {
+    prisma = {
+      enableDiagnostics = true,
+    },
+  },
+})
+
+-- Docker
+setup_lsp("dockerls", {
+  cmd = { "docker-langserver", "--stdio" },
+  filetypes = { "dockerfile" },
+  root_markers = { "Dockerfile", ".git" },
+})
+
+-- ESLint - Disabled due to issues, use conform.nvim or nvim-lint instead
+setup_lsp("eslint", {
+  cmd = { "vscode-eslint-language-server", "--stdio" },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  root_markers = { ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "eslint.config.js" },
+  -- These settings are REQUIRED:
+  -- see: https://github.com/microsoft/vscode-eslint/issues/2008
+  settings = {
+    nodePath = "",
+    experimental = {
+      useFlatConfig = false,
+    },
+    problems = {},
+    rulesCustomizations = {},
+  },
+})
+
+-- JSON
+setup_lsp("jsonls", {
+  cmd = { "vscode-json-language-server", "--stdio" },
+  filetypes = { "json", "jsonc" },
+  root_markers = { "package.json", ".git" },
+  settings = {
+    json = { validate = { enable = true } },
+  },
+})
+
+-- CSS
+setup_lsp("cssls", {
+  cmd = { "vscode-css-language-server", "--stdio" },
+  filetypes = { "css", "scss", "less" },
+  root_markers = { "package.json", ".git" },
+  settings = {
+    css = { validate = false },
+  },
+})
+
+-- YAML
+setup_lsp("yamlls", {
+  cmd = { "yaml-language-server", "--stdio" },
+  filetypes = { "yaml", "yaml.docker-compose" },
+  root_markers = { ".git" },
+  settings = {
+    yaml = { keyOrdering = false },
+  },
+})
+
+-- Solidity
+setup_lsp("solidity_ls_nomicfoundation", {
+  cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
+  filetypes = { "solidity" },
+  root_markers = { "hardhat.config.js", "hardhat.config.ts", "foundry.toml", ".git" },
+})
+
+-- Lua
+setup_lsp("lua_ls", {
+  cmd = { "lua-language-server" },
+  filetypes = { "lua" },
+  root_markers = { ".luarc.json", ".luacheckrc", ".stylua.toml", ".git" },
+  settings = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+      diagnostics = { globals = { "vim" } },
+    },
+  },
+})
+
+-- Rust: Skip rust_analyzer as rustaceanvim handles it
+-- Don't call vim.lsp.enable("rust_analyzer")
+
+-- ============================================================================
+-- Commands
+-- ============================================================================
+
+-- :LspInfo - Show attached LSP clients
 vim.api.nvim_create_user_command("LspInfo", function()
   local clients = vim.lsp.get_clients { bufnr = 0 }
-
   if #clients == 0 then
     vim.notify("No LSP clients attached to this buffer", vim.log.levels.INFO)
     return
   end
-
   local lines = {}
   for _, client in ipairs(clients) do
-    local info = client.name .. " (id: " .. client.id .. ")"
-    -- if client.config and client.config.root_dir then
-    --   info = info .. "\n  Root: " .. client.config.root_dir
-    -- end
-    table.insert(lines, info)
+    table.insert(lines, client.name .. " (id: " .. client.id .. ")")
   end
-
   vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO)
 end, {})
 
--- Restart LSP with tt:
+-- ============================================================================
+-- Keymaps
+-- ============================================================================
+
+-- tt - Restart LSP clients
 vim.keymap.set("n", "tt", function()
   local bufnr = vim.api.nvim_get_current_buf()
   local clients = vim.lsp.get_clients { bufnr = bufnr }
-
-  -- Collect server names before stopping
   local server_names = {}
+
   for _, client in ipairs(clients) do
     table.insert(server_names, client.name)
     vim.lsp.stop_client(client.id, true)
   end
 
-  -- Re-enable the servers after stopping
   vim.defer_fn(function()
     for _, server_name in ipairs(server_names) do
       vim.lsp.enable(server_name)
     end
     vim.notify("LSP clients restarted: " .. table.concat(server_names, ", "))
   end, 100)
-end, { noremap = true, silent = true, desc = "Restart LSP" })
+end, { desc = "Restart LSP" })
 
--- View documentation:
+-- LSP hover
 require("which-key").add {
   {
     "<leader>k",
@@ -167,115 +265,41 @@ require("which-key").add {
   },
 }
 
--- normal mode:
+-- Code actions
 require("which-key").add {
-  {
-    "<leader>al", -- avante ask
-    desc = "which_key_ignore",
-    mode = "n",
-  },
-  -- {
-  --   "<leader>ai",
-  --   desc = "superagent",
-  --   mode = "v",
-  --   icon = "💪"
-  -- },
-  {
-    "<leader>aa",
-    vim.lsp.buf.code_action,
-    desc = "automatic action",
-    mode = "n",
-    icon = "🪄",
-  },
-  {
-    "<leader>ad", -- avante debug
-    desc = "which_key_ignore",
-  },
-  {
-    "<leader>ac", -- avante add to buffer
-    desc = "which_key_ignore",
-  },
-  {
-    "<leader>af", -- avante focus
-    desc = "which_key_ignore",
-  },
-  {
-    "<leader>ah", -- avante toggle hint
-    desc = "which_key_ignore",
-  },
-  {
-    "<leader>ar", -- avante refresh
-    desc = "which_key_ignore",
-  },
-  {
-    "<leader>aR", -- avante display repo map
-    desc = "which_key_ignore",
-  },
-  {
-    "<leader>as", -- avante toggle suggestion
-    desc = "which_key_ignore",
-  },
-  {
-    "<leader>at", -- avante toggle
-    desc = "which_key_ignore",
-  },
+  { "<leader>aa", vim.lsp.buf.code_action, desc = "automatic action", mode = "n", icon = "🪄" },
 }
 
--- -- Make sure ts_ls (i.e import suggestions) come before other things like eslint
--- -- when using <leader>aa for code actions:
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.sort = function(items)
-    table.sort(items, function(a, b)
-      if a.source == "tsserver" then
-        return true
-      elseif b.source == "tsserver" then
-        return false
-      else
-        return a.source < b.source
-      end
-    end)
-    return items
-  end
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
--- go to definition:
+-- Navigation
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-
--- vim.keymap.set('n', '<leader>sd', vim.lsp.buf.definition, { desc = "go to definition" })
 vim.keymap.set("n", "<leader>jt", "<CMD>Glance type_definitions<CR>", { desc = "jump to type definition" })
--- vim.keymap.set('n', '<leader>sr', '<cmd>Telescope lsp_references<cr>', { desc = "find references" })
 vim.keymap.set("n", "<leader>jr", "<CMD>Glance references<CR>", { desc = "jump to references" })
 
--- Be able to quickly copy documentation:
-local function focus_hover_and_enter()
-  -- Get a list of all floating windows
-  local wins = vim.api.nvim_list_wins()
+-- ============================================================================
+-- Hover Window Utilities
+-- ============================================================================
 
+-- Enter key: Focus floating window (useful for copying hover content)
+local function focus_hover_and_enter()
+  local wins = vim.api.nvim_list_wins()
   for _, win in ipairs(wins) do
-    -- Check if the window is a floating window (hover window is a floating window)
     local config = vim.api.nvim_win_get_config(win)
     if config.relative ~= "" then
-      -- Focus the hover window
       vim.api.nvim_set_current_win(win)
       return
     end
   end
-
-  -- If no floating window is found, just send Enter as usual
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", true)
 end
--- jump into hover window with Enter (useful for hover actions):
-vim.keymap.set("n", "<CR>", focus_hover_and_enter, { noremap = true, silent = true })
 
+vim.keymap.set("n", "<CR>", focus_hover_and_enter, { desc = "Focus hover window" })
+
+-- <leader>y: Yank hover content to clipboard
 local function yank_hover_content()
   local orig_win = vim.api.nvim_get_current_win()
-  -- Find the floating window
   for _, win in pairs(vim.api.nvim_list_wins()) do
     local config = vim.api.nvim_win_get_config(win)
-    if config.relative ~= "" then -- This identifies a floating window
+    if config.relative ~= "" then
       vim.api.nvim_set_current_win(win)
       vim.cmd "normal! ggVGy"
       vim.api.nvim_set_current_win(orig_win)
@@ -286,13 +310,12 @@ local function yank_hover_content()
   vim.notify "No hover window found"
 end
 
--- copy contents in a hover box (like error)
 require("which-key").add {
   {
     "<leader>y",
     yank_hover_content,
     desc = "yank hover contents",
     mode = "n",
-    icon = "",
+    icon = "",
   },
 }

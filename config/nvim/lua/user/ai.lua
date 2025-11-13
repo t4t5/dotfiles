@@ -33,7 +33,7 @@ require("which-key").add {
 }
 
 -- ============ Get @ref for Claude context (<leader>aa) =============
-local function copy_claude_context_ref()
+local function copy_claude_context_ref(register)
   -- Get the start and end line numbers of the visual selection
   local start_line = vim.fn.getpos("'<")[2]
   local end_line = vim.fn.getpos("'>")[2]
@@ -65,6 +65,11 @@ local function copy_claude_context_ref()
     result = string.format("@%s#L%d-%d", relative_path, start_line, end_line)
   end
 
+  -- Copy to specified register if provided
+  if type(register) == "string" then
+    vim.fn.setreg(register, result)
+  end
+
   -- Copy to clipboard (both + and * registers for maximum compatibility)
   vim.fn.setreg("+", result)
   vim.fn.setreg("*", result)
@@ -90,7 +95,7 @@ require("which-key").add {
 
 -- ============ Get prompt with error + reference (<leader>ae) =============
 
-local function yank_diagnostic_error()
+local function yank_diagnostic_error(show_log)
   vim.diagnostic.open_float()
   vim.diagnostic.open_float()
   local win_id = vim.fn.win_getid() -- get the window ID of the floating window
@@ -98,6 +103,10 @@ local function yank_diagnostic_error()
   vim.cmd "normal! VG" -- select everything from that row down
   vim.cmd "normal! y" -- yank selected text
   vim.api.nvim_win_close(win_id, true) -- close the floating window by its ID
+
+  if show_log then
+    print "Copied diagnostic error to clipboard"
+  end
 end
 
 -- Copy error messages:
@@ -105,7 +114,9 @@ require("which-key").add {
   {
     -- open file explorer at position of current file:
     "<leader>e",
-    yank_diagnostic_error,
+    function()
+      yank_diagnostic_error(true)
+    end,
     desc = "copy error",
     mode = "n",
     icon = "",
@@ -113,13 +124,13 @@ require("which-key").add {
 }
 
 local function generate_ai_prompt()
-  -- 'a' register:
-  local reg_a_contents = vim.fn.getreg "a"
+  -- 'a' register contains the reference:
+  local ref = vim.fn.getreg "a"
 
-  -- default register:
-  local default_reg_contents = vim.fn.getreg '"'
+  -- default register contains the error:
+  local error = vim.fn.getreg '"'
 
-  local prompt = string.format("This is my code:\n```\n%s\n```\n\nBut I'm getting this error:\n```\n%s\n```", reg_a_contents, default_reg_contents)
+  local prompt = string.format("At %s I'm getting this error:\n```\n%s\n```", ref, error)
 
   vim.fn.setreg('"', prompt)
 
@@ -130,8 +141,8 @@ local function generate_ai_prompt()
 end
 
 local function yank_ai_prompt()
-  -- Yank the selected text to register 'a'
-  vim.api.nvim_command 'normal! gv"ay'
+  -- Copy the reference to register 'a'
+  copy_claude_context_ref "a"
 
   -- Get the start and end positions of the visual selection
   local start_pos = vim.fn.getpos "'<"

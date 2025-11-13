@@ -11,5 +11,6 @@ require "user.goodies"
 require "user.tabs"
 require "user.git"
 require "user.snippets"
+require "user.ai"
 
 -- require('bitcoin_script_hints.init').setup()

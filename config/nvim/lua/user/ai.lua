@@ -1,6 +1,10 @@
 -- ============ Basic command for Claude Code (<leader>C) =============
-local function open_claude_in_tmux()
-  vim.fn.system 'tmux split-window -h "claude" \\; resize-pane -x 80'
+local function open_claude_in_tmux(prompt)
+  if prompt then
+    vim.fn.system('tmux split-window -h "claude \\"' .. prompt .. '\\"" \\; resize-pane -x 80')
+  else
+    vim.fn.system 'tmux split-window -h "claude" \\; resize-pane -x 80'
+  end
 end
 
 require("which-key").add {
@@ -130,17 +134,12 @@ local function generate_ai_prompt()
   -- default register contains the error:
   local error = vim.fn.getreg '"'
 
-  local prompt = string.format("At %s I'm getting this error:\n```\n%s\n```", ref, error)
+  local prompt = string.format("At %s I'm getting this error: \n%s", ref, error)
 
-  vim.fn.setreg('"', prompt)
-
-  -- show non-blocking notification:
-  vim.schedule(function()
-    vim.notify("✨ Copied AI prompt to clipboard!", vim.log.levels.INFO)
-  end)
+  return prompt
 end
 
-local function yank_ai_prompt()
+local function fix_error_with_claude()
   -- Copy the reference to register 'a'
   copy_claude_context_ref "a"
 
@@ -169,7 +168,8 @@ local function yank_ai_prompt()
     local first_diagnostic = diagnostics_in_selection[1]
     vim.api.nvim_win_set_cursor(0, { first_diagnostic.lnum + 1, first_diagnostic.col })
     yank_diagnostic_error()
-    generate_ai_prompt()
+    local prompt = generate_ai_prompt()
+    open_claude_in_tmux(prompt)
   else
     vim.schedule(function()
       print "❌ No diagnostics found in selection"
@@ -178,15 +178,15 @@ local function yank_ai_prompt()
 end
 
 -- Create a command to call the function
-vim.api.nvim_create_user_command("YankAiErrorPrompt", yank_ai_prompt, { range = true })
+vim.api.nvim_create_user_command("FixErrorWithAI", fix_error_with_claude, { range = true })
 
 -- Visual mode only:
 require("which-key").add {
   {
     "<leader>ae",
-    ":YankAiErrorPrompt<CR>",
-    desc = "generate prompt for error",
+    ":FixErrorWithAI<CR>",
+    desc = "fix error with AI",
     mode = "x",
-    icon = "🐞",
+    icon = "🐞✨",
   },
 }

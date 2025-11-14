@@ -3,19 +3,19 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Show current file in finder:
-vim.cmd [[
-  command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
-]]
-require("which-key").add({
-  {
-    -- Show current file in finder:
-    "<leader>o",
-    ':Silent open %:h<cr>',
-    desc = "open in finder",
-    mode = "n",
-    icon = "󰀶"
-  },
-})
+-- vim.cmd [[
+--   command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
+-- ]]
+-- require("which-key").add({
+--   {
+--     -- Show current file in finder:
+--     "<leader>o",
+--     ':Silent open %:h<cr>',
+--     desc = "open in finder",
+--     mode = "n",
+--     icon = "󰀶"
+--   },
+-- })
 
 -- Highlight copied text when yanking:
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })

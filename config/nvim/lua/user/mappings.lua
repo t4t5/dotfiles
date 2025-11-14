@@ -81,20 +81,20 @@ require("which-key").add({
 })
 
 -- Toggle file tree:
-if vim.g.vscode then
-  vim.api.nvim_set_keymap('n', ',t', '<Cmd>call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>',
-    { noremap = true, silent = true })
-else
-  require("which-key").add({
-    {
-      "<leader>t",
-      "<cmd>NvimTreeToggle<cr>",
-      desc = "toggle explorer",
-      mode = "n",
-      icon = ""
-    },
-  })
-end
+-- if vim.g.vscode then
+--   vim.api.nvim_set_keymap('n', ',t', '<Cmd>call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>',
+--     { noremap = true, silent = true })
+-- else
+--   require("which-key").add({
+--     {
+--       "<leader>t",
+--       "<cmd>NvimTreeToggle<cr>",
+--       desc = "toggle explorer",
+--       mode = "n",
+--       icon = ""
+--     },
+--   })
+-- end
 
 -- Joshuto
 -- empty new files in tab by default
@@ -172,7 +172,7 @@ require("which-key").add({
   { "List", group = "list (macros/clipboard)" },
   { "Debug tools", group = "debug tools" },
   { "AI", group = "AI", mode = "x" },
-  { "<leader>a", group = "AI", icon = "✨" },
+  { "<leader>a", group = "diagnostics", icon = "", mode = "n" },
   {
     "<leader>a",
     group = "AI",

@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+# Get current date components
+year=$(date +%Y)
+month=$(date +%m)
+day=$(date +%d)
+header_date=$(date "+%b %d %Y")
+
+# Construct file path
+til_dir="$HOME/Documents/wiki/TIL/$year/$month"
+til_file="$til_dir/$day.md"
+
+# Create directory structure if it doesn't exist
+mkdir -p "$til_dir"
+
+# Create file with header if it doesn't exist
+if [[ ! -f "$til_file" ]]; then
+  echo "# TIL ($header_date)\n" > "$til_file"
+fi
+
+# Open the file in editor at the end
+${EDITOR:-nvim} + "$til_file"

@@ -37,7 +37,25 @@ return {
         }
       },
       lualine_c = {},
-      lualine_x = { "require('lsp-progress').progress()" },
+      lualine_x = {
+        {
+          function()
+            local ok, kulala = pcall(require, 'kulala')
+            if not ok then return '' end
+
+            local env = kulala.get_selected_env()
+            if env and env ~= '' then
+              return '🐨 ' .. env
+            end
+            return ''
+          end,
+          cond = function()
+            return vim.bo.filetype == 'http'
+          end,
+          color = { fg = '#7aa2f7', gui = 'bold' },
+        },
+        "require('lsp-progress').progress()"
+      },
       lualine_y = {
         {
           'diagnostics',

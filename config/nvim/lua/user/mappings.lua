@@ -162,6 +162,23 @@ require("which-key").add({
   },
 })
 
+-- Kulala environment switcher
+require("which-key").add({
+  {
+    "<leader>s",
+    function()
+      local env = vim.fn.input("Environment: ")
+      if env ~= "" then
+        require('kulala').set_selected_env(env)
+        vim.notify("Switched to environment: " .. env)
+      end
+    end,
+    desc = "switch http env",
+    mode = "n",
+    icon = "🐨"
+  },
+})
+
 -- Set group names for which-key:
 -- Use icons from https://www.nerdfonts.com/cheat-sheet
 require("which-key").add({

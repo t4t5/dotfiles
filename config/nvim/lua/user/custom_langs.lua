@@ -3,6 +3,13 @@
 
 local comment = require('Comment.ft')
 
+-- .http files
+vim.filetype.add({
+  extension = {
+    ['http'] = 'http',
+  },
+})
+
 -- .env files
 vim.api.nvim_command("au! BufNewFile,BufRead .env.* set filetype=sh")
 vim.api.nvim_command("au! BufNewFile,BufRead zshrc set filetype=sh")

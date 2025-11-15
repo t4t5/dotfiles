@@ -120,3 +120,11 @@ tooltip {
 #custom-notifications.silenced {
   color: #d5a555;
 }
+
+#battery.charging {
+  color: #55a555;
+}
+
+#battery.critical:not(.charging):not(.plugged) {
+  color: #a55555;
+}

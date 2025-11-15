@@ -79,8 +79,8 @@ if [ $# -lt 1 ]; then
   echo "Usage: db <command>"
   echo ""
   echo "Commands:"
-  echo "  op    Select database from 1Password and connect via rainfrog"
-  echo "  env   Connect to database using environment variables"
+  echo "  op    Select database from 1Password"
+  echo "  env   Use database from .env"
   echo "  test  See what Database URL shows up"
   exit 1
 fi

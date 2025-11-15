@@ -67,6 +67,20 @@ vim.api.nvim_create_autocmd(
   { pattern = { "*.mdx" }, command = "set ft=markdown syntax=markdown" }
 )
 
+-- Wrap markdown content to a readable width (approximately 600px / ~100 characters)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function()
+    -- Set soft wrap at window edge
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    -- Limit the text width to ~100 columns for better readability
+    vim.opt_local.textwidth = 100
+    -- Add visual guide at the edge
+    vim.opt_local.colorcolumn = "100"
+  end,
+})
+
 -- txtx
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },

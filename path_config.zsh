@@ -18,20 +18,8 @@ pathadd "/usr/local/bin"
 # fig, lvim, scarb...
 pathadd "$HOME/.local/bin"
 
-# Homebrew version of llvm/clang:
-pathadd "/usr/local/opt/llvm/bin"
-
-# homebrew:
-export BREW_ROOT="/opt/homebrew"
-pathadd "$BREW_ROOT/bin"
-pathadd "$BREW_ROOT/sbin"
-
-# rbenv:
-# export RBENV_ROOT="$BREW_ROOT/opt/rbenv"
-# pathadd "$RBENV_ROOT/bin"
-
-# postgres:
-pathadd "$BREW_ROOT/opt/postgresql@15/bin"
+# bitcoin
+pathadd "$HOME/opt/bitcoin-30.0/bin"
 
 # rust:
 pathadd "$HOME/.cargo/bin"
@@ -44,9 +32,6 @@ pathadd "$HOME/.local/share/omarchy/bin"
 
 # Anchor (Solana)
 pathadd "$HOME/.avm/bin"
-
-# OpenSSL:
-pathadd "$BREW_ROOT/opt/openssl@1.1/bin"
 
 # Elasticsearch:
 pathadd "/usr/local/opt/elasticsearch@5.6/bin"
@@ -73,15 +58,36 @@ pathadd "$HOME/.fuelup/bin"
 # for gui elements:
 pathadd "$HOME/usr/local/opt/tcl-tk/bin"
 
-# use homebrew version of java:
-pathadd "$BREW_ROOT/opt/openjdk/bin"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 pathadd "$BUN_INSTALL/bin"
 
 # bb (noir lang)
 pathadd "$HOME/.bb"
+
+# MacOS specific paths:
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # Homebrew version of llvm/clang:
+  pathadd "/usr/local/opt/llvm/bin"
+
+  # homebrew:
+  export BREW_ROOT="/opt/homebrew"
+  pathadd "$BREW_ROOT/bin"
+  pathadd "$BREW_ROOT/sbin"
+
+  # postgres (brew version):
+  pathadd "$BREW_ROOT/opt/postgresql@15/bin"
+
+  # rbenv (bre version):
+  export RBENV_ROOT="$BREW_ROOT/opt/rbenv"
+  pathadd "$RBENV_ROOT/bin"
+
+  # OpenSSL:
+  pathadd "$BREW_ROOT/opt/openssl@1.1/bin"
+
+  # use homebrew version of java:
+  pathadd "$BREW_ROOT/opt/openjdk/bin"
+fi
 
 # FINAL EXPORT:
 export PATH

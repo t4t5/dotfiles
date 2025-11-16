@@ -1,5 +1,9 @@
 @import "../omarchy/current/theme/waybar.css";
 
+@define-color green #55a555;
+@define-color red #a55555;
+@define-color yellow #d5a555;
+
 * {
   background-color: @background;
   color: @foreground;
@@ -79,7 +83,7 @@ tooltip {
 }
 
 #custom-screenrecording-indicator.active {
-  color: #a55555;
+  color: @red;
 }
 
 #custom-vpn {
@@ -88,11 +92,11 @@ tooltip {
 }
 
 #custom-vpn.connected {
-  color: #55a555;
+  color: @green;
 }
 
 #custom-vpn.disconnected {
-  color: #a55555;
+  color: @red;
 }
 
 #custom-headphones {
@@ -101,15 +105,15 @@ tooltip {
 }
 
 #custom-headphones.active {
-  color: #55a555;
+  color: @green;
 }
 
 #custom-headphones.inactive {
-  color: #a55555;
+  color: @red;
 }
 
 #custom-headphones.output-only {
-  color: #d5a555;
+  color: @yellow;
 }
 
 #custom-notifications {
@@ -118,13 +122,14 @@ tooltip {
 }
 
 #custom-notifications.silenced {
-  color: #d5a555;
+  color: @yellow;
 }
 
-#battery.charging {
-  color: #55a555;
+#battery.charging,
+#battery.plugged {
+  color: @green;
 }
 
 #battery.critical:not(.charging):not(.plugged) {
-  color: #a55555;
+  color: @red;
 }

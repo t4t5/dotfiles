@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# AirPods MAC address
+AIRPODS_MAC="9C:F3:AC:4F:02:AA"
+AIRPODS_MAX_MAC="90:9C:4A:DD:05:DE"
+
+# Default to regular AirPods
+MAC="$AIRPODS_MAC"
+
+case "$1" in
+    connect)
+        if [ "$2" = "max" ]; then
+            MAC="$AIRPODS_MAX_MAC"
+            echo "Connecting to AirPods Max..."
+        else
+            echo "Connecting to AirPods..."
+        fi
+        bluetoothctl connect "$MAC"
+        ;;
+    disconnect)
+        if [ "$2" = "max" ]; then
+            MAC="$AIRPODS_MAX_MAC"
+            echo "Disconnecting AirPods Max..."
+        else
+            echo "Disconnecting AirPods..."
+        fi
+        bluetoothctl disconnect "$MAC"
+        ;;
+    *)
+        echo "Usage: airpods {connect|disconnect} [max]"
+        echo "Examples:"
+        echo "  airpods connect      - Connect to AirPods"
+        echo "  airpods connect max  - Connect to AirPods Max"
+        echo "  airpods disconnect   - Disconnect AirPods"
+        exit 1
+        ;;
+esac

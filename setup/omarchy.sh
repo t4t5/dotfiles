@@ -25,7 +25,7 @@ sudo pacman -S --needed --noconfirm \
   lsof \
   pavucontrol \
   python-pip \
-  xclip \
+  ansible-core \
   fzf
 
 # Create tmux config directory if it doesn't exist

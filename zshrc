@@ -20,11 +20,6 @@ source $ZSH/oh-my-zsh.sh
 # Theme for cat alternative (bat):
 export BAT_THEME="OneHalfDark"
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  alias pbcopy='wl-copy'
-  alias pbpaste='wl-paste'
-fi
-
 # Load antigen plugins:
 source $HOME/antigen.zsh
 antigen bundle Aloxaf/fzf-tab

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  wl-copy "$@"
+else
+  # macOS has native pbcopy
+  /usr/bin/pbcopy "$@"
+fi

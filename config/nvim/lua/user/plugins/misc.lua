@@ -1,6 +1,13 @@
 return {
   -- respect camelcase/underscores
-  { "chaoren/vim-wordmotion" },
+  {
+    "chaoren/vim-wordmotion",
+    config = function()
+      -- Make "caW" behave like "ciW"
+      vim.keymap.set("o", "aW", "iW", { remap = true })
+      vim.keymap.set("x", "aW", "iW", { remap = true })
+    end,
+  },
 
   -- "gc" to comment visual regions/lines
   { "numToStr/Comment.nvim", opts = {} },

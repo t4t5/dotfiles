@@ -144,8 +144,8 @@
   "custom/vpn": {
     "exec": "~/.config/waybar/scripts/vpn-status.sh",
     "return-type": "json",
-    "interval": 5,
-    "on-click": "nordvpn-gui"
+    "interval": 5
+    // "on-click": "nordvpn-gui"
   },
   "custom/headphones": {
     "exec": "~/.config/waybar/scripts/headphone-status.sh",

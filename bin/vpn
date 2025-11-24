@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# VPN helper script for NordVPN
+
+if [ $# -lt 1 ]; then
+  echo "Usage: vpn <command>"
+  echo ""
+  echo "Commands:"
+  echo "  on       Connect to VPN"
+  echo "  off      Disconnect from VPN"
+  echo "  connect  Select country and connect"
+  echo "  status   See status of connection"
+  exit 1
+fi
+
+if [ "$1" = "on" ]; then
+  nordvpn connect
+
+elif [ "$1" = "off" ]; then
+  nordvpn disconnect
+
+elif [ "$1" = "status" ]; then
+  nordvpn status
+
+elif [ "$1" = "connect" ]; then
+  selected_country=$(nordvpn countries | grep -v '^\*' | tr -s ' ' '\n' | grep -v '^$' | fzf)
+
+  if [ -z "$selected_country" ]; then
+    echo "No country selected" >&2
+    exit 1
+  fi
+
+  nordvpn connect "$selected_country"
+
+else
+  echo "Unknown command: $1"
+  echo "Run 'vpn' without arguments for usage information"
+  exit 1
+fi

@@ -7,11 +7,12 @@
   "modules-left": ["custom/omarchy", "hyprland/workspaces"],
   "modules-center": ["clock", "custom/update", "custom/screenrecording-indicator"],
   "modules-right": [
-    "group/tray-expander",
+    "custom/weather",
+    // "group/tray-expander",
     "bluetooth",
     "network",
     "custom/vpn",
-    "pulseaudio",
+    // "pulseaudio",
     "custom/headphones",
     "custom/notifications",
     // "cpu",
@@ -63,7 +64,7 @@
   },
   "clock": {
     "format": "{:%a %e %b %H:%M}",
-    "format-alt": "{:L%d %B W%V %Y}",
+    "format-alt": "Week {:%V}",
     "tooltip": false,
     "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
   },
@@ -158,5 +159,12 @@
     "interval": 2,
     "on-click": "makoctl mode -t do-not-disturb",
     "signal": 9
+  },
+  "custom/weather": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 3600,
+    "exec": "wttrbar --custom-indicator \"{ICON} {FeelsLikeC}°  \"",
+    "return-type": "json"
   }
 }

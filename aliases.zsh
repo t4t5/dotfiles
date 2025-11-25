@@ -30,7 +30,7 @@ alias f='cd "$(fd --type d | fzf)"'
 # Go to the "experiments" folder
 alias exp='cd ~/dev/projects/experiments'
 
-alias reload_waybar="killall waybar && waybar &"
+alias reload_waybar="omarchy-restart-waybar"
 
 # alias ls='eza -a'
 

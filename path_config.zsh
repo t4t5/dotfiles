@@ -65,6 +65,9 @@ pathadd "$BUN_INSTALL/bin"
 # bb (noir lang)
 pathadd "$HOME/.bb"
 
+# Risc Zero
+pathadd "$HOME/.risc0/bin"
+
 # MacOS specific paths:
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Homebrew version of llvm/clang:

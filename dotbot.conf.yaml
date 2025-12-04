@@ -1,5 +1,4 @@
 - link:
-    ~/.config/coc: config/coc
     ~/.config/gitui: config/gitui
     ~/.config/yazi: config/yazi
     ~/.config/kitty: config/kitty

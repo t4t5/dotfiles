@@ -7,8 +7,9 @@ require("bunny"):setup({
 		{ key = "d", path = "~/Downloads", desc = "downloads" },
 		{ key = "i", path = "~/Pictures", desc = "images" },
 		{ key = "v", path = "~/Videos", desc = "videos" },
-		{ key = "s", path = "~/Documents/syncthing", desc = "syncthing" },
 		{ key = "e", path = "/run/media/t4t5", desc = "external drives" },
+		-- { key = "s", path = "~/Documents/syncthing", desc = "syncthing" },
+		-- { key = "w", path = "/home/t4t5/dev/projects/where-does-it-all-go/src/data", desc = "wheredoesitallgo" },
 	},
 	desc_strategy = "path", -- If desc isn't present, use "path" or "filename", default is "path"
 	ephemeral = true, -- Enable ephemeral hops, default is true

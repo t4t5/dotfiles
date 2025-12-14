@@ -169,7 +169,13 @@ local function fix_error_with_claude()
     vim.api.nvim_win_set_cursor(0, { first_diagnostic.lnum + 1, first_diagnostic.col })
     yank_diagnostic_error()
     local prompt = generate_ai_prompt()
-    open_claude_in_tmux(prompt)
+
+    -- Copy to clipboard (both + and * registers for maximum compatibility)
+    vim.fn.setreg("+", prompt)
+    vim.fn.setreg("*", prompt)
+
+    print("Copied to clipboard: " .. prompt)
+    -- open_claude_in_tmux(prompt)
   else
     vim.schedule(function()
       print "❌ No diagnostics found in selection"

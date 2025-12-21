@@ -53,4 +53,9 @@ yay -S nordvpn-bin
 yay -S emote # emojis
 yay -S xdg-desktop-portal-termfilechooser-hunkyburrito-git # use yazi as default file selector
 
+# maildir:
+yay -S mbsync
+yay -S aerc
+yay -S mu
+
 echo "Desktop apps installed successfully!"

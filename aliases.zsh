@@ -13,6 +13,11 @@ r() {
 	rm -f -- "$tmp"
 }
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  alias mail="aerc"
+  alias mailsync="mbsync -a"
+fi
+
 alias ai="ollama run llama3.3"
 
 alias j="just"

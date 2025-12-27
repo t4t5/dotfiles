@@ -7,6 +7,9 @@
 source $HOME/aliases.zsh
 source $HOME/path_config.zsh
 
+# Locale
+export LANG=en_GB.UTF-8
+
 # ZSH
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"

@@ -1,4 +1,5 @@
 - link:
+    ~/.config/obsidian/Dictionaries: config/obsidian/Dictionaries
     ~/.config/gitui: config/gitui
     ~/.config/yazi: config/yazi
     ~/.config/kitty: config/kitty
@@ -13,7 +14,6 @@
     ~/antigen.zsh: antigen.zsh
     ~/aliases.zsh: aliases.zsh
     ~/path_config.zsh: path_config.zsh
-    ~/.justfile: justfile
     ~/.bin: bin
     ~/.ignore: ignore
 

@@ -22,8 +22,6 @@ alias ai="ollama run llama3.3"
 
 alias j="just"
 
-alias mds="markserv"
-
 alias pythonserver="python3 -m http.server 8000"
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;

@@ -93,6 +93,7 @@ if [ "$1" = "op" ]; then
 elif [ "$1" = "env" ]; then
   # Connect using environment variables from .env file
   db_url=$(find_db_url_in_env)
+  db_url=${db_url/file:/sqlite:}  # Convert for vim-dadbod
   db_dadbod $db_url
 
 elif [ "$1" = "test" ]; then

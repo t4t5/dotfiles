@@ -23,3 +23,7 @@ Personal dotfiles for Omarchy (Arch Linux + Hyprland). Core tools: kitty, neovim
 - **config/**: App configs → `~/.config/` (nvim, hypr, waybar, kitty, yazi, etc.)
 - **bin/**: Custom scripts → `~/.bin/` (includes `g` for fzf-powered git)
 - **setup/**: One-time installation scripts
+
+## Notes
+
+Not all Hyprland/Walker/Omarchy settings are specified here. Some are in `~/.local/share/omarchy`

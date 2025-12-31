@@ -8,5 +8,10 @@ use = "stelcodes/bunny"
 rev = "7137a44"
 hash = "58bfa473bcac8574400e573787954512"
 
+[[plugin.deps]]
+use = "macydnah/office"
+rev = "41ebef8"
+hash = "5805affd3ae8adcb3c72b6997d21c0a6"
+
 [flavor]
 deps = []

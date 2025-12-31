@@ -10,3 +10,23 @@ max_height      = 1200
 # This allows kitty graphics protocol to work inside tmux
 [preview.image]
 passthrough = "auto"
+
+[plugin]
+
+prepend_preloaders = [
+    # Office Documents
+    { mime = "application/openxmlformats-officedocument.*", run = "office" },
+    { mime = "application/oasis.opendocument.*", run = "office" },
+    { mime = "application/ms-*", run = "office" },
+    { mime = "application/msword", run = "office" },
+    { name = "*.docx", run = "office" },
+]
+
+prepend_previewers = [
+    # Office Documents
+    { mime = "application/openxmlformats-officedocument.*", run = "office" },
+    { mime = "application/oasis.opendocument.*", run = "office" },
+    { mime = "application/ms-*", run = "office" },
+    { mime = "application/msword", run = "office" },
+    { name = "*.docx", run = "office" },
+]

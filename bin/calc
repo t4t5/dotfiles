@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Interactive calculator using numi-cli
+
+while true; do
+  read -r -p "> " expr
+  [[ -z "$expr" ]] && continue
+  numi-cli "$expr"
+done

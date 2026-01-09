@@ -154,6 +154,16 @@ title_error = { fg = "#e0af68" }
 # : }}}
 
 
+# : Icons {{{
+
+[icon]
+prepend_conds = [
+	{ if = "dir", text = "󰉋", fg = "#7aa2f7" },
+]
+
+# : }}}
+
+
 # : File-specific styles {{{
 
 [filetype]

@@ -55,3 +55,8 @@ prepend_keymap = [
   # bunny:
   { on = ",", run = "plugin bunny", desc = "Start bunny.yazi" },
 ]
+
+append_keymap = [
+  # Support drag and drop of files (via ripdrag)
+  { on = "<C-g>", run = '''shell 'ripdrag "$@" -x 2>/dev/null &' --confirm''' },
+]

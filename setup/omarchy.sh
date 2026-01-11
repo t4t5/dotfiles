@@ -58,4 +58,7 @@ yay -S mbsync
 yay -S aerc
 yay -S mu
 
+# drag and drop files from yazi:
+yay -S ripdrag
+
 echo "Desktop apps installed successfully!"

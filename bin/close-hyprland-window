@@ -1,0 +1,11 @@
+#!/bin/bash
+# Close the active window, unless it's Chromium (to prevent accidental close)
+
+window_class=$(hyprctl activewindow -j | jq -r '.class')
+
+if [[ "$window_class" == "chromium" ]]; then
+    notify-send "Use Ctrl+W to close tabs" "SUPER+W is disabled for Chromium"
+    exit 0
+fi
+
+hyprctl dispatch killactive

@@ -16,6 +16,8 @@ case "$1" in
             echo "Connecting to AirPods..."
         fi
         bluetoothctl connect "$MAC"
+        sleep 2
+        pactl set-default-sink "bluez_output.$MAC"
         ;;
     disconnect)
         if [ "$2" = "max" ]; then

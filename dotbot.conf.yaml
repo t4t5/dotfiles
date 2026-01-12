@@ -23,6 +23,7 @@
     ~/.config/walker: config/walker
     ~/.config/xdg-terminals.list: config/xdg-terminals.list
     ~/.config/xdg-desktop-portal: config/xdg-desktop-portal
+    ~/.config/mimeapps.list: config/mimeapps.list
     ~/.config/obs-studio/basic/profiles/personal: config/obs-studio/basic/profiles/personal
     ~/.XCompose:
       path: XCompose

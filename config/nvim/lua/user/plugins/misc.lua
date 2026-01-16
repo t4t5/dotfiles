@@ -31,6 +31,7 @@ return {
     ft = { "http", "rest" },
     keys = {
       { "<CR>", "<cmd>lua require('kulala').run()<cr>", ft = { "http", "rest" }, desc = "Send request" },
+      { "<leader>y", "<cmd>lua require('kulala').copy()<cr>", ft = { "http", "rest" }, desc = "Copy as cURL" },
     },
     opts = {
       ui = {

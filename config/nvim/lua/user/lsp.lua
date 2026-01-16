@@ -241,21 +241,26 @@ end, {})
 
 -- tt - Restart LSP clients
 vim.keymap.set("n", "tt", function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local clients = vim.lsp.get_clients { bufnr = bufnr }
-  local server_names = {}
+  local clients = vim.lsp.get_clients { bufnr = vim.api.nvim_get_current_buf() }
+  local restarted = {}
 
   for _, client in ipairs(clients) do
-    table.insert(server_names, client.name)
-    vim.lsp.stop_client(client.id, true)
+    if client.name == "copilot" then
+      -- skip
+    elseif client.name == "rust-analyzer" then
+      vim.cmd "RustAnalyzer stop"
+      vim.cmd "RustAnalyzer start"
+      table.insert(restarted, client.name)
+    else
+      vim.lsp.stop_client(client.id, true)
+      vim.lsp.enable(client.name)
+      table.insert(restarted, client.name)
+    end
   end
 
-  vim.defer_fn(function()
-    for _, server_name in ipairs(server_names) do
-      vim.lsp.enable(server_name)
-    end
-    vim.notify("LSP clients restarted: " .. table.concat(server_names, ", "))
-  end, 100)
+  if #restarted > 0 then
+    vim.notify("LSP clients restarted: " .. table.concat(restarted, ", "))
+  end
 end, { desc = "Restart LSP" })
 
 -- LSP hover

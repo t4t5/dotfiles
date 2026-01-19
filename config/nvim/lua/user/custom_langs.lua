@@ -36,8 +36,8 @@ vim.api.nvim_command("au! BufNewFile,BufRead *justfile set ft=justfile syntax=ma
 comment.set('justfile', '#%s')
 
 -- config files
-vim.api.nvim_command("au! BufNewFile,BufRead *config set ft=sshconfig syntax=sshconfig")
-vim.api.nvim_command("au! BufNewFile,BufRead *gitconfig set filetype=ini")
+vim.api.nvim_command("au! BufNewFile,BufRead *config set ft=ini syntax=ini")
+vim.api.nvim_command("au! BufNewFile,BufRead */.ssh/config set ft=sshconfig syntax=sshconfig")
 
 -- mdx
 vim.api.nvim_command("au! BufNewFile,BufRead *.mdx set ft=markdown")

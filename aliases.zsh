@@ -16,6 +16,7 @@ r() {
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias mail="aerc"
   alias mailsync="mbsync -a"
+  alias mailsyncpreview="mbsync --dry-run --verbose"
 fi
 
 alias ai="ollama run llama3.3"

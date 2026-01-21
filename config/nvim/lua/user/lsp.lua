@@ -214,6 +214,16 @@ setup_lsp("lua_ls", {
   },
 })
 
+-- Beancount
+setup_lsp("beancount", {
+  cmd = { "beancount-language-server", "--stdio" },
+  filetypes = { "beancount" },
+  root_markers = { "main.beancount", ".git" },
+  init_options = {
+    journal_file = "main.beancount",
+  },
+})
+
 -- Rust: Skip rust_analyzer as rustaceanvim handles it
 -- Don't call vim.lsp.enable("rust_analyzer")
 

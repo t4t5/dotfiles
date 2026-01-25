@@ -24,6 +24,10 @@
     ~/.config/xdg-terminals.list: config/xdg-terminals.list
     ~/.config/xdg-desktop-portal: config/xdg-desktop-portal
     ~/.config/mimeapps.list: config/mimeapps.list
+    ~/.config/aerc/aerc.conf: config/aerc/aerc.conf
+    ~/.config/aerc/binds.conf: config/aerc/binds.conf
+    ~/.config/aerc/notmuch-queries: config/aerc/notmuch-queries
+    ~/.config/aerc/stylesets: config/aerc/stylesets
     ~/.config/obs-studio/basic/profiles/personal: config/obs-studio/basic/profiles/personal
     ~/.XCompose:
       path: XCompose

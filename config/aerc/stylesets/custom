@@ -1,0 +1,3 @@
+# Custom styleset - black text on selected (blue) background
+*.selected.fg = 0
+*.selected.bold = true

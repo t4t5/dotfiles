@@ -151,3 +151,11 @@ toast button.circular.flat.image-button:hover {
 * {
     border-radius: 0;
 }
+
+/* NewsFlash-specific colors */
+@define-color secondary_sidebar_bg_color @black;
+@define-color secondary_sidebar_fg_color @foreground;
+@define-color secondary_sidebar_backdrop_color @black;
+@define-color secondary_sidebar_shade_color @black;
+@define-color secondary_sidebar_border_color @bright_black;
+@define-color sidebar_border_color @bright_black;

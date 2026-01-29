@@ -1,0 +1,8 @@
+#!/bin/bash
+
+declare -A commands
+commands["VPN toggle"]="vpn toggle"
+
+choice=$(printf '%s\n' "${!commands[@]}" | menu -p "Workflow:")
+
+[[ -n "$choice" ]] && eval "${commands[$choice]}" 2>&1 | xargs -I{} notify-send "$choice" "{}"

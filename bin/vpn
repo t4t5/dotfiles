@@ -8,6 +8,7 @@ if [ $# -lt 1 ]; then
   echo "Commands:"
   echo "  on       Connect to VPN"
   echo "  off      Disconnect from VPN"
+  echo "  toggle   Toggle VPN on/off"
   echo "  connect  Select country and connect"
   echo "  status   See status of connection"
   exit 1
@@ -18,6 +19,13 @@ if [ "$1" = "on" ]; then
 
 elif [ "$1" = "off" ]; then
   nordvpn disconnect
+
+elif [ "$1" = "toggle" ]; then
+  if nordvpn status | grep -q "Status: Connected"; then
+    nordvpn disconnect
+  else
+    nordvpn connect
+  fi
 
 elif [ "$1" = "status" ]; then
   nordvpn status

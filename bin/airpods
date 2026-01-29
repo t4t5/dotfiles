@@ -15,9 +15,15 @@ case "$1" in
         else
             echo "Connecting to AirPods..."
         fi
-        bluetoothctl connect "$MAC"
+        CONNECT_OUTPUT=$(bluetoothctl connect "$MAC" 2>&1)
+        if [ $? -ne 0 ]; then
+            echo "Failed to connect:"
+            echo "$CONNECT_OUTPUT"
+            exit 1
+        fi
         sleep 2
-        pactl set-default-sink "bluez_output.$MAC"
+        pactl set-default-sink "bluez_output.$MAC" &>/dev/null
+        echo "Connected successfully!"
         ;;
     disconnect)
         if [ "$2" = "max" ]; then
@@ -26,7 +32,12 @@ case "$1" in
         else
             echo "Disconnecting AirPods..."
         fi
-        bluetoothctl disconnect "$MAC"
+        if bluetoothctl disconnect "$MAC" &>/dev/null; then
+            echo "Disconnected successfully!"
+        else
+            echo "Failed to disconnect."
+            exit 1
+        fi
         ;;
     *)
         echo "Usage: airpods {connect|disconnect} [max]"

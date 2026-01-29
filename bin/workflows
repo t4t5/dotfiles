@@ -1,8 +1,14 @@
 #!/bin/bash
 
+order=(
+  "VPN toggle"
+  "Toggle AirPods"
+)
+
 declare -A commands
 commands["VPN toggle"]="vpn toggle"
+commands["Toggle AirPods"]="airpods toggle"
 
-choice=$(printf '%s\n' "${!commands[@]}" | menu -p "Workflow:")
+choice=$(printf '%s\n' "${order[@]}" | menu -p "Workflow:")
 
 [[ -n "$choice" ]] && eval "${commands[$choice]}" 2>&1 | xargs -I{} notify-send "$choice" "{}"

@@ -21,8 +21,11 @@ case "$1" in
             echo "$CONNECT_OUTPUT"
             exit 1
         fi
+        sleep 1
+        systemctl --user restart wireplumber
         sleep 2
-        pactl set-default-sink "bluez_output.$MAC" &>/dev/null
+        pactl set-default-sink "bluez_output.${MAC//:/_}" &>/dev/null
+        pactl set-default-source "bluez_input.${MAC//:/_}" &>/dev/null
         echo "Connected successfully!"
         ;;
     disconnect)
@@ -39,12 +42,30 @@ case "$1" in
             exit 1
         fi
         ;;
+    toggle)
+        is_connected() {
+            bluetoothctl info "$1" 2>/dev/null | grep -q "Connected: yes"
+        }
+        if is_connected "$AIRPODS_MAC"; then
+            airpods disconnect
+        elif is_connected "$AIRPODS_MAX_MAC"; then
+            airpods disconnect max
+        else
+            choice=$(printf 'AirPods\nAirPods Max\n' | menu -p "Connect:")
+            case "$choice" in
+                "AirPods") airpods connect ;;
+                "AirPods Max") airpods connect max ;;
+                *) exit 1 ;;
+            esac
+        fi
+        ;;
     *)
-        echo "Usage: airpods {connect|disconnect} [max]"
+        echo "Usage: airpods {connect|disconnect|toggle} [max]"
         echo "Examples:"
         echo "  airpods connect      - Connect to AirPods"
         echo "  airpods connect max  - Connect to AirPods Max"
         echo "  airpods disconnect   - Disconnect AirPods"
+        echo "  airpods toggle       - Toggle connection"
         exit 1
         ;;
 esac

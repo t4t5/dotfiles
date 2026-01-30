@@ -15,7 +15,6 @@ sudo pacman -S --needed --noconfirm \
   hub \
   tree \
   imagemagick \
-  postgresql \
   git-delta \
   yazi \
   just \
@@ -45,10 +44,7 @@ fi
 
 # Install desktop apps:
 yay -S chatwise
-yay -S slack-desktop
-yay -S notion-app-electron
 yay -S volta # for nodejs
-yay -S tableplus
 yay -S nordvpn-bin
 yay -S emote # emojis
 yay -S xdg-desktop-portal-termfilechooser-hunkyburrito-git # use yazi as default file selector
@@ -60,5 +56,9 @@ yay -S mu
 
 # drag and drop files from yazi:
 yay -S ripdrag
+
+# Flatpak apps:
+flatpak install -y flathub com.slack.Slack
+flatpak install -y flathub io.gitlab.news_flash.NewsFlash
 
 echo "Desktop apps installed successfully!"

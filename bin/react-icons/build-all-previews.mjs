@@ -84,10 +84,13 @@ for (const set of sets) {
         const svgPath = join(previewDir, `${name}.svg`);
 
         const hasStrokeWidth = /stroke-width/.test(svg);
-        const styledSvg = svg
+        let styledSvg = svg
           .replace(/stroke="currentColor"/g, 'stroke="white"')
           .replace(/fill="currentColor"/g, 'fill="white"')
-          .replace(/<svg /, `<svg color="white" fill="white" ${hasStrokeWidth ? 'stroke="white" ' : ''}`);
+          .replace(/(<svg [^>]*?)fill="none"/, '$1fill="white"');
+        const hasFill = /^<svg [^>]*fill="/.test(styledSvg);
+        const hasStroke = /^<svg [^>]*stroke="/.test(styledSvg);
+        styledSvg = styledSvg.replace(/<svg /, `<svg color="white" ${hasFill ? '' : 'fill="white" '}${hasStrokeWidth && !hasStroke ? 'stroke="white" ' : ''}`);
 
         writeFileSync(svgPath, styledSvg);
         execSync(`rsvg-convert -w 64 -h 64 "${svgPath}" -o "${pngPath}"`, { stdio: "ignore" });

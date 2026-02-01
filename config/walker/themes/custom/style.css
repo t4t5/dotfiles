@@ -1,0 +1,15 @@
+@import "../../../../.local/share/omarchy/default/walker/themes/omarchy-default/style.css";
+
+/* React Icons: icon-only display with hover highlight */
+.menus-reacticons .item-text {
+  font-size: 0px;
+  min-height: 0px;
+  min-width: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+child:hover .menus-reacticons,
+child:selected .menus-reacticons {
+  background: alpha(@border, 0.15);
+}

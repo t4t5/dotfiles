@@ -1,6 +1,6 @@
 force_keyboard_focus = true                                                 # forces keyboard forcus to stay in Walker
 selection_wrap = true                                                       # wrap list if at bottom or top
-theme = "omarchy-default"                                                   # theme to use
+theme = "custom"                                                            # theme to use
 additional_theme_location = "~/.local/share/omarchy/default/walker/themes/"
 hide_action_hints = true                                                    # globally hide the action hints
 
@@ -12,7 +12,7 @@ quick_activate = []
 
 [columns]
 symbols = 1
-"menus:reacticons" = 5 # providers to be queried by default
+"menus:reacticons" = 7
 
 [providers]
 max_results = 256 # 256 should be enough for everyone

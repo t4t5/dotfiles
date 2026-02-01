@@ -33,6 +33,15 @@ GTK4 apps (Nautilus, zenity, etc.) are styled via `config/gtk-4.0/`:
 
 To change themes, update the color variables in `gtk.css`. Format matches Omarchy theme colors.
 
+## GUI=1 pattern for scripts
+
+Scripts in `bin/` that involve interactive selection should support a `GUI=1` env variable:
+
+- **Selection**: Use `fzf` by default, `menu` when `GUI=1`
+- **Output**: Print to stdout by default, `notify-send` when `GUI=1`
+
+This allows scripts to work both in the terminal and when triggered from Hyprland keybindings.
+
 ## Notes
 
 Not all Hyprland/Walker/Omarchy settings are specified here. Some are in `~/.local/share/omarchy`

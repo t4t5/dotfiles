@@ -31,14 +31,24 @@ elif [ "$1" = "status" ]; then
   nordvpn status
 
 elif [ "$1" = "connect" ]; then
-  selected_country=$(nordvpn countries | grep -v '^\*' | tr -s ' ' '\n' | grep -v '^$' | fzf)
+  countries=$(nordvpn countries | grep -v '^\*' | tr -s ' ' '\n' | grep -v '^$')
+
+  if [ "$GUI" = "1" ]; then
+    selected_country=$(echo "$countries" | menu -p "Connect:")
+  else
+    selected_country=$(echo "$countries" | fzf)
+  fi
 
   if [ -z "$selected_country" ]; then
     echo "No country selected" >&2
     exit 1
   fi
 
-  nordvpn connect "$selected_country"
+  if [ "$GUI" = "1" ]; then
+    nordvpn connect "$selected_country" | tail -1 | xargs -I{} notify-send "{}"
+  else
+    nordvpn connect "$selected_country"
+  fi
 
 else
   echo "Unknown command: $1"

@@ -30,10 +30,18 @@ fi
 
 query="$1"
 if [[ -z "$query" ]]; then
-  query=$(echo "" | omarchy-launch-walker --dmenu --inputonly -p "Icon name (Hit enter to search)")
+  query=$(echo "" | walker --dmenu --inputonly -p "Icon name (Hit enter to search)")
   [[ -z "$query" ]] && exit 0
 fi
 
 # Write query for the Lua script to read
 printf '%s' "$query" > "$QUERY_FILE"
-omarchy-launch-walker -m menus:reacticons
+
+# Ensure elephant is running (needed for menus module)
+if ! pgrep -x elephant > /dev/null; then
+  elephant &>/dev/null &
+  while ! pgrep -x elephant > /dev/null; do sleep 0.1; done
+fi
+
+# Suppress noisy output:
+walker -m menus:reacticons

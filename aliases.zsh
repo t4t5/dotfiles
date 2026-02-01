@@ -19,6 +19,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias mailsyncpreview="mbsync --dry-run --verbose"
 fi
 
+# copytop = copy above output
+# (reruns last command and copies all output to clipboard)
+copytop() { eval "$(fc -ln -1)" | tr -d '\n' | pbcopy }
+alias ct="copytop"
+
 alias ai="ollama run llama3.3"
 
 alias j="just"
@@ -28,7 +33,7 @@ alias pythonserver="python3 -m http.server 8000"
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;
 killall Finder /System/Library/CoreServices/Finder.app'
 
-alias rust="evcxr"
+alias rustshell="evcxr"
 
 # cd into any directory:
 alias f='cd "$(fd --type d | fzf)"'

@@ -34,7 +34,7 @@ alias rust="evcxr"
 alias f='cd "$(fd --type d | fzf)"'
 
 # Go to the "experiments" folder
-alias exp='cd ~/dev/projects/experiments'
+alias exp='cd ~/dev/projects/experimental'
 
 alias reload_waybar="omarchy-restart-waybar"
 

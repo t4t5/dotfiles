@@ -1,6 +1,6 @@
 # react-icons select
 
-Search and copy [react-icons](https://react-icons.github.io/react-icons/) SVGs from the command line or via a GUI menu with icon previews.
+Search and copy [react-icons](https://react-icons.github.io/react-icons/) SVGs via a walker menu with icon previews.
 
 ## Setup
 
@@ -15,14 +15,8 @@ react-icons/build-previews
 ## Usage
 
 ```bash
-# Terminal: interactive search
-react-icons/select
-
-# Terminal: search with query
-react-icons/select arrow
-
-# GUI: walker menu with icon previews
-GUI=1 react-icons/select
+react-icons/select          # prompts for a search query
+react-icons/select arrow    # search with a query directly
 ```
 
 The selected icon's SVG is copied to the clipboard.
@@ -33,7 +27,7 @@ The selected icon's SVG is copied to the clipboard.
 
 | File | Purpose |
 |---|---|
-| `select` | Main entrypoint. Prompts for a search query, then shows results via `menu` (terminal) or walker (GUI) |
+| `select` | Main entrypoint. Prompts for a search query, then shows results via walker |
 | `react_icons.lua` | Elephant menu provider for walker. Reads the search query from a cache file, filters the icon names, and returns entries with PNG previews |
 | `copy-svg` | Called by walker's activate action. Extracts the SVG for an icon and copies it to the clipboard |
 | `to-svg.mjs` | Converts a react-icon name to an SVG string by parsing the GenIcon JSON tree from the npm package |
@@ -41,7 +35,7 @@ The selected icon's SVG is copied to the clipboard.
 | `build-previews` | One-time script to pre-generate all PNG previews |
 | `build-all-previews.mjs` | Node script that generates white 64x64 PNGs from all icons using `rsvg-convert` |
 
-### Data flow (GUI mode)
+### Data flow
 
 1. Walker (`--inputonly`) prompts for a search term
 2. The query is written to `~/.cache/react-icons/query.txt`

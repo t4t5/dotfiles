@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Copies the SVG for a given react-icon name to the clipboard.
+# Usage: copy-svg <IconName>
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/react-icons"
+PKG_DIR="$CACHE_DIR/pkg"
+
+name="$1"
+[[ -z "$name" ]] && exit 1
+
+svg=$(node "$DIR/to-svg.mjs" "$name" "$PKG_DIR")
+[[ -z "$svg" ]] && exit 1
+
+printf '%s' "$svg" | pbcopy
+notify-send "Copied SVG" "$name"

@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Select a react-icon and copy its SVG to the clipboard.
+# Requires: node, npm, rsvg-convert
+# Setup: run "react-icons/build-previews" once to cache all icons.
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/react-icons"
+NAMES_FILE="$CACHE_DIR/names.txt"
+PKG_DIR="$CACHE_DIR/pkg"
+QUERY_FILE="$CACHE_DIR/query.txt"
+ELEPHANT_DIR="$HOME/.config/elephant/menus"
+
+# Install react-icons npm package if not present
+if [[ ! -d "$PKG_DIR/node_modules/react-icons" ]]; then
+  mkdir -p "$PKG_DIR"
+  (cd "$PKG_DIR" && npm install react-icons --silent 2>/dev/null)
+fi
+
+# Build names cache if missing
+if [[ ! -f "$NAMES_FILE" ]]; then
+  node "$DIR/build-cache.mjs" "$PKG_DIR" > "$NAMES_FILE"
+fi
+
+# Ensure elephant Lua menu is installed
+if [[ ! -f "$ELEPHANT_DIR/react_icons.lua" ]]; then
+  mkdir -p "$ELEPHANT_DIR"
+  ln -sf "$DIR/react_icons.lua" "$ELEPHANT_DIR/react_icons.lua"
+fi
+
+query="$1"
+if [[ -z "$query" ]]; then
+  if [[ "$GUI" == "1" ]]; then
+    query=$(echo "" | omarchy-launch-walker --dmenu --inputonly -p "Icon name (Hit enter to search)")
+  else
+    read -rp "Search icons: " query
+  fi
+  [[ -z "$query" ]] && exit 0
+fi
+
+if [[ "$GUI" == "1" ]]; then
+  # Write query for the Lua script to read
+  printf '%s' "$query" > "$QUERY_FILE"
+  omarchy-launch-walker -m menus:reacticons
+else
+  selection=$(grep -i "$query" "$NAMES_FILE" | menu -p "Icon:")
+  [[ -z "$selection" ]] && exit 0
+
+  svg=$(node "$DIR/to-svg.mjs" "$selection" "$PKG_DIR")
+
+  if [[ -z "$svg" ]]; then
+    echo "Failed to extract SVG for $selection" >&2
+    exit 1
+  fi
+
+  printf '%s' "$svg" | pbcopy
+  echo "$selection SVG copied to clipboard"
+fi

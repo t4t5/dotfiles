@@ -11,7 +11,8 @@ hide_action_hints = true                                                    # gl
 quick_activate = []
 
 [columns]
-symbols = 1 # providers to be queried by default
+symbols = 1
+"menus:reacticons" = 5 # providers to be queried by default
 
 [providers]
 max_results = 256 # 256 should be enough for everyone

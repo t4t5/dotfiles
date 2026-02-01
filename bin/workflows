@@ -1,9 +1,10 @@
 #!/bin/bash
 
 declare -A commands
+commands["  AirPods - Toggle (on/off)"]="airpods toggle"
 commands["VPN - Toggle (on/off)"]="vpn toggle"
 commands["VPN - Switch country..."]="GUI=1 vpn connect"
-commands["AirPods - Toggle (on/off)"]="airpods toggle"
+commands["Nerdfont - Search..."]="nerdfont-select"
 
 choice=$(printf '%s\n' "${!commands[@]}" | menu -p "Workflow:")
 

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Select a Nerd Font icon and copy it to the clipboard.
+# Uses a cached version of the nerd-fonts CSS cheat sheet.
+
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/nerdfont"
+CACHE_FILE="$CACHE_DIR/icons.txt"
+CSS_URL="https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/css/nerd-fonts-generated.css"
+
+# Build cache if missing
+if [[ ! -f "$CACHE_FILE" ]]; then
+  mkdir -p "$CACHE_DIR"
+  curl -sL "$CSS_URL" \
+    | grep -oP '\.nf-\K[^:]+(?=:before\s*\{\s*content:\s*"\\([0-9a-fA-F]+)")' \
+    | while read -r line; do
+        # Re-extract the hex code for each match
+        true
+      done
+
+  # Simpler: extract name and codepoint together
+  curl -sL "$CSS_URL" \
+    | grep -oP '\.nf-\K[^:]+(?=:before)|content:\s*"\\[0-9a-fA-F]+"' \
+    | paste - - \
+    | sed 's/content: "\\//;s/"//' \
+    | while IFS=$'\t' read -r name hex; do
+        printf "%b %s\n" "\\U$hex" "$name"
+      done > "$CACHE_FILE"
+fi
+
+selection=$(menu -p "Icon:" < "$CACHE_FILE")
+[[ -z "$selection" ]] && exit 0
+
+icon="${selection%% *}"
+
+if [[ "$GUI" == "1" ]]; then
+  printf '%s' "$icon" | pbcopy
+  notify-send "Copied icon" "$icon"
+else
+  printf '%s' "$icon" | pbcopy
+  echo "$icon copied to clipboard"
+fi

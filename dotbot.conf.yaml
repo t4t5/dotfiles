@@ -30,6 +30,7 @@
     ~/.config/aerc/notmuch-queries: config/aerc/notmuch-queries
     ~/.config/aerc/stylesets: config/aerc/stylesets
     ~/.config/obs-studio/basic/profiles/personal: config/obs-studio/basic/profiles/personal
+    ~/.config/vicinae: config/vicinae
     ~/.config/gtk-4.0: config/gtk-4.0
     ~/.XCompose:
       path: XCompose

@@ -25,7 +25,8 @@ sudo pacman -S --needed --noconfirm \
   pavucontrol \
   python-pip \
   ansible-core \
-  fzf
+  fzf \
+  vicinae-bin
 
 # Create tmux config directory if it doesn't exist
 mkdir -p ~/.tmux

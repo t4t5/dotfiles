@@ -16,4 +16,4 @@ if [[ $# -gt 0 ]]; then
   printf '%s\n' "$@"
 else
   cat
-fi | omarchy-launch-walker --dmenu ${prompt:+-p "$prompt"}
+fi | vicinae dmenu ${prompt:+-p "$prompt"}

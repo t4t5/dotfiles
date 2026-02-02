@@ -1,0 +1,16 @@
+#!/bin/bash
+# Convert a video to a Twitter/web-compatible MP4 (H.264 + AAC)
+
+if [ -z "$1" ]; then
+  echo "Usage: mp4-convert <input-file>"
+  exit 1
+fi
+
+input="$1"
+dir="$(dirname "$input")"
+base="$(basename "$input" | sed 's/\.[^.]*$//')"
+output="$dir/${base}-converted.mp4"
+
+ffmpeg -i "$input" -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -c:a aac -b:a 192k "$output"
+
+echo "Output: $output"

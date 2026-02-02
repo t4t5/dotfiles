@@ -1,0 +1,16 @@
+#!/bin/bash
+# Convert a video to DaVinci Resolve-compatible format (MJPEG MOV)
+
+if [ -z "$1" ]; then
+  echo "Usage: davinci-convert <input-file>"
+  exit 1
+fi
+
+input="$1"
+dir="$(dirname "$input")"
+base="$(basename "$input" | sed 's/\.[^.]*$//')"
+output="$dir/${base}-converted.mov"
+
+ffmpeg -i "$input" -c:v mjpeg -q:v 3 -c:a pcm_s16le "$output"
+
+echo "Output: $output"

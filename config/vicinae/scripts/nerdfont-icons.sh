@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # @vicinae.schemaVersion 1
-# @vicinae.title Nerdfont - Search
-# @vicinae.mode silent
+# @vicinae.title Nerdfont icons - Search
+# @vicinae.mode compact
 # @vicinae.icon
 
 cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}"

@@ -15,7 +15,11 @@
          "name": "ayu-dark"
       }
    },
+   "launcher_window": {
+      "opacity": 0.97
+   },
    "favorites": [
+      "scripts:airpods-toggle.sh",
       "scripts:nerdfont-icons.sh",
       "scripts:vpn-switch-country.sh",
       "scripts:vpn-toggle.sh",

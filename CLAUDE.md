@@ -42,6 +42,10 @@ Scripts in `bin/` that involve interactive selection should support a `GUI=1` en
 
 This allows scripts to work both in the terminal and when triggered from Hyprland keybindings.
 
+## Elephant Plugins (Walker menus)
+
+See [elephant-plugins.md](elephant-plugins.md).
+
 ## Notes
 
 Not all Hyprland/Walker/Omarchy settings are specified here. Some are in `~/.local/share/omarchy`

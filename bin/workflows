@@ -4,7 +4,7 @@ declare -A commands
 commands["  AirPods - Toggle (on/off)"]="airpods toggle"
 commands["VPN - Toggle (on/off)"]="vpn toggle"
 commands["VPN - Switch country..."]="GUI=1 vpn connect"
-commands["Nerdfont - Search..."]="nerdfont-select"
+commands["Nerdfont - Search..."]="omarchy-launch-walker -m menus:nerdfont"
 commands["React icons - Search..."]="~/.bin/react-icons/select > /dev/null"
 
 choice=$(printf '%s\n' "${!commands[@]}" | menu -p "Workflow:")

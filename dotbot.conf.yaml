@@ -21,6 +21,7 @@
     ~/.config/hypr: config/hypr
     ~/.config/waybar: config/waybar
     ~/.config/walker: config/walker
+    ~/.config/elephant/menus: config/elephant/menus
     ~/.config/xdg-terminals.list: config/xdg-terminals.list
     ~/.config/xdg-desktop-portal: config/xdg-desktop-portal
     ~/.config/mimeapps.list: config/mimeapps.list

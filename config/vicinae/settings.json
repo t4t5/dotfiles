@@ -19,6 +19,7 @@
       "opacity": 0.97
    },
    "favorites": [
+      "@yug2005/store.raycast.react-icons:index",
       "scripts:airpods-toggle.sh",
       "scripts:nerdfont-icons.sh",
       "scripts:vpn-switch-country.sh",

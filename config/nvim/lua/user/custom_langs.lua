@@ -85,3 +85,16 @@ vim.lsp.config('arduino_language_server', {
 --   command = 'forc',
 --   args = { 'fmt', '-f', '$FILENAME' },
 -- }
+
+-- scfg (simple configuration format)
+-- https://git.sr.ht/~rockorager/tree-sitter-scfg
+-- Must be at the end to override *.conf → ini mapping
+require("nvim-treesitter.parsers").get_parser_configs().scfg = {
+  install_info = {
+    url = "https://git.sr.ht/~rockorager/tree-sitter-scfg",
+    files = { "src/parser.c" },
+    branch = "master",
+  },
+  filetype = "scfg",
+}
+vim.api.nvim_command("au! BufNewFile,BufRead pimsync.conf set ft=scfg")

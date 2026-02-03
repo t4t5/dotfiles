@@ -61,6 +61,7 @@ yay -S ripdrag
 # Flatpak apps:
 flatpak install -y flathub com.slack.Slack
 flatpak install -y flathub io.gitlab.news_flash.NewsFlash
-flatpak install flathub org.telegram.desktop
+flatpak install -y flathub org.telegram.desktop
+flatpak install -y flathub com.github.johnfactotum.Foliate
 
 echo "Desktop apps installed successfully!"

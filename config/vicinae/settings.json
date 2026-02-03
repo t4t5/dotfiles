@@ -19,6 +19,8 @@
       "opacity": 0.97
    },
    "favorites": [
+      "@codingcodax/store.vicinae.omarchy-menu:index",
+      "core:search-emojis",
       "@yug2005/store.raycast.react-icons:index",
       "scripts:airpods-toggle.sh",
       "scripts:nerdfont-icons.sh",

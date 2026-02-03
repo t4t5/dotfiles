@@ -35,6 +35,8 @@ killall Finder /System/Library/CoreServices/Finder.app'
 
 alias rustshell="evcxr"
 
+alias ard="arduino-cli"
+
 # cd into any directory:
 alias f='cd "$(fd --type d | fzf)"'
 

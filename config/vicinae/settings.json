@@ -10,17 +10,26 @@
 
 {
    "$schema": "https://vicinae.com/schemas/config.json",
+   "font": {
+      "normal": {
+         "family": "monospace"
+      }
+   },
    "theme": {
       "dark": {
-         "name": "ayu-dark"
+         "name": "omarchy"
       }
    },
    "launcher_window": {
-      "opacity": 0.97
+      "opacity": 0.97,
+      "client_side_decorations": {
+         "enabled": true,
+         "rounding": 0,
+         "border_width": 4
+      }
    },
    "favorites": [
       "@codingcodax/store.vicinae.omarchy-menu:index",
-      "core:search-emojis",
       "@yug2005/store.raycast.react-icons:index",
       "scripts:airpods-toggle.sh",
       "scripts:nerdfont-icons.sh",

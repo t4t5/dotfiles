@@ -42,6 +42,10 @@ Scripts in `bin/` that involve interactive selection should support a `GUI=1` en
 
 This allows scripts to work both in the terminal and when triggered from Hyprland keybindings.
 
+## Vicinae Theming
+
+The custom Omarchy theme lives at `config/vicinae/themes/omarchy.toml` and is symlinked to `~/.local/share/vicinae/themes/`. After editing the theme file, run `vicinae theme set omarchy` to apply changes (hot-reload doesn't work through symlinks).
+
 ## Notes
 
 Not all Hyprland/Walker/Omarchy settings are specified here. Some are in `~/.local/share/omarchy`

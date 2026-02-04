@@ -1,0 +1,61 @@
+# Omarchy - Matches the Walker launcher aesthetic
+# Uses the Omarchy Tokyo Night color palette with minimal, clean styling
+
+[meta]
+name = "Omarchy"
+description = "Matches the Omarchy Walker launcher look and feel"
+variant = "dark"
+
+[colors.core]
+accent = "#7aa2f7"
+accent_foreground = "#1a1b26"
+background = "#1a1b26"
+foreground = "#a9b1d6"
+secondary_background = "#16161e"
+border = "#44445D"              # Walker uses foreground color for its border
+
+[colors.main_window]
+border = "#a9b1d6"
+
+[colors.accents]
+blue = "#7aa2f7"
+green = "#9ece6a"
+magenta = "#bb9af7"
+orange = "#ff9e64"
+red = "#f7768e"
+yellow = "#e0af68"
+cyan = "#7dcfff"
+purple = "#ad8ee6"
+
+[colors.text]
+default = "#a9b1d6"
+muted = "#787c99"
+danger = "#f7768e"
+success = "#9ece6a"
+placeholder = { name = "#a9b1d6", opacity = 0.5 }
+
+[colors.input]
+border = "transparent"
+border_focus = "transparent"
+border_error = "#f7768e"
+
+[colors.list.item.selection]
+background = "transparent"       # Walker shows no selection background
+foreground = "#7aa2f7"           # Walker highlights selected text in accent blue
+secondary_background = "#292e42" # Action panel selection (needs visible bg)
+secondary_foreground = "#a9b1d6"
+
+[colors.list.item.hover]
+background = { name = "#a9b1d6", opacity = 0.05 }
+foreground = "#a9b1d6"
+
+[colors.button.primary]
+background = "#292e42"
+foreground = "#a9b1d6"
+
+[colors.scrollbars]
+background = "#444b6a"
+
+[colors.loading]
+bar = "#7aa2f7"
+spinner = "#7aa2f7"

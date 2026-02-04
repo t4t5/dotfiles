@@ -69,6 +69,21 @@ require("which-key").add({
   },
 })
 
+-- Copy file path to clipboard
+require("which-key").add({
+  {
+    "<leader>c",
+    function()
+      local path = vim.fn.expand('%:p')
+      vim.fn.setreg('+', path)
+      vim.notify('Copied: ' .. path)
+    end,
+    desc = "copy file path",
+    mode = "n",
+    icon = ""
+  },
+})
+
 -- Spectre (find and replace across files)
 require("which-key").add({
   {

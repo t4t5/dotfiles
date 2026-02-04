@@ -21,10 +21,13 @@ case "$1" in
             echo "$CONNECT_OUTPUT"
             exit 1
         fi
-        sleep 1
-        systemctl --user restart wireplumber
-        sleep 2
-        pactl set-default-sink "bluez_output.${MAC//:/_}" &>/dev/null
+        # Wait for the bluez sink to appear in PipeWire
+        SINK="bluez_output.${MAC//:/_}"
+        for i in $(seq 1 10); do
+            pactl list sinks short 2>/dev/null | grep -q "$SINK" && break
+            sleep 1
+        done
+        pactl set-default-sink "$SINK" &>/dev/null
         pactl set-default-source "bluez_input.${MAC//:/_}" &>/dev/null
         echo "Connected successfully!"
         ;;

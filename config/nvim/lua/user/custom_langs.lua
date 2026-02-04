@@ -7,6 +7,7 @@ local comment = require('Comment.ft')
 vim.filetype.add({
   extension = {
     ['http'] = 'http',
+    ['ics'] = 'icalendar',
   },
 })
 

@@ -30,6 +30,8 @@ alias j="just"
 
 alias pythonserver="python3 -m http.server 8000"
 
+alias cal="khal interactive"
+
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES;
 killall Finder /System/Library/CoreServices/Finder.app'
 

@@ -21,6 +21,7 @@ prepend_keymap = [
   { on = "a", run = "create", desc = "Create new file/directory" },
   { on = "o", run = "create", desc = "Create new file/directory" },
   { on = "O", run = "shell 'imv \"$0\" & sleep 0.1 && hyprctl dispatch settiled' --confirm", desc = "Open in tiled mode" },
+  { on = "e", run = "shell 'satty --filename \"$0\"' --confirm", desc = "Edit image in Satty" },
   { on = "r", run = "rename", desc = "Rename file" },
   { on = "u", run = "undo", desc = "Undo last action" },
   { on = "<C-r>", run = "redo", desc = "Redo last action" },

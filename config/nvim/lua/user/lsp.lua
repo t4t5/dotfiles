@@ -224,6 +224,13 @@ setup_lsp("beancount", {
   },
 })
 
+-- OpenSCAD
+setup_lsp("openscad_lsp", {
+  cmd = { "openscad-lsp", "--stdio" },
+  filetypes = { "openscad" },
+  root_markers = { ".git" },
+})
+
 -- Rust: Skip rust_analyzer as rustaceanvim handles it
 -- Don't call vim.lsp.enable("rust_analyzer")
 

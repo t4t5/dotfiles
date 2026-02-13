@@ -53,13 +53,52 @@ return {
     "mfussenegger/nvim-lint",
     config = function()
       local lint = require("lint")
+
+      lint.linters.openscad = {
+        cmd = "openscad",
+        args = { "-o", "/dev/null", "--export-format", "png" },
+        stdin = false,
+        append_fname = true,
+        stream = "stderr",
+        parser = function(output)
+          local diagnostics = {}
+          for line in output:gmatch("[^\r\n]+") do
+            local severity, msg, lnum
+            -- WARNING: <message> in file <file>, line <num>
+            msg, lnum = line:match("^WARNING:%s+(.-),%s+line%s+(%d+)")
+            if msg then severity = vim.diagnostic.severity.WARN end
+            if not lnum then
+              msg, lnum = line:match("^ERROR:%s+(.-),%s+line%s+(%d+)")
+              if msg then severity = vim.diagnostic.severity.ERROR end
+            end
+            if lnum then
+              table.insert(diagnostics, {
+                lnum = tonumber(lnum) - 1,
+                col = 0,
+                severity = severity,
+                source = "openscad",
+                message = msg,
+              })
+            end
+          end
+          return diagnostics
+        end,
+      }
+
       lint.linters_by_ft = {
         javascript = { "eslint_d" },
         typescript = { "eslint_d" },
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         prisma = { "prisma_fmt" },
+        openscad = { "openscad" },
       }
+
+      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+        callback = function()
+          lint.try_lint()
+        end,
+      })
     end
   },
 

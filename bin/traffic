@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ "$1" = "vpn" ]; then
+  sudo termshark -i nordlynx -Y "dns"
+else
+  sudo termshark -i wlan0 -Y "dns"
+fi

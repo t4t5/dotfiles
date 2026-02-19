@@ -2,6 +2,8 @@
 
 # VPN helper script for NordVPN
 
+default_country="Switzerland"
+
 if [ $# -lt 1 ]; then
   echo "Usage: vpn <command>"
   echo ""
@@ -15,7 +17,7 @@ if [ $# -lt 1 ]; then
 fi
 
 if [ "$1" = "on" ]; then
-  nordvpn connect
+  nordvpn connect "$default_country"
 
 elif [ "$1" = "off" ]; then
   nordvpn disconnect
@@ -24,7 +26,7 @@ elif [ "$1" = "toggle" ]; then
   if nordvpn status | grep -q "Status: Connected"; then
     nordvpn disconnect
   else
-    nordvpn connect
+    nordvpn connect "$default_country"
   fi
 
 elif [ "$1" = "status" ]; then

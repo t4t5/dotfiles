@@ -22,13 +22,12 @@ case "$1" in
             exit 1
         fi
         # Wait for the bluez sink to appear in PipeWire
-        SINK="bluez_output.${MAC//:/_}"
+        SINK="bluez_output.$MAC"
         for i in $(seq 1 10); do
             pactl list sinks short 2>/dev/null | grep -q "$SINK" && break
             sleep 1
         done
-        pactl set-default-sink "$SINK" &>/dev/null
-        pactl set-default-source "bluez_input.${MAC//:/_}" &>/dev/null
+        pactl set-default-sink "$SINK"
         echo "Connected successfully!"
         ;;
     disconnect)

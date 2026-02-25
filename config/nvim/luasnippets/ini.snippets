@@ -1,0 +1,7 @@
+snippet dappnode-gitea
+  [remote "dappnode"]
+    url = dappnode-gitea:t4t5/${1: slug}.git
+    fetch = +refs/heads/*:refs/remotes/dappnode/*
+  [branch "main"]
+    remote = dappnode
+    merge = refs/heads/main

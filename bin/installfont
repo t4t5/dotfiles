@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+fonts=("$@")
+
+# Default to *.otf in current directory if no args given
+if [ ${#fonts[@]} -eq 0 ]; then
+  fonts=(*.otf)
+  if [ ! -e "${fonts[0]}" ]; then
+    echo "No .otf files found in current directory."
+    exit 1
+  fi
+fi
+
+mkdir -p ~/.local/share/fonts
+
+for font in "${fonts[@]}"; do
+  cp "$font" ~/.local/share/fonts/
+  echo "Installed: $(basename "$font")"
+done
+
+fc-cache -fv >/dev/null 2>&1
+echo "Font cache updated."

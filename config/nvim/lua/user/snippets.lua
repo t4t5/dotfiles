@@ -1,7 +1,7 @@
 -- luasnip
 function OpenLuaSnipFile()
   local snippet_file = vim.bo.filetype .. '.snippets'
-  local path = '~/dotfiles/config/nvim/luasnippets/' .. snippet_file
+  local path = '~/.config/nvim/luasnippets/' .. snippet_file
   vim.api.nvim_command("vsplit " .. path)
 end
 

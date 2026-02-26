@@ -172,6 +172,21 @@ return {
     'mrcjkb/rustaceanvim',
     version = '^5', -- Recommended
     lazy = false,   -- This plugin is already lazy
+    config = function()
+      local sysroot = vim.fn.trim(vim.fn.system("rustup run stable rustc --print sysroot"))
+      vim.g.rustaceanvim = {
+        server = {
+          cmd = { "rustup", "run", "stable", "rust-analyzer" },
+          default_settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                sysroot = sysroot,
+              },
+            },
+          },
+        },
+      }
+    end
   },
 
   -- noir lang support

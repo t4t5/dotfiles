@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Launch Chromium in X11/XWayland mode with a separate profile.
+# Useful for browser extensions (like Xverse) that break on native Wayland
+# due to invalid popup bounds calculations.
+
+exec setsid chromium --ozone-platform=x11 --user-data-dir="$HOME/.config/chromium-x11" "$@" >/dev/null 2>&1 &

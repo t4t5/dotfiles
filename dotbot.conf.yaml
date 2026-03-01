@@ -8,7 +8,9 @@
     ~/.config/joshuto: config/joshuto
     ~/.gitconfig: gitconfig
     ~/.gitmessage: gitmessage
-    ~/.tmux.conf: tmux.conf
+    ~/.config/tmux/tmux.conf:
+      path: tmux.conf
+      force: true
     ~/.wezterm.lua: .wezterm.lua
     ~/.zshrc: zshrc
     ~/antigen.zsh: antigen.zsh

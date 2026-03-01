@@ -1,0 +1,1 @@
+/home/t4t5/.local/share/omarchy/default/elephant/omarchy_background_selector.lua

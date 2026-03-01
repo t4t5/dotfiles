@@ -47,3 +47,4 @@ text/x-c++=nvim.desktop
 application/xml=nvim.desktop
 text/xml=nvim.desktop
 x-scheme-handler/figma=figma-linux.desktop
+inode/directory=org.gnome.Nautilus.desktop

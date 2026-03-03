@@ -25,7 +25,7 @@
       "client_side_decorations": {
          "enabled": true,
          "rounding": 0,
-         "border_width": 4
+         "border_width": 2
       }
    },
    "favorites": [

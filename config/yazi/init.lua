@@ -1,3 +1,15 @@
+Status:children_add(function()
+	local h = cx.active.current.hovered
+	if not h then return ui.Line({}) end
+
+	local mtime = h.cha.mtime
+	if not mtime then return ui.Line({}) end
+
+	return ui.Line({
+		ui.Span(" Last changed: " .. os.date("%Y-%m-%d %H:%M", math.floor(mtime)) .. " "),
+	})
+end, 500, Status.RIGHT)
+
 require("bunny"):setup({
 	hops = {
 		{ key = "R", path = "/", desc = "system root" },

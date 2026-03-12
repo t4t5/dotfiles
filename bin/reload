@@ -4,6 +4,6 @@ source ~/.zshrc;
 source ~/.zprofile;
 source ~/.zshenv;
 
-tmux source-file ~/.tmux.conf;
+tmux source-file ~/.config/tmux/tmux.conf;
 
 echo "Environment reloaded!";

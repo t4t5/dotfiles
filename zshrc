@@ -7,6 +7,9 @@
 source $HOME/aliases.zsh
 source $HOME/path_config.zsh
 
+# Disable flow control (frees up Ctrl+S and Ctrl+Q for tmux)
+stty -ixon
+
 # Locale
 export LANG=en_GB.UTF-8
 

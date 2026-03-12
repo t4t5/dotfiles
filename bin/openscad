@@ -1,0 +1,2 @@
+#!/bin/sh
+exec env QT_STYLE_OVERRIDE='' flatpak run org.openscad.OpenSCAD "$@" 2>/dev/null

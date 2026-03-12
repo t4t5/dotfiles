@@ -92,5 +92,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   pathadd "$BREW_ROOT/opt/openjdk/bin"
 fi
 
+# Flatpak:
+export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
 # FINAL EXPORT:
 export PATH

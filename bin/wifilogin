@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Opens the captive portal login page for the current wifi network.
+# Useful because iwd + systemd-resolved have no built-in portal detection.
+
+CHECK_URL="http://connectivitycheck.gstatic.com/generate_204"
+
+response=$(curl -s -o /dev/null -w "%{http_code} %{redirect_url}" -m 5 "$CHECK_URL" 2>/dev/null)
+http_code=$(echo "$response" | awk '{print $1}')
+redirect_url=$(echo "$response" | awk '{print $2}')
+
+if [ "$http_code" = "204" ]; then
+  msg="Already online — no captive portal detected."
+  if [ "$GUI" = "1" ]; then
+    notify-send "WiFi Login" "$msg"
+  else
+    echo "$msg"
+  fi
+  exit 0
+fi
+
+if [ -n "$redirect_url" ]; then
+  portal_url="$redirect_url"
+else
+  # Some portals return 200 with a login page instead of a redirect
+  portal_url="$CHECK_URL"
+fi
+
+if [ "$GUI" = "1" ]; then
+  notify-send "WiFi Login" "Opening captive portal..."
+fi
+
+xdg-open "$portal_url"

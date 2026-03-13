@@ -35,6 +35,7 @@
       "scripts:nerdfont-icons.sh",
       "scripts:vpn-switch-country.sh",
       "scripts:vpn-toggle.sh",
+      "scripts:wifi-login.sh",
       "core:reload-scripts"
    ]
 }
